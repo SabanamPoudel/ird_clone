@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-01 Return Entry - IRD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        .navbar {
+            background: #1F548A;
+            padding: 12px 0px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: 95px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar .container-fluid {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 0;
+        }
+        
+        .navbar button {
+            background: transparent;
+            border: 0px;
+            cursor: pointer;
+            padding: 5px;
+            margin-right: 15px;
+        }
+        
+        .navbar button:hover {
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+        
+        .navbar-toggler {
+            border-color: rgba(255,255,255,0.3);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        .navbar .collapse {
+            display: flex !important;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .header-section {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            padding-left: 0;
+            margin-left: 0;
+        }
+        
+        .header-left img {
+            height: 75px;
+            width: auto;
+            margin-left: 0;
+        }
+        
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+            justify-content: center;
+            margin-left: -60px;
+        }
+        
+        .header-center img {
+            height: 75px;
+            width: auto;
+        }
+        
+        .slogan-text {
+            color: white;
+            font-size: 19px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.35;
+            letter-spacing: 0.3px;
+        }
+        
+        .header-right {
+            text-align: right;
+            white-space: nowrap;
+            padding-right: 30px;
+            margin-right: 0;
+        }
+        
+        .dt {
+            color: white;
+            padding: 0;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .shadow-sm {
+            box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075) !important;
+        }
+        
+        .mb-2 {
+            margin-bottom: 0 !important;
+        }
+        
+        .main-layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background-color: #1F548A;
+            color: white;
+            overflow-y: auto;
+            flex-shrink: 0;
+            transition: margin-left 0.3s ease;
+            margin-left: 0;
+        }
+        
+        .sidebar:not(.is-open) {
+            margin-left: -280px;
+        }
+        
+        .sidebar.is-open {
+            margin-left: 0;
+        }
+        
+        .sidebar-header {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-header img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .side-menu {
+            padding: 0;
+        }
+        
+        .list-unstyled {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .nav-item {
+            list-style: none;
+        }
+        
+        .dropdown-toggle {
+            display: block;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            background-color: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+            transition: background-color 0.2s, color 0.2s;
+            position: relative;
+        }
+        
+        .dropdown-toggle::after {
+            content: '▾';
+            position: absolute;
+            right: 20px;
+            font-size: 16px;
+            transition: transform 0.2s;
+        }
+        
+        .dropdown-toggle:hover {
+            background-color: white;
+            color: #1F548A;
+        }
+        
+        .dropdown-toggle:active,
+        .dropdown-toggle.active {
+            background-color: white;
+            color: #1F548A;
+        }
+        
+        .items-menu {
+            display: none;
+            background-color: rgba(0,0,0,0.2);
+        }
+        
+        .items-menu.show {
+            display: block;
+        }
+        
+        .items-menu .nav-item {
+            border-left: 4px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .items-menu .nav-item:hover {
+            background-color: rgba(255,255,255,0.05);
+            border-left-color: #fff;
+        }
+        
+        .items-menu .nav-item.active-submenu {
+            background-color: #e6f0ff;
+            border-left: 3px solid #007bff;
+        }
+        
+        .items-menu .nav-item.active-submenu a {
+            color: #007bff !important;
+        }
+        
+        .items-menu .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .items-menu svg {
+            width: 1em;
+            height: 1em;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+        
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            background-color: #f5f5f5;
+        }
+        
+        .container-fluid {
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        
+        .card-header {
+            background-color: #1F548A;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px 8px 0 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .card-body {
+            padding: 30px;
+            display: flex;
+            gap: 30px;
+        }
+        
+        .col-sm-6 {
+            flex: 1;
+        }
+        
+        .surface-card-title {
+            background-color: #f6fafe;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        
+        .row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .col-form-label {
+            flex: 0 0 40%;
+            text-align: left;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        
+        .col-sm-5 {
+            flex: 0 0 50%;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #3066be;
+            box-shadow: 0 0 0 2px rgba(48, 102, 190, 0.1);
+        }
+        
+        .red {
+            color: red;
+        }
+        
+        .btn {
+            padding: 5px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            height: 27px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-primary {
+            background-color: #3066be;
+            color: white;
+        }
+        
+        .btn-danger {
+            background-color: #ff4444;
+            color: white;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+        }
+        
+        .notice-bg {
+            background-color: #fff9e6;
+            padding: 30px;
+            border-radius: 4px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .notice-bg label {
+            line-height: 2;
+            font-size: 14px;
+        }
+        
+        .download-btn {
+            background-color: #3066be;
+            color: white;
+            padding: 4px 10px;
+            margin-left: 10px;
+            height: 20px;
+            font-size: 12px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        svg {
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar shadow-sm mb-2">
+        <div class="container-fluid">
+            <div class="collapse show navbar-collapse">
+                <div class="header-section">
+                    <div class="header-left">
+                        <img src="Taxpayer Portal_files/logo.gif" alt="IRD Logo">
+                    </div>
+                    
+                    <div class="header-center">
+                        <img src="Taxpayer Portal_files/flag.gif" alt="Nepal Flag">
+                        <img src="Taxpayer Portal_files/slogan.jpg" alt="Slogan" style="height: 75px; width: auto; margin-left: 150px;">
+                    </div>
+                    
+                    <div class="header-right">
+                        <label class="dt" id="currentDate">Date: 2082.07.23</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar is-open">
+            <div class="side-menu">
+                <ul class="list-unstyled pb-3 nav flex-column">
+                    <!-- General -->
+                    <div style="font-size:14px;font-weight:bold;margin-top:20px">
+                        <div>
+                            <li class="nav-item">
+                                <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">General</a>
+                            </li>
+                            <div class="items-menu collapse navbar-collapse">
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>Taxpayer Login
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>Create Taxpayer Login
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>Forgot Password
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>Drug Manufacturer's Login
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>Payment Voucher Search
+                                    </a>
+                                </li>
+                            </div>
+                        </div>
+
+                        <!-- Registration -->
+                        <div>
+                            <li class="nav-item">
+                                <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Registration(PAN, VAT, EXCISE)</a>
+                            </li>
+                            <div class="items-menu collapse navbar-collapse">
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>Application For Registration
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>Registration Login
+                                    </a>
+                                </li>
+                            </div>
+                        </div>
+
+                        <!-- VAT -->
+                        <div>
+                            <li class="nav-item">
+                                <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">VAT</a>
+                            </li>
+                            <div class="items-menu collapse navbar-collapse">
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>VAT Return Entry
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>VAT Return Login
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>VAT Close Of Business Entry
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>VAT Close of Business Login
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>Help
+                                    </a>
+                                </li>
+                            </div>
+                        </div>
+                        <!-- Non-Resident Person (DST/VAT) -->
+<div>
+  <li class="nav-item">
+    <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Non-Resident Person (DST/VAT)</a>
+  </li>
+  <div class="items-menu collapse navbar-collapse">
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Application For DST Registration</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Registration Log In</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>VAT Return Entry</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>VAT Return Login</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>DST Return Entry</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>DST VAT Return Entry</a></li>
+  </div>
+</div>
+<!-- Non-Resident Airlines -->
+<div>
+  <li class="nav-item">
+    <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Non-Resident Airlines</a>
+  </li>
+  <div class="items-menu collapse navbar-collapse">
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Application For Registration</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Registration Log In</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>NRA VAT Return Entry</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>NRA VAT Return Login</a></li>
+  </div>
+</div>
+
+                        <!-- Income Tax - ACTIVE -->
+                        <div>
+                            <li class="nav-item">
+                                <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Income Tax</a>
+                            </li>
+                            <div class="items-menu collapse navbar-collapse show">
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:#e6f0ff;border-left:3px solid #007bff" class="pl-1 active-submenu nav-item">
+                                    <a style="color:#007bff" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>D-01 Return Entry
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>D-02 Return Entry
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>D-03 Return Entry
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>D-04 Return Entry
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>Jeopardy Assessment
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>Change Of Control
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>Close Of Business D-02
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>Close Of Business D-03
+                                    </a>
+                                </li>
+                                <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item">
+                                    <a style="color:white" class="nav-link">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+                                        </svg>Tax Return Login
+                                    </a>
+                                </li>
+                            </div>
+                        </div>
+
+                       <!-- Excise -->
+<div>
+  <li class="nav-item">
+    <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Excise</a>
+  </li>
+  <div class="items-menu collapse navbar-collapse">
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Return Entry</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Excise Return Login</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Close Of Business Entry</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Excise Close Of Business Login</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Self Renew Permit</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>New Permit</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Manufacturer's Login</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Brand Registration</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Brand Registration Login</a></li>
+  </div>
+</div>
+<!-- Diplomatic Refund -->
+<div>
+  <li class="nav-item">
+    <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Diplomatic Refund</a>
+  </li>
+  <div class="items-menu collapse navbar-collapse">
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Diplomatic Refund Login</a></li>
+  </div>
+</div>
+
+<!-- Health Tax -->
+<div>
+  <li class="nav-item">
+    <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Health Tax</a>
+  </li>
+  <div class="items-menu collapse navbar-collapse">
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Returns Entry</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Returns Login</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Close of Business Entry</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Close of Business Login</a></li>
+  </div>
+</div>
+
+<!-- Education Tax -->
+<div>
+  <li class="nav-item">
+    <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Education Tax</a>
+  </li>
+  <div class="items-menu collapse navbar-collapse">
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Returns Entry</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Returns Login</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Close Of Business Entry</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Close Of Business Login</a></li>
+  </div>
+</div>
+
+<!-- Electronic Billing -->
+<div>
+  <li class="nav-item">
+    <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Electronic Billing</a>
+  </li>
+  <div class="items-menu collapse navbar-collapse">
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Electronic Billing Software Listing</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Software Listing Login</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Electronic Billing User Permission</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>User Permission Login</a></li>
+  </div>
+</div>
+
+<!-- Education Service Fee -->
+<div>
+  <li class="nav-item">
+    <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Education Service Fee</a>
+  </li>
+  <div class="items-menu collapse navbar-collapse">
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Education Service Fee Entry</a></li>
+  </div>
+</div>
+
+<!-- Foreign Employment Service Fee -->
+<div>
+  <li class="nav-item">
+    <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Foreign Employment Service Fee</a>
+  </li>
+  <div class="items-menu collapse navbar-collapse">
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Foreign Employment Service Fee Entry</a></li>
+  </div>
+</div>
+
+<!-- Foreign Tourism Fee -->
+<div>
+  <li class="nav-item">
+    <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Foreign Tourism Fee</a>
+  </li>
+  <div class="items-menu collapse navbar-collapse">
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Foreign Tourism Fee Entry</a></li>
+  </div>
+</div>
+
+<!-- Luxury Fee -->
+<div>
+  <li class="nav-item">
+    <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Luxury Fee</a>
+  </li>
+  <div class="items-menu collapse navbar-collapse">
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Luxury Fee Entry</a></li>
+  </div>
+</div>
+
+<!-- Other Offices -->
+<div>
+  <li class="nav-item">
+    <a class="dropdown-toggle nav-link" onclick="toggleMenu(this)">Other Offices</a>
+  </li>
+  <div class="items-menu collapse navbar-collapse">
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Log In/Out</a></li>
+    <li style="text-align:left;font-size:12px;cursor:pointer;background-color:transparent;border-left:4px solid transparent" class="pl-1 nav-item"><a style="color:white" class="nav-link"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm64 236c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-64c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v8zm0-72v8c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm96-114.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg>Bank Login</a></li>
+  </div>
+</div>
+
+
+                        
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">ESelfAssessment D01</div>
+                    <div class="card-body">
+                        <div class="col-sm-6">
+                            <div class="surface-card-title">
+                                यदि तपाईं बैंक मार्फत कर तिर्न चाहनुहुन्छ भने, कृपया कर भुक्तानीका लागि बैंक जानु अघि फाराम डाउनलोड गर्नुहोस् र भर्नुहोस्।
+                                <a href="/d01_form.pdf" download="d01_form" target="_blank">
+                                    <button class="download-btn">डाउनलोड गर्नुहोस्</button>
+                                </a>
+                            </div>
+                            <div class="surface-card-title">
+                                यदि तपाईं डिजिटल माध्यम (जस्तै Connect IPS) बाट कर तिर्न चाहनुहुन्छ भने, कृपया तल दिइएको खाली ठाउँमा सूचना प्रविष्ट गर्नुहोस्।
+                            </div>
+
+                            <div>
+                                <div class="row">
+                                    <label for="pan" class="col-form-label">स्थायी लेखा नम्बर <span class="red">*</span>:</label>
+                                    <div class="col-sm-5">
+                                        <input id="pan" name="PANNO" maxlength="9" placeholder=" " type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label for="businessName" class="col-form-label">ब्यवसायको नाम <span class="red">*</span>:</label>
+                                    <div class="col-sm-5">
+                                        <input id="businessName" name="USER_NAME" placeholder=" " type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label for="address" class="col-form-label">ठेगाना <span class="red">*</span>:</label>
+                                    <div class="col-sm-5">
+                                        <input id="address" name="ADDRESS" placeholder="" type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label for="mobile" class="col-form-label">मोबाइल नम्बर <span class="red">*</span>:</label>
+                                    <div class="col-sm-5">
+                                        <input id="mobile" maxlength="10" name="CONTACTNO" type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label for="email" class="col-form-label">इमेल ठेगाना:</label>
+                                    <div class="col-sm-5">
+                                        <input id="email" name="EMAIL" placeholder=" " type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="button-container">
+                                    <button id="registerBtn" class="btn btn-primary">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
+                                        </svg>
+                                        रजिष्टर
+                                    </button>
+                                    <button id="resetBtn" class="btn btn-danger">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm101.8-262.2L295.6 256l62.2 62.2c4.7 4.7 4.7 12.3 0 17l-22.6 22.6c-4.7 4.7-12.3 4.7-17 0L256 295.6l-62.2 62.2c-4.7 4.7-12.3 4.7-17 0l-22.6-22.6c-4.7-4.7-4.7-12.3 0-17l62.2-62.2-62.2-62.2c-4.7-4.7-4.7-12.3 0-17l22.6-22.6c4.7-4.7 12.3-4.7 17 0l62.2 62.2 62.2-62.2c4.7-4.7 12.3-4.7 17 0l22.6 22.6c4.7 4.7 4.7 12.3 0 17z"></path>
+                                        </svg>
+                                        रिसेट
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 notice-bg">
+                            <label>
+                                १. स्थायी लेखा नम्बर उल्लेख गर्नुहोस।<br>
+                                २. आफ्नो हालको मोबाइल नम्वर उल्लेख गर्नुहोस ।<br>
+                                ३. आफ्नो ईमेल ठेगाना उल्लेख गर्नुहोस ।<br>
+                                ४. रजिष्टर वटन थिच्नुहोस।
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle sidebar function
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('is-open');
+        }
+
+        // Toggle menu function
+        function toggleMenu(element) {
+            const menuItems = element.parentElement.nextElementSibling;
+            if (menuItems && menuItems.classList.contains('items-menu')) {
+                menuItems.classList.toggle('show');
+            }
+        }
+
+        // Register button functionality
+        document.getElementById('registerBtn').addEventListener('click', function() {
+            const pan = document.getElementById('pan').value.trim();
+            const businessName = document.getElementById('businessName').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const mobile = document.getElementById('mobile').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            if (!pan) {
+                alert('कृपया स्थायी लेखा नम्बर भर्नुहोस् । (Please enter PAN Number)');
+                return;
+            }
+
+            if (!businessName) {
+                alert('कृपया ब्यवसायको नाम भर्नुहोस् । (Please enter Business Name)');
+                return;
+            }
+
+            if (!address) {
+                alert('कृपया ठेगाना भर्नुहोस् । (Please enter Address)');
+                return;
+            }
+
+            if (!mobile) {
+                alert('कृपया मोबाइल नम्बर भर्नुहोस् । (Please enter Mobile Number)');
+                return;
+            }
+
+            // Save to localStorage
+            const d01Entry = {
+                pan: pan,
+                businessName: businessName,
+                address: address,
+                mobile: mobile,
+                email: email,
+                registeredDate: new Date().toISOString()
+            };
+
+            let d01Entries = JSON.parse(localStorage.getItem('d01Entries') || '[]');
+            d01Entries.push(d01Entry);
+            localStorage.setItem('d01Entries', JSON.stringify(d01Entries));
+
+            alert('दर्ता सफल भयो ! (Registration Successful!)\n\nPAN: ' + pan + '\nBusiness: ' + businessName);
+
+            // Clear form
+            document.getElementById('pan').value = '';
+            document.getElementById('businessName').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('mobile').value = '';
+            document.getElementById('email').value = '';
+        });
+
+        // Reset button functionality
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            document.getElementById('pan').value = '';
+            document.getElementById('businessName').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('mobile').value = '';
+            document.getElementById('email').value = '';
+        });
+
+        // Function to convert AD to BS (Bikram Sambat)
+        function convertADtoBS(adDate) {
+            const adYear = adDate.getFullYear();
+            const adMonth = adDate.getMonth() + 1; // JS months are 0-indexed (0-11)
+            const adDay = adDate.getDate();
+            
+            // BS year is generally AD year + 57 (after mid-April) or AD year + 56 (before mid-April)
+            let bsYear = adYear + 57;
+            let bsMonth = adMonth + 8; // Rough estimate: add 8 months
+            let bsDay = adDay + 14; // Add approximately 14 days
+            
+            // Adjust for month overflow
+            if (bsMonth > 12) {
+                bsMonth -= 12;
+            }
+            
+            // If we're in Jan-Apr of AD, we're still in previous BS year's later months
+            if (adMonth <= 4) {
+                bsYear = adYear + 56;
+            }
+            
+            // Adjust day if it exceeds typical month length (30-32 days in BS)
+            const daysInMonth = 30; // Approximate
+            if (bsDay > daysInMonth) {
+                bsDay -= daysInMonth;
+                bsMonth += 1;
+                if (bsMonth > 12) {
+                    bsMonth = 1;
+                    bsYear += 1;
+                }
+            }
+            
+            // Format as YYYY.MM.DD
+            return bsYear + '.' + String(bsMonth).padStart(2, '0') + '.' + String(bsDay).padStart(2, '0');
+        }
+
+        // Update date display
+        function updateDate() {
+            const today = new Date();
+            const bsDate = convertADtoBS(today);
+            const dateLabel = document.querySelector('.dt');
+            if (dateLabel) {
+                dateLabel.textContent = 'Date: ' + bsDate;
+            }
+        }
+
+        // Update date on page load
+        updateDate();
+
+        // Handle browser back button to return to taxpayer portal
+        window.addEventListener('popstate', function(event) {
+            window.location.href = 'taxpayer_portal.html';
+        });
+
+        // Push state on page load to enable back button navigation
+        if (window.history && window.history.pushState) {
+            window.history.pushState({page: 'd01'}, 'D-01 Return Entry', window.location.href);
+        }
+    </script>
+</body>
+</html>

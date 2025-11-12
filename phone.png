@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 600">
+  <!-- Phone frame -->
+  <rect x="10" y="10" width="280" height="580" rx="30" fill="#2c3e50"/>
+  <rect x="20" y="50" width="260" height="500" rx="10" fill="#ecf0f1"/>
+  
+  <!-- Screen content -->
+  <rect x="30" y="60" width="240" height="40" rx="5" fill="#3498db"/>
+  <text x="150" y="85" text-anchor="middle" fill="white" font-size="20" font-weight="bold">IRD Nepal</text>
+  
+  <!-- App icons grid -->
+  <rect x="40" y="120" width="60" height="60" rx="10" fill="#e74c3c"/>
+  <rect x="120" y="120" width="60" height="60" rx="10" fill="#2ecc71"/>
+  <rect x="200" y="120" width="60" height="60" rx="10" fill="#f39c12"/>
+  
+  <rect x="40" y="200" width="60" height="60" rx="10" fill="#9b59b6"/>
+  <rect x="120" y="200" width="60" height="60" rx="10" fill="#1abc9c"/>
+  <rect x="200" y="200" width="60" height="60" rx="10" fill="#34495e"/>
+  
+  <rect x="40" y="280" width="60" height="60" rx="10" fill="#e67e22"/>
+  <rect x="120" y="280" width="60" height="60" rx="10" fill="#16a085"/>
+  <rect x="200" y="280" width="60" height="60" rx="10" fill="#c0392b"/>
+  
+  <!-- Bottom buttons -->
+  <circle cx="150" cy="560" r="25" fill="#34495e"/>
+  <circle cx="150" cy="560" r="20" fill="#ecf0f1"/>
+  
+  <!-- Camera notch -->
+  <ellipse cx="150" cy="30" rx="30" ry="8" fill="#34495e"/>
+</svg>

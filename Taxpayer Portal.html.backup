@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://taxpayerportal.ird.gov.np/taxpayer/app.html -->
+<html class="x-border-box x-viewport"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!--
+        <script>
+            (function (s, t, a, n) {
+                s[t] ||
+                    ((s[t] = a),
+                    (n = s[a] =
+                        function () {
+                            n.q.push(arguments);
+                        }),
+                    (n.q = []),
+                    (n.v = 2),
+                    (n.l = 1 * new Date()));
+            })(window, "InstanaEumObject", "ineum");
+
+            ineum("reportingUrl", "https://10.20.19.65:446/eum/");
+            ineum("key", "k26zIFi-SPWOlf1LWcUAjg");
+            ineum("trackSessions");
+        </script>
+        -->
+        <!-- <script defer crossorigin="anonymous" src="https://10.20.19.65:446/eum/eum.min.js"></script> -->
+        
+    <title>Taxpayer Portal</title>
+    <link rel="stylesheet" href="./Taxpayer Portal_files/all.css" id="allcss">
+    <style>
+        .tree {
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            padding: 0 0 0 0;
+            margin: 0;
+        }
+        .tree-title {
+            font-weight: bold;
+            color: #2a4b8d;
+            background: #e6eef8;
+            padding: 6px 10px;
+            border-bottom: 1px solid #b5b8c8;
+        }
+        .tree ul {
+            list-style: none;
+            padding-left: 18px;
+            margin: 0;
+        }
+        .tree li {
+            margin: 2px 0;
+            cursor: pointer;
+            white-space: nowrap;
+            line-height: 20px;
+            position: relative;
+        }
+        .tree .folder {
+            font-weight: bold;
+        }
+        .tree .icon {
+            width: 16px;
+            display: inline-block;
+            vertical-align: middle;
+            filter: sepia(100%) saturate(300%) brightness(100%) hue-rotate(10deg);
+        }
+        .tree .toggle {
+            width: 16px;
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer;
+            color: #2a4b8d;
+            font-weight: bold;
+            user-select: none;
+        }
+        .tree .file {
+            font-weight: normal;
+        }
+    </style>
+    <script>
+        // Complete tree data - Integrated Tax System is the main root
+        const treeData = [
+            {
+                label: "Integrated Tax System",
+                children: [
+                    {
+                        label: "General",
+                        children: [
+                            { label: "Taxpayer Login" },
+                            { label: "Create Taxpayer Login" },
+                            { label: "Forgot Password" },
+                            { label: "Drug Manufacturer's Login" },
+                            { label: "Payment Voucher Search" }
+                        ]
+                    },
+                    {
+                        label: "Registration(PAN,VAT,EXCISE)",
+                        children: [
+                            { label: "Application For Registration" },
+                            { label: "Registration Log In" }
+                        ]
+                    },
+                    {
+                        label: "VAT",
+                        children: [
+                            { label: "VAT Return Entry" },
+                            { label: "VAT Return Login" },
+                            { label: "VAT Close Of Business Entry" },
+                            { label: "VAT Close Of Business Login" },
+                            { label: "Help" }
+                        ]
+                    },
+                    {
+                        label: "Non-Resident Person (DST/VAT)",
+                        children: [
+                            { label: "Application For DST Registration" },
+                            { label: "Registration Log In" },
+                            { label: "VAT Return Entry" },
+                            { label: "VAT Return Login" },
+                            { label: "DST Return Entry" },
+                            { label: "DST VAT Return Entry" }
+                        ]
+                    },
+                    {
+                        label: "Non-Resident Airlines",
+                        children: [
+                            { label: "Application For Registration" },
+                            { label: "Registration Log In" },
+                            { label: "NRA VAT Return Entry" },
+                            { label: "NRA VAT Return Login" }
+                        ]
+                    },
+                    {
+                        label: "Estimated Return",
+                        children: [
+                            { label: "Estimated Return Entry" },
+                            { label: "Estimated Return D02 Entry" }
+                        ]
+                    },
+                    {
+                        label: "Income Tax",
+                        children: [
+                            { label: "D-01 Return Entry" },
+                            { label: "D-02 Return Entry" },
+                            { label: "D-03 Return Entry" },
+                            { label: "D-04 Return Entry" },
+                            { label: "Jeopardy Assessment" },
+                            { label: "Change of Control" },
+                            { label: "Close of Business D-01" },
+                            { label: "Close of Business D-02" },
+                            { label: "Close of Business D-03" },
+                            { label: "Tax Return Login" },
+                            { label: "Help" }
+                        ]
+                    },
+                    {
+                        label: "Excise",
+                        children: [
+                            { label: "Return Entry" },
+                            { label: "Excise Return Login" },
+                            { label: "Close Of Business Entry" },
+                            { label: "Excise Close Of Business Login" },
+                            { label: "Self Renew Permit" },
+                            { label: "New Permit" },
+                            { label: "Manufacturer's Login" },
+                            { label: "Brand Registration" },
+                            { label: "Brand Registration Login" }
+                        ]
+                    },
+                    {
+                        label: "E-TDS",
+                        children: [
+                            { label: "E-TDS" }
+                        ]
+                    },
+                    {
+                        label: "Diplomatic Refund",
+                        children: [
+                            { label: "Diplomatic Refund Login" }
+                        ]
+                    },
+                    {
+                        label: "Health Tax",
+                        children: [
+                            { label: "Returns Entry" },
+                            { label: "Returns Login" },
+                            { label: "Close of Business Entry" },
+                            { label: "Close of Business Login" }
+                        ]
+                    },
+                    {
+                        label: "Education Tax",
+                        children: [
+                            { label: "Returns Entry" },
+                            { label: "Returns Login" },
+                            { label: "Close Of Business Entry" },
+                            { label: "Close Of Business Login" }
+                        ]
+                    },
+                    {
+                        label: "Electronic Billing",
+                        children: [
+                            { label: "Electronic Billing Software Listing" },
+                            { label: "Software Listing Login" },
+                            { label: "Electronic Billing User Permission" },
+                            { label: "User Permission Login" }
+                        ]
+                    },
+                    {
+                        label: "Education Service Fee",
+                        children: []
+                    },
+                    {
+                        label: "Foreign Employment Service Fee",
+                        children: []
+                    },
+                    {
+                        label: "Foreign Tourism Fee",
+                        children: []
+                    },
+                    {
+                        label: "Other Offices",
+                        children: [
+                            { label: "Log In/Out" }
+                        ]
+                    }
+                ]
+            }
+        ];
+        // Use folder/file icons similar to the original
+        const folderClosed = '📁';
+        const folderOpen = '📂';
+        const fileIcon = '📄';
+        const plusIcon = '[+]';
+        const minusIcon = '[-]';
+
+        function createTreeNode(node) {
+            const li = document.createElement('li');
+            if (node.children && node.children.length > 0) {
+                li.innerHTML = '<span class="toggle">' + plusIcon + '</span> <span class="icon">' + folderClosed + '</span> <span class="folder">' + node.label + '</span>';
+                const ul = document.createElement('ul');
+                ul.style.display = 'none';
+                node.children.forEach(child => {
+                    ul.appendChild(createTreeNode(child));
+                });
+                li.appendChild(ul);
+                const toggle = li.querySelector('.toggle');
+                const icon = li.querySelector('.icon');
+                const folder = li.querySelector('.folder');
+                function toggleFolder(e) {
+                    e.stopPropagation();
+                    if (ul.style.display === 'none') {
+                        ul.style.display = 'block';
+                        toggle.textContent = minusIcon;
+                        icon.textContent = folderOpen;
+                    } else {
+                        ul.style.display = 'none';
+                        toggle.textContent = plusIcon;
+                        icon.textContent = folderClosed;
+                    }
+                }
+                toggle.onclick = toggleFolder;
+                icon.onclick = toggleFolder;
+                folder.onclick = toggleFolder;
+            } else {
+                li.innerHTML = '<span class="icon">' + fileIcon + '</span> <span class="file">' + node.label + '</span>';
+            }
+            return li;
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const treeColBody = document.getElementById('treeCol-body');
+            if (treeColBody) {
+                treeColBody.innerHTML = '';
+                const treeDiv = document.createElement('div');
+                treeDiv.className = 'tree';
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'tree-title';
+                titleDiv.textContent = 'Online E-Services';
+                treeDiv.appendChild(titleDiv);
+                const ul = document.createElement('ul');
+                treeData.forEach(node => {
+                    ul.appendChild(createTreeNode(node));
+                });
+                treeDiv.appendChild(ul);
+                treeColBody.appendChild(treeDiv);
+            }
+        });
+    </script>
+
+        <script language="JavaScript">
+            var objappVersion = navigator.appVersion;
+            var objAgent = navigator.userAgent;
+            var objbrowserName = navigator.appName;
+            var objfullVersion = "" + parseFloat(navigator.appVersion);
+            var objBrMajorVersion = parseInt(navigator.appVersion, 10);
+            var objOffsetName, objOffsetVersion, ix;
+
+            // In Chrome
+            if ((objOffsetVersion = objAgent.indexOf("Chrome")) != -1) {
+                objbrowserName = "Chrome";
+                objfullVersion = objAgent.substring(objOffsetVersion + 7);
+            } else if ((objOffsetVersion = objAgent.indexOf("Firefox")) != -1) {
+                objbrowserName = "Firefox";
+            } else {
+                alert("Please Use Firefox");
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                document.write('<font size="150">Please Use Mozilla Firefox!<BR></font>');
+                exit;
+            }
+
+            /*var referrer = document.referrer;
+        if(referrer == "")
+        {
+
+            window.location.href = "https://ird.gov.np/portal/taxpayer";
+        }*/
+        </script>
+    <script type="text/javascript" src="./Taxpayer Portal_files/MyViewport.js"></script><script type="text/javascript" src="./Taxpayer Portal_files/MenuController.js"></script><script type="text/javascript" src="./Taxpayer Portal_files/MyViewport.js"></script><script type="text/javascript" src="./Taxpayer Portal_files/LoginSecurity.js"></script><script type="text/javascript" src="./Taxpayer Portal_files/MenuController(1).js"></script><script type="text/javascript" src="./Taxpayer Portal_files/LoginUser.js"></script><script type="text/javascript" src="./Taxpayer Portal_files/LoginUser(1).js"></script>
+    
+    <script type="text/javascript">
+        // Wait for ExtJS to fully load, then inject tree icons
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                // Use local GIFs for all icons
+                var folderIcon = 'resources/themes/images/default/tree/folder.gif';
+                var fileIcon = 'resources/themes/images/default/tree/leaf.gif';
+                var plusIcon = 'resources/themes/images/default/tree/elbow-plus.gif';
+                var minusIcon = 'resources/themes/images/default/tree/elbow-minus.gif';
+                var elbowIcon = 'resources/themes/images/default/tree/elbow.gif';
+                var elbowLineIcon = 'resources/themes/images/default/tree/elbow-line.gif';
+                var elbowEmptyIcon = 'resources/themes/images/default/tree/elbow-empty.gif';
+
+                function updateTreeIcons() {
+                    // Folder icons
+                    document.querySelectorAll('img.x-tree-icon-parent').forEach(function(img) {
+                        img.src = folderIcon;
+                        img.style.opacity = '1';
+                        img.style.width = '16px';
+                        img.style.height = '16px';
+                    });
+                    // File/leaf icons
+                    document.querySelectorAll('img.x-tree-icon-leaf').forEach(function(img) {
+                        img.src = fileIcon;
+                        img.style.opacity = '1';
+                        img.style.width = '16px';
+                        img.style.height = '16px';
+                    });
+                    // Expand/collapse icons
+                    document.querySelectorAll('img.x-tree-elbow-plus, img.x-tree-elbow-end-plus').forEach(function(img) {
+                        img.src = plusIcon;
+                        img.style.width = '18px';
+                        img.style.height = '18px';
+                    });
+                    document.querySelectorAll('img.x-tree-elbow-minus, img.x-tree-elbow-end-minus').forEach(function(img) {
+                        img.src = minusIcon;
+                        img.style.width = '18px';
+                        img.style.height = '18px';
+                    });
+                    // Elbow/line/empty
+                    document.querySelectorAll('img.x-tree-elbow, img.x-tree-elbow-end').forEach(function(img) {
+                        img.src = elbowIcon;
+                        img.style.width = '18px';
+                        img.style.height = '18px';
+                    });
+                    document.querySelectorAll('img.x-tree-elbow-line').forEach(function(img) {
+                        img.src = elbowLineIcon;
+                        img.style.width = '18px';
+                        img.style.height = '18px';
+                    });
+                    document.querySelectorAll('img.x-tree-elbow-empty').forEach(function(img) {
+                        img.src = elbowEmptyIcon;
+                        img.style.width = '18px';
+                        img.style.height = '18px';
+                    });
+                }
+                updateTreeIcons();
+                // Watch for DOM changes and update icons
+                var observer = new MutationObserver(function() { updateTreeIcons(); });
+                var treePanel = document.querySelector('.x-tree-panel');
+                if (treePanel) {
+                    observer.observe(treePanel, {
+                        childList: true,
+                        subtree: true,
+                        attributes: true,
+                        attributeFilter: ['class']
+                    });
+                }
+            }, 1000);
+        });
+    </script>
+    </head>
+    <body class="x-body x-webkit x-chrome x-mac x-reset x-container x-container-default x-border-layout-ct" id="ext-gen1009" role="application">
+
+<div id="ext-comp-1014" class="x-tip x-tip-default x-layer" role="tooltip" aria-labelledby="component-1016" style="position: absolute; display: none; left: 640px; top: 356px;"><div id="ext-comp-1014-body" class="x-tip-body  x-tip-body-default x-tip-body-default"></div><div class="x-tip-anchor x-tip-anchor-top" id="ext-gen1011" style="z-index: 1;"></div></div><div class="x-box-inner" role="presentation" id="ext-gen1031" style="width: 1280px; height: 712px;"><div id="CntHeader" class="x-container HeaderCls x-box-item x-container-default x-box-layout-ct" role="presentation" style="height: 90px; margin: 0px; width: 1280px; left: 0px; top: 0px;"><div class="x-box-inner" role="presentation" id="ext-gen1033" style="height: 90px; width: 1280px;"><div id="CntHeaderLeft" class="x-container x-box-item x-container-default x-box-layout-ct" role="presentation" style="width: 635px; margin: 0px; height: 90px; left: 0px; top: 0px;"><table width="100%" cellspacing="0" cellpadding="0" border="0">
+      <tbody><tr>
+        <td bgcolor="#1F548A" align="left"><a href="http://ird.gov.np/portal/taxpayer"><img width="306" height="85" src="./Taxpayer Portal_files/logo.gif"></a></td>
+        <td bgcolor="#1F548A" align="left" id="ext-gen1172"><img width="68" height="50" src="./Taxpayer Portal_files/flag.gif" id="ext-gen1139"></td>
+		<td bgcolor="#1F548A" align="left" id="ext-gen1175"><img width="250" height="87" src="./Taxpayer Portal_files/slogan.jpg" id="ext-gen1140"></td>
+        </tr>
+		</tbody>
+</table><div class="x-box-inner" role="presentation" id="ext-gen1036" style="width: 635px; height: 90px;"></div></div><div id="CntHeaderRight" class="x-container x-box-item x-container-default" role="presentation" style="margin: 0px; height: 90px; left: 635px; top: 0px; width: 645px;"><table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">
+      <tbody>
+            <tr>
+               <td align="right" valign="top">
+                    <table style="color:#FFFFFF;margin-top:10px;font-weight:bold;">
+                        <tbody><tr>   
+                            <td>Date:&nbsp;&nbsp;</td><td><div id="nepDate" style="margin-right:100px">2082.07.20</div></td>
+                        </tr>
+                        <tr>   
+                            <td><div style="display:none;">Office Code:&nbsp;&nbsp;</div></td><td><div id="offCode" style="display:none;"></div></td>
+                        </tr>
+                    </tbody></table>
+               </td>
+               <td align="left"></td>
+           
+                <td align="center" valign="top">
+                    <div>
+                    <div style="display:none;"><img src="./Taxpayer Portal_files/profile.gif" height="40" width="40" style="margin-top:10px;"></div>
+                    <div style="display:none;" id="LogDetails"><div id="LoginTitle">Welcome</div>
+                    <div style="display:none;" id="logOUt">[<span>LogIn</span>]</div>
+                    
+                </div></div></td>
+  <td><div id="frmToken" style="margin-right:100px;display: none">fdsaadsfdsa</div></td>          </tr>
+		</tbody>
+</table></div></div></div><div style="display:none;"><div id="viewport-embedded-center" class="x-container x-border-item x-box-item x-container-default x-box-layout-ct" role="presentation" style="margin: 0px; width: 1280px; height: 582px; left: 0px; top: 95px;"><div class="x-box-inner" role="presentation" id="ext-gen1041" style="width: 1280px; height: 582px;"><div id="CntLeft" class="x-container x-box-item x-container-default x-box-layout-ct" role="presentation" style="width: 250px; margin: 0px; height: 582px; left: 0px; top: 0px;"><div class="x-box-inner" role="presentation" id="ext-gen1043" style="width: 250px; height: 582px;"><div id="treeCol" class="x-panel x-tree-panel x-tree-lines x-grid x-grid-header-hidden x-box-item x-panel-default" role="presentation" aria-labelledby="component-1035" style="margin: 0px; width: 250px; height: 582px; left: 0px; top: 0px;"><div id="header-1034" class="x-panel-header x-panel-header-default x-horizontal x-panel-header-horizontal x-panel-header-default-horizontal x-top x-panel-header-top x-panel-header-default-top x-unselectable x-docked x-docked-top x-panel-header-docked-top x-panel-header-default-docked-top" role="presentation" style="width: 250px; left: 0px; top: 0px;"><div id="header-1034-body" class="x-panel-header-body x-panel-header-body-default-horizontal x-panel-header-body-default-top x-panel-header-body-default x-panel-header-body-horizontal x-panel-header-body-top x-box-layout-ct"><div class="x-box-inner" role="presentation" id="ext-gen1048" style="width: 239px; height: 15px;"><div id="component-1035" class="x-component x-panel-header-text-container x-box-item x-component-default" role="heading" style="margin: 0px; width: 239px; height: 15px; left: 0px; top: 0px;"><span id="component-1035-textEl" class="x-panel-header-text x-panel-header-text-default">Online E-Services</span></div></div></div></div><div id="headercontainer-1017" class="x-grid-header-ct x-grid-header-ct-hidden x-grid-header-ct-default x-docked x-docked-top x-grid-header-ct-docked-top x-grid-header-ct-default-docked-top x-box-layout-ct" role="presentation" style="width: 250px; height: 0px; left: 0px; top: 25px;"><div class="x-box-inner" role="presentation" id="ext-gen1054" style="width: 248px; height: 22px;"><div id="treecolumn-1018" class="x-column-header x-unselectable x-box-item x-column-header x-unselectable-default x-column-header-align-left x-column-header-first x-column-header-last" role="presentation" style="width: 248px; margin: 0px; height: auto; left: 0px; top: 0px;"><div id="treecolumn-1018-titleContainer" class="x-column-header-inner" style="height: auto; padding-top: 0px;"><span id="treecolumn-1018-textEl" class="x-column-header-text">Name</span><div id="treecolumn-1018-triggerEl" class="x-column-header-trigger"></div></div></div></div></div><div id="treeCol-body" class="x-panel-body   x-grid-body x-panel-body-default x-panel-body-default x-layout-fit" style="width: 250px; height: 557px; left: 0px; top: 25px;"><div id="trMenus" class="x-grid-view x-fit-item x-grid-view-default x-unselectable" role="presentation" tabindex="-1" style="margin: 0px; width: 248px; height: 555px;"><table class="x-grid-table x-grid-table-resizer" border="0" cellspacing="0" cellpadding="0" style="width: 248px;"><tbody><tr class="x-grid-header-row"><th class="x-grid-col-resizer-treecolumn-1018" style="width: 248px; height: 0px;"></th></tr><tr class="x-grid-row   x-grid-tree-node-expanded"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-end-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ">Integrated Tax System</div></td></tr><tr class="x-grid-row x-grid-tree-node-expanded" id="ext-gen1154"><td class="x-grid-cell x-grid-cell-treecolumn-1018 x-grid-cell-first" id="ext-gen1160"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;" id="ext-gen1170"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander" id="ext-gen1161"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent " id="ext-gen1169">General</div></td></tr><tr class="x-grid-row  " data-qtip="General &gt;&gt; Taxpayer Login" id="ext-gen1164"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-line"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-leaf ">Taxpayer Login</div></td></tr><tr class="x-grid-row  " data-qtip="General &gt;&gt; Create Taxpayer Login" id="ext-gen1165"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-line"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-leaf ">Create Taxpayer Login</div></td></tr><tr class="x-grid-row  " data-qtip="General &gt;&gt; Forgot Password" id="ext-gen1166"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-line"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-leaf ">Forgot Password</div></td></tr><tr class="x-grid-row" data-qtip="General &gt;&gt; Drug Manufacturer&#39;s Refund" id="ext-gen1167"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;" id="ext-gen1174"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-line"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-leaf ">Drug Manufacturer's Login</div></td></tr><tr class="x-grid-row" data-qtip="General &gt;&gt; Voucher Search" id="ext-gen1168"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;" id="ext-gen1173"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-line"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-end"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-leaf ">Payment Voucher Search</div></td></tr><tr class="x-grid-row"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;" id="ext-gen1146"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test" id="ext-gen1147">Registration(PAN,VAT,EXCISE)</div></td></tr><tr class="x-grid-row"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;" id="ext-gen1145"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">VAT</div></td></tr><tr class="x-grid-row"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;" id="ext-gen1137"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Non-Resident Person (DST/VAT)</div></td></tr><tr class="x-grid-row"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;" id="ext-gen1144"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Non-Resisdent Airlines</div></td></tr><tr class="x-grid-row"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;" id="ext-gen1136"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Estimated Return</div></td></tr><tr class="x-grid-row"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;" id="ext-gen1143"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Income Tax</div></td></tr><tr class="x-grid-row"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;" id="ext-gen1135"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Excise</div></td></tr><tr class="x-grid-row  "><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">E-TDS</div></td></tr><tr class="x-grid-row  "><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Diplomatic Refund</div></td></tr><tr class="x-grid-row  "><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Health Tax</div></td></tr><tr class="x-grid-row"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;" id="ext-gen1134"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Education Tax</div></td></tr><tr class="x-grid-row  "><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Electronic Billing</div></td></tr><tr class="x-grid-row  "><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Education Service Fee</div></td></tr><tr class="x-grid-row  "><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Foreign Employment Service Fee</div></td></tr><tr class="x-grid-row  "><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Foreign Tourism Fee</div></td></tr><tr class="x-grid-row"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;" id="ext-gen1133"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Luxury Fee</div></td></tr><tr class="x-grid-row"><td class=" x-grid-cell x-grid-cell-treecolumn-1018   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;" id="ext-gen1132"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-end-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ico-test">Other Offices</div></td></tr></tbody></table></div></div></div><div id="treeCol1" class="x-panel x-tree-panel x-tree-lines x-grid x-grid-header-hidden x-box-item x-panel-default" role="presentation" aria-labelledby="component-1038" style="display: none; margin: 0px;"><div id="header-1037" class="x-panel-header x-panel-header-default x-horizontal x-panel-header-horizontal x-panel-header-default-horizontal x-top x-panel-header-top x-panel-header-default-top x-unselectable x-docked x-docked-top x-panel-header-docked-top x-panel-header-default-docked-top" role="presentation"><div id="header-1037-body" class="x-panel-header-body x-panel-header-body-default-horizontal x-panel-header-body-default-top x-panel-header-body-default x-panel-header-body-horizontal x-panel-header-body-top"><div class="x-box-inner" role="presentation" id="ext-gen1061"><div id="component-1038" class="x-component x-panel-header-text-container x-box-item x-component-default" role="heading" style="margin: 0px;"><span id="component-1038-textEl" class="x-panel-header-text x-panel-header-text-default">Online E-Services1</span></div></div></div></div><div id="headercontainer-1021" class="x-grid-header-ct x-grid-header-ct-hidden x-grid-header-ct-default x-docked x-docked-top x-grid-header-ct-docked-top x-grid-header-ct-default-docked-top" role="presentation"><div class="x-box-inner" role="presentation" id="ext-gen1067"><div id="treecolumn-1022" class="x-column-header x-unselectable x-box-item x-column-header x-unselectable-default x-column-header-align-left" role="presentation" style="margin: 0px;"><div id="treecolumn-1022-titleContainer" class="x-column-header-inner"><span id="treecolumn-1022-textEl" class="x-column-header-text">Name</span><div id="treecolumn-1022-triggerEl" class="x-column-header-trigger"></div></div></div></div></div><div id="treeCol1-body" class="x-panel-body   x-grid-body x-panel-body-default x-panel-body-default"><div id="trMenus1" class="x-grid-view x-fit-item x-grid-view-default x-unselectable" role="presentation" tabindex="-1" style="margin: 0px;"><table class="x-grid-table x-grid-table-resizer" border="0" cellspacing="0" cellpadding="0" style="width: 100px;"><tbody><tr class="x-grid-header-row"><th class="x-grid-col-resizer-treecolumn-1022" style="width: 100px; height: 0px;"></th></tr><tr class="x-grid-row   x-grid-tree-node-expanded"><td class=" x-grid-cell x-grid-cell-treecolumn-1022   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-end-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ">Integrated Tax System</div></td></tr><tr class="x-grid-row  "><td class=" x-grid-cell x-grid-cell-treecolumn-1022   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ">Sticker Management</div></td></tr><tr class="x-grid-row  "><td class=" x-grid-cell x-grid-cell-treecolumn-1022   x-grid-cell-first"><div unselectable="on" class="x-grid-cell-inner x-unselectable" style="; text-align: left;"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-empty"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-elbow-end-plus x-tree-expander"><img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tree-icon x-tree-icon-parent ">Activity Recording</div></td></tr></tbody></table></div></div></div><div id="hiddenfield-1025" class="x-field x-form-item-hidden x-box-item x-field-default" style="margin: 0px; width: 250px;"><div class="x-form-item-body " id="hiddenfield-1025-bodyEl" role="presentation" style="width: 250px;"><input id="ext-gen1021" type="hidden" name="ext-gen1021" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1025-errorEl" data-errorqtip=""></div><div id="hiddenfield-1025-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div><div id="hiddenfield-1026" class="x-field x-form-item-hidden x-box-item x-field-default" style="margin: 0px; width: 250px;"><div class="x-form-item-body " id="hiddenfield-1026-bodyEl" role="presentation" style="width: 250px;"><input id="ext-gen1022" type="hidden" name="ext-gen1022" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1026-errorEl" data-errorqtip=""></div><div id="hiddenfield-1026-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div><div id="hiddenfield-1027" class="x-field x-form-item-hidden x-box-item x-field-default" style="margin: 0px; width: 250px;"><div class="x-form-item-body " id="hiddenfield-1027-bodyEl" role="presentation" style="width: 250px;"><input id="ext-gen1023" type="hidden" name="ext-gen1023" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1027-errorEl" data-errorqtip=""></div><div id="hiddenfield-1027-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div><div id="hiddenfield-1028" class="x-field x-form-item-hidden x-box-item x-field-default" style="margin: 0px; width: 250px;"><div class="x-form-item-body " id="hiddenfield-1028-bodyEl" role="presentation" style="width: 250px;"><input id="ext-gen1024" type="hidden" name="ext-gen1024" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1028-errorEl" data-errorqtip=""></div><div id="hiddenfield-1028-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div><div id="hiddenfield-1029" class="x-field x-form-item-hidden x-box-item x-field-default" style="margin: 0px; width: 250px;"><div class="x-form-item-body " id="hiddenfield-1029-bodyEl" role="presentation" style="width: 250px;"><input id="ext-gen1025" type="hidden" name="ext-gen1025" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1029-errorEl" data-errorqtip=""></div><div id="hiddenfield-1029-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div></div></div><div id="splitter-1032" class="x-splitter x-box-item x-splitter-default x-splitter-vertical x-unselectable" role="presentation" style="width: 5px; height: 582px; margin: 0px; left: 250px; top: 0px;"></div><div id="CntContent" class="x-container x-box-item x-container-default x-box-layout-ct" role="presentation" style="margin: 0px; width: 1025px; height: 582px; left: 255px; top: 0px;"><div class="x-box-inner" role="presentation" id="ext-gen1083" style="width: 1025px; height: 582px;"><div id="fieldcontainer-1030" class="x-container x-form-item x-box-item x-container-default" data-errorqtip="" role="presentation" style="width: 1025px; height: 20px; margin: 0px; left: 0px; top: 0px;"><div class="x-form-item-body  x-box-layout-ct" id="fieldcontainer-1030-bodyEl" role="presentation" style="width: 1025px; height: 20px;"><div class="x-box-inner" role="presentation" id="ext-gen1085" style="width: 1025px; height: 20px;"><div id="CntSiteMapPath" class="x-container x-box-item x-container-default" role="presentation" style="height: 20px; margin: 0px; width: 970px; left: 0px; top: 0px;">SiteMap::</div><div id="container-1031" class="x-container x-box-item x-container-default" role="presentation" style="margin: 0px; width: 55px; height: 20px; left: 970px; top: 0px;"><div style="display:none;"><a href="http://localhost:52628/Main/app.html">IRDHome</a></div></div></div></div><div id="fieldcontainer-1030-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div><div id="CntMainPage" class="x-container x-box-item x-container-default x-box-layout-ct" role="presentation" style="margin: 0px; width: 1025px; height: 557px; left: 0px; top: 25px;"><div class="x-box-inner" role="presentation" id="ext-gen1091" style="width: 1025px; height: 557px;"><div id="EContent" class="x-panel x-box-item x-panel-default-framed" role="presentation" aria-labelledby="component-1044" style="margin: 0px; width: 1021px; height: 557px; left: 0px; top: 0px;"><div id="header-1043" class="x-panel-header x-panel-header-default-framed x-horizontal x-panel-header-horizontal x-panel-header-default-framed-horizontal x-top x-panel-header-top x-panel-header-default-framed-top x-unselectable x-docked x-docked-top x-panel-header-docked-top x-panel-header-default-framed-docked-top" role="presentation" style="width: 1021px; left: -1px; top: -1px;"><div id="header-1043-body" class="x-panel-header-body x-panel-header-body-default-framed-horizontal x-panel-header-body-default-framed-top x-panel-header-body-default-framed x-panel-header-body-horizontal x-panel-header-body-top x-box-layout-ct"><div class="x-box-inner" role="presentation" id="ext-gen1096" style="width: 1009px; height: 15px;"><div id="component-1044" class="x-component x-panel-header-text-container x-box-item x-component-default" role="heading" style="margin: 0px; width: 1009px; height: 15px; left: 0px; top: 0px;"><span id="component-1044-textEl" class="x-panel-header-text x-panel-header-text-default-framed">..:::E-Services System</span></div></div></div></div><div id="EContent-body" class="x-panel-body  x-panel-body-default x-panel-body-default-framed x-panel-body-default-framed" style="width: 1011px; height: 522px; left: 0px; top: 25px;"><table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">
+ <tbody><tr>
+ <td align="center" id="ext-gen1138">
+ <div class="Index-Text" id="ext-gen1141">									<img src="./Taxpayer Portal_files/IRD_Nepal_1.png" width="400px" height="320px" id="ext-gen1142"><br></div>
+ </td>
+ </tr><tr>
+ <td align="center">
+ <div class="Index-Text" id="ext-gen1171">..:6:2:Taxpayer Portal:::..<br><br>THIS SITE IS BEST COMPATIBLE WITH MOZILLA FIREFOX.<br></div>
+ </td>
+ </tr>
+ </tbody>
+ </table></div></div></div></div></div></div></div></div><div id="CntFooter" class="x-container FooterCls x-box-item x-container-default" role="presentation" style="height: 30px; margin: 0px; width: 1280px; left: 0px; top: 682px;"><table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">
+      <tbody>
+	  <tr>
+        <td align="center" class="Design-And-Developed">© Copyright Inland Revenue Department. All Rights Reserved</td>
+        </tr>
+		</tbody>
+</table></div></div><div id="ext-gen1050" class="x-component x-dd-drag-proxy x-dd-drop-nodrop x-component-default x-layer x-grid-col-dd" role="presentation" style="position: absolute; left: 626px; top: 350px; visibility: hidden; z-index: 19001;"><div class="x-dd-drop-icon"></div><div class="x-dd-drag-ghost" id="ext-gen1052"></div></div><div id="ext-gen1063" class="x-component x-dd-drag-proxy x-dd-drop-nodrop x-component-default x-layer x-grid-col-dd" role="presentation" style="position: absolute; left: 626px; top: 350px; visibility: hidden; z-index: 19011;"><div class="x-dd-drop-icon"></div><div class="x-dd-drag-ghost" id="ext-gen1065"></div></div><div id="ext-comp-1040" class="x-form-invalid-tip x-form-invalid-tip-default x-layer" role="tooltip" aria-labelledby="component-1042" style="position: absolute; display: none; left: 640px; top: 356px;"><div id="ext-comp-1040-body" class="x-form-invalid-tip-body  x-form-invalid-tip-body-default x-form-invalid-tip-body-default"></div><div class="x-tip-anchor x-tip-anchor-top" id="ext-gen1077" style="z-index: 1;"></div></div><div class="x-textmetrics" id="ext-gen1080" style="position: absolute; left: -1000px; top: -1000px; visibility: hidden; font-size: 11px; font-style: normal; font-weight: 400; font-family: tahoma, arial, verdana, sans-serif; line-height: 22px; text-transform: none; letter-spacing: normal; width: auto;"></div><div class="x-css-shadow" role="presentation" id="ext-gen1126" style="z-index: 19020; left: 515px; top: 305px; width: 250px; height: 106px; box-shadow: rgb(136, 136, 136) 0px 0px 4px 0px; display: none;"></div><div id="messagebox-1001" class="x-window x-message-box x-window-default x-closable x-window-closable x-window-default-closable x-layer" role="alertdialog" aria-labelledby="component-1046" tabindex="-1" style="position: absolute; width: 250px; height: 110px; left: -10000px; top: -10000px; z-index: 19021;"><div id="header-1045" class="x-window-header x-window-item x-window-header-default x-horizontal x-window-header-horizontal x-window-header-default-horizontal x-top x-window-header-top x-window-header-default-top x-unselectable x-window-header-draggable x-docked x-docked-top x-window-header-docked-top x-window-header-default-docked-top" role="presentation" style="width: 600px; left: -1px; top: -1px; display: none;"><div id="header-1045-body" class="x-window-header-body x-window-header-body-default-horizontal x-window-header-body-default-top x-window-header-body-default x-window-header-body-horizontal x-window-header-body-top x-box-layout-ct"><div class="x-box-inner" role="presentation" id="ext-gen1103" style="width: 588px; height: 16px;"><div id="component-1046" class="x-component x-window-header-text-container x-box-item x-component-default" role="heading" style="margin: 0px; width: 571px; height: 16px; left: 0px; top: 0px;"><span id="component-1046-textEl" class="x-window-header-text x-window-header-text-default">&nbsp;</span></div><div id="tool-1047" class="x-tool x-box-item x-tool-default" role="button" style="margin: 0px; left: 573px; top: 1px; display: none;"><img id="tool-1047-toolEl" src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="x-tool-close" role="presentation"></div></div></div></div><div id="messagebox-1001-body" class="x-window-body  x-window-body-default x-closable x-window-body-closable x-window-body-default-closable x-window-body-default x-window-body-default-closable" style="width: 240px; height: 100px; left: 0px; top: 0px;"><div id="container-1007" class="x-container x-window-item x-container-default" role="presentation" style="padding: 10px; overflow: hidden; width: 240px;"><div id="component-1002" class="x-component ext-mb-icon x-component-default" role="presentation" style="float: left; width: 50px; height: 35px; display: none;"></div><div id="container-1006" class="x-container x-container-default" role="presentation"><span id="component-1003" class="x-component ext-mb-text x-component-default" role="presentation">Loading...</span><div id="textfield-1004" class="x-field x-form-item x-field-default" style="width: 570px; display: none;"><div class="x-form-item-body " id="textfield-1004-bodyEl" role="presentation" style="width: 570px;"><input id="ext-gen1001" type="text" name="ext-gen1001" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-describedby="textfield-1004-errorEl" aria-required="false" data-errorqtip="" style="width: 570px;"></div><div id="textfield-1004-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div><div id="textareafield-1005" class="x-field x-form-item x-field-default" style="width: 570px; height: 75px; display: none;"><div class="x-form-item-body " id="textareafield-1005-bodyEl" role="presentation" style="width: 570px; height: 75px;"><textarea id="ext-gen1002" name="ext-gen1002" rows="4" cols="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" data-errorqtip="" role="textbox" aria-describedby="textareafield-1005-errorEl" aria-required="false" aria-multiline="true" style="width: 570px; height: 75px;"></textarea></div><div id="textareafield-1005-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div><div class="x-clear" role="presentation" id="ext-gen1123"></div></div><div class="x-clear" role="presentation" id="ext-gen1122"></div></div><div id="progressbar-1008" class="x-progress x-window-item x-progress-default" role="presentation" style="margin-left: 10px; width: 220px;"><div class="x-progress-text x-progress-text-back" style="width: 218px;"></div><div id="progressbar-1008-bar" class="x-progress-bar" style="width: 0px;"><div class="x-progress-text" style="width: 218px;"></div></div></div><div class="x-clear" role="presentation" id="ext-gen1121"></div></div><div id="toolbar-1013" class="x-toolbar x-window-item x-toolbar-footer x-docked x-docked-bottom x-toolbar-docked-bottom x-toolbar-footer-docked-bottom x-box-layout-ct" role="toolbar" tabindex="-1" style="width: 590px; left: 4px; top: 465px; display: none;"><div class="x-box-inner" role="presentation" id="ext-gen1107" style="width: 584px;"><div id="button-1009" class="x-btn x-box-item x-toolbar-item x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon" style="margin: 0px; width: 75px; left: 130px; top: 0px; display: none;"><em id="button-1009-btnWrap" class=""><button id="button-1009-btnEl" type="button" hidefocus="true" role="button" autocomplete="off" class="x-btn-center" style="width: 69px;"><span id="button-1009-btnInnerEl" class="x-btn-inner" style="width: 69px;">OK</span><span id="button-1009-btnIconEl" class="x-btn-icon  x-hide-display">&nbsp;</span></button></em></div><div id="button-1010" class="x-btn x-box-item x-toolbar-item x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon" style="margin: 0px; width: 75px; left: 170.5px; top: 0px; display: none;"><em id="button-1010-btnWrap" class=""><button id="button-1010-btnEl" type="button" hidefocus="true" role="button" autocomplete="off" class="x-btn-center" style="width: 69px;"><span id="button-1010-btnInnerEl" class="x-btn-inner" style="width: 69px;">Yes</span><span id="button-1010-btnIconEl" class="x-btn-icon  x-hide-display">&nbsp;</span></button></em></div><div id="button-1011" class="x-btn x-box-item x-toolbar-item x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon" style="margin: 0px; width: 75px; left: 211px; top: 0px; display: none;"><em id="button-1011-btnWrap" class=""><button id="button-1011-btnEl" type="button" hidefocus="true" role="button" autocomplete="off" class="x-btn-center" style="width: 69px;"><span id="button-1011-btnInnerEl" class="x-btn-inner" style="width: 69px;">No</span><span id="button-1011-btnIconEl" class="x-btn-icon  x-hide-display">&nbsp;</span></button></em></div><div id="button-1012" class="x-btn x-box-item x-toolbar-item x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon" style="margin: 0px; width: 75px; left: 251.5px; top</div>
