@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAT Registration Success</title>
+    <link rel="stylesheet" type="text/css" href="../../extjs/resources/ext-all.css">
+    <link rel="stylesheet" type="text/css" href="../../css/all.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #DFE9F6;
+            width: 100%;
+            height: 100%;
+        }
+        
+        #ext-comp-1081-body,
+        #form-1082,
+        #form-1082-body,
+        .x-panel-body,
+        .x-container {
+            background-color: #DFE9F6 !important;
+        }
+        
+        /* Full width container with right border */
+        #ext-comp-1081-body {
+            width: 100% !important;
+            position: relative;
+            border-right: 2px solid #1F548A;
+            box-sizing: border-box;
+        }
+        
+        .x-box-inner {
+            width: 100% !important;
+        }
+        
+        #form-1082 {
+            width: 100% !important;
+        }
+        
+        #form-1082-body {
+            width: 100% !important;
+        }
+        
+        /* Button styling */
+        .x-btn-center {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        
+        /* Labels styling - normal weight for messages */
+        label.x-component {
+            font-weight: normal;
+        }
+        
+        /* Bold only for the values */
+        .x-form-display-field {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="ext-comp-1081-body" class="x-panel-body  x-panel-body-default x-panel-body-default-framed x-panel-body-default-framed x-box-layout-ct" style="overflow: auto; height: 100vh; left: 0px; top: 0px; width: 100%;">
+        <div class="x-box-inner" role="presentation" id="ext-gen1708" style="height: 100%; width: 100%;">
+            <div id="form-1082" class="x-panel x-box-item x-panel-default-framed" role="form" style="text-align: center; margin: 0px; width: 100%; height: 100%; left: 0px; top: 0px;">
+                <div id="form-1082-body" class="x-panel-body x-panel-body-default x-panel-body-default-framed x-panel-body-default-framed x-box-layout-ct x-docked-noborder-top x-docked-noborder-right x-docked-noborder-bottom x-docked-noborder-left" style="text-align: center; width: 100%; height: 100%; left: 0px; top: 0px;">
+                    <div class="x-box-inner" role="presentation" id="ext-gen1710" style="height: 100%; width: 100%;">
+                        <div id="container-1083" class="x-container x-box-item x-container-default x-box-layout-ct" role="presentation" style="text-align: center; margin: 0px; height: 80px; left: 0px; top: 80px; width: 100%;">
+                            <div class="x-box-inner" role="presentation" id="ext-gen1712" style="height: 80px; width: 100%;">
+                                <label id="label-1084" for="" class="x-component x-box-item x-component-default" role="presentation" style="font-size: 20px; font-weight: normal; margin: 0px; height: 30px; width: 100%; left: 0px; top: 10px; display: block; line-height: 30px;">तपाई सफलतापूर्वक दर्ता हुनुभयो!!!</label>
+                                <label id="label-1085" for="" class="x-component x-box-item x-component-default" role="presentation" style="font-size: 16px; font-weight: normal; height: 30px; margin: 0px; width: 100%; left: 0px; top: 40px; display: block; line-height: 30px;">कृपया तपाईको सब्मिशन नं., प्रयोगकर्ताको नाम र पासवर्ड टिपिराख्नुहोस् ।</label>
+                            </div>
+                        </div>
+                        <div id="container-1086" class="x-container x-box-item x-container-default x-box-layout-ct" role="presentation" style="text-align: center; height: 30px; margin: 20px 0px; left: 0px; top: 170px; width: 100%;">
+                            <div class="x-box-inner" role="presentation" id="ext-gen1716" style="height: 30px; width: 100%; display: flex; flex-wrap: nowrap; justify-content: center; align-items: center; gap: 30px;">
+                                <div style="display: inline-flex; align-items: center; font-size: 15px; white-space: nowrap;">
+                                    <span style="font-weight: normal;">तपाईको सब्मिशन नं.: </span>
+                                    <span id="submissionNo" style="font-weight: bold; margin-left: 5px;"></span>
+                                </div>
+                                <div style="display: inline-flex; align-items: center; font-size: 15px; white-space: nowrap;">
+                                    <span style="font-weight: normal;">प्रयोगकर्ताको नाम : </span>
+                                    <span id="userName" style="font-weight: bold; margin-left: 5px;"></span>
+                                </div>
+                                <div style="display: inline-flex; align-items: center; font-size: 15px; white-space: nowrap;">
+                                    <span style="font-weight: normal;">स्था. ले. नं. : </span>
+                                    <span id="panNo" style="font-weight: bold; margin-left: 5px;"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="container-1090" class="x-container x-box-item x-container-default x-box-layout-ct" role="presentation" style="text-align: left; margin: 0px; width: 150px; height: 40px; left: 10px; top: 220px;">
+                            <div class="x-box-inner" role="presentation" id="ext-gen1721" style="height: 40px; width: 150px;">
+                                <div id="button-1092" class="x-btn x-box-item x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon" style="margin: 0px;">
+                                    <em id="button-1092-btnWrap" class="">
+                                        <button id="button-1092-btnEl" type="button" hidefocus="true" role="button" autocomplete="off" class="x-btn-center">
+                                            <span id="button-1092-btnInnerEl" class="x-btn-inner">Proceed &gt;</span>
+                                            <span id="button-1092-btnIconEl" class="x-btn-icon  x-hide-display">&nbsp;</span>
+                                        </button>
+                                    </em>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="hiddenfield-1093" class="x-field x-form-item-hidden x-box-item x-field-default" style="margin: 0px; width: 100%; height: 181px;">
+                            <div class="x-form-item-body " id="hiddenfield-1093-bodyEl" role="presentation" style="width: 100%; height: 181px;">
+                                <input id="ext-gen1696" type="hidden" name="ext-gen1696" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1093-errorEl" data-errorqtip="">
+                            </div>
+                            <div id="hiddenfield-1093-errorEl" class="x-form-error-msg" style="display:none"></div>
+                            <div class="x-clear" role="presentation"><!-- --></div>
+                        </div>
+                        <div id="hiddenfield-1094" class="x-field x-form-item-hidden x-box-item x-field-default x-form-dirty" style="margin: 0px; width: 100%; height: 180px;">
+                            <div class="x-form-item-body " id="hiddenfield-1094-bodyEl" role="presentation" style="width: 100%; height: 180px;">
+                                <input id="ext-gen1697" type="hidden" name="ext-gen1697" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="00" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1094-errorEl" data-errorqtip="">
+                            </div>
+                            <div id="hiddenfield-1094-errorEl" class="x-form-error-msg" style="display:none"></div>
+                            <div class="x-clear" role="presentation"><!-- --></div>
+                        </div>
+                        <div id="hiddenfield-1095" class="x-field x-form-item-hidden x-box-item x-field-default x-form-dirty" style="margin: 0px; width: 100%; height: 180px;">
+                            <div class="x-form-item-body " id="hiddenfield-1095-bodyEl" role="presentation" style="width: 100%; height: 180px;">
+                                <input id="ext-gen1698" type="hidden" name="ext-gen1698" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="VRET" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1095-errorEl" data-errorqtip="">
+                            </div>
+                            <div id="hiddenfield-1095-errorEl" class="x-form-error-msg" style="display:none"></div>
+                            <div class="x-clear" role="presentation"><!-- --></div>
+                        </div>
+                        <div id="hiddenfield-1096" class="x-field x-form-item-hidden x-box-item x-field-default x-form-dirty" style="margin: 0px; width: 100%; height: 180px;">
+                            <div class="x-form-item-body " id="hiddenfield-1096-bodyEl" role="presentation" style="width: 100%; height: 180px;">
+                                <input id="ext-gen1699" type="hidden" name="ext-gen1699" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="VAT Return Entry" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1096-errorEl" data-errorqtip="">
+                            </div>
+                            <div id="hiddenfield-1096-errorEl" class="x-form-error-msg" style="display:none"></div>
+                            <div class="x-clear" role="presentation"><!-- --></div>
+                        </div>
+                        <div id="hiddenfield-1097" class="x-field x-form-item-hidden x-box-item x-field-default x-form-dirty" style="margin: 0px; width: 100%;">
+                            <div class="x-form-item-body " id="hiddenfield-1097-bodyEl" role="presentation" style="width: 100%;">
+                                <input id="ext-gen1700" type="hidden" name="ext-gen1700" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="19" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1097-errorEl" data-errorqtip="">
+                            </div>
+                            <div id="hiddenfield-1097-errorEl" class="x-form-error-msg" style="display:none"></div>
+                            <div class="x-clear" role="presentation"><!-- --></div>
+                        </div>
+                        <div id="hiddenfield-1098" class="x-field x-form-item-hidden x-box-item x-field-default x-form-dirty" style="margin: 0px; width: 100%; height: 180px;">
+                            <div class="x-form-item-body " id="hiddenfield-1098-bodyEl" role="presentation" style="width: 100%; height: 180px;">
+                                <input id="ext-gen1701" type="hidden" name="ext-gen1701" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="Nepal@123" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1098-errorEl" data-errorqtip="">
+                            </div>
+                            <div id="hiddenfield-1098-errorEl" class="x-form-error-msg" style="display:none"></div>
+                            <div class="x-clear" role="presentation"><!-- --></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../extjs/ext-all.js"></script>
+    <script src="../../js/all.js"></script>
+    <script>
+        // Get registration data from URL parameters
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Get data from URL parameters
+            const submissionNo = urlParams.get('submissionNo') || '';
+            const userName = urlParams.get('userName') || '';
+            const panNo = urlParams.get('panNo') || '';
+            
+            // Display the data with VAT prefix for submission number
+            document.getElementById('submissionNo').textContent = submissionNo;
+            document.getElementById('userName').textContent = userName;
+            document.getElementById('panNo').textContent = panNo;
+            
+            // Store in hidden fields as well
+            document.getElementById('ext-gen1696').value = submissionNo;
+            
+            // Add click handler for Proceed button
+            const proceedBtn = document.getElementById('button-1092-btnEl');
+            if (proceedBtn) {
+                proceedBtn.addEventListener('click', function() {
+                    // Store PAN and Submission No in sessionStorage for the returns form
+                    const panNo = urlParams.get('panNo') || '';
+                    const submissionNo = urlParams.get('submissionNo') || '';
+                    
+                    if (panNo) {
+                        sessionStorage.setItem('vatPAN', panNo);
+                    }
+                    if (submissionNo) {
+                        sessionStorage.setItem('vatSubmissionNo', submissionNo);
+                    }
+                    
+                    // Navigate to VAT Returns Form
+                    window.location.href = 'vat_returns_form.html';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

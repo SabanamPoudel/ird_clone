@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सब्मिशन नम्बर लिने फाराम</title>
+    <!-- ExtJS CSS -->
+    <link rel="stylesheet" href="../../extjs/resources/ext-all.css">
+    <!-- IRD Custom CSS -->
+    <link rel="stylesheet" href="../../css/all.css">
+    <style>
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            background-color: #DFE9F6 !important;
+        }
+        html {
+            overflow: hidden !important;
+        }
+        #frmVatReturnsSubNo {
+            background-color: #DFE9F6 !important;
+        }
+        #frmVatReturnsSubNo-body {
+            background-color: #DFE9F6 !important;
+        }
+        #container-1058, #cntVatEstRet {
+            background-color: #DFE9F6 !important;
+        }
+        
+        /* Button icons */
+        /* Button icons */
+        .x-btn-icon.icon-ok,
+        .x-btn-icon.icon-cancel {
+            display: inline-block !important;
+            width: 16px !important;
+            height: 16px !important;
+            background-size: 16px 16px !important;
+            margin-right: 5px !important;
+            vertical-align: middle !important;
+        }
+        
+        .icon-ok {
+            background: url('../../resources/ok.png') no-repeat center !important;
+        }
+        
+        .icon-cancel {
+            background: url('../../resources/cancel.png') no-repeat center !important;
+        }
+        
+        /* Force icons to show and position left */
+        #button-1076-btnEl,
+        #btnReset-btnEl {
+            display: flex !important;
+            align-items: center !important;
+            flex-direction: row-reverse !important;
+        }
+    </style></head>
+<body>
+<div id="frmVatReturnsSubNo" class="x-panel x-panel-default-framed" role="form" style="height: 350px; width: 715px;"><div id="frmVatReturnsSubNo-body" class="x-panel-body x-panel-body-default x-panel-body-default-framed x-panel-body-default-framed x-docked-noborder-top x-docked-noborder-right x-docked-noborder-bottom x-docked-noborder-left" style="padding: 10px; height: 340px; left: 0px; top: 0px;"><div id="hiddenfield-1049" class="x-field x-form-item-hidden x-field-default x-form-dirty" style="width: 685px;"><div class="x-form-item-body " id="hiddenfield-1049-bodyEl" role="presentation" style="width: 685px;"><input id="ext-gen1170" type="hidden" name="ext-gen1170" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="VAT Returns" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1049-errorEl" data-errorqtip=""></div><div id="hiddenfield-1049-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div><div id="hiddenfield-1050" class="x-field x-form-item-hidden x-field-default x-form-dirty" style="width: 685px;"><div class="x-form-item-body " id="hiddenfield-1050-bodyEl" role="presentation" style="width: 685px;"><input id="ext-gen1172" type="hidden" name="ext-gen1172" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="VAT Return Entry" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1050-errorEl" data-errorqtip=""></div><div id="hiddenfield-1050-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div>
+<div id="container-1051" class="x-container x-container-default x-table-layout-ct" role="presentation" style="width: 685px;">
+<table role="presentation" class="x-table-layout" cellspacing="0">
+<tbody>
+<tr>
+<td id="" colspan="1" rowspan="1" class="x-table-layout-cell ">
+<div id="container-1052" class="x-container x-container-default x-table-layout-ct" role="presentation" style="padding: 5px; width: 286px;">
+<table role="presentation" class="x-table-layout" cellspacing="0">
+<tbody>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><div id="txtVatUsername" class="x-field x-form-item x-field-default" style="width: 275px;"><label id="txtVatUsername-labelEl" for="ext-gen1197" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">प्रयोगकर्ताको नाम  *:</label><div class="x-form-item-body " id="txtVatUsername-bodyEl" role="presentation" style="width: 150px;"><input id="ext-gen1197" type="text" name="txtVatUsername" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-describedby="txtVatUsername-errorEl" aria-required="true" data-errorqtip="" style="width: 150px;"></div><div id="txtVatUsername-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><div id="textfield-1053" class="x-field x-form-item x-field-default" style="width: 275px;"><label id="textfield-1053-labelEl" for="ext-gen1200" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">पासवर्ड *:</label><div class="x-form-item-body " id="textfield-1053-bodyEl" role="presentation" style="width: 150px;"><input id="ext-gen1200" type="password" name="txtVatPassword" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-describedby="textfield-1053-errorEl" aria-required="true" data-errorqtip="" style="width: 150px;"></div><div id="textfield-1053-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><div id="textfield-1054" class="x-field x-form-item x-field-default" style="width: 275px;"><label id="textfield-1054-labelEl" for="ext-gen1203" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">पुनः पासवर्ड *:</label><div class="x-form-item-body " id="textfield-1054-bodyEl" role="presentation" style="width: 150px;"><input id="ext-gen1203" type="password" name="txtVatReTypePassword" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-describedby="textfield-1054-errorEl" aria-required="true" data-errorqtip="" style="width: 150px;"></div><div id="textfield-1054-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><div id="txtVATPANNo" class="x-field x-form-item x-field-default" style="width: 204px;"><label id="txtVATPANNo-labelEl" for="ext-gen1206" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">स्थायी लेखा नम्बर *:</label><div class="x-form-item-body " id="txtVATPANNo-bodyEl" role="presentation" style="width: 79px;"><input id="ext-gen1206" type="text" name="txtVATPANNo" size="9" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" maxlength="9" role="textbox" aria-describedby="txtVATPANNo-errorEl" aria-required="true" data-errorqtip="" style="width: 79px;"></div><div id="txtVATPANNo-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><div id="combobox-1055" class="x-field x-form-item x-field-default" style="width: 275px; display: none;"><label id="combobox-1055-labelEl" for="ext-gen1174" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">आर्थिक बर्ष  *:</label><div class="x-form-item-body " id="combobox-1055-bodyEl" role="presentation" style="width: 150px;"><div class="x-hide-display x-form-data-hidden" role="presentation" id="ext-gen1209"></div><input id="ext-gen1174" type="text" size="20" class="x-form-field x-form-text x-form-empty-field" autocomplete="off" aria-invalid="false" placeholder="---छान्नुहोस् ---" role="textbox" aria-describedby="combobox-1055-errorEl" aria-required="false" data-errorqtip="" style="width: 133px;"><div id="combobox-1055-triggerWrap" class="x-form-trigger-wrap" role="presentation" style="width: 17px;"><div class="x-trigger-index-0 x-form-trigger x-form-arrow-trigger x-form-trigger-last x-unselectable" role="button" id="ext-gen1210"></div><div class="x-clear" role="presentation"></div></div></div><div id="combobox-1055-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><div id="txtVatEmailId" class="x-field x-form-item x-field-default" style="width: 275px;"><label id="txtVatEmailId-labelEl" for="ext-gen1213" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">इमेल ठेगाना :</label><div class="x-form-item-body " id="txtVatEmailId-bodyEl" role="presentation" style="width: 150px;"><input id="ext-gen1213" type="text" name="txtVatEmailId" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-describedby="txtVatEmailId-errorEl" aria-required="false" data-errorqtip="" style="width: 150px;"></div><div id="txtVatEmailId-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><div id="textfield-1056" class="x-field x-form-item x-field-default" style="width: 275px;"><label id="textfield-1056-labelEl" for="ext-gen1175" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">सम्पर्क नम्बर *:</label><div class="x-form-item-body " id="textfield-1056-bodyEl" role="presentation" style="width: 150px;"><input id="ext-gen1175" type="text" name="ext-gen1175" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" maxlength="10" role="textbox" aria-describedby="textfield-1056-errorEl" aria-required="false" data-errorqtip="" style="width: 150px;"></div><div id="textfield-1056-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><div id="txtKAmount" class="x-field x-form-item x-field-default" style="width: 275px; display: none;"><label id="txtKAmount-labelEl" for="ext-gen1218" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">कारोबार रकम रु. *:</label><div class="x-form-item-body " id="txtKAmount-bodyEl" role="presentation" style="width: 150px;"><input id="ext-gen1218" type="text" name="txtKAmount" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-describedby="txtKAmount-errorEl" aria-required="false" data-errorqtip="" style="width: 150px;"><div id="txtKAmount-triggerWrap" class="x-form-trigger-wrap x-unselectable" role="presentation" style="display: none; width: 0px;"><div class="x-trigger-index-0 x-form-trigger x-form-spinner-up x-unselectable" role="button" id="ext-gen1219"></div><div class="x-trigger-index-1 x-form-trigger x-form-spinner-down x-form-trigger-last x-unselectable" role="button" id="ext-gen1220"></div><div class="x-clear" role="presentation"></div></div></div><div id="txtKAmount-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><div id="txtProfitAmount" class="x-field x-form-item x-field-default" style="width: 275px; display: none;"><label id="txtProfitAmount-labelEl" for="ext-gen1223" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">नाफा  रकम रु. *:</label><div class="x-form-item-body " id="txtProfitAmount-bodyEl" role="presentation" style="width: 150px;"><input id="ext-gen1223" type="text" name="txtProfitAmount" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-describedby="txtProfitAmount-errorEl" aria-required="false" data-errorqtip="" style="width: 150px;"><div id="txtProfitAmount-triggerWrap" class="x-form-trigger-wrap x-unselectable" role="presentation" style="display: none; width: 0px;"><div class="x-trigger-index-0 x-form-trigger x-form-spinner-up x-unselectable" role="button" id="ext-gen1224"></div><div class="x-trigger-index-1 x-form-trigger x-form-spinner-down x-form-trigger-last x-unselectable" role="button" id="ext-gen1225"></div><div class="x-clear" role="presentation"></div></div></div><div id="txtProfitAmount-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><div id="combobox-1057" class="x-field x-form-item x-field-default" style="width: 275px; display: none;"><label id="combobox-1057-labelEl" for="ext-gen1176" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">किसिम *:</label><div class="x-form-item-body " id="combobox-1057-bodyEl" role="presentation" style="width: 150px;"><div class="x-hide-display x-form-data-hidden" role="presentation" id="ext-gen1228"></div><input id="ext-gen1176" type="text" size="20" class="x-form-field x-form-text x-form-empty-field" autocomplete="off" aria-invalid="false" placeholder="---छान्नुहोस् ---" role="textbox" aria-describedby="combobox-1057-errorEl" aria-required="false" data-errorqtip="" style="width: 133px;"><div id="combobox-1057-triggerWrap" class="x-form-trigger-wrap" role="presentation" style="width: 17px;"><div class="x-trigger-index-0 x-form-trigger x-form-arrow-trigger x-form-trigger-last x-unselectable" role="button" id="ext-gen1229"></div><div class="x-clear" role="presentation"></div></div></div><div id="combobox-1057-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><div id="chkddlD03TTypeYN" class="x-field x-form-item x-field-default" style="display: none;"><div class="x-form-item-body x-form-cb-wrap" id="chkddlD03TTypeYN-bodyEl" role="presentation"><input type="button" id="ext-gen1177" class="x-form-field x-form-checkbox" autocomplete="off" hidefocus="true" aria-checked="false" aria-invalid="false" role="checkbox" aria-describedby="chkddlD03TTypeYN-errorEl"><label id="chkddlD03TTypeYN-boxLabelEl" class="x-form-cb-label x-form-cb-label-after" for="ext-gen1177">मेरो व्यवसायिक कारोबार बाहेक अन्य आय पनि छ। </label></div><div id="chkddlD03TTypeYN-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div></td></tr>
+</tbody>
+</table>
+</div>
+</td>
+<td id="" colspan="1" rowspan="1" class="x-table-layout-cell ">
+<div id="container-1058" class="x-container x-container-default" role="presentation">
+<div id="cntSelfAssessmentInstruction" class="x-container x-container-default x-table-layout-ct" role="presentation" style="margin: 0px 20px; display: none;">
+<table role="presentation" class="x-table-layout" cellspacing="0">
+<tbody>
+<tr><td id="ext-gen1431" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1059" for="" class="x-component x-component-default" role="presentation">ई-फाइलिङ्ग भर्ने प्रकृया:</label></td></tr>
+<tr><td id="ext-gen1432" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1060" for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">१  सब्मिशन नं. लिनुहोस ।</label></td></tr>
+<tr><td id="ext-gen1433" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1061" for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px; width: 310px;">२  Enter Self Assessment मा क्लिक गरी आफ्नो अभिलेख राख्नुहोस् । स्क्रिनमा डे-०१ फाराम देखिनेछ । कृपया सो फाराम भर्नुहोस् र 'सबमिट'मा क्लिक गर्नुहोस् । </label></td></tr>
+<tr><td id="ext-gen1434" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1062" for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">३  यदि तपाईले यस आर्थिक वर्षको निम्ति सब्मिशन नम्बर लिई सक्नु भएको छ भने 'मेनु' मा भएको  </label></td></tr>
+<tr><td id="ext-gen1435" colspan="1" rowspan="1" class="x-table-layout-cell "><div id="button-1063" class="x-btn x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon" style="height: 20px;"><em id="button-1063-btnWrap" class=""><button id="button-1063-btnEl" type="button" hidefocus="true" role="button" autocomplete="off" class="x-btn-center" style="height: 14px;"><span id="button-1063-btnInnerEl" class="x-btn-inner" style="height: 14px; line-height: 14px;">Income Tax Login </span><span id="button-1063-btnIconEl" class="x-btn-icon  x-hide-display">&nbsp;</span></button></em></div></td></tr>
+<tr><td id="ext-gen1436" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1064" for="" class="x-component x-component-default" role="presentation" style="margin: 0px;">मा क्लिक गर्नुहोस् । त्यसपछि सब्मिशन नम्बर प्रयोगकर्ताको नाम र पासवर्ड राखेर लगइन भइ आय विवरण भर्न , प्रविष्टि र रुजु गर्न सक्नु हुन्छ । रुजु नगरेसम्म तपाईंको विवरण आन्तरिक राजस्व विभागमा दर्ता भएको मानिदैन । </label></td></tr>
+<tr><td id="ext-gen1437" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1065" for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">४  एक पटक आय विवरण बुझाइसकेपछि कर दाखिला विवरणको फाराम देखिनेछ र तपाईले विवरण भर्न सक्नु हुनेछ । पृष्‍ठमा रहेको Print Preview मा क्लिक गरी हेर्न वा प्रिन्ट गर्न सक्नु हुनेछ । </label></td></tr>
+<tr><td id="ext-gen1438" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1066" for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">५  रुजु गर्न भरेको फाराम प्रिन्ट गर्नुहोस् र सम्बन्धीत आ.रा.का. मा गई बुझाउनुहोस् ।</label></td></tr>
+</tbody>
+</table>
+</div>
+<div id="cntVatEstRet" class="x-container x-container-default x-table-layout-ct" role="presentation" style="margin: -50px 20px 0px;">
+<table role="presentation" class="x-table-layout" cellspacing="0">
+<tbody>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1067" for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px 5px 10px;">ई-फाइलिङ्ग भर्ने प्रकृया:</label></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1068" for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">१.  प्रयोगकर्ताको नाम भर्नुहोस् </label></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1069" for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px; width: 310px;">२ .  पासवर्ड भर्नुहोस्</label></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1070" for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">३.  कृपया पुन: पासवर्ड भर्नुहोस्</label></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1071" for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">४ . स्थायी लेखा नम्बर भर्नुहोस्</label></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1072" for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">५ .  इमेल ठेगाना भर्नुहोस्</label></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1073" for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">६.  सम्पर्क नम्बर भर्नुहोस्</label></td></tr>
+<tr><td id="" colspan="1" rowspan="1" class="x-table-layout-cell "><label id="label-1074" for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">७ .  Register  बटनमा क्लिक गर्नुहोस्</label></td></tr>
+</tbody>
+</table>
+</div>
+<div class="x-clear" role="presentation" id="ext-gen1290"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="container-1075" class="x-container x-container-default x-column-layout-ct" role="presentation" style="padding: 0px 0px 0px 150px; width: 685px; overflow: auto;">
+<div class="x-column-inner" id="ext-gen1270" style="width: 535px;">
+<div id="button-1076" class="x-btn x-column x-btn-default-small x-icon-text-left x-btn-icon-text-left x-btn-default-small-icon-text-left"><em id="button-1076-btnWrap" class=""><button id="button-1076-btnEl" type="button" hidefocus="true" role="button" autocomplete="off" class="x-btn-center"><span id="button-1076-btnInnerEl" class="x-btn-inner" style="">Register </span><span id="button-1076-btnIconEl" class="x-btn-icon icon-ok">&nbsp;</span></button></em></div>
+<div id="btnReset" class="x-btn x-column x-btn-default-small x-icon-text-left x-btn-icon-text-left x-btn-default-small-icon-text-left"><em id="btnReset-btnWrap" class=""><button id="btnReset-btnEl" type="button" hidefocus="true" role="button" autocomplete="off" class="x-btn-center"><span id="btnReset-btnInnerEl" class="x-btn-inner" style="">Reset</span><span id="btnReset-btnIconEl" class="x-btn-icon icon-cancel">&nbsp;</span></button></em></div>
+<label id="label-1077" for="" class="x-component x-column x-component-default" role="presentation" style="margin: 10px 0px 20px;">* चिन्ह भएको सबै कोष्ठहरु भर्न जरुरी छ ।</label>
+<div id="hiddenfield-1078" class="x-field x-form-item-hidden x-column x-field-default" style="width: 0px;"><div class="x-form-item-body " id="hiddenfield-1078-bodyEl" role="presentation" style="width: 0px;"><input id="ext-gen1183" type="hidden" name="ext-gen1183" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="" aria-invalid="false" role="presentation" aria-describedby="hiddenfield-1078-errorEl" data-errorqtip=""></div><div id="hiddenfield-1078-errorEl" class="x-form-error-msg" style="display:none"></div><div class="x-clear" role="presentation"><!-- --></div></div>
+<div class="x-clear" role="presentation" id="ext-gen1271"></div>
+</div>
+</div>
+<div class="x-clear" role="presentation" id="ext-gen1276"></div>
+</div>
+</div>
+<div class="x-clear" role="presentation" id="ext-gen1307"></div>
+</div>
+
+    <!-- ExtJS Library -->
+    <script src="../../extjs/ext-all.js"></script>
+    <!-- IRD Custom JS -->
+    <script src="../../js/all.js"></script>
+    
+    <!-- Form Validation and Logging Script -->
+    <script>
+        // Generate submission number function
+        function generateSubmissionNo() {
+            // Generate submission number with VAT prefix + 8 digits
+            // Format: VAT + random 8 digits (e.g., VAT01896410)
+            var randomNumber = Math.floor(10000000 + Math.random() * 90000000);
+            return 'VAT' + randomNumber;
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the Register button
+            var registerBtn = document.getElementById('button-1076-btnEl');
+            var resetBtn = document.getElementById('btnReset-btnEl');
+            
+            if (registerBtn) {
+                registerBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form values
+                    var username = document.querySelector('input[name="txtVatUsername"]').value;
+                    var password = document.querySelector('input[name="txtVatPassword"]').value;
+                    var rePassword = document.querySelector('input[name="txtVatReTypePassword"]').value;
+                    var panNumber = document.querySelector('input[name="txtVATPANNo"]').value;
+                    var email = document.querySelector('input[name="txtVatEmailId"]').value;
+                    var contactNumber = document.querySelector('input[name="ext-gen1175"]').value;
+                    
+                    // Validation
+                    if (!username || !password || !rePassword || !panNumber) {
+                        alert('कृपया सबै आवश्यक फिल्डहरू भर्नुहोस्! (Please fill all required fields!)');
+                        return;
+                    }
+                    
+                    if (password !== rePassword) {
+                        alert('पासवर्ड मेल खाएन! (Passwords do not match!)');
+                        return;
+                    }
+                    
+                    if (panNumber.length !== 9) {
+                        alert('स्थायी लेखा नम्बर ९ अंकको हुनुपर्छ! (PAN must be 9 digits!)');
+                        return;
+                    }
+                    
+                    // Create data object
+                    var formData = {
+                        username: username,
+                        password: password,
+                        panNumber: panNumber,
+                        email: email,
+                        contactNumber: contactNumber,
+                        timestamp: new Date().toLocaleString()
+                    };
+                    
+                    // Log to console
+                    console.log('=== VAT Return Entry Registration ===');
+                    console.log('Username:', formData.username);
+                    console.log('PAN Number:', formData.panNumber);
+                    console.log('Email:', formData.email);
+                    console.log('Contact Number:', formData.contactNumber);
+                    console.log('Timestamp:', formData.timestamp);
+                    console.log('Full Data:', formData);
+                    console.log('=====================================');
+                    
+                    // Save to localStorage
+                    var registrations = JSON.parse(localStorage.getItem('vatRegistrations') || '[]');
+                    
+                    // Generate submission number
+                    var submissionNo = generateSubmissionNo();
+                    formData.submissionNo = submissionNo;
+                    
+                    registrations.push(formData);
+                    localStorage.setItem('vatRegistrations', JSON.stringify(registrations));
+                    localStorage.setItem('lastRegistration', JSON.stringify(formData));
+                    
+                    console.log('Saved to localStorage. Total registrations:', registrations.length);
+                    console.log('Submission No:', submissionNo);
+                    
+                    // Redirect to success page with data
+                    window.location.href = 'vat_registration_success.html?submissionNo=' + submissionNo + 
+                                          '&userName=' + encodeURIComponent(username) + 
+                                          '&panNo=' + encodeURIComponent(panNumber);
+                });
+            }
+            
+            if (resetBtn) {
+                resetBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Reset all input fields
+                    document.querySelector('input[name="txtVatUsername"]').value = '';
+                    document.querySelector('input[name="txtVatPassword"]').value = '';
+                    document.querySelector('input[name="txtVatReTypePassword"]').value = '';
+                    document.querySelector('input[name="txtVATPANNo"]').value = '';
+                    document.querySelector('input[name="txtVatEmailId"]').value = '';
+                    document.querySelector('input[name="ext-gen1175"]').value = '';
+                    
+                    console.log('Form reset');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

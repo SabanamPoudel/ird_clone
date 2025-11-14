@@ -1,0 +1,272 @@
+/* Taxpayer Login CSS */
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: auto !important;
+    background-color: #DFE9F6 !important;
+    font-family: tahoma, arial, verdana, sans-serif;
+    font-size: 11px;
+}
+
+html {
+    overflow: auto !important;
+}
+
+/* Login Page Container */
+#loginPage {
+    padding: 50px 10px 50px 50px;
+    background: #DFE9F6;
+}
+
+/* Main Form Panel */
+#form-1050 {
+    margin: 0px auto;
+    height: auto;
+    min-height: 270px;
+    width: 750px;
+    background-color: #DFE9F6 !important;
+}
+
+#form-1050-body {
+    background-color: #DFE9F6 !important;
+    padding: 10px;
+    height: auto;
+    min-height: 235px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Header */
+#header-1072 {
+    width: 750px;
+}
+
+.x-panel-header-text-default-framed {
+    font-weight: bold;
+}
+
+/* Column Inner - Flexbox Layout */
+.x-column-inner {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    background-color: #DFE9F6;
+}
+
+/* Fieldsets - Side by Side */
+#fieldset-1051 {
+    padding: 10px;
+    width: 350px;
+    height: auto;
+    min-height: 220px;
+    background-color: #DFE9F6;
+    flex-shrink: 0;
+}
+
+#fieldset-1051-body {
+    width: 328px;
+    height: auto;
+}
+
+#fieldset-1064 {
+    margin: 0px;
+    width: 240px;
+    height: auto;
+    min-height: 220px;
+    background-color: #DFE9F6;
+    flex-shrink: 0;
+}
+
+#fieldset-1064-body {
+    width: 220px;
+    height: auto;
+}
+
+/* Form Fields */
+#container-1052 {
+    margin: 0px 0px 10px;
+    width: 100%;
+}
+
+#textfield-1053,
+#textfield-1054 {
+    margin: 0px 0px 10px;
+    width: 285px;
+}
+
+#textfield-1055 {
+    width: 285px;
+    margin: 0px 0px 10px;
+}
+
+#textfield-1059 {
+    width: 285px;
+    margin: 0px 0px 10px;
+}
+
+.x-form-item-label {
+    margin-right: 5px;
+    width: 100px;
+    font-size: 11px;
+}
+
+.x-form-item-body {
+    width: 180px;
+}
+
+.x-form-field {
+    width: 180px;
+    font-size: 11px;
+}
+
+/* Captcha Container */
+#container-1056 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 10px 0;
+}
+
+#container-1057 {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+    height: 30px;
+}
+
+#captchaCanvas {
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+/* Reload Button */
+.icon-reload {
+    background: url('../../resources/reload.png') no-repeat center !important;
+    background-size: 16px 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+    display: inline-block !important;
+}
+
+#button-1058 {
+    display: inline-block;
+}
+
+/* Buttons Container */
+#container-1060 {
+    display: block !important;
+    text-align: right;
+    margin: 10px 0 0 90px;
+    width: auto;
+    height: auto;
+}
+
+#container-1060 table {
+    display: table;
+    border-collapse: collapse;
+}
+
+#container-1060 tbody {
+    display: table-row-group;
+}
+
+#container-1060 tr {
+    display: table-row;
+}
+
+#container-1060 td {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* Button Divs */
+#button-1061,
+#button-1062 {
+    display: inline-block !important;
+}
+
+#button-1061 {
+    margin-right: 5px;
+}
+
+/* Button Elements */
+#loginBtn,
+#cancelBtn {
+    display: inline-block !important;
+    padding: 3px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background: #f0f0f0;
+}
+
+.x-btn-center {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.x-btn-inner {
+    font-size: 11px;
+    display: inline-block;
+}
+
+/* Button Icons */
+.x-btn-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.icon-ok {
+    background: url('../../resources/ok.png') no-repeat center !important;
+    background-size: 16px 16px !important;
+}
+
+.icon-cancel {
+    background: url('../../resources/cancel.png') no-repeat center !important;
+    background-size: 16px 16px !important;
+}
+
+/* Note Fieldset */
+.x-fieldset-header-default {
+    font-weight: bold;
+    font-size: 11px;
+}
+
+#displayfield-1065,
+#displayfield-1066 {
+    width: 100%;
+}
+
+#displayfield-1065 .x-form-display-field,
+#displayfield-1066 .x-form-display-field {
+    font-weight: bold;
+    padding-top: 8px;
+    font-size: 11px;
+}
+
+#displayfield-1065-bodyEl,
+#displayfield-1066-bodyEl {
+    width: 100%;
+}
+
+/* Error Messages */
+.x-form-error-msg {
+    color: #d9534f;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.x-form-invalid-field {
+    border-color: #d9534f !important;
+}
+
+/* Clear Fix */
+.x-clear {
+    clear: both;
+    height: 0;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0;
+}

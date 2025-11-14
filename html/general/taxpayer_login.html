@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Payer Login</title>
+    <!-- ExtJS CSS -->
+    <link rel="stylesheet" href="../../extjs/resources/ext-all.css">
+    <!-- IRD Custom CSS -->
+    <link rel="stylesheet" href="../../css/all.css">
+    <link rel="stylesheet" href="../../css/general/taxpayer_login.css">
+</head>
+<body>
+    <div id="loginPage" style="padding: 50px 10px 50px 50px; background: #DFE9F6;">
+        <div id="form-1050" class="x-panel x-panel-default-framed" role="form" aria-labelledby="component-1073">
+            <!-- Header -->
+            <div id="header-1072" class="x-panel-header x-panel-header-default-framed x-horizontal x-panel-header-horizontal x-panel-header-default-framed-horizontal x-top x-panel-header-top x-panel-header-default-framed-top x-unselectable x-docked x-docked-top x-panel-header-docked-top x-panel-header-default-framed-docked-top" role="presentation">
+                <div id="header-1072-body" class="x-panel-header-body x-panel-header-body-default-framed-horizontal x-panel-header-body-default-framed-top x-panel-header-body-default-framed x-panel-header-body-horizontal x-panel-header-body-top x-box-layout-ct">
+                    <div class="x-box-inner" role="presentation">
+                        <div id="component-1073" class="x-component x-panel-header-text-container x-box-item x-component-default" role="heading">
+                            <span id="component-1073-textEl" class="x-panel-header-text x-panel-header-text-default-framed">Tax Payer Login</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body -->
+            <div id="form-1050-body" class="x-panel-body x-panel-body-default x-panel-body-default-framed x-docked-noborder-top x-docked-noborder-right x-docked-noborder-bottom x-docked-noborder-left x-column-layout-ct">
+                <div class="x-column-inner">
+                    <!-- Login Form Fieldset -->
+                    <fieldset id="fieldset-1051" class="x-fieldset x-column x-fieldset-default">
+                        <div id="fieldset-1051-body" class="x-fieldset-body x-column-layout-ct">
+                            <div class="x-column-inner">
+                                <div id="container-1052" class="x-container x-column x-container-default" role="presentation">
+                                    <!-- PAN Number Field -->
+                                    <div id="textfield-1053" class="x-field x-form-item x-field-default">
+                                        <label id="textfield-1053-labelEl" for="panNumber" class="x-form-item-label x-form-item-label-left">स्थायी लेखा नम्बर :</label>
+                                        <div class="x-form-item-body" id="textfield-1053-bodyEl" role="presentation">
+                                            <input id="panNumber" type="text" name="panNumber" size="20" class="x-form-field x-form-text" autocomplete="off" maxlength="9" role="textbox">
+                                        </div>
+                                        <div class="x-clear" role="presentation"><!-- --></div>
+                                    </div>
+
+                                    <!-- Username Field -->
+                                    <div id="textfield-1054" class="x-field x-form-item x-field-default">
+                                        <label id="textfield-1054-labelEl" for="username" class="x-form-item-label x-form-item-label-left">प्रयोगकर्ताको नाम  :</label>
+                                        <div class="x-form-item-body" id="textfield-1054-bodyEl" role="presentation">
+                                            <input id="username" type="text" name="username" size="20" class="x-form-field x-form-text" autocomplete="off" role="textbox">
+                                        </div>
+                                        <div class="x-clear" role="presentation"><!-- --></div>
+                                    </div>
+
+                                    <!-- Password Field -->
+                                    <div id="textfield-1055" class="x-field x-form-item x-field-default">
+                                        <label id="textfield-1055-labelEl" for="password" class="x-form-item-label x-form-item-label-left">पासवर्ड :</label>
+                                        <div class="x-form-item-body" id="textfield-1055-bodyEl" role="presentation">
+                                            <input id="password" type="password" name="password" size="20" class="x-form-field x-form-text" autocomplete="off" role="textbox">
+                                        </div>
+                                        <div class="x-clear" role="presentation"><!-- --></div>
+                                    </div>
+
+                                    <!-- Captcha Container -->
+                                    <div id="container-1056" class="x-container x-container-default" role="presentation" style="display: flex; align-items: center; justify-content: flex-end; margin: 10px 0;">
+                                        <canvas id="captchaCanvas" height="30" width="110" style="border: 1px solid #ccc; margin-right: 5px;"></canvas>
+                                        <button id="button-1058-btnEl" type="button" style="
+                                            width: 24px;
+                                            height: 24px;
+                                            padding: 0;
+                                            border: 1px solid #99bce8;
+                                            background: linear-gradient(to bottom, #fff 0%, #f5f9fe 25%, #deecfd 45%);
+                                            cursor: pointer;
+                                            border-radius: 3px;
+                                        " title="Reload Captcha">
+                                            <span style="
+                                                display: inline-block;
+                                                width: 16px;
+                                                height: 16px;
+                                                background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23666%22><path d=%22M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z%22/></svg>');
+                                                background-size: contain;
+                                                background-repeat: no-repeat;
+                                            "></span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Enter Captcha Field -->
+                                    <div id="textfield-1059" class="x-field x-form-item x-field-default">
+                                        <label id="textfield-1059-labelEl" for="captchaInput" class="x-form-item-label x-form-item-label-left">Enter Captcha *:</label>
+                                        <div class="x-form-item-body" id="textfield-1059-bodyEl" role="presentation">
+                                            <input id="captchaInput" type="text" name="captchaInput" size="20" class="x-form-field x-form-text" autocomplete="off" role="textbox">
+                                        </div>
+                                        <div class="x-clear" role="presentation"><!-- --></div>
+                                    </div>
+
+                                    <!-- Buttons Container -->
+                                    <div id="container-1060" style="text-align: center; margin: 10px 0 0 50px;">
+                                        <button id="loginBtn" type="button" style="
+                                            padding: 3px 10px;
+                                            margin-right: 5px;
+                                            font-size: 11px;
+                                            font-family: tahoma, arial, verdana, sans-serif;
+                                            cursor: pointer;
+                                            border: 1px solid #99bce8;
+                                            background: linear-gradient(to bottom, #fff 0%, #f5f9fe 25%, #deecfd 45%);
+                                            color: #15498b;
+                                            font-weight: bold;
+                                        ">Login <img src="../../resources/ok.png" style="width: 16px; height: 16px; vertical-align: middle; margin-left: 3px;"></button>
+                                        <button id="cancelBtn" type="button" style="
+                                            padding: 3px 10px;
+                                            font-size: 11px;
+                                            font-family: tahoma, arial, verdana, sans-serif;
+                                            cursor: pointer;
+                                            border: 1px solid #99bce8;
+                                            background: linear-gradient(to bottom, #fff 0%, #f5f9fe 25%, #deecfd 45%);
+                                            color: #15498b;
+                                            font-weight: bold;
+                                        "><img src="../../resources/cancel.png" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 3px;"> Cancel</button>
+                                    </div>
+
+                                    <div class="x-clear" role="presentation"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Note Fieldset -->
+                    <fieldset id="fieldset-1064" class="x-fieldset x-column x-fieldset-default">
+                        <legend class="x-fieldset-header x-fieldset-header-default">
+                            <div class="x-fieldset-header-text x-component x-component-default" id="component-1067" role="presentation">NOTE</div>
+                            <div class="x-clear"></div>
+                        </legend>
+                        <div id="fieldset-1064-body" class="x-fieldset-body x-column-layout-ct">
+                            <div class="x-column-inner">
+                                <div id="displayfield-1065" class="x-field x-form-item x-column x-field-default">
+                                    <div class="x-form-item-body" id="displayfield-1065-bodyEl" role="presentation">
+                                        <div class="x-form-display-field" role="presentation">
+                                            <span style="color:red;">-If You have not changed Password, login using old VAT USERNAME with Password same as USERNAME and change password to initiate</span>
+                                        </div>
+                                    </div>
+                                    <div class="x-clear" role="presentation"><!-- --></div>
+                                </div>
+                                <div id="displayfield-1066" class="x-field x-form-item x-column x-field-default">
+                                    <div class="x-form-item-body" id="displayfield-1066-bodyEl" role="presentation">
+                                        <div class="x-form-display-field" role="presentation">
+                                            <span style="color:red;">-If You do not have VAT USERNAME, use Income Tax USERNAME with password same as USERNAME and change password to initiate.</span>
+                                        </div>
+                                    </div>
+                                    <div class="x-clear" role="presentation"><!-- --></div>
+                                </div>
+                                <div class="x-clear" role="presentation"></div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="x-clear" role="presentation"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ExtJS Library -->
+    <script src="../../extjs/ext-all.js"></script>
+    <!-- IRD Custom JS -->
+    <script src="../../js/all.js"></script>
+    <script src="../../js/general/taxpayer_login.js"></script>
+</body>
+</html>

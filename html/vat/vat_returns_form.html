@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAT Returns Form</title>
+    <link rel="stylesheet" type="text/css" href="../../extjs/resources/ext-all.css">
+    <link rel="stylesheet" type="text/css" href="../../css/all.css">
+    <link rel="stylesheet" type="text/css" href="../../css/vat/vat_returns_form.css">
+</head>
+<body>
+    <div id="vatReturnsFormPage" style="padding: 10px; background: #DFE9F6; height: 100%; overflow-y: auto; overflow-x: hidden;">
+        <div id="VatReturns" class="x-panel x-panel-default-framed" role="presentation" style="height: auto; min-height: 557px; width: 984px; margin: 20px auto;">
+            <!-- VAT Returns Form Content -->
+            <div id="VatReturns-body" class="x-panel-body  x-panel-body-default x-panel-body-default-framed x-panel-body-default-framed" style="overflow: auto; left: 0px; top: 0px;">
+                <div id="form-1488" class="x-panel x-panel-default-framed" role="form">
+                    <div id="form-1488-body" class="x-panel-body  x-panel-body-default x-panel-body-default-framed x-panel-body-default-framed x-docked-noborder-top x-docked-noborder-right x-docked-noborder-bottom x-docked-noborder-left" style="left: 0px; top: 0px;">
+                        <!-- Header Container with Form Title -->
+                        <div id="container-1489" class="x-container x-container-default x-box-layout-ct" role="presentation" style="font-size: 18px; text-align: center;">
+                            <div class="x-box-inner" role="presentation">
+                                <label style="font-size: 14px; display: block;">अनुसुची - १०</label>
+                                <label style="font-size: 11px; display: block;">(नियम २६ को उपनियम (१) संग सम्बन्धित)</label>
+                                <label style="font-size: 11px; display: block;">नेपाल सरकार</label>
+                                <label style="font-size: 11px; display: block;">अर्थ मन्त्रालय</label>
+                                <label style="font-size: 14px; display: block;">आन्तरिक राजश्व बिभाग</label>
+                                <label style="display: block; margin: 5px 0;">मूल्य अभिबृध्दि कर विवरण फारम</label>
+                                <div style="margin: 10px 0;">
+                                    <label style="margin-right:5px;">Your Submission No::</label>
+                                    <span id="submissionNumber"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Year/Month Details Fieldset -->
+                        <fieldset id="fieldset-1503" class="x-fieldset x-fieldset-default" style="padding: 0px;">
+                            <legend class="x-fieldset-header x-fieldset-header-default">
+                                <div class="x-fieldset-header-text x-component x-component-default" role="presentation">वर्ष \महिना सम्बन्धि विवरण</div>
+                                <div class="x-clear"></div>
+                            </legend>
+                            <div class="x-fieldset-body x-table-layout-ct">
+                                <table role="presentation" class="x-table-layout" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div id="txtPan" class="x-field x-form-item x-field-default x-form-readonly x-form-dirty" style="margin: 0px 0px 5px; width: 166px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:50px;">प्यान:</label>
+                                                    <div class="x-form-item-body" style="width: 111px;">
+                                                        <input type="text" name="txtPan" size="14" class="x-form-field x-form-text" readonly disabled style="width: 111px; background-color: #f0f0f0; cursor: not-allowed; color: #666;">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td colspan="3">
+                                                <div class="x-field x-form-item x-field-default x-form-readonly x-form-dirty" style="margin: 0px 0px 0px 50px; width: 150px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:100px;">खाताको किसिम:</label>
+                                                    <div class="x-form-item-body" style="width: 45px;">
+                                                        <input type="text" name="txtAccountType" size="20" class="x-form-field x-form-text" readonly style="width: 45px;">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" style="height: 10px;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div id="txtTaxYear" class="x-field x-form-item x-field-default" style="width: 100px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:50px;">वर्ष:</label>
+                                                    <div class="x-form-item-body" style="width: 45px;">
+                                                        <input type="text" name="txtTaxYear" size="4" class="x-form-field x-form-text" maxlength="4" style="width: 45px;">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div id="ddlFilingPeriod" class="x-field x-form-item x-field-default" style="margin: 0px 0px 0px 50px; width: 200px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:100px;">मा.\ चौ. \ व्दै:</label>
+                                                    <div class="x-form-item-body" style="width: 95px;">
+                                                        <select id="filingPeriodSelect" class="x-form-field x-form-text" style="width: 95px;">
+                                                            <option value="">Select...</option>
+                                                            <option value="M">मासिक</option>
+                                                            <option value="Q">चौमासिक</option>
+                                                            <option value="B">दुई मासिक</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div id="ddlPeriod" class="x-field x-form-item x-field-default" style="margin: 0px 0px 0px 50px; width: 150px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:60px;">महिना:</label>
+                                                    <div class="x-form-item-body" style="width: 85px;">
+                                                        <select id="periodSelect" class="x-form-field x-form-text" style="width: 85px;">
+                                                            <option value="">Select...</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <label style="margin: 0px 0px 0px 50px;">जुन महिना हो त्यो महिना छान्नुहोस</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </fieldset>
+                    
+                    
+                    <!-- Taxpayer Details Fieldset -->
+                    <fieldset id="fieldset-1508" class="x-fieldset x-fieldset-default" style="height: 90px; width: 960px; margin: 10px 0;">
+                        <legend class="x-fieldset-header x-fieldset-header-default">
+                            <div class="x-fieldset-header-text x-component x-component-default" role="presentation">करदाताको विवरण</div>
+                            <div class="x-clear"></div>
+                        </legend>
+                        <div class="x-fieldset-body" style="padding: 10px;">
+                            <div style="width: 600px; margin-bottom: 10px;">
+                                <label style="margin-right:5px;width:50px;">नाम:</label>
+                                <span id="taxpayerName">खाता विजनेश एकेडेमी प्रा.लि. / खाता विजनेश एकेडेमी प्रा.लि.</span>
+                            </div>
+                            <div style="display: flex; gap: 20px;">
+                                <div style="width: 300px;">
+                                    <label style="margin-right:5px;width:50px;">ठेगाना:</label>
+                                    <span id="taxpayerAddress">हाकिम चोक-9,भरतपुर</span>
+                                </div>
+                                <div style="margin: 0px 0px 0px 50px; width: 200px;">
+                                    <label style="margin-right:5px;width:100px;">फोन नं:</label>
+                                    <span id="taxpayerPhone"></span>
+                                </div>
+                                <div style="margin: 0px 0px 0px 50px; width: 105px;">
+                                    <label style="margin-right:5px;width:100px;">फ्याक्स नं:</label>
+                                    <span id="taxpayerFax"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    
+                    <!-- Transaction Details Fieldset -->
+                    <fieldset id="taxPayerDesc" class="x-fieldset x-fieldset-default vat-transaction-fieldset">
+                        <legend class="x-fieldset-header x-fieldset-header-default">
+                            <div class="x-fieldset-header-text x-component x-component-default" role="presentation">करदाताको कारोवार विवरण</div>
+                            <div class="x-clear"></div>
+                        </legend>
+                        <div class="x-fieldset-body x-box-layout-ct">
+                            <div class="x-box-inner" role="presentation">
+                                <label class="x-component x-box-item x-component-default vat-instruction-label" role="presentation">यदि यस अवधिमा कारोवार नगरेको भए तलको महलमा शुन्य राखेर विवरणमा हस्ताक्षर गर्नुहोस्। रू १ भन्दा घटि भएमा पैसालाई रू. १ मा मिलान गरि विवरण भर्नुहोला।</label>
+                                
+                                <div id="tablegrid" class="x-container tablegrid x-box-item x-container-default x-table-layout-ct vat-table-grid" role="presentation">
+                                    <table role="presentation" class="x-table-layout vat-transaction-table" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding: 5px;"><label style="margin-left: 250px;"></label></td>
+                                                <td style="padding: 5px;"><label class="table-header-label"><div style="width:100%;text-align:center">कारोबार मूल्य</div></label></td>
+                                                <td style="padding: 5px;"><label class="table-header-label"><div style="width:100%;text-align:center">खरिदमा तिरेको कर क्रेडिट</div></label></td>
+                                                <td style="padding: 5px;"><label class="table-header-label"><div style="width:100%;text-align:center">बिक्रीमा संकलन गरेको कर डेबिट</div></label></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" style="padding: 5px;"><label class="section-header">१. विक्री</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px;"><label class="field-label">१.१. कर लाग्ने बिक्री</label></td>
+                                                <td colspan="2" style="padding: 5px;">
+                                                    <div class="input-wrapper">
+                                                        <input type="text" name="txtTaxableSale" size="15" class="x-form-field x-form-text right-align" maxlength="14">
+                                                    </div>
+                                                </td>
+                                                <td style="padding: 5px;">
+                                                    <div class="input-wrapper">
+                                                        <input type="text" name="txtVatOnSale" size="15" class="x-form-field x-form-text right-align" maxlength="14">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px;"><label class="field-label">१.२. निकासी</label></td>
+                                                <td colspan="3" style="padding: 5px;">
+                                                    <div class="input-wrapper">
+                                                        <input type="text" name="txtExport" size="15" class="x-form-field x-form-text right-align" maxlength="14">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px;"><label class="field-label">१.३. छुट विक्री</label></td>
+                                                <td colspan="3" style="padding: 5px;">
+                                                    <div class="input-wrapper">
+                                                        <input type="text" name="txtExemptSale" size="15" class="x-form-field x-form-text right-align" maxlength="14">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" style="padding: 5px;"><label class="section-header">२. खरिद पैठारी</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px;"><label class="field-label">२.१. कर लाग्ने खरीद</label></td>
+                                                <td style="padding: 5px;">
+                                                    <div class="input-wrapper">
+                                                        <input type="text" name="txtTaxablePurchase" size="15" class="x-form-field x-form-text right-align" maxlength="14">
+                                                    </div>
+                                                </td>
+                                                <td colspan="2" style="padding: 5px;">
+                                                    <div class="input-wrapper">
+                                                        <input type="text" name="txtVatOnPurchase" size="15" class="x-form-field x-form-text right-align" maxlength="14">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px;"><label class="field-label">२.२. कर लाग्ने पैठारी</label></td>
+                                                <td style="padding: 5px;">
+                                                    <div class="input-wrapper">
+                                                        <input type="text" name="txtTaxablePurI" size="15" class="x-form-field x-form-text right-align" maxlength="14">
+                                                    </div>
+                                                </td>
+                                                <td colspan="2" style="padding: 5px;">
+                                                    <div class="input-wrapper">
+                                                        <input type="text" name="txtVatOnPurI" size="15" class="x-form-field x-form-text right-align" maxlength="14">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px;"><label class="field-label">२.३. छुट खरिद</label></td>
+                                                <td colspan="3" style="padding: 5px;">
+                                                    <div class="input-wrapper">
+                                                        <input type="text" name="txtExemptPurchase" size="15" class="x-form-field x-form-text right-align" maxlength="14">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px;"><label class="field-label">२.४. छुट पैठारी</label></td>
+                                                <td colspan="3" style="padding: 5px;">
+                                                    <div class="input-wrapper">
+                                                        <input type="text" name="txtExemptPurI" size="15" class="x-form-field x-form-text right-align" maxlength="14">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" style="padding: 5px;"><label class="section-header">३. अन्य</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" style="padding: 5px;">
+                                                    <div class="adjustment-row">
+                                                        <label class="adjustment-label">३.१. अन्य थपघट</label>
+                                                        <div class="adjustment-controls">
+                                                            <input type="text" name="txtAdjCredit" size="15" class="x-form-field x-form-text right-align" readonly maxlength="14">
+                                                            <button type="button" id="btnAdjustmentCredit" class="adjustment-btn">
+                                                                <span>अन्य थपघट  क्रेडिट छ  ? </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="adjustment-controls">
+                                                            <input type="text" name="txtAdjDebit" size="15" class="x-form-field x-form-text right-align" readonly maxlength="14">
+                                                            <button type="button" id="btnAdjustmentDebit" class="adjustment-btn">
+                                                                <span>अन्य थपघट  डेविट छ  ? </span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="padding: 5px;"><label class="section-header">४.जम्मा</label></td>
+                                                <td style="padding: 5px;">
+                                                    <div class="input-wrapper">
+                                                        <input type="text" name="txtTotalCredit" size="15" class="x-form-field x-form-text right-align" readonly maxlength="14">
+                                                    </div>
+                                                </td>
+                                                <td style="padding: 5px;">
+                                                    <div class="input-wrapper">
+                                                        <input type="text" name="txtTotalDebit" size="15" class="x-form-field x-form-text right-align" readonly maxlength="14">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="summary-row">
+                                                <td colspan="3" class="summary-cell"><label class="section-header">५. डेविट-क्रेडिट            (‌‌+    वा    -)</label></td>
+                                                <td class="summary-cell">
+                                                    <div class="x-field exclude x-form-item x-field-default input-wrapper">
+                                                        <input type="text" name="txtVatDueTM" size="15" class="x-form-field x-form-text right-align" readonly maxlength="14">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="summary-row">
+                                                <td colspan="3" class="summary-cell"><label class="section-header">६. गत महिनाको मिलान गर्न बांकी क्रेडिट</label></td>
+                                                <td class="summary-cell">
+                                                    <div class="x-field exclude x-form-item x-field-default input-wrapper">
+                                                        <input type="text" name="txtCreditBF" size="15" class="x-form-field x-form-text right-align" maxlength="14">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="summary-row">
+                                                <td colspan="3" class="summary-cell"><label class="section-header">७. तिर्नु पर्ने कर रू.(५-६)  (‌‌+ वा -)</label></td>
+                                                <td class="summary-cell">
+                                                    <div class="x-field exclude x-form-item x-field-default input-wrapper">
+                                                        <input type="text" name="txtVatDue" size="15" class="x-form-field x-form-text right-align" readonly maxlength="14">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style="padding: 5px;"><label class="section-header" style="display: none;"> </label></td>
+                                                <td style="padding: 5px;">
+                                                    <button type="button" class="make-payment-btn">
+                                                        <span class="payment-icon">✓</span>
+                                                        <span class="payment-text">Make Payment</span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr class="summary-row">
+                                                <td colspan="3" class="summary-cell"><label class="section-header">८. कर फिर्ता माग गरिएको रकम</label></td>
+                                                <td class="summary-cell">
+                                                    <div class="x-field exclude x-form-item x-field-default input-wrapper">
+                                                        <input type="text" name="txtRefClaimAmt" size="15" class="x-form-field x-form-text right-align" maxlength="14">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <!-- Tax Refund Basis Section -->
+                                <div class="x-container x-box-item x-container-default x-table-layout-ct refund-basis-section" role="presentation">
+                                    <table role="presentation" class="x-table-layout" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <label class="x-component x-component-default" role="presentation">९. कर फिर्ता माग गरेको अधार</label>
+                                                </td>
+                                                <td>
+                                                    <div class="x-field x-form-item x-field-default refund-select-wrapper">
+                                                        <select class="x-form-field x-form-text refund-select">
+                                                            <option value="">Select . . .</option>
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <!-- Payment Details Section -->
+                                <div class="x-container x-box-item x-container-default x-column-layout-ct payment-section" role="presentation">
+                                    <div class="x-column-inner">
+                                        <div class="x-field x-form-item x-column x-field-default payment-field">
+                                            <label class="x-form-item-label x-form-item-label-left">१०. जम्मा भुक्तानी रू:</label>
+                                            <div class="x-form-item-body">
+                                                <input type="text" size="20" class="x-form-field x-form-text">
+                                            </div>
+                                        </div>
+                                        <div class="x-field x-form-item x-column x-field-default payment-field voucher-field">
+                                            <label class="x-form-item-label x-form-item-label-left">भौचर नं.:</label>
+                                            <div class="x-form-item-body">
+                                                <input type="text" size="20" class="x-form-field x-form-text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Document Details Section -->
+                                <div class="x-container x-box-item x-container-default document-section" role="presentation">
+                                    <label class="x-component x-component-default">११. कर अवधिमा प्रयोग गरिएका कागजहरूको विवरण</label>
+                                    
+                                    <div class="x-field x-form-item x-field-default document-field">
+                                        <label class="x-form-item-label x-form-item-label-left">कुल खरिद बिजक संख्या:</label>
+                                        <div class="x-form-item-body">
+                                            <input type="text" size="20" class="x-form-field x-form-text">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="x-field x-form-item x-field-default document-field">
+                                        <label class="x-form-item-label x-form-item-label-left">क्रेडिट नोट संख्या:</label>
+                                        <div class="x-form-item-body">
+                                            <input type="text" size="20" class="x-form-field x-form-text">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="x-field x-form-item x-field-default document-field">
+                                        <label class="x-form-item-label x-form-item-label-left">डेविट नोट संख्या:</label>
+                                        <div class="x-form-item-body">
+                                            <input type="text" size="20" class="x-form-field x-form-text">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="x-field x-form-item x-field-default document-field">
+                                        <label class="x-form-item-label x-form-item-label-left">क्रेडिट एडभाइस संख्या:</label>
+                                        <div class="x-form-item-body">
+                                            <input type="text" size="20" class="x-form-field x-form-text">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="x-field x-form-item x-field-default document-field">
+                                        <label class="x-form-item-label x-form-item-label-left"> डेविट एडभाइस संख्या:</label>
+                                        <div class="x-form-item-body">
+                                            <input type="text" size="20" class="x-form-field x-form-text">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="x-field x-form-item x-field-default document-field">
+                                        <label class="x-form-item-label x-form-item-label-left">बिक्री बिजक         जम्मा संख्या:</label>
+                                        <div class="x-form-item-body">
+                                            <input type="text" size="20" class="x-form-field x-form-text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    
+                    <!-- Transaction Details for Large Turnover -->
+                    <fieldset id="fieldset-1601" class="x-fieldset x-fieldset-default large-turnover-section">
+                        <legend class="x-fieldset-header x-fieldset-header-default">
+                            <div class="x-fieldset-header-text x-component x-component-default" role="presentation">Transaction Details</div>
+                            <div class="x-clear"></div>
+                        </legend>
+                        <div class="x-fieldset-body">
+                            <label class="turnover-notice">बार्षिक रू. ५,००,००,००० (पांच करोड) भन्दा बढी कारोवार हुने करदाताहरुको लागि अनिवार्य</label>
+                            
+                            <div class="no-transaction-checkbox">
+                                <label>
+                                    <input type="checkbox" id="chk-no-transaction" checked>
+                                    कुनै पनि व्यक्ति / संस्था संग यो अवधिमा रू एक लाख भन्दा वढीको कारोवार छैन।
+                                </label>
+                            </div>
+                            
+                            <!-- Excel Upload Section -->
+                            <div class="excel-upload-section">
+                                <div class="excel-controls">
+                                    <input type="checkbox" id="chk-load-excel">
+                                    <label for="chk-load-excel" class="excel-label">Load Records From Excel</label>
+                                    <input type="file" id="excel-file-input" accept=".xlsx,.xls" style="display: none;">
+                                    <button type="button" id="browse-excel-btn" class="browse-btn">Browse...</button>
+                                    <button type="button" id="load-excel-btn" class="load-btn">Load</button>
+                                    <button type="button" id="download-sample-btn" class="download-sample-btn">Download Sample Excel File Here</button>
+                                </div>
+                                <p class="excel-note">
+                                    कृपया एक लाख भन्दा माथिका कारोवारहरु UPLOAD गरिसकेपछि ठिक छ वा छैन चेक गर्न Check Transactions Button क्लिक गर्नुहोला।
+                                </p>
+                            </div>
+                            
+                            <!-- Transaction Grid -->
+                            <div class="transaction-grid-container">
+                                <!-- Toolbar -->
+                                <div class="grid-toolbar">
+                                    <button type="button" id="btn-add-transaction">Add</button>
+                                    <button type="button" id="btn-show-all">Show All</button>
+                                    <button type="button" id="btn-check-transactions">Check Transactions</button>
+                                    <button type="button" id="btn-delete-all">Delete All</button>
+                                    <button type="button" id="btn-export-excel">Export To Excel</button>
+                                </div>
+                                
+                                <!-- Grid Table -->
+                                <div class="grid-scroll-area">
+                                    <table id="transaction-grid" class="transaction-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-sno">SNo</th>
+                                                <th class="col-pan">PAN</th>
+                                                <th class="col-tradename">TradeName</th>
+                                                <th class="col-type">TradeNameType</th>
+                                                <th class="col-sorp">SORP</th>
+                                                <th class="col-taxable">TaxableAmount</th>
+                                                <th class="col-exempted">ExemptedAmount</th>
+                                                <th class="col-remarks">Remarks</th>
+                                                <th class="col-actions">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="transaction-grid-body">
+                                            <!-- Dynamic rows will be added here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <!-- Summary Section -->
+                                <div class="grid-summary">
+                                    <div class="summary-item">
+                                        <label>Total Records:</label>
+                                        <input type="text" id="total-records" readonly value="0">
+                                    </div>
+                                    <div class="summary-item">
+                                        <label>Total Taxable Amt:</label>
+                                        <input type="text" id="total-taxable-amt" readonly value="0">
+                                    </div>
+                                    <div class="summary-item">
+                                        <label>Total Exempted Amt:</label>
+                                        <input type="text" id="total-exempted-amt" readonly value="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    
+                    <!-- Certification and Action Buttons -->
+                    <div class="form-footer">
+                        <div class="certification-section">
+                            <label>
+                                <input type="checkbox" id="chk-certification">
+                                म, यस कर विवरणमा उल्लेख गरिएको जानकारी सत्य र पुरा भएको व्यहोरा प्रमाणित गर्दछु।
+                            </label>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button type="button" id="btn-save" class="x-btn x-btn-default-small">
+                                <span class="x-btn-icon-el"></span>
+                                <span class="x-btn-inner">Save</span>
+                            </button>
+                            <button type="button" id="btn-print" class="x-btn x-btn-default-small">
+                                <span class="x-btn-icon-el"></span>
+                                <span class="x-btn-inner">Print</span>
+                            </button>
+                            <button type="button" id="btn-submit" class="x-btn x-btn-default-small">
+                                <span class="x-btn-icon-el"></span>
+                                <span class="x-btn-inner">Submit</span>
+                            </button>
+                            <button type="button" id="btn-verify" class="x-btn x-btn-default-small" disabled>
+                                <span class="x-btn-inner">Verify</span>
+                            </button>
+                            <button type="button" id="btn-proceed-payment" class="x-btn x-btn-default-small proceed-payment-btn">
+                                <span class="x-btn-inner">Proceed To Payment</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Credit Adjustment Modal -->
+    <div id="creditModal" class="modal-overlay">
+            <div class="modal-dialog">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <span class="modal-title">अन्य थपघट क्रेडिट</span>
+                    <div class="modal-controls">
+                        <button type="button" class="modal-control-btn">−</button>
+                        <button type="button" class="modal-control-btn">□</button>
+                        <button id="btnCloseCreditModal" type="button" class="modal-control-btn">×</button>
+                    </div>
+                </div>
+                
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <div class="modal-content-box">
+                        <div class="modal-content-title">अन्य थपघटका कारणहरु</div>
+                        
+                        <table class="modal-table">
+                            <thead>
+                                <tr>
+                                    <th>कारण</th>
+                                    <th class="amount-col">रकम</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>क्रेडिट एडजाष्टमेन्ट</td>
+                                    <td>
+                                        <input type="text" id="txtCreditAdjustment" class="modal-input">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>उपभोक्तालाई १०% मु.अ.कर फिर्ता रकम</td>
+                                    <td>
+                                        <input type="text" id="txtConsumerRefund" class="modal-input">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>अन्य</td>
+                                    <td>
+                                        <input type="text" id="txtCreditOther" class="modal-input">
+                                    </td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td class="total-label">जम्मा रकम</td>
+                                    <td class="total-amount">
+                                        <span id="totalCreditAmount">0</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Buttons -->
+                    <div class="modal-buttons">
+                        <button id="btnOkCredit" type="button" class="modal-btn-ok">Ok</button>
+                        <button id="btnCancelCredit" type="button" class="modal-btn-cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Debit Adjustment Modal -->
+        <div id="debitModal" class="modal-overlay">
+            <div class="modal-dialog">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <span class="modal-title">अन्य थपघट डेविट</span>
+                    <div class="modal-controls">
+                        <button type="button" class="modal-control-btn">−</button>
+                        <button type="button" class="modal-control-btn">□</button>
+                        <button id="btnCloseDebitModal" type="button" class="modal-control-btn">×</button>
+                    </div>
+                </div>
+                
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <div class="modal-content-box">
+                        <div class="modal-content-title">अन्य थपघटका कारणहरु</div>
+                        
+                        <table class="modal-table">
+                            <thead>
+                                <tr>
+                                    <th>कारण</th>
+                                    <th class="amount-col">रकम</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>डेबिट एड्जस्ट</td>
+                                    <td>
+                                        <input type="text" id="txtDebitAdjustment" class="modal-input">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>अन्य</td>
+                                    <td>
+                                        <input type="text" id="txtDebitOther" class="modal-input">
+                                    </td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td class="total-label">जम्मा रकम</td>
+                                    <td class="total-amount">
+                                        <span id="totalDebitAmount">0</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Buttons -->
+                    <div class="modal-buttons">
+                        <button id="btnOkDebit" type="button" class="modal-btn-ok">Ok</button>
+                        <button id="btnCancelDebit" type="button" class="modal-btn-cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INFO Modal for Validation Messages -->
+    <div id="infoModal" class="modal-overlay" style="display: none;">
+        <div class="modal-dialog info-modal">
+            <div class="modal-content">
+                <div class="modal-header" style="background: linear-gradient(to bottom, #d4e4f7 0%, #b8d4f1 100%); padding: 10px 15px; border-bottom: 1px solid #99bbe8; position: relative;">
+                    <h3 style="margin: 0; color: #15428b; font-size: 14px; font-weight: bold;">INFO</h3>
+                    <button id="btnCloseInfo" type="button" class="modal-close-btn" style="position: absolute; top: 5px; right: 5px; background: none; border: none; font-size: 20px; cursor: pointer; color: #666; width: 25px; height: 25px; line-height: 20px;">×</button>
+                </div>
+                <div class="modal-body" style="padding: 20px; display: flex; align-items: flex-start; gap: 15px;">
+                    <div style="flex-shrink: 0;">
+                        <svg width="60" height="60" viewBox="0 0 60 60" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));">
+                            <circle cx="30" cy="30" r="28" fill="url(#infoGradient)" stroke="#4a90d9" stroke-width="2"/>
+                            <defs>
+                                <linearGradient id="infoGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#7db4e6;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#4a90d9;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <text x="30" y="42" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">i</text>
+                        </svg>
+                    </div>
+                    <div id="infoMessageContent" style="flex: 1; color: #333; font-size: 14px; line-height: 1.8;">
+                        <!-- Message will be inserted here -->
+                    </div>
+                </div>
+                <div class="modal-buttons" style="padding: 10px 20px 20px; text-align: center;">
+                    <button id="btnOkInfo" type="button" class="modal-btn-ok" style="background: linear-gradient(to bottom, #7db4e6 0%, #4a90d9 100%); color: white; border: 1px solid #3a7bb8; padding: 6px 30px; border-radius: 3px; cursor: pointer; font-size: 13px; min-width: 80px;">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal for Save Confirmation -->
+    <div id="successModal" class="modal-overlay" style="display: none;">
+        <div class="modal-dialog info-modal">
+            <div class="modal-content">
+                <div class="modal-header" style="background: linear-gradient(to bottom, #d4e4f7 0%, #b8d4f1 100%); padding: 10px 15px; border-bottom: 1px solid #99bbe8; position: relative;">
+                    <h3 style="margin: 0; color: #15428b; font-size: 14px; font-weight: bold;">INFO</h3>
+                    <button id="btnCloseSuccess" type="button" class="modal-close-btn" style="position: absolute; top: 5px; right: 5px; background: none; border: none; font-size: 20px; cursor: pointer; color: #666; width: 25px; height: 25px; line-height: 20px;">×</button>
+                </div>
+                <div class="modal-body" style="padding: 20px; display: flex; align-items: flex-start; gap: 15px;">
+                    <div style="flex-shrink: 0;">
+                        <svg width="60" height="60" viewBox="0 0 60 60" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));">
+                            <circle cx="30" cy="30" r="28" fill="url(#successGradient)" stroke="#4a90d9" stroke-width="2"/>
+                            <defs>
+                                <linearGradient id="successGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#7db4e6;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#4a90d9;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <text x="30" y="42" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">i</text>
+                        </svg>
+                    </div>
+                    <div style="flex: 1; color: #333; font-size: 14px; line-height: 1.8;">
+                        <div>* तपाईंको विवरण सफलतापूर्ण रोपमा भयो।</div>
+                        <div>कृपया सब्मिसन नं टिप्नु होला।</div>
+                        <div style="margin-top: 10px;">तपाईंको सब्मिसन नं : <span id="generatedSubmissionNo" style="color: #d9534f; font-weight: bold;">820075330850</span></div>
+                    </div>
+                </div>
+                <div class="modal-buttons" style="padding: 10px 20px 20px; text-align: center;">
+                    <button id="btnOkSuccess" type="button" class="modal-btn-ok" style="background: linear-gradient(to bottom, #7db4e6 0%, #4a90d9 100%); color: white; border: 1px solid #3a7bb8; padding: 6px 30px; border-radius: 3px; cursor: pointer; font-size: 13px; min-width: 80px;">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Confirmation Modal -->
+    <div id="submitConfirmModal" class="modal-overlay" style="display: none;">
+        <div class="modal-dialog info-modal">
+            <div class="modal-content">
+                <div class="modal-header" style="background: linear-gradient(to bottom, #d4e4f7 0%, #b8d4f1 100%); padding: 10px 15px; border-bottom: 1px solid #99bbe8; position: relative;">
+                    <h3 style="margin: 0; color: #15428b; font-size: 14px; font-weight: bold;">INFO</h3>
+                    <button id="btnCloseSubmitConfirm" type="button" class="modal-close-btn" style="position: absolute; top: 5px; right: 5px; background: none; border: none; font-size: 20px; cursor: pointer; color: #666; width: 25px; height: 25px; line-height: 20px;">×</button>
+                </div>
+                <div class="modal-body" style="padding: 20px; display: flex; align-items: flex-start; gap: 15px;">
+                    <div style="flex-shrink: 0;">
+                        <svg width="60" height="60" viewBox="0 0 60 60" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));">
+                            <circle cx="30" cy="30" r="28" fill="url(#confirmGradient)" stroke="#4a90d9" stroke-width="2"/>
+                            <defs>
+                                <linearGradient id="confirmGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#7db4e6;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#4a90d9;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <text x="30" y="42" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">i</text>
+                        </svg>
+                    </div>
+                    <div style="flex: 1; color: #333; font-size: 14px; line-height: 1.8;">
+                        <div>एकचोटि बुझाइसकेपछि तपाईंले यो विवरणमा सच्चाउन सक्नुहुन्न।</div>
+                        <div style="margin-top: 5px;">तपाई यो विवरण बुझाउन चाहनुहुन्छ?</div>
+                    </div>
+                </div>
+                <div class="modal-buttons" style="padding: 10px 20px 20px; text-align: center; display: flex; gap: 10px; justify-content: center;">
+                    <button id="btnYesSubmit" type="button" class="modal-btn-ok" style="background: linear-gradient(to bottom, #7db4e6 0%, #4a90d9 100%); color: white; border: 1px solid #3a7bb8; padding: 6px 30px; border-radius: 3px; cursor: pointer; font-size: 13px; min-width: 80px;">Yes</button>
+                    <button id="btnNoSubmit" type="button" class="modal-btn-cancel" style="background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%); color: #333; border: 1px solid #ccc; padding: 6px 30px; border-radius: 3px; cursor: pointer; font-size: 13px; min-width: 80px;">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Submit Success Modal -->
+    <div id="submitSuccessModal" class="modal-overlay" style="display: none;">
+        <div class="modal-dialog info-modal">
+            <div class="modal-content">
+                <div class="modal-header" style="background: linear-gradient(to bottom, #d4e4f7 0%, #b8d4f1 100%); padding: 10px 15px; border-bottom: 1px solid #99bbe8; position: relative;">
+                    <h3 style="margin: 0; color: #15428b; font-size: 14px; font-weight: bold;">INFO</h3>
+                    <button id="btnCloseSubmitSuccess" type="button" class="modal-close-btn" style="position: absolute; top: 5px; right: 5px; background: none; border: none; font-size: 20px; cursor: pointer; color: #666; width: 25px; height: 25px; line-height: 20px;">×</button>
+                </div>
+                <div class="modal-body" style="padding: 20px; display: flex; align-items: flex-start; gap: 15px;">
+                    <div style="flex-shrink: 0;">
+                        <svg width="60" height="60" viewBox="0 0 60 60" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));">
+                            <circle cx="30" cy="30" r="28" fill="url(#submitSuccessGradient)" stroke="#4a90d9" stroke-width="2"/>
+                            <defs>
+                                <linearGradient id="submitSuccessGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#7db4e6;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#4a90d9;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <text x="30" y="42" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">i</text>
+                        </svg>
+                    </div>
+                    <div style="flex: 1; color: #333; font-size: 14px; line-height: 1.8;">
+                        <div style="margin-bottom: 10px;">तपाईंको विवरण सब्मिट भयो।</div>
+                        <div style="color: #d9534f; font-weight: bold; font-size: 15px;">
+                            रजु नगरिसम्म तपाईंको विवरण आन्तरिक राजस्व विभागमा दर्ता भएको मानिदैन।
+                            <br>VAT return is not considered as submitted until it is verified.
+                        </div>
+                        <div style="margin-top: 15px; color: #d9534f; font-weight: bold;">
+                            रजु (Verify) गर्ने तरिका:<br>
+                            <span style="color: #333; font-weight: normal;">
+                                Go To General Menu--Click Taxpayer Login (If You are verifying transaction for the first time using the new system, you will be asked to change the password.
+                            </span>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            तपाईंको सब्मिसन नं : <span id="finalSubmissionNo" style="color: #d9534f; font-weight: bold;">760021316073</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-buttons" style="padding: 10px 20px 20px; text-align: center;">
+                    <button id="btnOkSubmitSuccess" type="button" class="modal-btn-ok" style="background: linear-gradient(to bottom, #7db4e6 0%, #4a90d9 100%); color: white; border: 1px solid #3a7bb8; padding: 6px 30px; border-radius: 3px; cursor: pointer; font-size: 13px; min-width: 80px;">OK</button>
+                </div>
+            </div>
+        </div>
+
+    <script src="../../extjs/ext-all.js"></script>
+    <script src="../../js/all.js"></script>
+    <!-- SheetJS library for Excel file support -->
+    <script src="../../js/xlsx.full.min.js"></script>
+    <script src="../../js/vat/vat_returns_form.js"></script>
+</body>
+</html>

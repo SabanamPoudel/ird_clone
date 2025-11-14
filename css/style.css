@@ -1,0 +1,59 @@
+/* Custom CSS Styles for IRD Clone */
+
+/* Hover effect */
+.hv:hover {
+	color: white !important;
+}
+
+/* Active state for menu items */
+.active-sm {
+	color: #1f548a !important;
+}
+
+/* Feedback button styles */
+#fdb {
+	color: #fff;
+	background-color: #168dcf;
+	border-color: #1e5f94;
+}
+
+#fdb:hover {
+	background-color: #1b78ac;
+}
+
+/* Add spacing before footer */
+.footer-area {
+	margin-top: 100px;
+	padding: 20px 0;
+	background-color: #168dcf;
+	color: white;
+}
+
+.footer-area span {
+	color: white;
+}
+
+.footer-area #footer-menu {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+}
+
+.footer-area #footer-menu li {
+	margin: 0 10px;
+}
+
+.footer-area #footer-menu li a {
+	color: white;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.footer-area #footer-menu li a:hover {
+	text-decoration: underline;
+}
+
+/* Add any additional custom styles here if needed */

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxpayer Dashboard</title>
+    <link rel="stylesheet" href="../../extjs/resources/ext-all.css">
+    <style>
+        body {
+            font-family: tahoma, arial, verdana, sans-serif;
+            font-size: 11px;
+            margin: 0;
+            padding: 0;
+            background-color: #DFE9F6;
+        }
+        .x-panel-body {
+            padding: 10px;
+        }
+        .x-fieldset {
+            border: 1px solid #b5b8c8;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #DFE9F6;
+        }
+        .x-fieldset-body {
+            padding: 5px;
+        }
+        .x-form-item {
+            margin-bottom: 5px;
+            clear: both;
+        }
+        .x-form-item-label {
+            font-weight: bold;
+            display: inline-block;
+            margin-right: 5px;
+            width: 100px;
+        }
+        .x-form-display-field {
+            display: inline-block;
+        }
+        .logout-label {
+            font-size: 15px;
+            font-weight: bold;
+            color: rgb(182, 78, 1);
+            padding: 5px;
+            border: 1px solid rgb(171, 199, 236);
+            background-color: rgb(240, 240, 240);
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .logout-label:hover {
+            background-color: rgb(230, 230, 230);
+        }
+        .service-link {
+            font-size: 15px;
+            font-weight: bold;
+            color: red;
+            text-decoration: underline;
+            cursor: pointer;
+            display: inline;
+        }
+        .service-link:hover {
+            color: #cc0000;
+        }
+        .service-link.special {
+            color: rgb(31, 84, 138);
+            background-color: rgb(173, 216, 230);
+            border: 1px solid rgb(167, 102, 23);
+            padding: 2px 5px;
+            text-decoration: none;
+        }
+        .separator {
+            display: inline;
+        }
+        .kyt-notice {
+            background: lightblue;
+            color: black;
+            border: 1px solid black;
+            cursor: pointer;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+        }
+        .x-btn {
+            background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+            border: 1px solid #999;
+            padding: 5px 10px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .x-btn:hover {
+            background: linear-gradient(to bottom, #f5f5f5 0%, #d5d5d5 100%);
+        }
+        .x-btn button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-family: tahoma, arial, verdana, sans-serif;
+            font-size: 11px;
+        }
+        .outstanding-field {
+            margin: 10px 0px 0px 25px;
+            clear: both;
+        }
+        .outstanding-label {
+            margin: 0px 0px 0px 25px;
+            font-weight: bold;
+        }
+        .warning-text {
+            color: red;
+            font-size: 16px;
+        }
+        legend {
+            font-weight: bold;
+            padding: 0 5px;
+        }
+        input[type="text"] {
+            font-family: tahoma, arial, verdana, sans-serif;
+            font-size: 11px;
+            padding: 3px;
+            border: 1px solid #b5b8c8;
+        }
+        textarea {
+            font-family: tahoma, arial, verdana, sans-serif;
+            font-size: 11px;
+            padding: 3px;
+            border: 1px solid #b5b8c8;
+        }
+    </style>
+</head>
+<body>
+    <div class="x-panel-body" style="padding: 10px; width: 100%;">
+        <!-- Logout Button -->
+        <div style="height: 30px; margin-bottom: 10px;">
+            <label class="logout-label" onclick="logout()">Taxpayer Logout</label>
+        </div>
+
+        <!-- User Information Fieldset -->
+        <fieldset class="x-fieldset" style="width: 100%;">
+            <div class="x-fieldset-body" style="width: 100%;">
+                <div class="x-form-item" style="width: 100%;">
+                    <label class="x-form-item-label" style="width:100px;">PAN:</label>
+                    <div class="x-form-display-field" style="width: calc(100% - 110px);" id="dashboardPan">610015263</div>
+                </div>
+                <div class="x-form-item" style="width: 100%;">
+                    <label class="x-form-item-label" style="width:100px;">Trade Name:</label>
+                    <div class="x-form-display-field" style="width: calc(100% - 110px);" id="dashboardTradeName">खाता विजनेश एकेडेमी प्रा.लि. / खाता विजनेश एकेडेमी प्रा.लि.</div>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Services Menu Fieldset -->
+        <fieldset class="x-fieldset" style="padding: 10px; min-height: 100px; width: 100%;">
+            <div class="x-fieldset-body" style="width: 100%;">
+                <label class="service-link">KYT</label>
+                <label class="separator"> | </label>
+                <label class="service-link">Verification</label>
+                <label class="separator"> | </label>
+                <label class="service-link">Request For Filing Date Extension</label>
+                <label class="separator"> | </label>
+                <label class="service-link">Transactions</label>
+                <label class="separator"> | </label>
+                <label class="service-link">ATR</label>
+                <label class="separator"> | </label>
+                <label class="service-link" onclick="window.location.href='payment_voucher.html'">Payment Voucher</label>
+                <label class="service-link"> Request For Amendment</label>
+                <label class="service-link"> Refund Bill Entry</label>
+                <label class="separator"> | </label>
+                <label class="service-link">Add Withholdee Pan In ETDS</label>
+                <label class="separator"> | </label>
+                <br>
+                <label class="service-link">Application For Loan</label>
+                <label class="separator"> | </label>
+                <label class="service-link">Tax Clearance</label>
+                <label class="separator"> | </label>
+                <label class="service-link">Add PSO/PSP</label>
+                <label class="separator"> | </label>
+                <label class="service-link">Check Tax Clearance</label>
+                <label class="separator"> | </label>
+                <label class="service-link">Print Excise Permit</label>
+                <label class="separator"> | </label>
+                <label class="service-link">Zero VAT Return</label>
+                <label class="service-link"> Paid Voucher List</label>
+                <label class="service-link"> Preparation of Annex 10</label>
+                <label class="separator"> | </label>
+                <br>
+                <label class="service-link special">VAT sales and purchase register upload</label>
+                <label class="separator"> | </label>
+                <label class="service-link">Audit Response</label>
+                <label class="separator"> | </label>
+                <label class="service-link">Audit Notice</label>
+                <label class="separator"> | </label>
+                <label class="service-link">Change Password</label>
+            </div>
+        </fieldset>
+
+        <!-- KYT Update Notice -->
+        <fieldset class="x-fieldset" style="padding: 10px; margin: 10px 0; min-height: 60px; width: 100%;">
+            <legend>Please update KYT form.</legend>
+            <div class="x-fieldset-body" style="width: 100%;">
+                <label class="kyt-notice">कृपया आर्थिक बर्ष २०७८।०७९ को लागि KYT (Know Your Taxpayer) फारम अपडेट गर्नुहोस्।</label>
+            </div>
+        </fieldset>
+
+        <!-- Non Filer and Outstanding -->
+        <fieldset class="x-fieldset" style="padding: 5px; min-height: 200px; width: 100%;">
+            <legend>Non Filer And Outstanding</legend>
+            <div class="x-fieldset-body" style="width: 100%;">
+                <div class="x-form-item" style="width: 100%; margin-bottom: 10px;">
+                    <span class="warning-text">The information is indicative. If any doubt, please contact corresponding tax office</span>
+                </div>
+                <div style="margin: 10px 0px 0px; width: 100%;">
+                    <table role="presentation" style="width: 100%; border-collapse: collapse;" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td style="vertical-align: top; width: 50%;">
+                                    <fieldset class="x-fieldset" style="height: 150px;">
+                                        <div class="x-fieldset-body" style="height: 148px;">
+                                            <label style="font-weight: bold;">Non Filer</label>
+                                            <div style="width: 100%; margin-top: 5px;">
+                                                <textarea rows="4" cols="20" readonly style="width: 100%; height: 75px;"></textarea>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </td>
+                                <td style="vertical-align: top; width: 50%;">
+                                    <fieldset class="x-fieldset" style="height: 150px;">
+                                        <div class="x-fieldset-body" style="height: 148px;">
+                                            <label class="outstanding-label">Outstanding</label>
+                                            <div class="outstanding-field" style="width: 100%;">
+                                                <label style="display:inline-block; width: 45%; text-align: left;">मू.अ. कर बक्यौता:</label>
+                                                <input type="text" readonly value="0" style="width: 50%; display: inline-block;">
+                                            </div>
+                                            <div style="margin: 30px 0px 0px 0px; width: 100%; text-align: right; padding-right: 50px;">
+                                                <div class="x-btn" style="margin: 0; display: inline-flex; align-items: center; padding: 5px 10px;">
+                                                    <img src="../../resources/ok.png" style="width: 16px; height: 16px; margin-right: 5px;">
+                                                    <button type="button" style="padding: 0;">
+                                                        <span>Pay Vat Due</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="outstanding-field" style="width: 100%;">
+                                                <label style="display:inline-block; width: 45%; text-align: left;">माग कायम भएको आयकर बक्यौता:</label>
+                                                <input type="text" readonly style="width: 50%; display: inline-block;">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <script>
+        // Load user data from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginData = JSON.parse(localStorage.getItem('lastLoginAttempt') || '{}');
+            
+            if (loginData.panNumber) {
+                document.getElementById('dashboardPan').textContent = loginData.panNumber;
+            }
+            
+            // You can add trade name to login data if needed
+            if (loginData.tradeName) {
+                document.getElementById('dashboardTradeName').textContent = loginData.tradeName;
+            }
+        });
+
+        function logout() {
+            if (confirm('के तपाईं लग आउट गर्न चाहनुहुन्छ? (Do you want to logout?)')) {
+                localStorage.removeItem('lastLoginAttempt');
+                // Redirect to login page in the iframe
+                window.location.href = 'taxpayer_login.html';
+            }
+        }
+    </script>
+</body>
+</html>

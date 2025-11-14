@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Voucher</title>
+    <link rel="stylesheet" href="../../extjs/resources/ext-all.css">
+    <link rel="stylesheet" href="../../css/general/payment_voucher.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="header">
+            <h1>Payment Voucher</h1>
+        </div>
+        
+        <div class="content">
+            <fieldset class="form-section">
+                <legend>Voucher Information</legend>
+                <div class="form-row">
+                    <label>PAN:</label>
+                    <input type="text" id="pan" readonly>
+                </div>
+                <div class="form-row">
+                    <label>Voucher Type:</label>
+                    <select id="voucherType">
+                        <option value="">Select Type</option>
+                        <option value="income_tax">Income Tax</option>
+                        <option value="vat">VAT</option>
+                        <option value="tds">TDS</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label>Amount:</label>
+                    <input type="number" id="amount" placeholder="Enter amount">
+                </div>
+                <div class="form-row">
+                    <label>Payment Date:</label>
+                    <input type="date" id="paymentDate">
+                </div>
+            </fieldset>
+
+            <div class="button-container">
+                <button class="btn-submit" onclick="submitVoucher()">
+                    <img src="../../resources/ok.png" style="width: 16px; height: 16px; margin-right: 5px;">
+                    Submit
+                </button>
+                <button class="btn-cancel" onclick="goBack()">
+                    <img src="../../resources/cancel.png" style="width: 16px; height: 16px; margin-right: 5px;">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/general/payment_voucher.js"></script>
+</body>
+</html>

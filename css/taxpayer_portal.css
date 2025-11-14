@@ -1,0 +1,385 @@
+/* IRD Taxpayer Portal CSS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    background-color: #f0f0f0;
+}
+
+/* Header */
+.header {
+    background-color: #1F548A;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-left img {
+    height: auto;
+}
+
+.header-right {
+    color: white;
+    text-align: right;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    height: calc(100vh - 145px);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    background-color: #ffffff;
+    border-right: none;
+    padding: 0;
+    overflow-y: auto;
+    max-height: calc(100vh - 145px);
+}
+
+.sidebar-title {
+    background-color: #2c5aa0;
+    color: white;
+    padding: 6px 10px;
+    font-weight: bold;
+    font-size: 12px;
+    border-bottom: 1px solid #1e4278;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    border-bottom: none;
+}
+
+.sidebar-menu li a {
+    display: block;
+    padding: 2px 10px;
+    color: #333;
+    text-decoration: none;
+    font-size: 11px;
+    background-color: #ffffff;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-menu li a:hover {
+    background-color: #e0e8f0;
+}
+
+.sidebar-menu li.parent > a {
+    font-weight: bold;
+    background-color: #ffffff;
+    padding-left: 5px;
+}
+
+/* First level submenu - children of Integrated Tax System */
+.submenu > li.parent > a {
+    padding-left: 20px !important;
+    font-weight: bold;
+    background-color: #ffffff !important;
+}
+
+/* Second level submenu - grandchildren */
+.submenu .submenu > li.parent > a {
+    padding-left: 35px !important;
+    background-color: #ffffff !important;
+}
+
+/* Child items (files) */
+.submenu .submenu > li.child > a {
+    padding-left: 50px !important;
+    background-color: #ffffff !important;
+}
+
+/* All direct submenu children */
+.submenu > li > a {
+    background-color: #ffffff !important;
+}
+
+/* First level child items directly under parent */
+.submenu > li.child > a {
+    padding-left: 20px !important;
+    background-color: #ffffff !important;
+}
+
+.toggle-icon {
+    display: inline-block;
+    width: 15px;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 3px;
+}
+
+.folder-icon {
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.folder-icon::before {
+    content: "📁";
+    font-size: 14px;
+    filter: sepia(100%) saturate(500%) hue-rotate(5deg) brightness(1.1);
+}
+
+/* Open folder when expanded */
+.parent.expanded > a > .folder-icon::before {
+    content: "📂";
+    filter: sepia(100%) saturate(500%) hue-rotate(5deg) brightness(1.1);
+}
+
+/* White background for expanded parent items */
+.parent.expanded > a {
+    background-color: #ffffff !important;
+}
+
+.parent.expanded {
+    background-color: #ffffff;
+}
+
+/* White background for expanded submenus */
+.parent.expanded > .submenu {
+    background-color: #ffffff;
+}
+
+.file-icon {
+    margin-right: 5px;
+    margin-left: 3px;
+    display: inline-block;
+}
+
+.file-icon::before {
+    content: "📄";
+    font-size: 14px;
+}
+
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #ffffff !important;
+}
+
+.submenu li {
+    border-bottom: none;
+    background-color: #ffffff !important;
+}
+
+.sidebar-menu li.child > a {
+    background-color: #ffffff !important;
+    font-weight: normal;
+}
+
+/* Ensure parent with expanded class has white background for submenu area */
+.parent.expanded {
+    background-color: #ffffff !important;
+}
+
+.parent.expanded > .submenu {
+    background-color: #ffffff !important;
+}
+
+.parent.expanded > .submenu li {
+    background-color: #ffffff !important;
+}
+
+.parent.expanded > .submenu li a {
+    background-color: #ffffff !important;
+}
+
+/* Content Area */
+.content {
+    flex: 1;
+    background-color: #DFE9F6;
+    padding: 0;
+}
+
+.sitemap {
+    background-color: #DFE9F6;
+    padding: 5px 10px;
+    font-size: 11px;
+    color: #000000;
+}
+
+.main-panel {
+    background-color: #DFE9F6;
+    padding: 0;
+    margin: 0;
+}
+
+.panel-header {
+    background: linear-gradient(to bottom, #4a8fd9, #2e7bc6);
+    color: white;
+    padding: 6px 10px;
+    font-weight: bold;
+    font-size: 11px;
+    border: 1px solid #2c5aa0;
+    border-bottom: none;
+    border-radius: 3px 3px 0 0;
+}
+
+.panel-header-text {
+    color: white;
+}
+
+.panel-body {
+    background-color: #DFE9F6;
+    border-left: 1px solid #99bbe8;
+    border-right: 1px solid #99bbe8;
+    border-top: 1px solid #99bbe8;
+    border-bottom: 1px solid #99bbe8;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    min-height: 400px;
+    height: 100%;
+}
+
+.panel-body.has-iframe {
+    height: calc(100vh - 80px);
+    overflow: hidden;
+}
+
+.panel-body iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.panel-body table {
+    background-color: #DFE9F6;
+    height: 100%;
+}
+
+.Index-Text {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #000000;
+    text-align: center;
+}
+
+.Index-Text img {
+    display: inline-block;
+    margin: 60px auto 70px auto;
+}
+
+/* Footer */
+.footer {
+    background-color: #1F548A;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 11px;
+}
+
+/* Loading and Error States */
+.loading-content,
+.error-content {
+    padding: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+}
+
+.loading-content i,
+.error-content i {
+    font-size: 32px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.loading-content i {
+    color: #2c5aa0;
+}
+
+.error-content i {
+    color: #d9534f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .header-left {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .header-right {
+        margin-top: 10px;
+    }
+
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+    }
+    
+    .header {
+        height: auto;
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+    .header-left {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .emblem-container img {
+        max-width: 100%;
+    }
+}
