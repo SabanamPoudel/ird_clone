@@ -1,0 +1,17 @@
+# Ensure LF line endings for all text files
+* text=auto eol=lf
+
+# Explicitly declare files as text
+*.html text
+*.css text
+*.js text
+*.md text
+*.json text
+
+# Declare files as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary

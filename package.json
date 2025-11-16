@@ -1,0 +1,23 @@
+{
+  "name": "ird-taxpayer-portal",
+  "version": "1.0.0",
+  "description": "Legitimate web application for IRD Nepal Taxpayer Portal demonstration - NOT malware",
+  "main": "html/index.html",
+  "scripts": {
+    "start": "echo 'Open html/taxpayer_portal.html in your browser'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suzwon/ird-demo.git"
+  },
+  "keywords": [
+    "tax",
+    "ird",
+    "nepal",
+    "taxpayer-portal",
+    "web-application"
+  ],
+  "author": "Sabanam Poudel",
+  "license": "MIT",
+  "homepage": "https://github.com/suzwon/ird-demo"
+}
