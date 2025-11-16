@@ -1378,19 +1378,97 @@ function initializeVerifyButton() {
         // Add click handler for verify button
         verifyBtn.addEventListener('click', function() {
             if (!this.disabled) {
-                // Get PAN and Submission Number
-                const panField = document.querySelector('input[name="txtPan"]');
-                const submissionNoField = document.getElementById('submissionNumber');
-                
-                const pan = panField ? panField.value : '';
-                const submissionNo = submissionNoField ? submissionNoField.textContent : '';
-                
-                // Navigate to VAT Return Login page with data
-                const loginUrl = `vat_return_login.html?pan=${encodeURIComponent(pan)}&submissionNo=${encodeURIComponent(submissionNo)}`;
-                window.location.href = loginUrl;
-                
-                console.log('Navigating to VAT return login for verification');
+                showVerifyConfirmationModal();
             }
         });
     }
+}
+
+// Show verification confirmation modal with iframe
+function showVerifyConfirmationModal() {
+    // Create modal overlay
+    const modalOverlay = document.createElement('div');
+    modalOverlay.id = 'verifyConfirmationOverlay';
+    modalOverlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+    `;
+    
+    // Create iframe container
+    const iframeContainer = document.createElement('div');
+    iframeContainer.style.cssText = `
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        width: 700px;
+        max-width: 90%;
+        height: 500px;
+        max-height: 90vh;
+        position: relative;
+    `;
+    
+    // Create close button
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '×';
+    closeBtn.style.cssText = `
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #d9534f;
+        color: white;
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-size: 24px;
+        line-height: 24px;
+        cursor: pointer;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    `;
+    closeBtn.onclick = function() {
+        document.body.removeChild(modalOverlay);
+    };
+    
+    // Create iframe
+    const iframe = document.createElement('iframe');
+    iframe.src = 'vat_verify_confirmation.html';
+    iframe.style.cssText = `
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 5px;
+    `;
+    
+    // Listen for message from confirmation page
+    window.addEventListener('message', function(event) {
+        if (event.data && event.data.action === 'showLoginPage') {
+            // Get PAN and Submission Number
+            const panField = document.querySelector('input[name="txtPan"]');
+            const submissionNoField = document.getElementById('submissionNumber');
+            
+            const pan = panField ? panField.value : '';
+            const submissionNo = submissionNoField ? submissionNoField.textContent : '';
+            
+            // Replace iframe content with login page
+            iframe.src = `vat_return_login.html?pan=${encodeURIComponent(pan)}&submissionNo=${encodeURIComponent(submissionNo)}`;
+            
+            console.log('Loading VAT return login page for verification');
+        }
+    });
+    
+    iframeContainer.appendChild(closeBtn);
+    iframeContainer.appendChild(iframe);
+    modalOverlay.appendChild(iframeContainer);
+    document.body.appendChild(modalOverlay);
 }

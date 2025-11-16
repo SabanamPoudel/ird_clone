@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Confirmation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #DFE9F6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .verification-container {
+            background: white;
+            border: 1px solid #99BBE8;
+            border-radius: 5px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .verification-header {
+            background: linear-gradient(to bottom, #d4e4f7 0%, #b8d4f1 100%);
+            padding: 15px 20px;
+            border: 1px solid #99BBE8;
+            border-radius: 3px;
+            margin-bottom: 30px;
+        }
+
+        .verification-header h2 {
+            color: #15428b;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+        }
+
+        .verification-content {
+            padding: 20px 0;
+        }
+
+        .info-message {
+            background-color: #f0f8ff;
+            border: 1px solid #99BBE8;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .info-message p {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .info-message strong {
+            color: #d9534f;
+            font-weight: bold;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .circular-checkbox {
+            position: relative;
+            display: inline-block;
+        }
+
+        .circular-checkbox input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            width: 0;
+            height: 0;
+        }
+
+        .checkmark {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border: 3px solid #4a90d9;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .circular-checkbox:hover .checkmark {
+            background-color: #f0f8ff;
+            border-color: #357abd;
+        }
+
+        .circular-checkbox input:checked ~ .checkmark {
+            background-color: #4a90d9;
+            border-color: #357abd;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 13px;
+            top: 8px;
+            width: 8px;
+            height: 14px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+
+        .circular-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .checkbox-label {
+            margin-left: 15px;
+            font-size: 16px;
+            color: #333;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .proceed-button {
+            display: block;
+            margin: 30px auto 0;
+            padding: 10px 40px;
+            background: linear-gradient(to bottom, #7db4e6 0%, #4a90d9 100%);
+            color: white;
+            border: 1px solid #3a7bb8;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0.5;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .proceed-button.enabled {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .proceed-button.enabled:hover {
+            background: linear-gradient(to bottom, #6ba3d5 0%, #3880c8 100%);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .proceed-button.enabled:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-container">
+        <div class="verification-header">
+            <h2>रुजु (Verify) गर्नुहोस्</h2>
+        </div>
+
+        <div class="verification-content">
+            <div class="info-message">
+                <p><strong>महत्वपूर्ण सूचना:</strong></p>
+                <p>तपाईं आफ्नो VAT विवरण रुजु (Verify) गर्न लाग्दै हुनुहुन्छ।</p>
+                <p>एक पटक रुजु गरिसकेपछि तपाईंले यो विवरणमा सच्चाउन सक्नुहुन्न।</p>
+                <p><strong>रुजु नगरिसम्म तपाईंको विवरण आन्तरिक राजस्व विभागमा दर्ता भएको मानिदैन।</strong></p>
+                <p style="margin-bottom: 0;">कृपया तल दिइएको चेकबक्समा क्लिक गरी अगाडि बढ्नुहोस्।</p>
+            </div>
+
+            <div class="checkbox-container">
+                <label class="circular-checkbox">
+                    <input type="checkbox" id="confirmCheckbox">
+                    <span class="checkmark"></span>
+                </label>
+                <label for="confirmCheckbox" class="checkbox-label">
+                    म, यस विवरण रुजु गर्न सहमत छु
+                </label>
+            </div>
+
+            <button type="button" id="proceedBtn" class="proceed-button">
+                अगाडि बढ्नुहोस् (Proceed to Login)
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const confirmCheckbox = document.getElementById('confirmCheckbox');
+        const proceedBtn = document.getElementById('proceedBtn');
+
+        // Enable/disable button based on checkbox
+        confirmCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                proceedBtn.classList.add('enabled');
+            } else {
+                proceedBtn.classList.remove('enabled');
+            }
+        });
+
+        // Proceed button click
+        proceedBtn.addEventListener('click', function() {
+            if (confirmCheckbox.checked) {
+                // Send message to parent to load login page
+                if (window.parent) {
+                    window.parent.postMessage({
+                        action: 'showLoginPage'
+                    }, '*');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
