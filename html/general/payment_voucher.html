@@ -8,46 +8,440 @@
     <link rel="stylesheet" href="../../css/general/payment_voucher.css">
 </head>
 <body>
-    <div class="page-container">
-        <div class="header">
-            <h1>Payment Voucher</h1>
+    <!-- Header -->
+    <div class="ird-header">
+        <div class="header-left">
+            <img src="../../media/resources/logo.gif" alt="IRD Logo" width="306" height="85">
+            <img src="../../media/resources/flag.gif" alt="Nepal Flag" width="68" height="50">
+            <img src="../../media/resources/slogan.jpg" alt="IRD Slogan" width="250" height="87">
         </div>
-        
-        <div class="content">
-            <fieldset class="form-section">
-                <legend>Voucher Information</legend>
-                <div class="form-row">
-                    <label>PAN:</label>
-                    <input type="text" id="pan" readonly>
-                </div>
-                <div class="form-row">
-                    <label>Voucher Type:</label>
-                    <select id="voucherType">
-                        <option value="">Select Type</option>
-                        <option value="income_tax">Income Tax</option>
-                        <option value="vat">VAT</option>
-                        <option value="tds">TDS</option>
-                    </select>
-                </div>
-                <div class="form-row">
-                    <label>Amount:</label>
-                    <input type="number" id="amount" placeholder="Enter amount">
-                </div>
-                <div class="form-row">
-                    <label>Payment Date:</label>
-                    <input type="date" id="paymentDate">
-                </div>
-            </fieldset>
+    </div>
 
-            <div class="button-container">
-                <button class="btn-submit" onclick="submitVoucher()">
-                    <img src="../../resources/ok.png" style="width: 16px; height: 16px; margin-right: 5px;">
-                    Submit
-                </button>
-                <button class="btn-cancel" onclick="goBack()">
-                    <img src="../../resources/cancel.png" style="width: 16px; height: 16px; margin-right: 5px;">
-                    Cancel
-                </button>
+    <div class="main-container">
+        <!-- Office and PAN Header -->
+        <div class="office-header">
+            <div class="office-name">आन्तरिक राजस्व कार्यालय भरतपुर</div>
+            <div class="pan-info">
+                <span>खाता विजनेश एकेडेमी प्रा.लि., प्यान न्ं : </span>
+                <span class="pan-number" id="panNumber">610015263</span>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-header">
+            <button class="tab-button active" onclick="switchTab(0)">
+                <div class="tab-title">नयाँ भुक्तानी गर्ने</div>
+                <div class="tab-subtitle">(Make payment)</div>
+            </button>
+            <button class="tab-button" onclick="switchTab(1)">
+                <div class="tab-title">पुरानो भुक्तानीको अवस्था हेर्ने</div>
+                <div class="tab-subtitle">(View payment status)</div>
+            </button>
+            <button class="tab-button" onclick="switchTab(2)">
+                <div class="tab-title">अन्त:शुल्क भुक्तानी</div>
+                <div class="tab-subtitle">(Payment for Excise)</div>
+            </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Tab 1: Make Payment -->
+            <div class="tab-pane active" id="tab0">
+                <div class="form-container">
+                    <div class="bank-selection">
+                        <label>रकम जम्मा हुने बैंक छान्नुहोस <sup>*</sup> :</label>
+                        <select id="bankSelect">
+                            <option value="">बैंक छान्नुहोस</option>
+                            <option value="11001">नेपाल बैंक लिमिटेड [11001]</option>
+                            <option value="11002">राष्ट्रिय वाणिज्य बैंक [11002]</option>
+                            <option value="11004">नेपाल इन्भेस्टमेन्ट बैंक लि. [11004]</option>
+                            <option value="11008">नेपाल बंगलादेश बैंक [11008]</option>
+                            <option value="11011">नेपाल क्रेडिट एण्ड कमर्स बैंक [11011]</option>
+                            <option value="11012">एनआईसी एशिया बैंक [11012]</option>
+                            <option value="11018">कृषि विकास बैंक [11018]</option>
+                            <option value="11019">ग्लोबल आईएमई बैंक [11019]</option>
+                        </select>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="payment-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-sn">सि.न.</th>
+                                    <th>करको प्रकार</th>
+                                    <th>राजस्व शीर्षक</th>
+                                    <th>बापत</th>
+                                    <th>राजस्व रकम</th>
+                                    <th>आर्थिक बर्ष</th>
+                                    <th>कैफियत</th>
+                                    <th class="col-action"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="paymentRows">
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td>
+                                        <select name="taxType" class="form-field" onchange="handleTaxTypeChange(this)">
+                                            <option value="">करको प्रकार छान्नुहोस</option>
+                                            <option value="V">मुल्य अ. कर</option>
+                                            <option value="I">आय कर</option>
+                                            <option value="O">अन्य शुल्क</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <label class="helper-text">पहिले करको प्रकार छान्नुहोस</label>
+                                    </td>
+                                    <td>
+                                        <label class="helper-text">पहिले करको प्रकार छान्नुहोस</label>
+                                    </td>
+                                    <td>
+                                        <input type="number" name="amount" placeholder="राजस्व रकम लेख्नुहोस" class="form-field text-right" oninput="calculateTotal()" onchange="calculateTotal()">
+                                    </td>
+                                    <td>
+                                        <select name="fiscalYear" class="form-field year-select">
+                                            <option value="">आर्थिक बर्ष छान्नुहोस</option>
+                                            <option value="2082.083">2082/083</option>
+                                            <option value="2081.082">2081/082</option>
+                                            <option value="2080.081">2080/081</option>
+                                            <option value="2079.080">2079/080</option>
+                                            <option value="2078.079">2078/079</option>
+                                            <option value="2077.078">2077/078</option>
+                                            <option value="2076.077">2076/077</option>
+                                            <option value="2075.076">2075/076</option>
+                                            <option value="2074.075">2074/075</option>
+                                            <option value="2073.074">2073/074</option>
+                                            <option value="2072.073">2072/073</option>
+                                            <option value="2071.072">2071/072</option>
+                                            <option value="2070.071">2070/071</option>
+                                            <option value="2069.070">2069/070</option>
+                                            <option value="2068.069">2068/069</option>
+                                            <option value="2067.068">2067/068</option>
+                                            <option value="2066.067">2066/067</option>
+                                            <option value="2065.066">2065/066</option>
+                                            <option value="2064.065">2064/065</option>
+                                            <option value="2063.064">2063/064</option>
+                                            <option value="2062.063">2062/063</option>
+                                            <option value="2061.062">2061/062</option>
+                                            <option value="2060.061">2060/061</option>
+                                            <option value="2059.060">2059/060</option>
+                                            <option value="2058.059">2058/059</option>
+                                        </select>
+                                    </td>
+                                    <td></td>
+                                    <td class="text-center">
+                                        <button class="btn-add" onclick="addRow()">
+                                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" fill="green"/>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td colspan="4"></td>
+                                    <td class="text-center">
+                                        <span>जम्मा रकम : </span>
+                                        <span class="total-amount" id="totalAmount">०</span>
+                                    </td>
+                                    <td colspan="3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="button-row-outside">
+                    <button class="btn-generate" onclick="generateCode()">Generate Transaction Code</button>
+                </div>
+            </div>
+
+            <!-- Tab 2: View Payment Status -->
+            <div class="tab-pane" id="tab1">
+                <div class="form-container">
+                    <div class="filter-section">
+                        <span style="color: blue; font-size: 12px;">Filter by fiscal year : </span>
+                        <select id="filterYear" class="form-field">
+                            <option value="">आर्थिक बर्ष छान्नुहोस</option>
+                            <option value="2082.083">2082/083</option>
+                            <option value="2081.082">2081/082</option>
+                            <option value="2080.081">2080/081</option>
+                            <option value="2079.080">2079/080</option>
+                            <option value="2078.079">2078/079</option>
+                            <option value="2077.078">2077/078</option>
+                            <option value="2076.077">2076/077</option>
+                            <option value="2075.076">2075/076</option>
+                            <option value="2074.075">2074/075</option>
+                            <option value="2073.074">2073/074</option>
+                            <option value="2072.073">2072/073</option>
+                            <option value="2071.072">2071/072</option>
+                            <option value="2070.071">2070/071</option>
+                            <option value="2069.070">2069/070</option>
+                            <option value="2068.069">2068/069</option>
+                            <option value="2067.068">2067/068</option>
+                            <option value="2066.067">2066/067</option>
+                            <option value="2065.066">2065/066</option>
+                            <option value="2064.065">2064/065</option>
+                            <option value="2063.064">2063/064</option>
+                            <option value="2062.063">2062/063</option>
+                            <option value="2061.062">2061/062</option>
+                            <option value="2060.061">2060/061</option>
+                            <option value="2059.060">2059/060</option>
+                            <option value="2058.059">2058/059</option>
+                        </select>
+                    </div>
+
+                    <h4 class="section-title">Processing / Pending Vouchers</h4>
+                    <div class="table-container">
+                        <table class="status-table">
+                            <thead>
+                                <tr>
+                                    <th>S.N</th>
+                                    <th>Voucher Request Code</th>
+                                    <th>Request Date</th>
+                                    <th>Amount</th>
+                                    <th>View Details</th>
+                                    <th>Print</th>
+                                    <th>Status</th>
+                                    <th>Make payment</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pendingVouchers">
+                                <!-- Pending vouchers will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4 class="section-title">Paid Vouchers</h4>
+                    <div class="table-container">
+                        <table class="status-table">
+                            <thead>
+                                <tr>
+                                    <th>SNo</th>
+                                    <th>OFFICE</th>
+                                    <th>REQUEST CODE</th>
+                                    <th>VOUCHER NO</th>
+                                    <th>VOUCHER DATE</th>
+                                    <th>FISCAL YEAR</th>
+                                    <th>ACCOUNT CODE</th>
+                                    <th>ACCOUNT DESC</th>
+                                    <th>AMOUNT</th>
+                                    <th>Print</th>
+                                </tr>
+                            </thead>
+                            <tbody id="paidVouchers">
+                                <!-- Paid vouchers will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Payment for Excise -->
+            <div class="tab-pane" id="tab2">
+                <div class="form-container">
+                    <div class="bank-selection">
+                        <label>शाखा छान्नुहोस <sup>*</sup> :</label>
+                        <select id="branchSelect">
+                            <option value="">शाखा छान्नुहोस</option>
+                            <option value="खाता विजनेश एकेडेमी प्रा.लि.">खाता विजनेश एकेडेमी प्रा.लि.</option>
+                        </select>
+                        
+                        <span id="exciseBankSelectionContainer" style="display: none; margin-left: 30px;">
+                            <label>रकम जम्मा हुने बैंक छान्नुहोस <sup>*</sup> :</label>
+                            <select id="exciseBankSelect">
+                                <option value="">बैंक छान्नुहोस</option>
+                                <option value="11001">नेपाल बैंक लिमिटेड [11001]</option>
+                                <option value="11002">राष्ट्रिय वाणिज्य बैंक [11002]</option>
+                                <option value="11004">नेपाल इन्भेस्टमेन्ट बैंक लि. [11004]</option>
+                                <option value="11008">नेपाल बंगलादेश बैंक [11008]</option>
+                                <option value="11011">नेपाल क्रेडिट एण्ड कमर्स बैंक [11011]</option>
+                                <option value="11012">एनआईसी एशिया बैंक [11012]</option>
+                                <option value="11018">कृषि विकास बैंक [11018]</option>
+                                <option value="11019">ग्लोबल आईएमई बैंक [11019]</option>
+                            </select>
+                        </span>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="payment-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-sn">सि.न.</th>
+                                    <th>करको प्रकार</th>
+                                    <th>राजस्व शीर्षक</th>
+                                    <th>बापत</th>
+                                    <th>राजस्व रकम</th>
+                                    <th>आर्थिक बर्ष</th>
+                                    <th>कैफियत</th>
+                                    <th class="col-action"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td>
+                                        <select name="taxType" class="form-field">
+                                            <option value="">करको प्रकार छान्नुहोस</option>
+                                            <option value="E">अन्त शुल्क</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <label class="helper-text">पहिले करको प्रकार छान्नुहोस</label>
+                                    </td>
+                                    <td>
+                                        <label class="helper-text">पहिले करको प्रकार छान्नुहोस</label>
+                                    </td>
+                                    <td>
+                                        <input type="number" name="amount" placeholder="राजस्व रकम लेख्नुहोस" class="form-field text-right">
+                                    </td>
+                                    <td>
+                                        <select name="fiscalYear" class="form-field year-select">
+                                            <option value="">आर्थिक बर्ष छान्नुहोस</option>
+                                            <option value="2082.083">2082/083</option>
+                                            <option value="2081.082">2081/082</option>
+                                            <option value="2080.081">2080/081</option>
+                                            <option value="2079.080">2079/080</option>
+                                            <option value="2078.079">2078/079</option>
+                                            <option value="2077.078">2077/078</option>
+                                            <option value="2076.077">2076/077</option>
+                                            <option value="2075.076">2075/076</option>
+                                            <option value="2074.075">2074/075</option>
+                                            <option value="2073.074">2073/074</option>
+                                            <option value="2072.073">2072/073</option>
+                                            <option value="2071.072">2071/072</option>
+                                            <option value="2070.071">2070/071</option>
+                                            <option value="2069.070">2069/070</option>
+                                            <option value="2068.069">2068/069</option>
+                                            <option value="2067.068">2067/068</option>
+                                            <option value="2066.067">2066/067</option>
+                                            <option value="2065.066">2065/066</option>
+                                            <option value="2064.065">2064/065</option>
+                                            <option value="2063.064">2063/064</option>
+                                            <option value="2062.063">2062/063</option>
+                                            <option value="2061.062">2061/062</option>
+                                            <option value="2060.061">2060/061</option>
+                                            <option value="2059.060">2059/060</option>
+                                            <option value="2058.059">2058/059</option>
+                                        </select>
+                                    </td>
+                                    <td></td>
+                                    <td class="text-center">
+                                        <button class="btn-add">
+                                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" fill="green"/>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td colspan="4"></td>
+                                    <td class="text-center">
+                                        <span>जम्मा रकम : </span>
+                                        <span class="total-amount">०</span>
+                                    </td>
+                                    <td colspan="3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="button-row-outside">
+                    <button class="btn-generate">Generate Transaction Code</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Confirmation Modal -->
+    <div id="paymentConfirmModal" class="modal-overlay" style="display: none;">
+        <div class="modal-dialog payment-confirm-modal">
+            <div class="modal-content">
+                <div class="modal-header-payment">
+                    <h2>Payment details</h2>
+                </div>
+                
+                <div class="modal-body-payment">
+                    <div class="confirmation-message">
+                        <p style="color: green; font-weight: bold; margin-bottom: 5px;">Transaction code will be generated with following information.</p>
+                        <p style="color: green; font-weight: bold;">Please confirm below to continue payment.</p>
+                    </div>
+                    
+                    <div class="payment-details-table">
+                        <table class="confirm-table">
+                            <thead>
+                                <tr>
+                                    <th>सि.न.</th>
+                                    <th>राजस्व<br>शीर्षक</th>
+                                    <th>राजस्व<br>उपशीर्षक</th>
+                                    <th>बापत</th>
+                                    <th>राजस्व<br>रकम</th>
+                                    <th>आर्थिक बर्ष</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody id="confirmPaymentDetails">
+                                <!-- Payment details will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="total-amount-display">
+                        <span style="font-size: 14px; font-weight: bold;">TOTAL AMOUNT : </span>
+                        <span id="confirmTotalAmount" style="font-size: 14px; font-weight: bold;">0</span>
+                    </div>
+                </div>
+                
+                <div class="modal-footer-payment">
+                    <button id="btnConfirmPayment" type="button" class="btn-confirm">CONFIRM</button>
+                    <button id="btnCancelPayment" type="button" class="btn-cancel-payment">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Success Modal -->
+    <div id="paymentSuccessModal" class="modal-overlay" style="display: none;">
+        <div class="modal-dialog payment-confirm-modal">
+            <div class="modal-content">
+                <div class="modal-header-payment">
+                    <h2>Payment details</h2>
+                </div>
+                
+                <div class="modal-body-payment">
+                    <div class="payment-details-table">
+                        <table class="confirm-table">
+                            <thead>
+                                <tr>
+                                    <th>सि.न.</th>
+                                    <th>राजस्व<br>शीर्षक</th>
+                                    <th>राजस्व<br>उपशीर्षक</th>
+                                    <th>बापत</th>
+                                    <th>राजस्व<br>रकम</th>
+                                    <th>आर्थिक बर्ष</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody id="successPaymentDetails">
+                                <!-- Payment details will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="success-message-section">
+                        <h3 style="font-size: 20px; margin: 15px 0;">Transaction Code: <span id="generatedTransactionCode"></span></h3>
+                        <p style="color: green; font-weight: bold; font-size: 14px;">Generated Successfully ! - Voucher has created successfully. Please Proceed for Payment</p>
+                    </div>
+                    
+                    <div class="total-amount-display">
+                        <span style="font-size: 14px; font-weight: bold;">TOTAL AMOUNT : </span>
+                        <span id="successTotalAmount" style="font-size: 14px; font-weight: bold;">0</span>
+                    </div>
+                </div>
+                
+                <div class="modal-footer-payment">
+                    <button id="btnMakePayment" type="button" class="btn-confirm">MAKE PAYMENT</button>
+                    <button id="btnCancelSuccess" type="button" class="btn-cancel-payment">CANCEL</button>
+                </div>
             </div>
         </div>
     </div>

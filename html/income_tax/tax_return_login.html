@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Return Login - IRD</title>
+    <link rel="stylesheet" href="../../css/income_tax/tax_return_login.css">
+    <link rel="stylesheet" href="../../extjs/resources/ext-all.css">
+</head>
+<body>
+    <div id="incomeTaxReturnLoginPage" class="x-panel-body x-panel-body-default x-panel-body-default-framed" style="overflow: auto; padding: 10px;">
+        <div class="x-panel x-panel-default-framed" role="form" style="width: 715px;">
+            <div class="x-panel-body x-panel-body-default x-panel-body-default-framed x-docked-noborder-top x-docked-noborder-right x-docked-noborder-bottom x-docked-noborder-left" style="padding: 10px;">
+                <div class="x-container x-container-default x-table-layout-ct" role="presentation" style="width: 685px;">
+                    <table role="presentation" class="x-table-layout" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                    <div class="x-field x-form-item-hidden x-field-default" style="width: 0px;">
+                                        <div class="x-form-item-body" role="presentation" style="width: 0px;">
+                                            <input type="hidden" name="hiddenField1" class="x-form-field x-form-hidden" autocomplete="off" value="" aria-invalid="false" role="presentation">
+                                        </div>
+                                        <div class="x-form-error-msg" style="display:none"></div>
+                                        <div class="x-clear" role="presentation"><!-- --></div>
+                                    </div>
+                                </td>
+                                <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                    <div class="x-field x-form-item-hidden x-field-default x-form-dirty" style="width: 0px;">
+                                        <div class="x-form-item-body" role="presentation" style="width: 0px;">
+                                            <input type="hidden" name="hiddenField2" class="x-form-field x-form-hidden" autocomplete="off" value="Self Assessment(Income Tax)" aria-invalid="false" role="presentation">
+                                        </div>
+                                        <div class="x-form-error-msg" style="display:none"></div>
+                                        <div class="x-clear" role="presentation"><!-- --></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                    <div class="x-field x-form-item-hidden x-field-default x-form-dirty" style="width: 0px;">
+                                        <div class="x-form-item-body" role="presentation" style="width: 0px;">
+                                            <input type="hidden" name="hiddenField3" class="x-form-field x-form-hidden" autocomplete="off" value="Tax Return Login" aria-invalid="false" role="presentation">
+                                        </div>
+                                        <div class="x-form-error-msg" style="display:none"></div>
+                                        <div class="x-clear" role="presentation"><!-- --></div>
+                                    </div>
+                                </td>
+                                <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                    <div class="x-field x-form-item-hidden x-field-default" style="width: 0px;">
+                                        <div class="x-form-item-body" role="presentation" style="width: 0px;">
+                                            <input type="hidden" name="hiddenField4" class="x-form-field x-form-hidden" autocomplete="off" value="" aria-invalid="false" role="presentation">
+                                        </div>
+                                        <div class="x-form-error-msg" style="display:none"></div>
+                                        <div class="x-clear" role="presentation"><!-- --></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                    <div class="x-container x-container-default" role="presentation" style="padding: 0px 0px 10px; margin: 0px 0px 0px 10px;">
+                                        <div id="txtITRLSubmissionNo" class="x-field x-form-item x-field-default" style="width: 275px;">
+                                            <label for="txtITRLSubmissionNo-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">सब्मिशन नं.  :</label>
+                                            <div class="x-form-item-body" role="presentation" style="width: 150px;">
+                                                <input id="txtITRLSubmissionNo-input" type="text" name="txtITRLSubmissionNo" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" maxlength="12" role="textbox" aria-required="true" style="width: 150px;">
+                                            </div>
+                                            <div class="x-form-error-msg" style="display:none"></div>
+                                            <div class="x-clear" role="presentation"><!-- --></div>
+                                        </div>
+                                        <div id="txtITRLUsername" class="x-field x-form-item x-field-default" style="width: 275px;">
+                                            <label for="txtITRLUsername-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">प्रयोगकर्ताको नाम :</label>
+                                            <div class="x-form-item-body" role="presentation" style="width: 150px;">
+                                                <input id="txtITRLUsername-input" type="text" name="txtITRLUsername" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-required="false" style="width: 150px;">
+                                            </div>
+                                            <div class="x-form-error-msg" style="display:none"></div>
+                                            <div class="x-clear" role="presentation"><!-- --></div>
+                                        </div>
+                                        <div id="txtITRLPassword" class="x-field x-form-item x-field-default" style="width: 275px;">
+                                            <label for="txtITRLPassword-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">पासवर्ड:</label>
+                                            <div class="x-form-item-body" role="presentation" style="width: 150px;">
+                                                <input id="txtITRLPassword-input" type="password" name="txtITRLPassword" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-required="false" style="width: 150px;">
+                                            </div>
+                                            <div class="x-form-error-msg" style="display:none"></div>
+                                            <div class="x-clear" role="presentation"><!-- --></div>
+                                        </div>
+                                        <div class="x-btn x-btn-default-small x-icon-text-left x-btn-icon-text-left x-btn-default-small-icon-text-left" style="padding: 5px; margin: 0px 5px 0px 214px;">
+                                            <em class="">
+                                                <button id="btnITRLLogin" type="button" hidefocus="true" role="button" autocomplete="off" class="x-btn-center">
+                                                    <span class="x-btn-icon icon-ok"></span>
+                                                    <span class="x-btn-inner">Login</span>
+                                                </button>
+                                            </em>
+                                        </div>
+                                        <div class="x-clear" role="presentation"></div>
+                                    </div>
+                                </td>
+                                <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                    <div class="x-container x-container-default" role="presentation" style="margin: -55px 0px 0px 20px; width: 300px;">
+                                        <label for="" class="x-component x-component-default instruction-label" role="presentation" style="margin: 0px 0px 5px 5px; height: 100px;">यदि तपाईले सब्मिशन नं. लिइ सक्नु भएको छ भने सो प्रयोगकर्ताको नाम र पासवर्ड राखेर लगइन भई प्रविष्टि र रुजु गर्न सक्नु हुन्छ ।</label>
+                                        <div class="x-clear" role="presentation"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                    <div class="x-container x-container-default" role="presentation" style="display: none;"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="x-clear" role="presentation"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/income_tax/tax_return_login.js"></script>
+</body>
+</html>

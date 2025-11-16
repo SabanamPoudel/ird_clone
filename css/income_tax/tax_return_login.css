@@ -1,0 +1,231 @@
+/* Tax Return Login CSS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    background-color: #DFE9F6;
+}
+
+/* Panel Styles */
+.x-panel {
+    background-color: #DFE9F6;
+    border: 1px solid #99bbe8;
+    border-radius: 5px;
+}
+
+.x-panel-default-framed {
+    border-color: #99bbe8;
+}
+
+.x-panel-body {
+    background-color: #DFE9F6;
+}
+
+.x-panel-body-default-framed {
+    background-color: #DFE9F6;
+    padding: 10px;
+}
+
+/* Form Fields */
+.x-form-item {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.x-form-item-label {
+    font-size: 11px;
+    color: #333;
+    font-weight: normal;
+    text-align: right;
+    padding-right: 5px;
+}
+
+.x-form-item-label-left {
+    text-align: right;
+}
+
+.x-form-item-body {
+    position: relative;
+}
+
+.x-form-field {
+    border: 1px solid #b5b8c8;
+    padding: 3px 5px;
+    font-size: 11px;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+
+.x-form-text {
+    height: 22px;
+}
+
+.x-form-field:focus {
+    border-color: #7eadd9;
+    outline: none;
+    box-shadow: 0 0 3px rgba(126, 173, 217, 0.5);
+}
+
+.x-form-field:disabled {
+    background-color: #f0f0f0;
+    color: #999;
+}
+
+/* Hidden Fields */
+.x-form-item-hidden {
+    display: none;
+}
+
+.x-form-hidden {
+    display: none;
+}
+
+/* Table Layout */
+.x-table-layout {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.x-table-layout-cell {
+    vertical-align: top;
+    padding: 2px;
+}
+
+/* Container */
+.x-container {
+    position: relative;
+}
+
+.x-container-default {
+    background-color: transparent;
+}
+
+.x-table-layout-ct {
+    width: 100%;
+}
+
+/* Buttons */
+.x-btn {
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.x-btn-default-small {
+    border: 1px solid #557c9f;
+    background: linear-gradient(to bottom, #7eadd9 0%, #5588bb 100%);
+    border-radius: 3px;
+}
+
+.x-btn-default-small:hover {
+    background: linear-gradient(to bottom, #8ebdea 0%, #6698cc 100%);
+}
+
+.x-btn-default-small:active {
+    background: linear-gradient(to bottom, #5588bb 0%, #7eadd9 100%);
+}
+
+.x-btn em {
+    display: block;
+}
+
+.x-btn button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.x-btn-center {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.x-btn-inner {
+    color: #ffffff;
+    font-size: 11px;
+}
+
+.x-btn-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.icon-ok {
+    background-image: url('../../resources/ok.png');
+    width: 16px;
+    height: 16px;
+}
+
+/* Component Labels */
+.x-component-default {
+    font-size: 11px;
+    color: #333;
+}
+
+/* Instruction Label */
+.instruction-label {
+    display: block;
+    line-height: 1.8;
+    font-size: 13px;
+    color: #333;
+    background-color: #DFE9F6;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Clear Fix */
+.x-clear {
+    clear: both;
+    height: 0;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0;
+}
+
+/* Error Messages */
+.x-form-error-msg {
+    color: #c00;
+    font-size: 10px;
+    padding: 2px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .x-panel {
+        width: 100% !important;
+    }
+
+    .x-table-layout-ct {
+        width: 100% !important;
+    }
+
+    .x-container {
+        width: 100% !important;
+    }
+
+    #incomeTaxReturnLoginPage {
+        padding: 20px 10px !important;
+    }
+
+    .instruction-label {
+        margin-top: 20px !important;
+    }
+}

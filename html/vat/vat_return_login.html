@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAT Return Login</title>
+    <link rel="stylesheet" type="text/css" href="../../extjs/resources/ext-all.css">
+    <link rel="stylesheet" type="text/css" href="../../css/vat/vat_return_login.css">
+</head>
+<body>
+    <div class="login-form-container">
+        <table class="login-table">
+            <tr>
+                <td class="label-cell">सब्मिशन नं. :</td>
+                <td class="input-cell">
+                    <input type="text" id="submissionNoInput" class="login-input" maxlength="12">
+                </td>
+                <td rowspan="3" class="info-cell">
+                    यदि तपाईले सब्मिशन नं. लिइ सक्नु भएको छ भने सो प्रयोगकर्ताको<br>नाम र पासवर्ड राखेर लगइन भई प्रविष्टि र रुजु गर्न सक्नु हुन्छ ।
+                </td>
+            </tr>
+            <tr>
+                <td class="label-cell">प्रयोगकर्ताको नाम :</td>
+                <td class="input-cell">
+                    <input type="text" id="usernameInput" class="login-input">
+                </td>
+            </tr>
+            <tr>
+                <td class="label-cell">पासवर्ड:</td>
+                <td class="input-cell">
+                    <input type="password" id="passwordInput" class="login-input" autocomplete="off">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="button-cell">
+                    <button type="button" class="login-btn" onclick="loginVATReturn()">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%2352a952' d='M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E" alt="" class="btn-icon">
+                        Login
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="../../js/vat/vat_return_login.js"></script>
+</body>
+</html>

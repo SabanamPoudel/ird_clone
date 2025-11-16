@@ -2,6 +2,21 @@
 
 $(document).ready(function() {
     
+    // Check if there's a hash in URL to auto-load content
+    if (window.location.hash) {
+        var contentUrl = window.location.hash.substring(1); // Remove the # symbol
+        if (contentUrl) {
+            loadContent(contentUrl, 'Auto-loaded Content');
+        }
+    }
+    
+    // Listen for messages from child windows (like D-01 opened in new window)
+    window.addEventListener('message', function(event) {
+        if (event.data && event.data.action === 'loadContent') {
+            loadContent(event.data.url, 'Loaded from Navigation');
+        }
+    });
+    
     // Function to update breadcrumb
     function updateBreadcrumb($element) {
         var breadcrumbPath = [];

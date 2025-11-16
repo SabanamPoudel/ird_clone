@@ -1,0 +1,157 @@
+/* D-03 Return Entry CSS - Matching Original IRD */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+}
+
+#d03ReturnPage {
+    background-color: #DFE9F6;
+    padding: 20px;
+    min-height: 400px;
+}
+
+/* Panel Styles */
+.x-panel {
+    background: #DFE9F6;
+    border: 1px solid #99bbe8;
+    border-radius: 5px;
+}
+
+.x-panel-body {
+    background: #DFE9F6;
+}
+
+/* Clear fix */
+.x-clear {
+    clear: both;
+    height: 0;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0;
+}
+
+/* Form Field Styles */
+.x-form-item {
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+
+.x-form-item-label {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    color: #333;
+    text-align: right;
+    padding-right: 5px;
+}
+
+.x-form-item-body {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.x-form-field {
+    border: 1px solid #b5b8c8;
+    padding: 3px;
+    font-size: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.x-form-text {
+    background: white;
+}
+
+.x-form-field:focus {
+    border-color: #7eadd9;
+    outline: none;
+}
+
+/* Instructions */
+.x-component {
+    font-size: 12px;
+    color: #333;
+}
+
+/* Button Styles */
+.x-btn {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: top;
+}
+
+.x-btn em {
+    font-style: normal;
+}
+
+.x-btn button {
+    border: 1px solid #bcbcbc;
+    background: linear-gradient(to bottom, #f5f5f5 0%, #e0e0e0 100%);
+    padding: 3px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    border-radius: 3px;
+}
+
+.x-btn button:hover {
+    background: linear-gradient(to bottom, #e8e8e8 0%, #d8d8d8 100%);
+}
+
+/* Instruction button - ensure background shows */
+.x-btn-noicon button {
+    border: 1px solid #bcbcbc;
+    background: linear-gradient(to bottom, #f5f5f5 0%, #e0e0e0 100%);
+    padding: 12px 12px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #333;
+    border-radius: 3px;
+}
+
+.x-btn-noicon button:hover {
+    background: linear-gradient(to bottom, #e8e8e8 0%, #d8d8d8 100%);
+}
+
+.x-btn-noicon .x-btn-inner {
+    vertical-align: middle;
+    margin-top: -20px;
+    display: inline-block;
+}
+
+.x-btn-inner {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.x-btn-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.icon-ok {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M13 3L6 10.5L3 7.5' stroke='green' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+}
+
+.icon-cancel {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M4 4L12 12M12 4L4 12' stroke='red' stroke-width='2'/%3E%3C/svg%3E");
+}
+
+/* Column layout */
+.x-column {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* Hide display */
+.x-hide-display {
+    display: none !important;
+}

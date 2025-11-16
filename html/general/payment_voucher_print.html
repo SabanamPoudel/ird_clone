@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Voucher - आन्तरिक राजस्व विभाग</title>
+    <link rel="stylesheet" href="../../css/general/payment_voucher_print.css">
+</head>
+<body>
+    <!-- First Copy - Office Copy -->
+    <div class="voucher-copy">
+        <div class="copy-label">aboutBlank</div>
+        
+        <div class="voucher-header">
+            <div class="logo-left">
+                <img src="../../media/resources/ird_logo.png" alt="IRD Logo" class="ird-logo">
+            </div>
+            <div class="title-center">
+                <h1>राजस्व व्यवस्थापन सूचना प्रणालीबाट सिर्जित भौचर</h1>
+                <p class="subtitle">रकम भुक्तानी गर्न बाँकी भौचर</p>
+            </div>
+            <div class="qr-right">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=IRD_PAYMENT_VOUCHER" alt="QR Code" class="qr-code" id="qrCode1">
+            </div>
+        </div>
+
+        <div class="voucher-body">
+            <div class="section-title">भौचर विवरण</div>
+            
+            <table class="info-table">
+                <tr>
+                    <td class="label-cell">आर्थिक बर्ष <span id="fiscalYear1">२०८२ / ०८३</span> मिति:</td>
+                    <td class="value-cell" id="voucherDate1">--/--/----</td>
+                    <td rowspan="7" class="right-section">
+                        <div class="amount-box">
+                            <div class="amount-label">जाँचको विवरण</div>
+                            <div class="amount-item"><span class="amt-label">निशस्त</span> <span id="amount1">१०००</span></div>
+                            <div class="amount-item"><span class="amt-label">सम्पत्ति</span> <span>५००</span></div>
+                            <div class="amount-item"><span class="amt-label">आय</span> <span>१००</span></div>
+                            <div class="amount-item"><span class="amt-label">मुनाफा</span> <span>५०</span></div>
+                            <div class="amount-item"><span class="amt-label">नाफा</span> <span>२०</span></div>
+                            <div class="amount-item"><span class="amt-label">ब्याज</span> <span>१०</span></div>
+                            <div class="amount-item"><span class="amt-label">अनुमान</span> <span>५</span></div>
+                            <div class="amount-item"><span class="amt-label">प्रदेश</span> <span>१</span></div>
+                            <div class="amount-item total"><span class="amt-label">सिधास्त</span> <span id="totalBreakdown1">१६८६</span></div>
+                            <div class="amount-item final-total"><span class="amt-label">जम्मा</span></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-cell">कार्यालय चहिनो:</td>
+                    <td class="value-cell">२०८२ - ४०२६७८५</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">कार्यालय:</td>
+                    <td class="value-cell">आन्तरिक राजस्व कार्यालय भरतपुर ३५५०१२</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">पानानं:</td>
+                    <td class="value-cell" id="panNumber1">६१०९१५१६१</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">नाम:</td>
+                    <td class="value-cell">खाता विजनेश एकेडेमी प्रा लि</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">ठेगाना / फोन:</td>
+                    <td class="value-cell">हाकिम चौक ९ भरतपुर</td>
+                </tr>
+            </table>
+
+            <div class="details-section">
+                <table class="details-table">
+                    <thead>
+                        <tr>
+                            <th>सि.<br>नं.</th>
+                            <th>भौचर नं</th>
+                            <th>सिर्जित विवरण</th>
+                            <th>चालान रकम</th>
+                            <th>आबर्ष गर्ने<br>कारोबार</th>
+                            <th>भोलपत्र</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detailsBody1">
+                        <tr>
+                            <td>१</td>
+                            <td id="voucherNum1">८८८८८८२९</td>
+                            <td>प्रारम्भिकमा आधारित मासिक तालिक सूचना कर (१११११)</td>
+                            <td class="text-right">अग्रिम कर<br>करी</td>
+                            <td>२२५ २०८१/०८०</td>
+                            <td>हो</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bank-info">राजस्व भुक्तानी बैंक: <span id="bankName1">Rastriya Banijya Bank</span></div>
+        </div>
+    </div>
+
+    <!-- Second Copy - Taxpayer Copy -->
+    <div class="voucher-copy page-break">
+        <div class="copy-label">aboutBlank</div>
+        
+        <div class="voucher-header">
+            <div class="logo-left">
+                <img src="../../media/resources/ird_logo.png" alt="IRD Logo" class="ird-logo">
+            </div>
+            <div class="title-center">
+                <h1>राजस्व व्यवस्थापन सूचना प्रणालीबाट सिर्जित भौचर</h1>
+                <p class="subtitle">रकम भुक्तानी गर्न बाँकी भौचर</p>
+            </div>
+            <div class="qr-right">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=IRD_PAYMENT_VOUCHER" alt="QR Code" class="qr-code" id="qrCode2">
+            </div>
+        </div>
+
+        <div class="voucher-body">
+            <div class="section-title">भौचर विवरण</div>
+            
+            <table class="info-table-simple">
+                <tr>
+                    <td class="label-cell">आर्थिक बर्ष <span id="fiscalYear2">२०८२ / ०८३</span> मिति:</td>
+                    <td class="value-cell" id="voucherDate2">--/--/----</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">कार्यालय चहिनो:</td>
+                    <td class="value-cell" id="transactionCode2">२०८२ - ४०२६७८५</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">कार्यालय:</td>
+                    <td class="value-cell">आन्तरिक राजस्व कार्यालय भरतपुर ३५५०१२</td>
+                </tr>
+            </table>
+
+            <div class="taxpayer-section">
+                <div class="taxpayer-title">राजस्व जम्मा गर्नेको विवरण</div>
+                <table class="taxpayer-table">
+                    <tr>
+                        <td class="label-cell">पानानं:</td>
+                        <td class="value-cell" id="panNumber2">६१०९१५१६१</td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">नाम:</td>
+                        <td class="value-cell">खाता विजनेश एकेडेमी प्रा लि</td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">ठेगाना:</td>
+                        <td class="value-cell">हाकिम चौक ९ भरतपुर</td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">फोन:</td>
+                        <td class="value-cell">०७५८८६५५५११</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Print Button -->
+    <div class="print-buttons no-print">
+        <button onclick="window.print()" class="btn-print">Print Voucher</button>
+        <button onclick="window.close()" class="btn-close">Close</button>
+    </div>
+
+    <script src="../../js/general/payment_voucher_print.js"></script>
+</body>
+</html>

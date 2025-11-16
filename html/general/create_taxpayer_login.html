@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Taxpayer Login</title>
+    <link rel="stylesheet" href="../../css/general/create_taxpayer_login.css">
+</head>
+<body>
+    <div id="createTaxpayerPage" style="padding: 50px 10px 50px 50px; background: #DFE9F6;">
+        <table role="presentation" class="x-table-layout" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                        <div id="form-1051" class="x-panel x-panel-default-framed" role="form" style="margin: 0px; width: 550px; height: 450px;">
+                            <div id="form-1051-body" class="x-panel-body x-panel-body-default x-panel-body-default-framed x-docked-noborder-top x-docked-noborder-right x-docked-noborder-bottom x-docked-noborder-left x-table-layout-ct" style="padding: 10px; width: 540px; height: 440px;">
+                                <table role="presentation" class="x-table-layout" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td class="x-table-layout-cell">
+                                                <div class="x-field x-form-item x-field-default" style="margin: 10px 0px 0px; width: 300px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:100px;">PAN:</label>
+                                                    <div class="x-form-item-body" style="width: 195px;">
+                                                        <input type="text" id="panInput" class="x-form-field x-form-text" maxlength="9" style="width: 195px;">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="x-table-layout-cell">
+                                                <label class="x-component x-component-default" style="margin: 10px;"> स्थायी लेखा नम्बर  उल्लेख गर्नुहोस।</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" class="x-table-layout-cell">
+                                                <div class="x-field x-form-item x-field-default x-form-readonly" style="margin: 10px 0px 0px; width: 300px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:100px;">Taxpayer Name:</label>
+                                                    <div class="x-form-item-body" style="width: 195px;">
+                                                        <input type="text" id="taxpayerNameInput" class="x-form-field x-form-text" readonly style="width: 195px;">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="x-table-layout-cell">
+                                                <div class="x-field x-form-item x-field-default x-form-readonly" style="margin: 10px 0px 0px; width: 300px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:100px;">User Name:</label>
+                                                    <div class="x-form-item-body" style="width: 195px;">
+                                                        <input type="text" id="usernameInput" class="x-form-field x-form-text" readonly style="width: 195px;">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="x-table-layout-cell">
+                                                <div class="x-field x-form-item x-field-default" style="margin: 10px 0px 0px; width: 300px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:100px;">Password:</label>
+                                                    <div class="x-form-item-body" style="width: 195px;">
+                                                        <input type="password" id="passwordInput" class="x-form-field x-form-text" style="width: 195px;" autocomplete="new-password">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="x-table-layout-cell">
+                                                <label class="x-component x-component-default" style="margin: 10px;"> कृपया पासवर्ड प्रविष्ट गर्नुहोस्।</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="x-table-layout-cell">
+                                                <div class="x-field x-form-item x-field-default" style="margin: 10px 0px 0px; width: 300px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:100px;">Confirm Password:</label>
+                                                    <div class="x-form-item-body" style="width: 195px;">
+                                                        <input type="password" id="confirmPasswordInput" class="x-form-field x-form-text" style="width: 195px;" autocomplete="new-password">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="x-table-layout-cell">
+                                                <label class="x-component x-component-default" style="margin: 10px;"> पुष्टि गर्नका लागि कृपया पासवर्ड पुन: प्रविष्ट गर्नुहोस्।</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="x-table-layout-cell">
+                                                <div class="x-field x-form-item x-field-default x-form-readonly" style="margin: 10px 0px 0px; width: 300px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:100px;">Email:</label>
+                                                    <div class="x-form-item-body" style="width: 195px;">
+                                                        <input type="text" id="emailInput" class="x-form-field x-form-text" readonly style="width: 195px;">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="x-table-layout-cell">
+                                                <label class="x-component x-component-default" style="margin: 10px;"> यस ईमेलमा  OTP कोड पठाइनेछ।</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="x-table-layout-cell">
+                                                <div class="x-field x-form-item x-field-default x-form-readonly" style="margin: 10px 0px 0px; width: 300px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:100px;">Mobile:</label>
+                                                    <div class="x-form-item-body" style="width: 195px;">
+                                                        <input type="text" id="mobileInput" class="x-form-field x-form-text" readonly maxlength="10" style="width: 195px;">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="x-table-layout-cell">
+                                                <label class="x-component x-component-default" style="margin: 10px;"> यस मोबाइलमा OTP कोड पठाइनेछ।</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="x-table-layout-cell">
+                                                <div class="x-container x-container-default" style="display: flex; justify-content: flex-end; align-items: center;">
+                                                    <div class="x-container x-container-default" style="display: flex; justify-content: flex-end; margin-top: 10px; margin-bottom: 10px; padding-right: 20px; height: 30px;">
+                                                        <canvas id="captchaCanvas2" height="30" width="110"></canvas>
+                                                    </div>
+                                                    <div class="x-btn x-btn-default-small x-icon x-btn-icon x-btn-default-small-icon" onclick="generateCaptcha2()">
+                                                        <em class="">
+                                                            <button type="button" class="x-btn-center">
+                                                                <span class="x-btn-inner">&nbsp;</span>
+                                                                <span class="x-btn-icon icon-reload">&nbsp;</span>
+                                                            </button>
+                                                        </em>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="x-table-layout-cell">
+                                                <div class="x-field x-form-item x-field-default" style="width: 300px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:100px;">Enter Captcha *:</label>
+                                                    <div class="x-form-item-body" style="width: 195px;">
+                                                        <input type="text" id="captchaInput" class="x-form-field x-form-text" style="width: 195px;">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="x-table-layout-cell">
+                                                <label class="x-component x-component-default" style="margin: 10px 0px 0px 10px;">माथिको CAPTCHA राख्नुहोस् ।</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="x-table-layout-cell">
+                                                <div class="x-btn x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon" style="padding: 1px; margin: 10px 0px;">
+                                                    <em class="">
+                                                        <button id="createTaxpayerBtn" type="button" class="x-btn-center">
+                                                            <span class="x-btn-inner">Create</span>
+                                                        </button>
+                                                    </em>
+                                                </div>
+                                            </td>
+                                            <td class="x-table-layout-cell">
+                                                <div class="x-btn x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon" style="padding: 1px; margin: 10px 10px 10px 0px;">
+                                                    <em class="">
+                                                        <button id="clearTaxpayerBtn" type="button" class="x-btn-center">
+                                                            <span class="x-btn-inner">Clear</span>
+                                                        </button>
+                                                    </em>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="x-table-layout-cell">
+                                                <div class="x-field x-form-item x-field-default" style="background: powderblue; color: black; margin: 10px; width: 455px; height: 64px;">
+                                                    <label class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:450px;font-size:15px;font-weight:bold;padding:10px 0px 0px 10px;">Note: ईमेल र मोबाईल फिल्डमा  टाईप गर्न मिल्दैन  । यहाँ  प्यान लिदा अथवा KYT भर्दा राखेको ईमेल र मोबाईल नम्बर Display मात्र हुन्छ । :</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                    <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                        <div class="x-panel x-panel-default-framed" role="form" style="display: flex; flex-direction: column; padding: 20px; margin: 0px 0px 0px 10px; width: 520px; height: 450px;">
+                            <div class="x-panel-body x-panel-body-default x-panel-body-default-framed x-docked-noborder-top x-docked-noborder-right x-docked-noborder-bottom x-docked-noborder-left" style="width: 478px; height: 408px;">
+                                <label class="x-component x-component-default" style="display: block; font-size: 0.95rem; font-weight: 700; margin-bottom: 20px;">पासवर्ड सिर्जना(Create) वा पुनःसेट(Reset) गर्दा तपसिल बमोजिमका मापदण्डहरू पालना गरी बलियो(Strong) पासवर्ड प्रयोग गर्नुहोस्:</label>
+                                <label class="x-component x-component-default" style="display: block; margin-bottom: 10px;">क.	पासवर्डमा खाली ठाउँ (Space) हुनु हुँदैन।</label>
+                                <label class="x-component x-component-default" style="display: block; margin-bottom: 10px;">ख.	कम्तीमा एउटा ठूलो अक्षर (Capital Letter) अनिवार्य रूपमा समावेश गर्नुपर्छ।(A-Z)</label>
+                                <label class="x-component x-component-default" style="display: block; margin-bottom: 10px;">ग.	कम्तीमा एउटा विशेष चिन्ह (Special Character) अनिवार्य हुनुपर्छ। *(@, #, %, ^, &, , आदि)</label>
+                                <label class="x-component x-component-default" style="display: block; margin-bottom: 10px;">घ.	कम्तीमा एउटा सानो अक्षर (Small Letter) अनिवार्य रूपमा समावेश गर्नुपर्छ।(a-z)</label>
+                                <label class="x-component x-component-default" style="display: block;">ङ.	कम्तीमा एउटा अंक (Number) अनिवार्य रूपमा समावेश गर्नुपर्छ।(0-9)</label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="../../js/general/create_taxpayer_login.js"></script>
+</body>
+</html>

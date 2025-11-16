@@ -1,0 +1,106 @@
+/* Create Taxpayer Login Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #DFE9F6;
+}
+
+.x-table-layout {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.x-table-layout-cell {
+    vertical-align: top;
+}
+
+/* Panel Styles */
+.x-panel {
+    border: 1px solid #99BCE8;
+    background: #DFE9F6;
+}
+
+.x-panel-body {
+    background: #DFE9F6;
+}
+
+/* Form Field Styles */
+.x-field {
+    display: flex;
+    align-items: center;
+}
+
+.x-form-item-label {
+    font-size: 11px;
+    color: #333;
+    display: inline-block;
+}
+
+.x-form-item-body {
+    display: inline-block;
+}
+
+.x-form-field {
+    padding: 2px 3px;
+    border: 1px solid #B5B8C8;
+    font-size: 11px;
+    background-color: #DFE9F6;
+}
+
+.x-form-field:focus {
+    outline: none;
+    border-color: #4a90d9;
+}
+
+.x-form-text {
+    height: 20px;
+}
+
+.x-form-readonly .x-form-field {
+    background-color: #DFE9F6;
+}
+
+/* Button Styles */
+.x-btn {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.x-btn-center {
+    padding: 3px 8px;
+    border: 1px solid #b5b8c8;
+    background: linear-gradient(to bottom, #f8f8f8 0%, #e0e0e0 100%);
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.x-btn-center:hover {
+    background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
+    border-color: #4a90d9;
+}
+
+.x-btn-inner {
+    display: inline-block;
+}
+
+/* Icon styles */
+.icon-reload {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>');
+    background-size: contain;
+    vertical-align: middle;
+}
+
+/* Component labels */
+.x-component {
+    font-size: 11px;
+    color: #333;
+}

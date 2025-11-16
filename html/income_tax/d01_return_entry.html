@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-01 Return Entry - IRD</title>
+    <link rel="stylesheet" href="../../css/income_tax/d01_return_entry.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <nav class="navbar shadow-sm mb-2">
+        <div class="container-fluid">
+            <div class="collapse show navbar-collapse">
+                <div class="header-section">
+                    <div class="header-left">
+                        <img src="../../media/resources/logo.gif" alt="IRD Logo">
+                    </div>
+                    
+                    <div class="header-center">
+                        <img src="../../media/resources/flag.gif" alt="Nepal Flag">
+                        <img src="../../media/resources/slogan.jpg" alt="Slogan" style="height: 75px; width: auto; margin-left: 150px;">
+                    </div>
+                    
+                    <div class="header-right">
+                        <label class="dt" id="currentDate">Date: 2082.07.23</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar is-open">
+            <div class="side-menu">
+                <ul class="list-unstyled pb-3 nav flex-column">
+                    <!-- General -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">General</a>
+                        <ul class="submenu">
+                            <li><a href="#">Taxpayer Login</a></li>
+                            <li><a href="#">Create Taxpayer Login</a></li>
+                            <li><a href="#">Forgot Password</a></li>
+                            <li><a href="#">Drug Manufacturer's Login</a></li>
+                            <li><a href="#">Payment Voucher Search</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Registration -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Registration(PAN, VAT, EXCISE)</a>
+                        <ul class="submenu">
+                            <li><a href="#">Application For Registration</a></li>
+                            <li><a href="#">Registration Log In</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- VAT -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">VAT</a>
+                        <ul class="submenu">
+                            <li><a href="#">VAT Return Entry</a></li>
+                            <li><a href="#">VAT Return Login</a></li>
+                            <li><a href="#">VAT Close Of Business Entry</a></li>
+                            <li><a href="#">VAT Close Of Business Login</a></li>
+                            <li><a href="#">Help</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Non-Resident Person -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Non-Resident Person (DST/VAT)</a>
+                        <ul class="submenu">
+                            <li><a href="#">Application For DST Registration</a></li>
+                            <li><a href="#">Registration Log In</a></li>
+                            <li><a href="#">VAT Return Entry</a></li>
+                            <li><a href="#">VAT Return Login</a></li>
+                            <li><a href="#">DST Return Entry</a></li>
+                            <li><a href="#">DST VAT Return Entry</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Non-Resident Airlines -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Non-Resident Airlines</a>
+                        <ul class="submenu">
+                            <li><a href="#">Application For Registration</a></li>
+                            <li><a href="#">Registration Log In</a></li>
+                            <li><a href="#">NRA VAT Return Entry</a></li>
+                            <li><a href="#">NRA VAT Return Login</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Estimated Return -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Estimated Return</a>
+                        <ul class="submenu">
+                            <li><a href="#">Estimated Return Entry</a></li>
+                            <li><a href="#">Estimated Return D02 Entry</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Income Tax -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link active" href="#" onclick="toggleMenu(this)">Income Tax</a>
+                        <ul class="submenu">
+                            <li><a href="#">D-01 Return Entry</a></li>
+                            <li><a href="#" onclick="loadInParentIframe('income_tax/d02_return_entry.html'); return false;">D-02 Return Entry</a></li>
+                            <li><a href="#">D-03 Return Entry</a></li>
+                            <li><a href="#">D-04 Return Entry</a></li>
+                            <li><a href="#">Jeopardy Assessment</a></li>
+                            <li><a href="#">Change of Control</a></li>
+                            <li><a href="#">Close of Business D-01</a></li>
+                            <li><a href="#">Close of Business D-02</a></li>
+                            <li><a href="#">Close of Business D-03</a></li>
+                            <li><a href="#">Tax Return Login</a></li>
+                            <li><a href="#">Help</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Excise -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Excise</a>
+                        <ul class="submenu">
+                            <li><a href="#">Return Entry</a></li>
+                            <li><a href="#">Excise Return Login</a></li>
+                            <li><a href="#">Close Of Business Entry</a></li>
+                            <li><a href="#">Excise Close Of Business Login</a></li>
+                            <li><a href="#">Self Renew Permit</a></li>
+                            <li><a href="#">New Permit</a></li>
+                            <li><a href="#">Manufacturer's Login</a></li>
+                            <li><a href="#">Brand Registration</a></li>
+                            <li><a href="#">Brand Registration Login</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- E-TDS -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">E-TDS</a>
+                        <ul class="submenu">
+                            <li><a href="#">E-TDS</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Diplomatic Refund -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Diplomatic Refund</a>
+                        <ul class="submenu">
+                            <li><a href="#">Diplomatic Refund Login</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Health Tax -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Health Tax</a>
+                        <ul class="submenu">
+                            <li><a href="#">Returns Entry</a></li>
+                            <li><a href="#">Returns Login</a></li>
+                            <li><a href="#">Close of Business Entry</a></li>
+                            <li><a href="#">Close of Business Login</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Education Tax -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Education Tax</a>
+                        <ul class="submenu">
+                            <li><a href="#">Returns Entry</a></li>
+                            <li><a href="#">Returns Login</a></li>
+                            <li><a href="#">Close Of Business Entry</a></li>
+                            <li><a href="#">Close Of Business Login</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Electronic Billing -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Electronic Billing</a>
+                        <ul class="submenu">
+                            <li><a href="#">Electronic Billing Software Listing</a></li>
+                            <li><a href="#">Software Listing Login</a></li>
+                            <li><a href="#">Electronic Billing User Permission</a></li>
+                            <li><a href="#">User Permission Login</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Education Service Fee -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Education Service Fee</a>
+                        <ul class="submenu">
+                            <li><a href="#">Education Service Fee Entry</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Foreign Employment Service Fee -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Foreign Employment Service Fee</a>
+                        <ul class="submenu">
+                            <li><a href="#">Foreign Employment Service Fee Entry</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Foreign Tourism Fee -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Foreign Tourism Fee</a>
+                        <ul class="submenu">
+                            <li><a href="#">Foreign Tourism Fee Entry</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Luxury Fee -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Luxury Fee</a>
+                        <ul class="submenu">
+                            <li><a href="#">Luxury Fee Entry</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Other Offices -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Other Offices</a>
+                        <ul class="submenu">
+                            <li><a href="#">Log In/Out</a></li>
+                            <li><a href="#">Bank Login</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">ESelfAssessment D01</div>
+                    <div class="card-body">
+                        <div class="col-sm-6">
+                            <div class="surface-card-title">
+                                यदि तपाईं बैंक मार्फत कर तिर्न चाहनुहुन्छ भने, कृपया कर भुक्तानीका लागि बैंक जानु अघि फाराम डाउनलोड गर्नुहोस् र भर्नुहोस्।
+                                <a href="/d01_form.pdf" download="d01_form" target="_blank">
+                                    <button class="download-btn">डाउनलोड गर्नुहोस्</button>
+                                </a>
+                            </div>
+                            <div class="surface-card-title">
+                                यदि तपाईं डिजिटल माध्यम (जस्तै Connect IPS) बाट कर तिर्न चाहनुहुन्छ भने, कृपया तल दिइएको खाली ठाउँमा सूचना प्रविष्ट गर्नुहोस्।
+                            </div>
+
+                            <div>
+                                <div class="row">
+                                    <label for="pan" class="col-form-label">स्थायी लेखा नम्बर <span class="red">*</span>:</label>
+                                    <div class="col-sm-5">
+                                        <input id="pan" name="PANNO" maxlength="9" placeholder=" " type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label for="businessName" class="col-form-label">ब्यवसायको नाम <span class="red">*</span>:</label>
+                                    <div class="col-sm-5">
+                                        <input id="businessName" name="USER_NAME" placeholder=" " type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label for="address" class="col-form-label">ठेगाना <span class="red">*</span>:</label>
+                                    <div class="col-sm-5">
+                                        <input id="address" name="ADDRESS" placeholder="" type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label for="mobile" class="col-form-label">मोबाइल नम्बर <span class="red">*</span>:</label>
+                                    <div class="col-sm-5">
+                                        <input id="mobile" maxlength="10" name="CONTACTNO" type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label for="email" class="col-form-label">इमेल ठेगाना:</label>
+                                    <div class="col-sm-5">
+                                        <input id="email" name="EMAIL" placeholder=" " type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="button-container">
+                                    <button id="registerBtn" class="btn btn-primary">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
+                                        </svg>
+                                        रजिष्टर
+                                    </button>
+                                    <button id="resetBtn" class="btn btn-danger">
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm101.8-262.2L295.6 256l62.2 62.2c4.7 4.7 4.7 12.3 0 17l-22.6 22.6c-4.7 4.7-12.3 4.7-17 0L256 295.6l-62.2 62.2c-4.7 4.7-12.3 4.7-17 0l-22.6-22.6c-4.7-4.7-4.7-12.3 0-17l62.2-62.2-62.2-62.2c-4.7-4.7-4.7-12.3 0-17l22.6-22.6c4.7-4.7 12.3-4.7 17 0l62.2 62.2 62.2-62.2c4.7-4.7 12.3-4.7 17 0l22.6 22.6c4.7 4.7 4.7 12.3 0 17z"></path>
+                                        </svg>
+                                        रिसेट
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 notice-bg">
+                            <label>
+                                १. स्थायी लेखा नम्बर उल्लेख गर्नुहोस्।<br>
+                                २. आफ्नो हालको मोबाइल नम्वर उल्लेख गर्नुहोस ।<br>
+                                ३. आफ्नो ईमेल ठेगाना उल्लेख गर्नुहोस ।<br>
+                                ४. रजिष्टर वटन थिच्नुहोस।
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/income_tax/d01_return_entry.js"></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-04 Return Entry - IRD</title>
+    <link rel="stylesheet" href="../../css/income_tax/d04_return_entry.css">
+    <link rel="stylesheet" href="../../extjs/resources/ext-all.css">
+</head>
+<body>
+    <div id="d04ReturnPage" style="padding: 50px 10px 50px 50px; background: #DFE9F6;">
+        <div id="frmD04ReturnsSubNo" class="x-panel x-panel-default-framed" role="form" style="height: 350px; width: 900px;">
+            <div id="frmD04ReturnsSubNo-body" class="x-panel-body x-panel-body-default x-panel-body-default-framed x-panel-body-default-framed x-docked-noborder-top x-docked-noborder-right x-docked-noborder-bottom x-docked-noborder-left" style="padding: 10px; height: 340px; left: 0px; top: 0px;">
+                
+                <!-- Hidden Fields -->
+                <div class="x-field x-form-item-hidden x-field-default x-form-dirty" style="width: 870px;">
+                    <div class="x-form-item-body" role="presentation" style="width: 870px;">
+                        <input type="hidden" name="d04-form-type" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="Self Assessment(D-04)" aria-invalid="false" role="presentation">
+                    </div>
+                    <div class="x-clear" role="presentation"><!-- --></div>
+                </div>
+                
+                <div class="x-field x-form-item-hidden x-field-default x-form-dirty" style="width: 870px;">
+                    <div class="x-form-item-body" role="presentation" style="width: 870px;">
+                        <input type="hidden" name="d04-form-code" size="20" class="x-form-field x-form-hidden" autocomplete="off" value="Self-AssessmentD04" aria-invalid="false" role="presentation">
+                    </div>
+                    <div class="x-clear" role="presentation"><!-- --></div>
+                </div>
+                
+                <!-- Main Container -->
+                <div class="x-container x-container-default x-table-layout-ct" role="presentation" style="width: 870px;">
+                    <table role="presentation" class="x-table-layout" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                    <!-- Form Fields Container -->
+                                    <div class="x-container x-container-default x-table-layout-ct" role="presentation" style="padding: 5px; width: 350px;">
+                                        <table role="presentation" class="x-table-layout" cellspacing="0">
+                                            <tbody>
+                                                <!-- Username -->
+                                                <tr>
+                                                    <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                        <div class="x-field x-form-item x-field-default" style="width: 275px;">
+                                                            <label for="d04-username-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">प्रयोगकर्ताको नाम  *:</label>
+                                                            <div class="x-form-item-body" role="presentation" style="width: 150px;">
+                                                                <input id="d04-username-input" type="text" name="txtD04Username" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-required="true" style="width: 150px;">
+                                                            </div>
+                                                            <div class="x-form-error-msg" style="display:none"></div>
+                                                            <div class="x-clear" role="presentation"><!-- --></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Password -->
+                                                <tr>
+                                                    <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                        <div class="x-field x-form-item x-field-default" style="width: 275px;">
+                                                            <label for="d04-password-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">पासवर्ड *:</label>
+                                                            <div class="x-form-item-body" role="presentation" style="width: 150px;">
+                                                                <input id="d04-password-input" type="password" name="txtD04Password" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-required="true" style="width: 150px;">
+                                                            </div>
+                                                            <div class="x-form-error-msg" style="display:none"></div>
+                                                            <div class="x-clear" role="presentation"><!-- --></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Re-Password -->
+                                                <tr>
+                                                    <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                        <div class="x-field x-form-item x-field-default" style="width: 275px;">
+                                                            <label for="d04-repassword-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">पुनः पासवर्ड *:</label>
+                                                            <div class="x-form-item-body" role="presentation" style="width: 150px;">
+                                                                <input id="d04-repassword-input" type="password" name="txtD04RePassword" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-required="true" style="width: 150px;">
+                                                            </div>
+                                                            <div class="x-form-error-msg" style="display:none"></div>
+                                                            <div class="x-clear" role="presentation"><!-- --></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- PAN -->
+                                                <tr>
+                                                    <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                        <div class="x-field x-form-item x-field-default" style="width: 204px;">
+                                                            <label for="d04-pan-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">स्थायी लेखा नम्बर *:</label>
+                                                            <div class="x-form-item-body" role="presentation" style="width: 79px;">
+                                                                <input id="d04-pan-input" type="text" name="txtD04PANNo" size="9" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" maxlength="9" role="textbox" aria-required="true" style="width: 79px;">
+                                                            </div>
+                                                            <div class="x-form-error-msg" style="display:none"></div>
+                                                            <div class="x-clear" role="presentation"><!-- --></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Fiscal Year -->
+                                                <tr>
+                                                    <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                        <div class="x-field x-form-item x-field-default" style="width: 275px;">
+                                                            <label for="d04-fiscal-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">आर्थिक बर्ष  *:</label>
+                                                            <div class="x-form-item-body" role="presentation" style="width: 150px;">
+                                                                <select id="d04-fiscal-input" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-required="false" style="width: 150px;">
+                                                                    <option value="">---छान्नुहोस् ---</option>
+                                                                    <option value="2081/082">2081/082</option>
+                                                                    <option value="2080/081">2080/081</option>
+                                                                    <option value="2079/080">2079/080</option>
+                                                                    <option value="2078/079">2078/079</option>
+                                                                    <option value="2077/078">2077/078</option>
+                                                                    <option value="2076/077">2076/077</option>
+                                                                    <option value="2075/076">2075/076</option>
+                                                                    <option value="2074/075">2074/075</option>
+                                                                    <option value="2073/074">2073/074</option>
+                                                                    <option value="2072/073">2072/073</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="x-form-error-msg" style="display:none"></div>
+                                                            <div class="x-clear" role="presentation"><!-- --></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Email -->
+                                                <tr>
+                                                    <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                        <div id="txtD04EmailId" class="x-field x-form-item x-field-default" style="width: 275px;">
+                                                            <label for="d04-email-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">इमेल ठेगाना :</label>
+                                                            <div class="x-form-item-body" role="presentation" style="width: 150px;">
+                                                                <input id="d04-email-input" type="text" name="txtD04EmailId" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-required="false" style="width: 150px;">
+                                                            </div>
+                                                            <div class="x-form-error-msg" style="display:none"></div>
+                                                            <div class="x-clear" role="presentation"><!-- --></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Contact Number -->
+                                                <tr>
+                                                    <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                        <div class="x-field x-form-item x-field-default" style="width: 275px;">
+                                                            <label for="d04-contact-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">सम्पर्क नम्बर *:</label>
+                                                            <div class="x-form-item-body" role="presentation" style="width: 150px;">
+                                                                <input id="d04-contact-input" type="text" name="txtD04Contact" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" maxlength="10" role="textbox" aria-required="false" style="width: 150px;">
+                                                            </div>
+                                                            <div class="x-form-error-msg" style="display:none"></div>
+                                                            <div class="x-clear" role="presentation"><!-- --></div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                                
+                                <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                    <!-- Instructions Container -->
+                                    <div class="x-container x-container-default" role="presentation">
+                                        <div id="cntD04Instructions" class="x-container x-container-default x-table-layout-ct" role="presentation" style="margin: -50px 20px 0px;">
+                                            <table role="presentation" class="x-table-layout" cellspacing="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                            <label for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px 5px 10px;">ई-फाइलिङ्ग भर्ने प्रकृया:</label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                            <label for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">१.  प्रयोगकर्ताको नाम भर्नुहोस् </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                            <label for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px; width: 480px;">२ .  पासवर्ड भर्नुहोस्</label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                            <label for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">३.  कृपया पुन: पासवर्ड भर्नुहोस्</label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                            <label for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">४ . स्थायी लेखा नम्बर भर्नुहोस्</label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                            <label for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">५ .  इमेल ठेगाना भर्नुहोस्</label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                            <label for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">६.  सम्पर्क नम्बर भर्नुहोस्</label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                            <label for="" class="x-component x-component-default" role="presentation" style="margin: 5px 0px;">७ .  Register  बटनमा क्लिक गर्नुहोस्</label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="x-clear" role="presentation"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Buttons Container -->
+                <div class="x-container x-container-default x-column-layout-ct" role="presentation" style="padding: 0px 0px 0px 150px; width: 870px; overflow: auto;">
+                    <div class="x-column-inner" style="width: 720px;">
+                        <div id="btnD04Register" class="x-btn x-column x-btn-default-small x-icon-text-left x-btn-icon-text-left x-btn-default-small-icon-text-left">
+                            <em class="">
+                                <button type="button" class="x-btn-center">
+                                    <span class="x-btn-inner">Register </span>
+                                    <span class="x-btn-icon icon-ok">&nbsp;</span>
+                                </button>
+                            </em>
+                        </div>
+                        <div id="btnD04Reset" class="x-btn x-column x-btn-default-small x-icon-text-left x-btn-icon-text-left x-btn-default-small-icon-text-left">
+                            <em class="">
+                                <button type="button" class="x-btn-center">
+                                    <span class="x-btn-inner">Reset</span>
+                                    <span class="x-btn-icon icon-cancel">&nbsp;</span>
+                                </button>
+                            </em>
+                        </div>
+                        <label for="" class="x-component x-column x-component-default" role="presentation" style="margin: 10px 0px 20px;">* चिन्ह भएको सबै कोष्ठहरु भर्न जरुरी छ ।</label>
+                        <div class="x-clear" role="presentation"></div>
+                    </div>
+                </div>
+                <div class="x-clear" role="presentation"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/income_tax/d04_return_entry.js"></script>
+</body>
+</html>

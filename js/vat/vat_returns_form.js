@@ -8,6 +8,9 @@ let updateSummary = null;
 document.addEventListener('DOMContentLoaded', function() {
     console.log('VAT Returns Form loaded');
     
+    // Clear all form data on page load (fresh start on every refresh)
+    clearAllFormData();
+    
     // Auto-populate PAN and Submission No from sessionStorage
     populatePANFromSession();
     
@@ -46,7 +49,65 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize Submit button
     initializeSubmitButton();
+    
+    // Initialize Verify button with checkbox
+    initializeVerifyButton();
 });
+
+// Clear all form data on page load
+function clearAllFormData() {
+    // Clear all text inputs
+    document.querySelectorAll('input[type="text"]').forEach(input => {
+        if (input.name !== 'txtPan' && input.name !== 'txtAccountType') {
+            input.value = '';
+        }
+    });
+    
+    // Reset all dropdowns to default
+    document.querySelectorAll('select').forEach(select => {
+        select.selectedIndex = 0;
+    });
+    
+    // Clear transaction grid
+    const gridBody = document.getElementById('transaction-grid-body');
+    if (gridBody) {
+        gridBody.innerHTML = '';
+    }
+    
+    // Reset summary totals
+    const totalRecords = document.getElementById('total-records');
+    const totalTaxableAmt = document.getElementById('total-taxable-amt');
+    const totalExemptedAmt = document.getElementById('total-exempted-amt');
+    if (totalRecords) totalRecords.value = '0';
+    if (totalTaxableAmt) totalTaxableAmt.value = '0';
+    if (totalExemptedAmt) totalExemptedAmt.value = '0';
+    
+    // Reset "no transaction" checkbox to checked (default state)
+    const noTransactionChk = document.getElementById('chk-no-transaction');
+    if (noTransactionChk) {
+        noTransactionChk.checked = true;
+    }
+    
+    // Reset certification checkbox
+    const certificationChk = document.getElementById('chk-certification');
+    if (certificationChk) {
+        certificationChk.checked = false;
+    }
+    
+    // Reset file input
+    const excelFileInput = document.getElementById('excel-file-input');
+    if (excelFileInput) {
+        excelFileInput.value = '';
+    }
+    
+    // Reset browse button text
+    const browseBtn = document.getElementById('browse-excel-btn');
+    if (browseBtn) {
+        browseBtn.textContent = 'Browse...';
+    }
+    
+    console.log('All form data cleared on page load');
+}
 
 // Populate PAN and Submission Number from sessionStorage
 function populatePANFromSession() {
@@ -525,6 +586,13 @@ function initializeExcelControls() {
                                     return '';
                                 };
                                 
+                                const normalizeRemarks = (val) => {
+                                    const normalized = String(val).trim().toLowerCase();
+                                    if (normalized === 'ho') return 'Ho';
+                                    if (normalized === 'haina' || normalized === 'hoina') return 'Hoina';
+                                    return '';
+                                };
+                                
                                 const rowData = {
                                     pan: String(row[0] !== undefined ? row[0] : '').trim(),
                                     tradeName: String(row[1] !== undefined ? row[1] : '').trim(),
@@ -532,7 +600,7 @@ function initializeExcelControls() {
                                     sorp: normalizeSorp(row[3]),
                                     taxableAmount: String(row[4] !== undefined ? row[4] : '').trim(),
                                     exemptedAmount: String(row[5] !== undefined ? row[5] : '').trim(),
-                                    remarks: String(row[6] !== undefined ? row[6] : '').trim()
+                                    remarks: normalizeRemarks(row[6])
                                 };
                                 
                                 console.log('  Row data extracted:', rowData);
@@ -582,6 +650,13 @@ function initializeExcelControls() {
                                     return '';
                                 };
                                 
+                                const normalizeRemarks = (val) => {
+                                    const normalized = String(val).trim().toLowerCase();
+                                    if (normalized === 'ho') return 'Ho';
+                                    if (normalized === 'haina' || normalized === 'hoina') return 'Hoina';
+                                    return '';
+                                };
+                                
                                 // Make sure we have enough columns (at least 7)
                                 // Column mapping: 0=PAN, 1=TradeName, 2=TradeNameType, 3=SORP, 4=TaxableAmount, 5=ExemptedAmount, 6=Remarks
                                 if (columns.length >= 7) {
@@ -592,7 +667,7 @@ function initializeExcelControls() {
                                         sorp: normalizeSorp(columns[3]),
                                         taxableAmount: cleanValue(columns[4]),
                                         exemptedAmount: cleanValue(columns[5]),
-                                        remarks: cleanValue(columns[6])
+                                        remarks: normalizeRemarks(columns[6])
                                     });
                                 }
                             }
@@ -800,7 +875,11 @@ function initializeTransactionGrid() {
                 <input type="text" class="row-exempted" style="width: 100%; border: 1px solid #999; padding: 3px; text-align: right; box-sizing: border-box;" value="${data.exemptedAmount || ''}">
             </td>
             <td style="border: 1px solid #ccc; padding: 3px; width: 100px;">
-                <input type="text" class="row-remarks" style="width: 100%; border: 1px solid #999; padding: 3px; box-sizing: border-box;" value="${data.remarks || ''}">
+                <select class="row-remarks" style="width: 100%; border: 1px solid #999; padding: 3px; box-sizing: border-box;">
+                    <option value="">Select...</option>
+                    <option value="Ho" ${data.remarks === 'Ho' || data.remarks === 'ho' ? 'selected' : ''}>Ho</option>
+                    <option value="Hoina" ${data.remarks === 'Hoina' || data.remarks === 'haina' ? 'selected' : ''}>Hoina</option>
+                </select>
             </td>
             <td style="border: 1px solid #ccc; padding: 3px; text-align: center; width: 80px;">
                 <button type="button" class="btn-edit-row" style="margin-right: 3px; padding: 2px 5px; background: #5cb85c; color: white; border: none; cursor: pointer;" title="Edit">✎</button>
@@ -1265,6 +1344,52 @@ function initializeSubmitSuccessModal() {
         submitSuccessModal.addEventListener('click', function(e) {
             if (e.target === submitSuccessModal) {
                 submitSuccessModal.style.display = 'none';
+            }
+        });
+    }
+}
+
+// Initialize Verify Button with Checkbox Control
+function initializeVerifyButton() {
+    const checkbox = document.getElementById('chk-certification');
+    const verifyBtn = document.getElementById('btn-verify');
+    
+    if (checkbox && verifyBtn) {
+        // Initial state - disabled
+        verifyBtn.disabled = true;
+        verifyBtn.style.opacity = '0.5';
+        verifyBtn.style.cursor = 'not-allowed';
+        
+        // Listen to checkbox change
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                // Enable and brighten the verify button
+                verifyBtn.disabled = false;
+                verifyBtn.style.opacity = '1';
+                verifyBtn.style.cursor = 'pointer';
+            } else {
+                // Disable and dim the verify button
+                verifyBtn.disabled = true;
+                verifyBtn.style.opacity = '0.5';
+                verifyBtn.style.cursor = 'not-allowed';
+            }
+        });
+        
+        // Add click handler for verify button
+        verifyBtn.addEventListener('click', function() {
+            if (!this.disabled) {
+                // Get PAN and Submission Number
+                const panField = document.querySelector('input[name="txtPan"]');
+                const submissionNoField = document.getElementById('submissionNumber');
+                
+                const pan = panField ? panField.value : '';
+                const submissionNo = submissionNoField ? submissionNoField.textContent : '';
+                
+                // Navigate to VAT Return Login page with data
+                const loginUrl = `vat_return_login.html?pan=${encodeURIComponent(pan)}&submissionNo=${encodeURIComponent(submissionNo)}`;
+                window.location.href = loginUrl;
+                
+                console.log('Navigating to VAT return login for verification');
             }
         });
     }

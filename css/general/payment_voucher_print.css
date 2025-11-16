@@ -1,0 +1,324 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans Devanagari', 'Segoe UI', Tahoma, Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 20px;
+    font-size: 11px;
+}
+
+.voucher-copy {
+    background: white;
+    max-width: 210mm;
+    margin: 0 auto 20px;
+    padding: 15mm;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.copy-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 10px;
+    color: #999;
+}
+
+.page-break {
+    margin-top: 30px;
+}
+
+/* Header Section */
+.voucher-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #000;
+}
+
+.logo-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 auto;
+}
+
+.ird-logo {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-line1 {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.logo-line2 {
+    font-size: 9px;
+    font-weight: 500;
+}
+
+.title-center {
+    flex: 1;
+    text-align: center;
+    padding: 0 15px;
+}
+
+.title-center h1 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.subtitle {
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.qr-right {
+    flex: 0 0 auto;
+}
+
+.qr-code {
+    width: 70px;
+    height: 70px;
+    display: block;
+}
+
+/* Body Section */
+.voucher-body {
+    margin-top: 15px;
+}
+
+.section-title {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 10px;
+    background: #f0f0f0;
+    border: 1px solid #000;
+    margin-bottom: 10px;
+}
+
+/* Info Table */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    font-size: 10px;
+}
+
+.info-table td {
+    padding: 4px 8px;
+    border: 1px solid #000;
+}
+
+.info-table .label-cell {
+    width: 35%;
+    font-weight: 600;
+}
+
+.info-table .value-cell {
+    width: 35%;
+}
+
+.info-table .right-section {
+    width: 30%;
+    vertical-align: top;
+    padding: 0;
+}
+
+.amount-box {
+    padding: 5px;
+}
+
+.amount-label {
+    font-weight: 700;
+    font-size: 10px;
+    text-align: center;
+    margin-bottom: 3px;
+}
+
+.amount-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 5px;
+    font-size: 9px;
+}
+
+.amount-item.total {
+    border-top: 1px solid #000;
+    margin-top: 3px;
+    padding-top: 3px;
+}
+
+.amount-item.final-total {
+    border-top: 2px solid #000;
+    margin-top: 3px;
+    padding-top: 3px;
+    font-weight: 700;
+}
+
+.amt-label {
+    font-weight: 600;
+}
+
+/* Details Table */
+.details-section {
+    margin-top: 15px;
+}
+
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9px;
+}
+
+.details-table th,
+.details-table td {
+    border: 1px solid #000;
+    padding: 4px 6px;
+    text-align: left;
+}
+
+.details-table th {
+    background: #f0f0f0;
+    font-weight: 700;
+    text-align: center;
+    font-size: 9px;
+    line-height: 1.3;
+}
+
+.details-table .text-right {
+    text-align: right;
+}
+
+.bank-info {
+    margin-top: 10px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+/* Second Copy - Simplified Layout */
+.info-table-simple {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    font-size: 10px;
+}
+
+.info-table-simple td {
+    padding: 4px 8px;
+    border: 1px solid #000;
+}
+
+.info-table-simple .label-cell {
+    width: 40%;
+    font-weight: 600;
+}
+
+.taxpayer-section {
+    margin-top: 15px;
+}
+
+.taxpayer-title {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 10px;
+    background: #f0f0f0;
+    border: 1px solid #000;
+    border-bottom: none;
+}
+
+.taxpayer-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+}
+
+.taxpayer-table td {
+    padding: 4px 8px;
+    border: 1px solid #000;
+}
+
+.taxpayer-table .label-cell {
+    width: 25%;
+    font-weight: 600;
+    background: #f9f9f9;
+}
+
+/* Print Buttons */
+.print-buttons {
+    text-align: center;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.btn-print,
+.btn-close {
+    padding: 12px 30px;
+    margin: 0 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-print {
+    background: #1f548a;
+    color: white;
+}
+
+.btn-print:hover {
+    background: #163d68;
+}
+
+.btn-close {
+    background: #666;
+    color: white;
+}
+
+.btn-close:hover {
+    background: #444;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+    
+    .voucher-copy {
+        box-shadow: none;
+        max-width: 100%;
+        margin: 0;
+        padding: 10mm;
+    }
+    
+    .page-break {
+        page-break-before: always;
+        margin-top: 0;
+    }
+    
+    .no-print,
+    .print-buttons {
+        display: none !important;
+    }
+    
+    .copy-label {
+        display: none;
+    }
+}

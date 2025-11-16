@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-TDS - अन्तर्गत राजश्व विभाग</title>
+    <link rel="stylesheet" href="../../css/e_tds/etds_home.css">
+</head>
+<body>
+    <div class="etds-container">
+        <!-- Tab Bar -->
+        <div class="x-tab-bar">
+            <div id="tab1" class="x-tab x-tab-active" data-panel="panel1">
+                <span class="x-tab-inner">सब्मिशन नं. लिने फारम</span>
+            </div>
+            <div id="tab2" class="x-tab" data-panel="panel2">
+                <span class="x-tab-inner">विथहोल्डर लगइन</span>
+            </div>
+            <div id="tab3" class="x-tab" data-panel="panel3">
+                <span class="x-tab-inner">विथहोल्डि लगइन</span>
+            </div>
+        </div>
+
+        <!-- Tab Panels -->
+        <div class="x-tab-panels">
+            <!-- Tab 1: Registration Form -->
+            <div id="panel1" class="x-tab-panel x-tab-panel-active">
+                <div class="x-panel x-panel-default-framed">
+                    <div class="x-panel-body">
+                        <div class="x-form-container">
+                            <!-- Username -->
+                            <div class="x-field x-form-item">
+                                <label class="x-form-item-label">प्रयोगकर्ताको नाम *:</label>
+                                <div class="x-form-item-body">
+                                    <input type="text" id="txtRTTDSuser" class="x-form-field x-form-text" maxlength="10" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="x-field x-form-item">
+                                <label class="x-form-item-label">पासवर्ड *:</label>
+                                <div class="x-form-item-body">
+                                    <input type="password" id="txtRTTDSpass" class="x-form-field x-form-text" autocomplete="new-password">
+                                </div>
+                            </div>
+
+                            <!-- Re-password -->
+                            <div class="x-field x-form-item">
+                                <label class="x-form-item-label">पुन: पासवर्ड *:</label>
+                                <div class="x-form-item-body">
+                                    <input type="password" id="txtRTTDSrepass" class="x-form-field x-form-text" autocomplete="new-password">
+                                </div>
+                            </div>
+
+                            <!-- PAN Number -->
+                            <div class="x-field x-form-item">
+                                <label class="x-form-item-label">स्थायी लेखा नं. (पान नं.):</label>
+                                <div class="x-form-item-body">
+                                    <input type="text" id="txtRTTDSwhpan" class="x-form-field x-form-text" maxlength="9" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <!-- Withholder Name -->
+                            <div class="x-field x-form-item" style="width: 450px;">
+                                <label class="x-form-item-label">विथहोल्डरको नाम *:</label>
+                                <div class="x-form-item-body" style="width: 245px;">
+                                    <input type="text" id="txtRTTDSwhname" class="x-form-field x-form-text" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <!-- IRO/TSO Radio Group -->
+                            <div class="x-radio-group">
+                                <div class="x-radio-item">
+                                    <input type="radio" id="rdRTTDSIRO" name="office_type" value="IRO" checked class="x-form-radio">
+                                    <label for="rdRTTDSIRO" class="x-form-cb-label">आ.रा.का</label>
+                                </div>
+                                <div class="x-radio-item">
+                                    <input type="radio" id="rdRTTDSTSO" name="office_type" value="TSO" class="x-form-radio">
+                                    <label for="rdRTTDSTSO" class="x-form-cb-label">क.से.का</label>
+                                </div>
+                            </div>
+
+                            <!-- IRO Dropdown -->
+                            <div class="x-field x-form-item" id="iroContainer" style="width: 450px;">
+                                <label class="x-form-item-label">आ.रा.का *:</label>
+                                <div class="x-form-item-body" style="width: 245px;">
+                                    <select id="chkRTTDSironame" class="x-form-field x-form-select">
+                                        <option value="">------------------ Select IRO ------------------</option>
+                                        <option value="Bardibash">I.R.O. Bardibash</option>
+                                        <option value="Battishputali">I.R.O. Battishputali</option>
+                                        <option value="Bhadrpur">I.R.O. Bhadrpur</option>
+                                        <option value="Bhairahawa">I.R.O. Bhairahawa</option>
+                                        <option value="Bhaktapur">I.R.O. Bhaktapur</option>
+                                        <option value="Bharatpur">I.R.O. Bharatpur</option>
+                                        <option value="Biratnagar">I.R.O. Biratnagar</option>
+                                        <option value="Birgunj">I.R.O. Birgunj</option>
+                                        <option value="Butwal">I.R.O. Butwal</option>
+                                        <option value="Chabahil">I.R.O. Chabahil</option>
+                                        <option value="Damak">I.R.O. Damak</option>
+                                        <option value="Dang">I.R.O. Dang</option>
+                                        <option value="Dhangadi">I.R.O. Dhangadi</option>
+                                        <option value="Dharan">I.R.O. Dharan</option>
+                                        <option value="Dhulikhel">I.R.O. Dhulikhel</option>
+                                        <option value="Galchhi">I.R.O. Galchhi</option>
+                                        <option value="Hetauda">I.R.O. Hetauda</option>
+                                        <option value="Janakpur">I.R.O. Janakpur</option>
+                                        <option value="Jumla">I.R.O. Jumla</option>
+                                        <option value="Jorpati">I.R.O. Jorpati</option>
+                                        <option value="Kalanki">I.R.O. Kalanki</option>
+                                        <option value="Kalimati">I.R.O. Kalimati</option>
+                                        <option value="Kawasoti">I.R.O. Kawasoti</option>
+                                        <option value="Khairhani">I.R.O. Khairhani</option>
+                                        <option value="Koteshwor">I.R.O. Koteshwor</option>
+                                        <option value="Krishnanagar">I.R.O. Krishnanagar</option>
+                                        <option value="Lahan">I.R.O. Lahan</option>
+                                        <option value="Lalitpur-1">I.R.O. Lalitpur-1</option>
+                                        <option value="Lalitpur-2">I.R.O. Lalitpur-2</option>
+                                        <option value="Mahendranagar">I.R.O. Mahendranagar</option>
+                                        <option value="Naya Baneshwor">I.R.O. Naya Baneshwor</option>
+                                        <option value="Nayasadak">I.R.O. Nayasadak</option>
+                                        <option value="Nepalgunj">I.R.O. Nepalgunj</option>
+                                        <option value="Pokhara">I.R.O. Pokhara</option>
+                                        <option value="Putalisadak">I.R.O. Putalisadak</option>
+                                        <option value="Simra">I.R.O. Simra</option>
+                                        <option value="Surkhet">I.R.O. Surkhet</option>
+                                        <option value="Thamel">I.R.O. Thamel</option>
+                                        <option value="Tripureshwor">I.R.O. Tripureshwor</option>
+                                        <option value="LTO">LTO</option>
+                                        <option value="MLTO">MLTO</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- TSO Dropdown (Hidden by default) -->
+                            <div class="x-field x-form-item" id="tsoContainer" style="width: 450px; display: none;">
+                                <label class="x-form-item-label">क.से.का *:</label>
+                                <div class="x-form-item-body" style="width: 245px;">
+                                    <select id="chkRTTDStsoname" class="x-form-field x-form-select">
+                                        <option value="">------------------ Select TSO ------------------</option>
+                                        <option value="Beshishahar">T.S.O. Beshishahar</option>
+                                        <option value="Biratchowk">T.S.O. Biratchowk</option>
+                                        <option value="Bhojpur">T.S.O. Bhojpur</option>
+                                        <option value="Chakchake Pyuthan">T.S.O. Chakchake Pyuthan</option>
+                                        <option value="Chandrapur">T.S.O. Chandrapur</option>
+                                        <option value="Charikot">T.S.O. Charikot</option>
+                                        <option value="Dhankuta">T.S.O. Dhankuta</option>
+                                        <option value="Dipayal Silgadhi">T.S.O. Dipayal Silgadhi</option>
+                                        <option value="Gaighat">T.S.O. Gaighat</option>
+                                        <option value="Gaur">T.S.O. Gaur</option>
+                                        <option value="Gorkha">T.S.O. Gorkha</option>
+                                        <option value="Gulariya">T.S.O. Gulariya</option>
+                                        <option value="Illam">T.S.O. Illam</option>
+                                        <option value="Jaleshwor">T.S.O. Jaleshwor</option>
+                                        <option value="Kalaiya">T.S.O. Kalaiya</option>
+                                        <option value="Khaadbari">T.S.O. Khaadbari</option>
+                                        <option value="Khotang">T.S.O. Khotang</option>
+                                        <option value="Kushma">T.S.O. Kushma</option>
+                                        <option value="Lalbandi">T.S.O. Lalbandi</option>
+                                        <option value="Lamki">T.S.O. Lamki</option>
+                                        <option value="Lukla">T.S.O. Lukla</option>
+                                        <option value="Malangawa">T.S.O. Malangawa</option>
+                                        <option value="Manthali">T.S.O. Manthali</option>
+                                        <option value="Parasi">T.S.O. Parasi</option>
+                                        <option value="Pathari">T.S.O. Pathari</option>
+                                        <option value="Phidim">T.S.O. Phidim</option>
+                                        <option value="Rajbiraj">T.S.O. Rajbiraj</option>
+                                        <option value="Salyan">T.S.O. Salyan</option>
+                                        <option value="Sandhikharka">T.S.O. Sandhikharka</option>
+                                        <option value="Sanphebagar">T.S.O. Sanphebagar</option>
+                                        <option value="Sindhuli">T.S.O. Sindhuli</option>
+                                        <option value="Syangja">T.S.O. Syangja</option>
+                                        <option value="Tamghas">T.S.O. Tamghas</option>
+                                        <option value="Tansen">T.S.O. Tansen</option>
+                                        <option value="Taulihawa Kapilbastu">T.S.O. Taulihawa Kapilbastu</option>
+                                        <option value="Okhaldhunga">T.S.O. Okhaldhunga</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="x-field x-form-item" style="width: 450px;">
+                                <label class="x-form-item-label">ईमेल:</label>
+                                <div class="x-form-item-body" style="width: 245px;">
+                                    <input type="email" id="txtRTTDSmailID" class="x-form-field x-form-text" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="x-field x-form-item">
+                                <label class="x-form-item-label">फोन नं. *:</label>
+                                <div class="x-form-item-body">
+                                    <input type="text" id="txtRTTDSphone" class="x-form-field x-form-text" maxlength="10" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="x-field x-form-item" style="width: 450px;">
+                                <label class="x-form-item-label">ठेगाना:</label>
+                                <div class="x-form-item-body" style="width: 245px;">
+                                    <input type="text" id="txtRTTDSadd" class="x-form-field x-form-text" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <!-- Voucher Date -->
+                            <div class="x-field x-form-item x-voucher-date-item">
+                                <label class="x-form-item-label">भौचर मिति:</label>
+                                <div class="x-form-item-body">
+                                    <input type="text" id="txtRTTDSvdate" class="x-form-field x-form-text" maxlength="10" placeholder="YYYY.MM.DD" autocomplete="off">
+                                </div>
+                                <span class="x-voucher-help-text">**भौचर मिति २०७५.०४.०१(BS) भन्दा अगाडि भएमा भर्नुहोस्</span>
+                            </div>
+
+                            <!-- Collection Interval Label -->
+                            <label class="x-section-label">टि. डि. एस कलेक्सन अन्तराल</label>
+
+                            <!-- BS Date Range -->
+                            <div class="x-date-range-group">
+                                <div class="x-checkbox-item">
+                                    <input type="checkbox" id="chkRTTDSBS" class="x-form-checkbox" checked>
+                                    <label for="chkRTTDSBS" class="x-form-cb-label">वि.सं.</label>
+                                </div>
+                                <input type="text" id="txtRTTDSBSfrom" class="x-form-field x-form-text x-date-field" maxlength="10" placeholder="YYYY.MM.DD">
+                                <span class="x-date-separator">देखि</span>
+                                <input type="text" id="txtRTTDSBSto" class="x-form-field x-form-text x-date-field" maxlength="10" placeholder="YYYY.MM.DD">
+                                <span class="x-date-separator">सम्म</span>
+                            </div>
+
+                            <!-- AD Date Range -->
+                            <div class="x-date-range-group">
+                                <div class="x-checkbox-item">
+                                    <input type="checkbox" id="chkRTTDSAD" class="x-form-checkbox">
+                                    <label for="chkRTTDSAD" class="x-form-cb-label">इ.स.</label>
+                                </div>
+                                <input type="text" id="txtRTTDSADfrom" class="x-form-field x-form-text x-date-field" maxlength="10" placeholder="YYYY.MM.DD" disabled>
+                                <span class="x-date-separator">देखि</span>
+                                <input type="text" id="txtRTTDSADto" class="x-form-field x-form-text x-date-field" maxlength="10" placeholder="YYYY.MM.DD" disabled>
+                                <span class="x-date-separator">सम्म</span>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="x-btn-group">
+                                <button type="button" id="btnRTTDSRegister" class="x-btn x-btn-default-small">Register</button>
+                                <button type="button" id="btnRTTDSReset" class="x-btn x-btn-default-small">Reset</button>
+                            </div>
+
+                            <!-- Note -->
+                            <div class="x-form-note">
+                                नोट: ट्रानस्याकसन विवरण update, check र print गर्नको लागि सब्मिशन नं. , प्रयोगकर्ताको नाम र पासवर्ड चाहिन्छ ।
+                            </div>
+
+                            <!-- Footer Note -->
+                            <div class="x-form-footer">
+                                * तपाईले ट्रानस्याकसन उपयुक्त क.से.का (करदाता सेवा कार्यालय) बाट पनि verify गर्न सक्नुहुन्छ ।
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Withholder Login -->
+            <div id="panel2" class="x-tab-panel">
+                <div class="x-panel x-panel-default-framed">
+                    <div class="x-panel-body">
+                        <div class="x-login-form-container">
+                            <div class="x-login-form-panel">
+                                <div class="x-panel-header">
+                                    <span class="x-panel-header-text">विथहोल्डर लगइन फारम</span>
+                                </div>
+                                <div class="x-login-form-body">
+                                    <!-- Submission Number -->
+                                    <div class="x-form-item">
+                                        <label class="x-form-item-label">सब्मिशन नं. *:</label>
+                                        <div class="x-form-item-body">
+                                            <input type="text" id="loginSubmissionNo" class="x-form-field x-form-text" autocomplete="off">
+                                        </div>
+                                    </div>
+
+                                    <!-- Username -->
+                                    <div class="x-form-item">
+                                        <label class="x-form-item-label">प्रयोगकर्ताको नाम *:</label>
+                                        <div class="x-form-item-body">
+                                            <input type="text" id="loginUsername" class="x-form-field x-form-text" autocomplete="off" maxlength="10">
+                                        </div>
+                                    </div>
+
+                                    <!-- Password -->
+                                    <div class="x-form-item">
+                                        <label class="x-form-item-label">पासवर्ड *:</label>
+                                        <div class="x-form-item-body">
+                                            <input type="password" id="loginPassword" class="x-form-field x-form-text" autocomplete="new-password">
+                                        </div>
+                                    </div>
+
+                                    <!-- Login Button -->
+                                    <div class="x-btn-group x-login-btn-group">
+                                        <button type="button" class="x-btn x-btn-default-small" onclick="loginWithholder()">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Withholdee Login -->
+            <div id="panel3" class="x-tab-panel">
+                <div class="x-panel x-panel-default-framed">
+                    <div class="x-panel-body">
+                        <div class="x-login-form-container">
+                            <div class="x-login-form-panel">
+                                <div class="x-panel-header">
+                                    <span class="x-panel-header-text">विथहोल्डि लगइन फारम</span>
+                                </div>
+                                <div class="x-login-form-body">
+                                    <!-- PAN Number -->
+                                    <div class="x-form-item">
+                                        <label class="x-form-item-label">करदाता नं. (पान नं.) *:</label>
+                                        <div class="x-form-item-body">
+                                            <input type="text" id="loginPAN" class="x-form-field x-form-text" autocomplete="off" maxlength="9">
+                                        </div>
+                                    </div>
+
+                                    <!-- Username -->
+                                    <div class="x-form-item">
+                                        <label class="x-form-item-label">प्रयोगकर्ताको नाम *:</label>
+                                        <div class="x-form-item-body">
+                                            <input type="text" id="loginWithholdeeUsername" class="x-form-field x-form-text" autocomplete="off" maxlength="10">
+                                        </div>
+                                    </div>
+
+                                    <!-- Password -->
+                                    <div class="x-form-item">
+                                        <label class="x-form-item-label">पासवोर्ड *:</label>
+                                        <div class="x-form-item-body">
+                                            <input type="password" id="loginWithholdeePassword" class="x-form-field x-form-text" autocomplete="new-password">
+                                        </div>
+                                    </div>
+
+                                    <!-- Login Button -->
+                                    <div class="x-btn-group x-withholdee-btn-group">
+                                        <button type="button" class="x-btn x-btn-default-small" onclick="loginWithholdee()">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/e_tds/etds_home.js"></script>
+</body>
+</html>

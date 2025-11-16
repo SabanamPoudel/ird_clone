@@ -1,0 +1,436 @@
+/* E-TDS Home Page Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e8f0f8;
+    padding: 0;
+    margin: 0;
+}
+
+.etds-container {
+    width: 100%;
+    height: 100vh;
+    background-color: #e8f0f8;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Tab Bar Styles */
+.x-tab-bar {
+    display: flex;
+    background: #c8d8e8;
+    border-bottom: 2px solid #8899aa;
+    margin: 10px 20px 0 20px;
+}
+
+.x-tab {
+    flex: 0 0 auto;
+    padding: 6px 12px;
+    text-align: center;
+    cursor: pointer;
+    background: #d8e4f0;
+    border: 1px solid #b0c0d0;
+    border-bottom: none;
+    margin-right: 2px;
+    transition: all 0.2s ease;
+    border-radius: 4px 4px 0 0;
+    min-width: 150px;
+}
+
+.x-tab:last-child {
+    margin-right: 0;
+}
+
+.x-tab:hover {
+    background: #e0ecf8;
+}
+
+.x-tab-active {
+    background: #e8f0f8;
+    border-bottom: 2px solid #e8f0f8;
+    margin-bottom: -2px;
+    color: #000;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
+
+.x-tab-inner {
+    display: block;
+    font-size: 12px;
+    color: #333;
+}
+
+/* Tab Panels */
+.x-tab-panels {
+    position: relative;
+    background: #e8f0f8;
+    margin: 0 20px 20px 20px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.x-tab-panel {
+    display: none;
+    padding: 30px 20px;
+    background: #e8f0f8;
+}
+
+.x-tab-panel-active {
+    display: block;
+}
+
+/* Panel Styles */
+.x-panel {
+    border: 2px solid #a0b8d0;
+    border-radius: 6px;
+    background: #f0f8ff;
+}
+
+.x-panel-default-framed {
+    background-color: #f0f8ff;
+}
+
+.x-panel-header {
+    background: linear-gradient(to bottom, #c8d8e8 0%, #b0c8e0 100%);
+    padding: 10px 15px;
+    border-bottom: 2px solid #a0b8d0;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 4px 4px 0 0;
+}
+
+.x-panel-body {
+    padding: 25px;
+    background: #f0f8ff;
+}
+
+/* Form Container */
+.x-form-container {
+    max-width: 700px;
+    margin: 0 0 0 50px;
+    background: #f0f8ff;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+/* Form Field Styles */
+.x-field {
+    margin-bottom: 15px;
+}
+
+.x-form-item {
+    display: flex;
+    align-items: center;
+    width: 400px;
+}
+
+.x-form-item-label {
+    width: 200px;
+    margin-right: 5px;
+    text-align: left;
+    font-size: 13px;
+    color: #333;
+}
+
+.x-form-item-body {
+    flex: 1;
+    width: 195px;
+}
+
+.x-form-field {
+    width: 100%;
+    padding: 5px 8px;
+    border: 1px solid #b5b8c8;
+    border-radius: 3px;
+    font-size: 13px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.x-form-field:focus {
+    outline: none;
+    border-color: #4a90d9;
+    box-shadow: 0 0 3px rgba(74, 144, 217, 0.3);
+}
+
+.x-form-field:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.x-form-text {
+    height: 27px;
+}
+
+.x-form-select {
+    height: 27px;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+/* Radio Group */
+.x-radio-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.x-radio-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.x-form-radio {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.x-form-cb-label {
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Checkbox */
+.x-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.x-form-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* Date Range Group */
+.x-date-range-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.x-date-field {
+    width: 100px;
+    height: 27px;
+}
+
+.x-date-separator {
+    font-size: 13px;
+    color: #333;
+}
+
+/* Section Label */
+.x-section-label {
+    display: block;
+    margin: 20px 0 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Help Text */
+.x-form-help-text {
+    display: block;
+    margin-left: 205px;
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Voucher Date Help Text - Inline */
+.x-voucher-date-item {
+    width: auto !important;
+    max-width: 100%;
+}
+
+.x-voucher-help-text {
+    display: inline-block;
+    margin-left: 15px;
+    font-size: 12px;
+    color: #333;
+    white-space: nowrap;
+}
+
+/* Buttons */
+.x-btn-group {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0 20px 200px;
+}
+
+.x-btn {
+    padding: 6px 16px;
+    border: 1px solid #b5b8c8;
+    border-radius: 3px;
+    background: linear-gradient(to bottom, #f8f8f8 0%, #e0e0e0 100%);
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.x-btn:hover {
+    background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
+    border-color: #4a90d9;
+}
+
+.x-btn:active {
+    background: linear-gradient(to bottom, #e0e0e0 0%, #d0d0d0 100%);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.x-btn-default-small {
+    font-size: 12px;
+}
+
+/* Form Notes */
+.x-form-note {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: transparent;
+    border-left: none;
+    font-size: 13px;
+    color: #333;
+}
+
+.x-form-footer {
+    margin: 10px 0 50px 10px;
+    font-size: 12px;
+    color: #333;
+}
+
+/* Login Form Styles (Tab 2 & Tab 3) */
+.x-login-form-container {
+    padding: 20px;
+}
+
+.x-login-form-panel {
+    max-width: 380px;
+    margin: 0 0 0 10px;
+    background: #f0f8ff;
+    border: 2px solid #a0b8d0;
+    border-radius: 6px;
+}
+
+.x-login-form-panel .x-panel-header {
+    background: linear-gradient(to bottom, #c8d8e8 0%, #b0c8e0 100%);
+    padding: 10px 15px;
+    border-bottom: 2px solid #a0b8d0;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 4px 4px 0 0;
+}
+
+.x-login-form-body {
+    padding: 20px;
+}
+
+.x-login-form-body .x-form-item {
+    width: 330px;
+    margin-bottom: 15px;
+}
+
+.x-login-form-body .x-form-item-label {
+    width: 150px;
+}
+
+.x-login-form-body .x-form-item-body {
+    width: 175px;
+}
+
+.x-login-btn-group {
+    margin: 10px 0 0 270px !important;
+    justify-content: flex-start;
+}
+
+.x-withholdee-btn-group {
+    margin: 10px 0 0 155px !important;
+    justify-content: flex-start;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        background-color: #e8f0f8;
+    }
+
+    .etds-container {
+        height: auto;
+    }
+
+    .x-tab-panels {
+        margin: 0 10px 10px 10px;
+    }
+
+    .x-tab {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    .x-tab-bar {
+        margin: 10px;
+    }
+
+    .x-form-item {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .x-form-item-label {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .x-form-item-body {
+        width: 100%;
+    }
+
+    .x-btn-group {
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .x-form-help-text {
+        margin-left: 0;
+    }
+
+    .x-date-range-group {
+        flex-wrap: wrap;
+    }
+
+    .x-date-field {
+        width: 120px;
+    }
+}
+
+/* Error States */
+.x-form-field.x-form-invalid {
+    border-color: #d32f2f;
+}
+
+.x-form-error-msg {
+    color: #d32f2f;
+    font-size: 11px;
+    margin-top: 3px;
+    display: none;
+}
+
+.x-form-error-msg.x-show {
+    display: block;
+}
