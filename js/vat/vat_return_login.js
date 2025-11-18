@@ -45,7 +45,22 @@ function loginVATReturn() {
         alert('VAT Return Login Successful!\nसब्मिशन नं.: ' + submissionNo + '\nWelcome, ' + taxpayer.taxpayerName);
         console.log('Login successful for taxpayer:', taxpayer);
         console.log('Submission Number:', submissionNo);
-        // Redirect or load VAT return form here
+        
+        // Store submission number for the form
+        sessionStorage.setItem('vatSubmissionNo', submissionNo);
+        sessionStorage.setItem('vatTaxpayerName', taxpayer.taxpayerName);
+        sessionStorage.setItem('vatPAN', taxpayer.pan);
+        
+        // Load VAT returns form in parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                action: 'loadPage',
+                page: 'html/vat/vat_returns_form.html'
+            }, '*');
+        } else {
+            // If not in iframe, redirect directly
+            window.location.href = 'vat_returns_form.html';
+        }
     } else {
         alert('Login Failed!\nInvalid Username or Password\nलगइन असफल!\nगलत प्रयोगकर्ताको नाम वा पासवर्ड');
     }

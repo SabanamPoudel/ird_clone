@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Success - E-TDS</title>
+    <link rel="stylesheet" href="../../css/e_tds/etds_registration_success.css">
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-panel">
+            <!-- Success Message -->
+            <div class="success-message">
+                <div class="message-text">तपाई सफलता पूर्वक रजिस्टर हुनुभयो !</div>
+            </div>
+
+            <!-- Submission Number -->
+            <div class="info-row">
+                <span class="info-label">तपाईको सब्मिशन नं. :</span>
+                <span class="info-value" id="submissionNumber"></span>
+            </div>
+
+            <!-- Username -->
+            <div class="info-row">
+                <span class="info-label">प्रयोगकर्ताको नाम :</span>
+                <span class="info-value" id="username"></span>
+            </div>
+
+            <!-- Withholder Details -->
+            <div class="info-section">
+                <div class="info-item">
+                    <label class="item-label">विथहोल्डरको नं. :</label>
+                    <span class="item-value" id="withholderNo"></span>
+                </div>
+
+                <div class="info-item">
+                    <label class="item-label">विथहोल्डरको नाम :</label>
+                    <span class="item-value" id="withholderName"></span>
+                </div>
+
+                <div class="info-item">
+                    <label class="item-label">आ.रा.का. :</label>
+                    <span class="item-value" id="iroName"></span>
+                </div>
+
+                <div class="info-item">
+                    <label class="item-label">क.से.का :</label>
+                    <span class="item-value" id="tsoName"></span>
+                </div>
+
+                <div class="info-item">
+                    <label class="item-label">फोन नं. :</label>
+                    <span class="item-value" id="phone"></span>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="info-row">
+                <label class="info-label-wide">ठेगाना :</label>
+                <span class="info-value-wide" id="address"></span>
+            </div>
+
+            <!-- TDS Collection Interval -->
+            <div class="info-row">
+                <label class="collection-label">टि. डि. एस कलेक्सन अन्तराल :</label>
+                <span class="date-from" id="dateFrom"></span>
+                <span class="date-separator">देखि</span>
+                <span class="date-to" id="dateTo"></span>
+                <span class="date-type" id="dateType"></span>
+                <span class="date-separator">सम्म</span>
+            </div>
+
+            <!-- Reminder Message -->
+            <div class="reminder-message">
+                <div class="reminder-text">कृपया  सब्मिशन नं. ,प्रयोगकर्ताको नाम र पासवर्ड टिप्नुहोस्</div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button type="button" id="btnNewSubmission" class="action-btn">नयाँ सब्मिशन नं.</button>
+                <button type="button" id="btnEnterTransaction" class="action-btn">ट्रान्स्याकशन भर्ने</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/e_tds/etds_registration_success.js"></script>
+</body>
+</html>

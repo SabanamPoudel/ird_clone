@@ -251,21 +251,9 @@ function handleTaxTypeChange(select) {
 
 // Handle TDS dropdown change
 function handleTDSChange(select) {
-    const row = select.closest('tr');
-    const remarksCell = row.cells[6];
-    
-    if (select.value === 'yes') {
-        remarksCell.innerHTML = `<span>टि. डि. एस हो</span>`;
-    } else if (select.value === 'no') {
-        remarksCell.innerHTML = `<span>टि. डि. एस होइन</span>`;
-    } else {
-        // If "Select" option is chosen, show dropdown again
-        remarksCell.innerHTML = `<select name="tds" class="form-field" onchange="handleTDSChange(this)">
-            <option value="">टि. डि. एस. छान्नुहोस्</option>
-            <option value="yes">हो</option>
-            <option value="no">होइन</option>
-        </select>`;
-    }
+    // Don't replace the dropdown - just keep it as is
+    // The selected value will be used when generating the voucher
+    // This allows users to change their selection anytime
 }
 
 // Calculate total amount
@@ -702,9 +690,31 @@ function printVoucher(code) {
         return;
     }
     
-    alert(`Printing voucher ${code}...\n\nThis will open the print dialog for the pending voucher.`);
-    // In production, this would open a printable format
-    window.print();
+    // Prepare voucher data for printing
+    const voucherData = {
+        transactionCode: voucher.code,
+        date: voucher.date,
+        pan: document.getElementById('panNumber') ? document.getElementById('panNumber').textContent : '610015263',
+        bankName: 'Nepal Bank Limited', // Default bank name
+        paymentData: [
+            {
+                sn: 1,
+                taxType: 'मुल्य अ. कर',
+                revenueHead: '33311 (मु.अ.कर – उत्पादन)',
+                bapat: 'कर विवरण',
+                amount: voucher.amount,
+                fiscalYear: voucher.fiscalYear ? voucher.fiscalYear.replace('.', '/') : '2082/083',
+                remarks: ''
+            }
+        ],
+        totalAmount: voucher.amount
+    };
+    
+    // Store in sessionStorage
+    sessionStorage.setItem('voucherData', JSON.stringify(voucherData));
+    
+    // Open voucher in new window
+    window.open('payment_voucher_print.html', '_blank', 'width=1000,height=800');
 }
 
 // Print paid voucher
@@ -715,9 +725,32 @@ function printPaidVoucher(voucherNo) {
         return;
     }
     
-    alert(`Printing voucher ${voucherNo}...\n\nThis will open the print dialog for the paid voucher.`);
-    // In production, this would open a printable format
-    window.print();
+    // Prepare voucher data for printing
+    const voucherData = {
+        transactionCode: voucher.requestCode,
+        date: voucher.voucherDate,
+        pan: document.getElementById('panNumber') ? document.getElementById('panNumber').textContent : '610015263',
+        bankName: 'Nepal Bank Limited', // Default bank name
+        paymentData: [
+            {
+                sn: 1,
+                taxType: voucher.accountDesc || 'मुल्य अ. कर',
+                revenueHead: voucher.accountCode + ' (' + voucher.accountDesc + ')',
+                bapat: 'भुक्तानी भएको',
+                amount: voucher.amount,
+                fiscalYear: voucher.fiscalYear,
+                remarks: 'Voucher No: ' + voucher.voucherNo
+            }
+        ],
+        totalAmount: voucher.amount,
+        voucherNumber: voucher.voucherNo
+    };
+    
+    // Store in sessionStorage
+    sessionStorage.setItem('voucherData', JSON.stringify(voucherData));
+    
+    // Open voucher in new window
+    window.open('payment_voucher_print.html', '_blank', 'width=1000,height=800');
 }
 
 // Make payment from status view

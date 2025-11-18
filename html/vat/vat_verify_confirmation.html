@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify Confirmation</title>
+    <title>Verify VAT Return</title>
     <style>
         * {
             margin: 0;
@@ -14,135 +14,72 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #DFE9F6;
+            padding: 20px;
+        }
+
+        .verify-container {
+            background: #DFE9F6;
+            border: 1px solid #99BBE8;
+            padding: 20px;
+            max-width: 100%;
+        }
+
+        .info-section {
+            background: #DFE9F6;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .verification-container {
-            background: white;
-            border: 1px solid #99BBE8;
-            border-radius: 5px;
-            padding: 40px;
-            max-width: 600px;
-            width: 100%;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .verification-header {
-            background: linear-gradient(to bottom, #d4e4f7 0%, #b8d4f1 100%);
-            padding: 15px 20px;
-            border: 1px solid #99BBE8;
-            border-radius: 3px;
-            margin-bottom: 30px;
-        }
-
-        .verification-header h2 {
-            color: #15428b;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-            margin: 0;
-        }
-
-        .verification-content {
-            padding: 20px 0;
-        }
-
-        .info-message {
-            background-color: #f0f8ff;
-            border: 1px solid #99BBE8;
-            border-radius: 4px;
-            padding: 20px;
-            margin-bottom: 30px;
-            line-height: 1.8;
-            color: #333;
-        }
-
-        .info-message p {
+            gap: 40px;
             margin-bottom: 15px;
-            font-size: 14px;
         }
 
-        .info-message strong {
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-label {
             color: #d9534f;
             font-weight: bold;
+            font-size: 16px;
         }
 
-        .checkbox-container {
+        .info-value {
+            color: #d9534f;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .radio-option {
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
-            margin: 20px 0;
+            gap: 10px;
+            padding: 10px;
+            background: #DFE9F6;
+            border: 1px solid #ccc;
+            margin-top: 10px;
         }
 
-        .circular-checkbox {
-            position: relative;
-            display: inline-block;
-        }
-
-        .circular-checkbox input[type="checkbox"] {
-            position: absolute;
-            opacity: 0;
+        .radio-option input[type="radio"] {
+            width: 16px;
+            height: 16px;
             cursor: pointer;
-            width: 0;
-            height: 0;
         }
 
-        .checkmark {
-            position: relative;
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: white;
-            border: 3px solid #4a90d9;
-            border-radius: 50%;
+        .radio-option label {
+            font-size: 14px;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .circular-checkbox:hover .checkmark {
-            background-color: #f0f8ff;
-            border-color: #357abd;
-        }
-
-        .circular-checkbox input:checked ~ .checkmark {
-            background-color: #4a90d9;
-            border-color: #357abd;
-        }
-
-        .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-            left: 13px;
-            top: 8px;
-            width: 8px;
-            height: 14px;
-            border: solid white;
-            border-width: 0 3px 3px 0;
-            transform: rotate(45deg);
-        }
-
-        .circular-checkbox input:checked ~ .checkmark:after {
-            display: block;
-        }
-
-        .checkbox-label {
-            margin-left: 15px;
-            font-size: 16px;
             color: #333;
-            cursor: pointer;
-            user-select: none;
         }
 
         .proceed-button {
-            display: block;
-            margin: 30px auto 0;
-            padding: 10px 40px;
+            margin-top: 20px;
+            padding: 8px 30px;
             background: linear-gradient(to bottom, #7db4e6 0%, #4a90d9 100%);
             color: white;
             border: 1px solid #3a7bb8;
@@ -150,79 +87,313 @@
             font-size: 14px;
             font-weight: bold;
             cursor: pointer;
-            opacity: 0.5;
-            pointer-events: none;
-            transition: all 0.3s ease;
+            display: none;
         }
 
-        .proceed-button.enabled {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .proceed-button.enabled:hover {
+        .proceed-button:hover {
             background: linear-gradient(to bottom, #6ba3d5 0%, #3880c8 100%);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .proceed-button.enabled:active {
-            transform: translateY(1px);
+        .login-form {
+            background: #DFE9F6;
+            border: 1px solid #ccc;
+            padding: 20px;
+            display: none;
+        }
+
+        .login-form.show {
+            display: block;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+            min-width: 150px;
+        }
+
+        .form-group input {
+            width: 250px;
+            padding: 6px 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #4a90d9;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            margin-left: 160px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border: 1px solid #3a7bb8;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-verify {
+            background: #e5e5e5;
+            color: #333;
+        }
+
+        .btn-verify:hover {
+            background: #d5d5d5;
+        }
+
+        .btn-print {
+            background: #e5e5e5;
+            color: #333;
+        }
+
+        .btn-print:hover {
+            background: #d5d5d5;
+        }
+
+        .btn-back {
+            background: #e5e5e5;
+            color: #333;
+        }
+
+        .btn-back:hover {
+            background: #d5d5d5;
+        }
+
+        /* Success Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 100px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .success-modal {
+            background: linear-gradient(to bottom, #e8f0f8 0%, #d0e0f0 100%);
+            border: 2px solid #5b9bd5;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            color: #2e5c8a;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #5b9bd5;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+        }
+
+        .close-btn:hover {
+            color: #2e5c8a;
+        }
+
+        .modal-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .info-icon {
+            flex-shrink: 0;
+        }
+
+        .modal-text {
+            flex: 1;
+        }
+
+        .modal-text p {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .submission-number {
+            color: #2e5c8a;
+            font-weight: bold;
+            font-size: 16px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .modal-ok-btn {
+            background: #e5e5e5;
+            border: 1px solid #999;
+            padding: 8px 40px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #333;
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        .modal-ok-btn:hover {
+            background: #d5d5d5;
         }
     </style>
 </head>
 <body>
-    <div class="verification-container">
-        <div class="verification-header">
-            <h2>रुजु (Verify) गर्नुहोस्</h2>
+    <div class="verify-container">
+        <div class="info-section">
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="info-label">PAN:</span>
+                    <span class="info-value" id="panDisplay">621237566</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">SubmissionNo:</span>
+                    <span class="info-value" id="submissionNoDisplay">820075337663</span>
+                </div>
+            </div>
+
+            <div class="radio-option" id="radioSection">
+                <input type="radio" id="verifyOption" name="verifyMethod" value="verify">
+                <label for="verifyOption">2. Verify Using Username and Password</label>
+            </div>
         </div>
 
-        <div class="verification-content">
-            <div class="info-message">
-                <p><strong>महत्वपूर्ण सूचना:</strong></p>
-                <p>तपाईं आफ्नो VAT विवरण रुजु (Verify) गर्न लाग्दै हुनुहुन्छ।</p>
-                <p>एक पटक रुजु गरिसकेपछि तपाईंले यो विवरणमा सच्चाउन सक्नुहुन्न।</p>
-                <p><strong>रुजु नगरिसम्म तपाईंको विवरण आन्तरिक राजस्व विभागमा दर्ता भएको मानिदैन।</strong></p>
-                <p style="margin-bottom: 0;">कृपया तल दिइएको चेकबक्समा क्लिक गरी अगाडि बढ्नुहोस्।</p>
+        <div class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" value="621237566" readonly>
             </div>
-
-            <div class="checkbox-container">
-                <label class="circular-checkbox">
-                    <input type="checkbox" id="confirmCheckbox">
-                    <span class="checkmark"></span>
-                </label>
-                <label for="confirmCheckbox" class="checkbox-label">
-                    म, यस विवरण रुजु गर्न सहमत छु
-                </label>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" value="**********">
             </div>
+            <div class="form-group">
+                <label for="prevVatDue">Previous Vat Due:</label>
+                <input type="text" id="prevVatDue" readonly>
+            </div>
+            
+            <div class="button-group">
+                <button type="button" class="btn btn-verify">
+                    <span style="font-size: 16px;">✓</span> Verify
+                </button>
+                <button type="button" class="btn btn-print">
+                    <span style="font-size: 16px;">🖨</span> Print
+                </button>
+                <button type="button" class="btn btn-back">
+                    <span style="font-size: 16px;">↩</span> Back
+                </button>
+            </div>
+        </div>
+    </div>
 
-            <button type="button" id="proceedBtn" class="proceed-button">
-                अगाडि बढ्नुहोस् (Proceed to Login)
-            </button>
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="success-modal">
+            <div class="modal-header">
+                <span class="modal-title">INFO</span>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-content">
+                <div class="info-icon">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="30" cy="30" r="28" fill="#5b9bd5" stroke="#2e5c8a" stroke-width="2"/>
+                        <text x="30" y="42" text-anchor="middle" fill="white" font-size="40" font-weight="bold">i</text>
+                    </svg>
+                </div>
+                <div class="modal-text">
+                    <p>E-Return Verified Successfully..</p>
+                    <p>Please Note Your Submission No.</p>
+                    <p>Your Submission No is: <span class="submission-number" id="submissionNoModal">760021316N73</span></p>
+                </div>
+            </div>
+            <button class="modal-ok-btn" id="okBtn">OK</button>
         </div>
     </div>
 
     <script>
-        const confirmCheckbox = document.getElementById('confirmCheckbox');
-        const proceedBtn = document.getElementById('proceedBtn');
+        const verifyOption = document.getElementById('verifyOption');
+        const radioSection = document.getElementById('radioSection');
+        const loginForm = document.getElementById('loginForm');
+        const verifyBtn = document.querySelector('.btn-verify');
+        const backBtn = document.querySelector('.btn-back');
+        const successModal = document.getElementById('successModal');
+        const closeModal = document.getElementById('closeModal');
+        const okBtn = document.getElementById('okBtn');
 
-        // Enable/disable button based on checkbox
-        confirmCheckbox.addEventListener('change', function() {
+        // Show login form when radio is clicked, hide only radio section
+        verifyOption.addEventListener('change', function() {
             if (this.checked) {
-                proceedBtn.classList.add('enabled');
-            } else {
-                proceedBtn.classList.remove('enabled');
+                radioSection.style.display = 'none';
+                loginForm.classList.add('show');
             }
         });
 
-        // Proceed button click
-        proceedBtn.addEventListener('click', function() {
-            if (confirmCheckbox.checked) {
-                // Send message to parent to load login page
-                if (window.parent) {
-                    window.parent.postMessage({
-                        action: 'showLoginPage'
-                    }, '*');
-                }
+        // Show success modal when verify button is clicked
+        verifyBtn.addEventListener('click', function() {
+            // Get submission number from the page
+            const submissionNo = document.getElementById('submissionNoDisplay').textContent;
+            document.getElementById('submissionNoModal').textContent = submissionNo;
+            successModal.classList.add('show');
+        });
+
+        // Back button - go back to previous page
+        backBtn.addEventListener('click', function() {
+            window.history.back();
+        });
+
+        // Close modal when X button is clicked
+        closeModal.addEventListener('click', function() {
+            successModal.classList.remove('show');
+        });
+
+        // Close modal when OK button is clicked
+        okBtn.addEventListener('click', function() {
+            successModal.classList.remove('show');
+        });
+
+        // Close modal when clicking outside
+        successModal.addEventListener('click', function(e) {
+            if (e.target === successModal) {
+                successModal.classList.remove('show');
             }
         });
     </script>

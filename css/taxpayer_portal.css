@@ -139,18 +139,22 @@ body {
 .folder-icon {
     margin-right: 5px;
     display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('../media/close.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
 }
 
 .folder-icon::before {
-    content: "📁";
-    font-size: 14px;
-    filter: sepia(100%) saturate(500%) hue-rotate(5deg) brightness(1.1);
+    content: "";
 }
 
 /* Open folder when expanded */
-.parent.expanded > a > .folder-icon::before {
-    content: "📂";
-    filter: sepia(100%) saturate(500%) hue-rotate(5deg) brightness(1.1);
+.parent.expanded > a > .folder-icon {
+    background-image: url('../media/open.svg');
 }
 
 /* White background for expanded parent items */

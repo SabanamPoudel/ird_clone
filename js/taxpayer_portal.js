@@ -2,6 +2,9 @@
 
 $(document).ready(function() {
     
+    // Update date on page load
+    updateDate();
+    
     // Check if there's a hash in URL to auto-load content
     if (window.location.hash) {
         var contentUrl = window.location.hash.substring(1); // Remove the # symbol
@@ -14,6 +17,9 @@ $(document).ready(function() {
     window.addEventListener('message', function(event) {
         if (event.data && event.data.action === 'loadContent') {
             loadContent(event.data.url, 'Loaded from Navigation');
+        } else if (event.data && event.data.action === 'loadPage') {
+            // Load page in the content area
+            loadContent(event.data.page, 'Verify VAT Return');
         }
     });
     
@@ -286,4 +292,45 @@ function showSuccess(message) {
 // Show Error Message
 function showError(message) {
     alert('✗ ' + message);
+}
+
+// Function to convert AD to BS (Bikram Sambat)
+function convertADtoBS(adDate) {
+    const adYear = adDate.getFullYear();
+    const adMonth = adDate.getMonth() + 1;
+    const adDay = adDate.getDate();
+    
+    let bsYear = adYear + 57;
+    let bsMonth = adMonth + 8;
+    let bsDay = adDay + 14;
+    
+    if (bsMonth > 12) {
+        bsMonth -= 12;
+    }
+    
+    if (adMonth <= 4) {
+        bsYear = adYear + 56;
+    }
+    
+    const daysInMonth = 30;
+    if (bsDay > daysInMonth) {
+        bsDay -= daysInMonth;
+        bsMonth += 1;
+        if (bsMonth > 12) {
+            bsMonth = 1;
+            bsYear += 1;
+        }
+    }
+    
+    return bsYear + '.' + String(bsMonth).padStart(2, '0') + '.' + String(bsDay).padStart(2, '0');
+}
+
+// Update date display in header
+function updateDate() {
+    const today = new Date();
+    const bsDate = convertADtoBS(today);
+    const headerRight = document.querySelector('.header-right');
+    if (headerRight) {
+        headerRight.textContent = 'Date: ' + bsDate;
+    }
 }

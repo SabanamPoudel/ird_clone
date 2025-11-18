@@ -1377,8 +1377,20 @@ function initializeVerifyButton() {
         
         // Add click handler for verify button
         verifyBtn.addEventListener('click', function() {
+            console.log('Verify button clicked, disabled:', this.disabled);
             if (!this.disabled) {
-                showVerifyConfirmationModal();
+                console.log('Loading verify confirmation page in parent iframe...');
+                // Load verify page in the parent window's content iframe
+                if (window.parent && window.parent.parent) {
+                    // Send message to grandparent (taxpayer_portal.html) to load verify page
+                    window.parent.parent.postMessage({
+                        action: 'loadPage',
+                        page: 'html/vat/vat_verify_confirmation.html'
+                    }, '*');
+                } else if (window.parent) {
+                    // If only one level up, try to load there
+                    window.location.href = 'vat_verify_confirmation.html';
+                }
             }
         });
     }
@@ -1386,6 +1398,8 @@ function initializeVerifyButton() {
 
 // Show verification confirmation modal with iframe
 function showVerifyConfirmationModal() {
+    console.log('showVerifyConfirmationModal function called');
+    
     // Create modal overlay
     const modalOverlay = document.createElement('div');
     modalOverlay.id = 'verifyConfirmationOverlay';
@@ -1401,6 +1415,8 @@ function showVerifyConfirmationModal() {
         align-items: center;
         z-index: 10000;
     `;
+    
+    console.log('Modal overlay created');
     
     // Create iframe container
     const iframeContainer = document.createElement('div');

@@ -1,0 +1,147 @@
+/* E-TDS Registration Success Page Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #DFE9F6;
+    padding: 20px;
+}
+
+.success-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.success-panel {
+    background: #DFE9F6;
+    border: 1px solid #d0d0d0;
+    border-radius: 3px;
+    padding: 50px 20px 20px 20px;
+}
+
+/* Success Message */
+.success-message {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-left: 50px;
+}
+
+.message-text {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Info Rows */
+.info-row {
+    display: flex;
+    align-items: center;
+    margin: 0 0 10px 0;
+    padding-left: 0;
+}
+
+.info-label {
+    font-weight: bold;
+    margin-right: 10px;
+    min-width: 120px;
+}
+
+.info-value {
+    color: #333;
+}
+
+.info-label-wide {
+    font-weight: bold;
+    margin-right: 10px;
+    min-width: 120px;
+}
+
+.info-value-wide {
+    color: #333;
+    flex: 1;
+}
+
+/* Info Section */
+.info-section {
+    margin: 0 0 15px 0;
+    padding-left: 0;
+}
+
+.info-item {
+    display: flex;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.item-label {
+    margin-right: 10px;
+    min-width: 130px;
+}
+
+.item-value {
+    color: #333;
+}
+
+/* TDS Collection Interval */
+.collection-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.date-from,
+.date-to {
+    margin: 0 5px;
+}
+
+.date-type {
+    margin: 0 5px;
+}
+
+.date-separator {
+    margin: 0 5px;
+}
+
+/* Reminder Message */
+.reminder-message {
+    margin: 20px 0;
+    padding-left: 0;
+}
+
+.reminder-text {
+    font-weight: bold;
+    font-size: 13px;
+    color: #333;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+    padding-left: 0;
+}
+
+.action-btn {
+    width: 180px;
+    padding: 6px 12px;
+    background-color: #f0f0f0;
+    border: 1px solid #bcbcbc;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.action-btn:active {
+    background-color: #d0d0d0;
+}

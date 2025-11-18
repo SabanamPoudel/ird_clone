@@ -170,6 +170,8 @@ document.addEventListener('DOMContentLoaded', function() {
             ? document.getElementById('chkRTTDSironame').value 
             : document.getElementById('chkRTTDStsoname').value;
         
+        const bsCheckbox = document.getElementById('chkRTTDSBS');
+        const adCheckbox = document.getElementById('chkRTTDSAD');
         const bsFrom = document.getElementById('txtRTTDSBSfrom').value.trim();
         const bsTo = document.getElementById('txtRTTDSBSto').value.trim();
         const adFrom = document.getElementById('txtRTTDSADfrom').value.trim();
@@ -203,9 +205,33 @@ document.addEventListener('DOMContentLoaded', function() {
         users.push(userData);
         localStorage.setItem('etds_users', JSON.stringify(users));
 
-        alert('दर्ता सफल भयो!\n\nसब्मिशन नं.: ' + submissionNumber + '\nप्रयोगकर्ताको नाम: ' + username + '\n\nकृपया यो जानकारी सुरक्षित राख्नुहोस्।');
-        
-        resetRegistrationForm();
+        // Prepare data for success page
+        const successData = {
+            submissionNumber: submissionNumber,
+            username: username,
+            withholderName: whName,
+            iroName: officeType === 'IRO' ? office : '',
+            tsoName: officeType === 'TSO' ? office : '',
+            phone: phone,
+            address: address,
+            dateFrom: bsCheckbox.checked ? bsFrom : adFrom,
+            dateTo: bsCheckbox.checked ? bsTo : adTo,
+            dateType: bsCheckbox.checked ? 'BS' : 'AD'
+        };
+
+        // Store success data in sessionStorage
+        sessionStorage.setItem('etds_registration_success', JSON.stringify(successData));
+
+        // Send message to parent window to load success page in iframe
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                action: 'loadContent',
+                url: 'html/e_tds/etds_registration_success.html'
+            }, '*');
+        } else {
+            // If not in iframe, navigate directly
+            window.location.href = 'etds_registration_success.html';
+        }
     }
 
     // Reset form function

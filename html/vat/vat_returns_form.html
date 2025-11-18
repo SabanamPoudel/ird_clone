@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VAT Returns Form</title>
-    <link rel="stylesheet" href="../../css/vat/vat_returns_form.css">
+    <link rel="stylesheet" href="../../css/vat/vat_returns_form.css?v=2025111701">
 </head>
 <body>
     <div id="vatReturnsFormPage" style="padding: 10px; background: #DFE9F6; height: 100%; overflow-y: auto; overflow-x: hidden;">
@@ -229,21 +229,23 @@
                                                 <td colspan="4" style="padding: 5px;"><label class="section-header">३. अन्य</label></td>
                                             </tr>
                                             <tr>
-                                                <td colspan="4" style="padding: 5px;">
-                                                    <div class="adjustment-row">
-                                                        <label class="adjustment-label">३.१. अन्य थपघट</label>
-                                                        <div class="adjustment-controls">
-                                                            <input type="text" name="txtAdjCredit" size="15" class="x-form-field x-form-text right-align" readonly maxlength="14">
-                                                            <button type="button" id="btnAdjustmentCredit" class="adjustment-btn">
-                                                                <span>अन्य थपघट  क्रेडिट छ  ? </span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="adjustment-controls">
-                                                            <input type="text" name="txtAdjDebit" size="15" class="x-form-field x-form-text right-align" readonly maxlength="14">
-                                                            <button type="button" id="btnAdjustmentDebit" class="adjustment-btn">
-                                                                <span>अन्य थपघट  डेविट छ  ? </span>
-                                                            </button>
-                                                        </div>
+                                                <td colspan="2" style="padding: 5px;">
+                                                    <label class="field-label">३.१. अन्य थपघट</label>
+                                                </td>
+                                                <td style="padding: 5px;">
+                                                    <div class="adjustment-controls">
+                                                        <input type="text" name="txtAdjCredit" size="15" class="x-form-field x-form-text right-align" readonly maxlength="14">
+                                                        <button type="button" id="btnAdjustmentCredit" class="adjustment-btn">
+                                                            <span>अन्य थपघट  क्रेडिट छ  ? </span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                                <td style="padding: 5px;">
+                                                    <div class="adjustment-controls">
+                                                        <input type="text" name="txtAdjDebit" size="15" class="x-form-field x-form-text right-align" readonly maxlength="14">
+                                                        <button type="button" id="btnAdjustmentDebit" class="adjustment-btn">
+                                                            <span>अन्य थपघट  डेविट छ  ? </span>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -345,53 +347,46 @@
                                 
                                 <!-- Document Details Section -->
                                 <div class="x-container x-box-item x-container-default document-section" role="presentation">
-                                    <label class="x-component x-component-default">११. कर अवधिमा प्रयोग गरिएका कागजहरूको विवरण</label>
+                                    <label class="x-component x-component-default document-section-title">११. कर अवधिमा प्रयोग गरिएका कागजहरूको विवरण</label>
                                     
-                                    <div class="x-field x-form-item x-field-default document-field">
-                                        <label class="x-form-item-label x-form-item-label-left">कुल खरिद बिजक संख्या:</label>
-                                        <div class="x-form-item-body">
-                                            <input type="text" size="20" class="x-form-field x-form-text">
+                                    <div class="document-grid">
+                                        <div class="document-row">
+                                            <label class="document-label">कुल खरिद बिजक संख्या:</label>
+                                            <input type="text" size="20" class="x-form-field x-form-text document-input">
                                         </div>
-                                    </div>
-                                    
-                                    <div class="x-field x-form-item x-field-default document-field">
-                                        <label class="x-form-item-label x-form-item-label-left">क्रेडिट नोट संख्या:</label>
-                                        <div class="x-form-item-body">
-                                            <input type="text" size="20" class="x-form-field x-form-text">
+                                        
+                                        <div class="document-row">
+                                            <label class="document-label">क्रेडिट नोट संख्या:</label>
+                                            <input type="text" size="20" class="x-form-field x-form-text document-input">
                                         </div>
-                                    </div>
-                                    
-                                    <div class="x-field x-form-item x-field-default document-field">
-                                        <label class="x-form-item-label x-form-item-label-left">डेविट नोट संख्या:</label>
-                                        <div class="x-form-item-body">
-                                            <input type="text" size="20" class="x-form-field x-form-text">
+                                        
+                                        <div class="document-row">
+                                            <label class="document-label">डेविट नोट संख्या:</label>
+                                            <input type="text" size="20" class="x-form-field x-form-text document-input">
                                         </div>
-                                    </div>
-                                    
-                                    <div class="x-field x-form-item x-field-default document-field">
-                                        <label class="x-form-item-label x-form-item-label-left">क्रेडिट एडभाइस संख्या:</label>
-                                        <div class="x-form-item-body">
-                                            <input type="text" size="20" class="x-form-field x-form-text">
+                                        
+                                        <div class="document-row">
+                                            <label class="document-label">क्रेडिट एडभाइस संख्या:</label>
+                                            <input type="text" size="20" class="x-form-field x-form-text document-input">
                                         </div>
-                                    </div>
-                                    
-                                    <div class="x-field x-form-item x-field-default document-field">
-                                        <label class="x-form-item-label x-form-item-label-left"> डेविट एडभाइस संख्या:</label>
-                                        <div class="x-form-item-body">
-                                            <input type="text" size="20" class="x-form-field x-form-text">
+                                        
+                                        <div class="document-row">
+                                            <label class="document-label">डेविट एडभाइस संख्या:</label>
+                                            <input type="text" size="20" class="x-form-field x-form-text document-input">
                                         </div>
-                                    </div>
-                                    
-                                    <div class="x-field x-form-item x-field-default document-field">
-                                        <label class="x-form-item-label x-form-item-label-left">बिक्री बिजक         जम्मा संख्या:</label>
-                                        <div class="x-form-item-body">
-                                            <input type="text" size="20" class="x-form-field x-form-text">
+                                        
+                                        <div class="document-row">
+                                            <label class="document-label">बिक्री बिजक जम्मा संख्या:</label>
+                                            <input type="text" size="20" class="x-form-field x-form-text document-input">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </fieldset>
+                    
+                    <!-- Spacer to prevent overlap -->
+                    <div style="clear: both; height: 40px;"></div>
                     
                     <!-- Transaction Details for Large Turnover -->
                     <fieldset id="fieldset-1601" class="x-fieldset x-fieldset-default large-turnover-section">
@@ -640,9 +635,9 @@
                     <h3 style="margin: 0; color: #15428b; font-size: 14px; font-weight: bold;">INFO</h3>
                     <button id="btnCloseInfo" type="button" class="modal-close-btn" style="position: absolute; top: 5px; right: 5px; background: none; border: none; font-size: 20px; cursor: pointer; color: #666; width: 25px; height: 25px; line-height: 20px;">×</button>
                 </div>
-                <div class="modal-body" style="padding: 20px; display: flex; align-items: flex-start; gap: 15px;">
+                <div class="modal-body" style="padding: 15px; display: flex; align-items: flex-start; gap: 10px;">
                     <div style="flex-shrink: 0;">
-                        <svg width="60" height="60" viewBox="0 0 60 60" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));">
+                        <svg width="40" height="40" viewBox="0 0 60 60" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));">
                             <circle cx="30" cy="30" r="28" fill="url(#infoGradient)" stroke="#4a90d9" stroke-width="2"/>
                             <defs>
                                 <linearGradient id="infoGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -672,9 +667,9 @@
                     <h3 style="margin: 0; color: #15428b; font-size: 14px; font-weight: bold;">INFO</h3>
                     <button id="btnCloseSuccess" type="button" class="modal-close-btn" style="position: absolute; top: 5px; right: 5px; background: none; border: none; font-size: 20px; cursor: pointer; color: #666; width: 25px; height: 25px; line-height: 20px;">×</button>
                 </div>
-                <div class="modal-body" style="padding: 20px; display: flex; align-items: flex-start; gap: 15px;">
+                <div class="modal-body" style="padding: 15px; display: flex; align-items: flex-start; gap: 10px;">
                     <div style="flex-shrink: 0;">
-                        <svg width="60" height="60" viewBox="0 0 60 60" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));">
+                        <svg width="40" height="40" viewBox="0 0 60 60" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));">
                             <circle cx="30" cy="30" r="28" fill="url(#successGradient)" stroke="#4a90d9" stroke-width="2"/>
                             <defs>
                                 <linearGradient id="successGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -706,9 +701,9 @@
                     <h3 style="margin: 0; color: #15428b; font-size: 14px; font-weight: bold;">INFO</h3>
                     <button id="btnCloseSubmitConfirm" type="button" class="modal-close-btn" style="position: absolute; top: 5px; right: 5px; background: none; border: none; font-size: 20px; cursor: pointer; color: #666; width: 25px; height: 25px; line-height: 20px;">×</button>
                 </div>
-                <div class="modal-body" style="padding: 20px; display: flex; align-items: flex-start; gap: 15px;">
+                <div class="modal-body" style="padding: 15px; display: flex; align-items: flex-start; gap: 10px;">
                     <div style="flex-shrink: 0;">
-                        <svg width="60" height="60" viewBox="0 0 60 60" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));">
+                        <svg width="40" height="40" viewBox="0 0 60 60" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));">
                             <circle cx="30" cy="30" r="28" fill="url(#confirmGradient)" stroke="#4a90d9" stroke-width="2"/>
                             <defs>
                                 <linearGradient id="confirmGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -740,9 +735,9 @@
                     <h3 style="margin: 0; color: #15428b; font-size: 14px; font-weight: bold;">INFO</h3>
                     <button id="btnCloseSubmitSuccess" type="button" class="modal-close-btn" style="position: absolute; top: 5px; right: 5px; background: none; border: none; font-size: 20px; cursor: pointer; color: #666; width: 25px; height: 25px; line-height: 20px;">×</button>
                 </div>
-                <div class="modal-body" style="padding: 20px; display: flex; align-items: flex-start; gap: 15px;">
+                <div class="modal-body" style="padding: 15px; display: flex; align-items: flex-start; gap: 10px;">
                     <div style="flex-shrink: 0;">
-                        <svg width="60" height="60" viewBox="0 0 60 60" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));">
+                        <svg width="40" height="40" viewBox="0 0 60 60" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));">
                             <circle cx="30" cy="30" r="28" fill="url(#submitSuccessGradient)" stroke="#4a90d9" stroke-width="2"/>
                             <defs>
                                 <linearGradient id="submitSuccessGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -779,6 +774,6 @@
     <script src="../../extjs/ext-all.js"></script>
     <!-- SheetJS library for Excel file support -->
     <script src="../../js/xlsx.full.min.js"></script>
-    <script src="../../js/vat/vat_returns_form.js"></script>
+    <script src="../../js/vat/vat_returns_form.js?v=2025111702"></script>
 </body>
 </html>
