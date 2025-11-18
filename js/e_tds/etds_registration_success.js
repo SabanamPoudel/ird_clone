@@ -36,9 +36,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Enter Transaction button - could navigate to transaction entry page
+    // Enter Transaction button - navigate to transaction entry page
     document.getElementById('btnEnterTransaction').addEventListener('click', function() {
-        alert('ट्रान्स्याकशन एन्ट्री फिचर आउँदै छ। (Transaction entry feature coming soon.)');
-        // In future, this could navigate to a transaction entry form
+        // Send message to parent to load transaction entry page in iframe
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                action: 'loadContent',
+                url: 'html/e_tds/etds_transaction_entry.html'
+            }, '*');
+        } else {
+            // If not in iframe, navigate directly
+            window.location.href = 'etds_transaction_entry.html';
+        }
     });
 });

@@ -15,7 +15,9 @@ $(document).ready(function() {
     
     // Listen for messages from child windows (like D-01 opened in new window)
     window.addEventListener('message', function(event) {
+        console.log('Received message:', event.data); // Debug log
         if (event.data && event.data.action === 'loadContent') {
+            console.log('Loading content:', event.data.url); // Debug log
             loadContent(event.data.url, 'Loaded from Navigation');
         } else if (event.data && event.data.action === 'loadPage') {
             // Load page in the content area

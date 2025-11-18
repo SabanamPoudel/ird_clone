@@ -103,6 +103,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Auto-fill withholder name when PAN is entered
+    const panField = document.getElementById('txtRTTDSwhpan');
+    const withholderNameField = document.getElementById('txtRTTDSwhname');
+    
+    if (panField && withholderNameField) {
+        panField.addEventListener('blur', function() {
+            const pan = this.value.trim();
+            if (pan.length === 9) {
+                // Auto-fill with generic company registered name for any 9-digit PAN
+                withholderNameField.value = 'company registered name';
+                withholderNameField.style.backgroundColor = '#e8f5e9'; // Light green to indicate auto-filled
+            } else if (pan.length > 0 && pan.length !== 9) {
+                // Show alert if PAN is not 9 digits
+                alert('PAN नम्बर ९ अंकको हुनुपर्छ।');
+                withholderNameField.value = '';
+                withholderNameField.style.backgroundColor = '';
+            }
+        });
+
+        // Clear background color when manually edited
+        withholderNameField.addEventListener('input', function() {
+            if (this.value !== '') {
+                this.style.backgroundColor = '';
+            }
+        });
+    }
+
     // Validation function
     function validateRegistrationForm() {
         const username = document.getElementById('txtRTTDSuser').value.trim();
