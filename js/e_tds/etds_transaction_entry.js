@@ -70,8 +70,39 @@ function initializeEventListeners() {
     // Save button
     document.getElementById('btnSave').addEventListener('click', saveTransactions);
 
-    // Submit button
-    document.getElementById('btnSubmit').addEventListener('click', submitTransactions);
+    // Submit button - Show modal instead of direct submit
+    document.getElementById('btnSubmit').addEventListener('click', function() {
+        if (transactions.length === 0) {
+            alert('सबमिट गर्नका लागि कम्तिमा एक ट्रान्स्याकशन थप्नुहोस्।');
+            return;
+        }
+        showSubmitModal();
+    });
+
+    // Modal buttons
+    document.getElementById('btnConfirmSubmit').addEventListener('click', confirmSubmit);
+    document.getElementById('btnCancelSubmit').addEventListener('click', closeSubmitModal);
+    document.getElementById('btnCloseModal').addEventListener('click', closeSubmitModal);
+    document.getElementById('btnCloseSuccess').addEventListener('click', closeSuccessModal);
+    document.getElementById('btnCloseSuccessModal').addEventListener('click', closeSuccessModal);
+    document.getElementById('btnCloseSave').addEventListener('click', closeSaveSuccessModal);
+    document.getElementById('btnCloseSaveModal').addEventListener('click', closeSaveSuccessModal);
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('submitModal');
+        const successModal = document.getElementById('successModal');
+        const saveSuccessModal = document.getElementById('saveSuccessModal');
+        if (event.target === modal) {
+            closeSubmitModal();
+        }
+        if (event.target === successModal) {
+            closeSuccessModal();
+        }
+        if (event.target === saveSuccessModal) {
+            closeSaveSuccessModal();
+        }
+    });
 
     // Search button
     document.getElementById('btnSearch').addEventListener('click', searchTransaction);
@@ -290,7 +321,9 @@ function saveTransactions() {
     };
 
     localStorage.setItem('etds_transactions_' + registrationData.submissionNumber, JSON.stringify(saveData));
-    alert('ट्रान्स्याकशनहरू सफलतापूर्वक सुरक्षित गरियो।');
+    
+    // Show save success modal
+    showSaveSuccessModal();
 }
 
 function loadTransactions() {
@@ -522,3 +555,57 @@ function notifyParentResize() {
         }, '*');
     }
 }
+
+// Modal Functions
+function showSubmitModal() {
+    const modal = document.getElementById('submitModal');
+    modal.style.display = 'block';
+}
+
+function closeSubmitModal() {
+    const modal = document.getElementById('submitModal');
+    modal.style.display = 'none';
+}
+
+function showSuccessModal(submissionNumber) {
+    const successModal = document.getElementById('successModal');
+    const displaySubmissionNumber = document.getElementById('displaySubmissionNumber');
+    displaySubmissionNumber.textContent = submissionNumber;
+    successModal.style.display = 'block';
+}
+
+function closeSuccessModal() {
+    const successModal = document.getElementById('successModal');
+    successModal.style.display = 'none';
+}
+
+function showSaveSuccessModal() {
+    const saveSuccessModal = document.getElementById('saveSuccessModal');
+    saveSuccessModal.style.display = 'block';
+}
+
+function closeSaveSuccessModal() {
+    const saveSuccessModal = document.getElementById('saveSuccessModal');
+    saveSuccessModal.style.display = 'none';
+}
+
+function confirmSubmit() {
+    // Get submission number from the page display
+    const submissionNumberElement = document.getElementById('displaySubmissionNo');
+    const submissionNumber = submissionNumberElement ? submissionNumberElement.textContent.trim() : '000000000000';
+    
+    // Save to localStorage
+    localStorage.setItem('tds_transactions', JSON.stringify(transactions));
+    
+    // Close modal
+    closeSubmitModal();
+    
+    // Show success modal with submission number
+    showSuccessModal(submissionNumber);
+    
+    // Optionally clear transactions after submit
+    // transactions = [];
+    // renderTransactions();
+    // updateSummary();
+}
+

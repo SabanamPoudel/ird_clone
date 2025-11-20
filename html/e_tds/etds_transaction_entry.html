@@ -196,6 +196,69 @@
         </div>
     </div>
 
+    <!-- Submit Confirmation Modal -->
+    <div id="submitModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirm Action</h3>
+                <button type="button" class="modal-close" id="btnCloseModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-icon">
+                    <span class="question-icon">?</span>
+                </div>
+                <p class="modal-message">एकपटक Submit गरिसकेपछि अर्को पटक विवरण फेरि परिवर्तन गर्न पाइने छैन। के तपाईं Submit गर्न चाहनुहुन्छ ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnConfirmSubmit" class="modal-btn modal-btn-yes">Yes</button>
+                <button type="button" id="btnCancelSubmit" class="modal-btn modal-btn-no">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Submission Successful</h3>
+                <button type="button" class="modal-close" id="btnCloseSuccessModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-icon">
+                    <span class="success-icon">✓</span>
+                </div>
+                <div class="success-message-container">
+                    <p class="modal-message">Submission Successful</p>
+                    <p class="submission-number-text">Your Submission Number: <strong id="displaySubmissionNumber"></strong></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCloseSuccess" class="modal-btn modal-btn-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save Success Modal -->
+    <div id="saveSuccessModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>SUCCESS</h3>
+                <button type="button" class="modal-close" id="btnCloseSaveModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-icon">
+                    <span class="info-icon">i</span>
+                </div>
+                <div class="success-message-container">
+                    <p class="modal-message">Successfully Saved</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCloseSave" class="modal-btn modal-btn-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
     <script src="../../js/xlsx.full.min.js"></script>
     <script src="../../js/e_tds/etds_transaction_entry.js"></script>
 </body>
