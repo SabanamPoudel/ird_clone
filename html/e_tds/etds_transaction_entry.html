@@ -9,17 +9,9 @@
 <body>
     <div class="transaction-container">
         <div class="transaction-panel">
-            <!-- Tabs -->
-            <div class="tabs-container">
-                <button class="tab-btn active" data-tab="transaction">ट्रान्स्याक्सन भर्ने फारम</button>
-                <button class="tab-btn" data-tab="voucher">भौचर भर्ने फारम</button>
-                <button class="tab-btn" data-tab="land">ल्यान्ड विवरण परिवर्तन गर्ने फारम</button>
-                <button class="tab-btn" data-tab="logout">लगआउट</button>
-            </div>
-
             <!-- Header -->
             <div class="panel-header">
-                <h2 class="header-text">ट्रान्स्याक्सन भर्ने फारम</h2>
+                <h2 class="header-text">ट्रान्स्याकशन विवरण</h2>
             </div>
 
             <!-- Panel Body -->
@@ -54,7 +46,9 @@
                     <button type="button" id="btnPrintEnglish" class="action-btn" disabled>Print Preview in English</button>
                     <button type="button" id="btnDownloadSample" class="action-btn">Download Sample</button>
                     <div class="file-actions">
+                        <input type="file" id="fileLoadXML" accept=".xml" style="display: none;">
                         <a href="#" id="linkLoadXML" class="link-action">Load XML file</a>
+                        <input type="file" id="fileLoadExcel" accept=".xls,.xlsx" style="display: none;">
                         <a href="#" id="linkLoadExcel" class="link-action">Load EXCEL file</a>
                     </div>
                     <div class="save-actions">
@@ -70,63 +64,59 @@
 
                 <!-- Form Section -->
                 <div class="form-panel">
-                    <!-- Header with भुक्तानी मिति: label and checkboxes -->
-                    <div class="form-header-row">
-                        <div class="form-label-group">
+                    <!-- Single Row with Labels and Inputs -->
+                    <div class="form-single-row">
+                        <div class="form-field-group">
                             <label>स्थायी लेखा नं./पान नं.</label>
+                            <input type="text" id="txtPan" class="form-input-small" maxlength="9" placeholder="">
                         </div>
-                        <div class="form-label-group">
+                        <div class="form-field-group">
                             <label>नाम</label>
+                            <input type="text" id="txtName" class="form-input-small" placeholder="">
                         </div>
-                        <div class="form-label-group-center">
+                        <div class="form-field-group">
                             <label>भुक्तानी मिति:</label>
-                        </div>
-                        <div class="form-label-group">
-                            <label>भुक्तानी रकम</label>
-                        </div>
-                        <div class="form-label-group">
-                            <label>टि.डि.एस रकम</label>
-                        </div>
-                        <div class="form-label-group">
-                            <label>टि.डि.एस किसिम</label>
-                        </div>
-                    </div>
-
-                    <!-- Input Fields Row -->
-                    <div class="form-inputs-row">
-                        <input type="text" id="txtPan" class="form-input-small" maxlength="9" placeholder="">
-                        <input type="text" id="txtName" class="form-input-small" placeholder="">
-                        <div class="date-input-group">
-                            <div class="date-type-checkboxes">
-                                <input type="checkbox" id="chkBS" checked>
-                                <label for="chkBS">वि.सं.</label>
-                                <input type="checkbox" id="chkAD">
-                                <label for="chkAD">ई.सं.</label>
+                            <div class="date-input-wrapper">
+                                <div class="date-checkboxes-inline">
+                                    <input type="checkbox" id="chkBS" checked>
+                                    <label for="chkBS">वि.सं.</label>
+                                    <input type="checkbox" id="chkAD">
+                                    <label for="chkAD">ई.सं.</label>
+                                </div>
+                                <input type="text" id="txtPayDate" class="form-input-small" maxlength="10" placeholder="YYYY.MM.DD">
                             </div>
-                            <input type="text" id="txtPayDate" class="form-input-small" maxlength="10" placeholder="YYYY.MM.DD">
                         </div>
-                        <input type="text" id="txtPayAmount" class="form-input-small" placeholder="">
-                        <input type="text" id="txtTDSAmount" class="form-input-small" placeholder="">
-                        <select id="selTDSType" class="form-select-small">
-                            <option value="">----Select TDS Type----</option>
-                            <option value="11111">(19) 11111 Individual or Proprietorship Firm</option>
-                            <option value="11112">(20) 11112 Remuneration Income Tax</option>
-                            <option value="11113">(21) 11113 Capital Gain Tax – Individual</option>
-                            <option value="11115">(35) 11115 Windfall Gain Tax For Individual</option>
-                            <option value="11121">(22) 11121 Government Institutions</option>
-                            <option value="11122">(23) 11122 Public Limited</option>
-                            <option value="11123">(24) 11123 Private Limited</option>
-                            <option value="11124">(25) 11124 Other Entities</option>
-                            <option value="11125">(26) 11125 Capital Gain Tax – Entity</option>
-                            <option value="11126">(36) 11126 Windfall Gain Tax For Entity</option>
-                            <option value="11131">(27) 11131 Rental Tax</option>
-                            <option value="11132">(28) 11132 Interest Tax</option>
-                            <option value="11133">(29) 11133 Dividend Tax</option>
-                            <option value="11134">(30) 11134 Tax on Other Investment Income</option>
-                            <option value="11135">(31) 11135 Windfall Gain Tax</option>
-                            <option value="11139">(34) 11139 Other Income Tax</option>
-                            <option value="11211">(33) 11211 Social Security Tax based on Remuneration</option>
-                        </select>
+                        <div class="form-field-group">
+                            <label>भुक्तानी रकम</label>
+                            <input type="text" id="txtPayAmount" class="form-input-small" placeholder="">
+                        </div>
+                        <div class="form-field-group">
+                            <label>टि.डि.एस रकम</label>
+                            <input type="text" id="txtTDSAmount" class="form-input-small" placeholder="">
+                        </div>
+                        <div class="form-field-group">
+                            <label>टि.डि.एस किसिम</label>
+                            <select id="selTDSType" class="form-select-small">
+                                <option value="">----Select TDS Type----</option>
+                                <option value="11111">(19) 11111 Individual or Proprietorship Firm</option>
+                                <option value="11112">(20) 11112 Remuneration Income Tax</option>
+                                <option value="11113">(21) 11113 Capital Gain Tax – Individual</option>
+                                <option value="11115">(35) 11115 Windfall Gain Tax For Individual</option>
+                                <option value="11121">(22) 11121 Government Institutions</option>
+                                <option value="11122">(23) 11122 Public Limited</option>
+                                <option value="11123">(24) 11123 Private Limited</option>
+                                <option value="11124">(25) 11124 Other Entities</option>
+                                <option value="11125">(26) 11125 Capital Gain Tax – Entity</option>
+                                <option value="11126">(36) 11126 Windfall Gain Tax For Entity</option>
+                                <option value="11131">(27) 11131 Rental Tax</option>
+                                <option value="11132">(28) 11132 Interest Tax</option>
+                                <option value="11133">(29) 11133 Dividend Tax</option>
+                                <option value="11134">(30) 11134 Tax on Other Investment Income</option>
+                                <option value="11135">(31) 11135 Windfall Gain Tax</option>
+                                <option value="11139">(34) 11139 Other Income Tax</option>
+                                <option value="11211">(33) 11211 Social Security Tax based on Remuneration</option>
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Search Section -->
@@ -151,7 +141,7 @@
 
                     <!-- Control Buttons -->
                     <div class="control-buttons">
-                        <button type="button" id="btnDeleteAll" class="control-btn btn-delete">Delete All</button>
+                        <button type="button" id="btnDeleteAll" class="control-btn">Delete All</button>
                         <button type="button" id="btnAdd" class="control-btn">Add</button>
                         <button type="button" id="btnReset" class="control-btn">Reset</button>
                         <button type="button" id="btnSave" class="control-btn btn-save">Save</button>
@@ -195,17 +185,18 @@
                 <div class="summary-section">
                     <div class="summary-item">
                         <label class="summary-label">जम्मा भुक्तानी रकम:</label>
-                        <span class="summary-value" id="totalPayAmount">0</span>
+                        <span class="summary-value" id="totalPayAmount">0.00</span>
                     </div>
                     <div class="summary-item">
                         <label class="summary-label">जम्मा टि.डि.एस रकम:</label>
-                        <span class="summary-value" id="totalTDSAmount">0</span>
+                        <span class="summary-value" id="totalTDSAmount">0.00</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="../../js/xlsx.full.min.js"></script>
     <script src="../../js/e_tds/etds_transaction_entry.js"></script>
 </body>
 </html>

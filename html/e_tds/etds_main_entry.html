@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-TDS Entry</title>
+    <link rel="stylesheet" href="../../css/e_tds/etds_main_entry.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Tabs Navigation -->
+        <div class="tabs-container">
+            <button class="tab-btn active" data-tab="transaction">ट्रान्स्याक्सन भर्ने फारम</button>
+            <button class="tab-btn" data-tab="voucher">भौचर भर्ने फारम</button>
+            <button class="tab-btn" data-tab="land">ल्यान्ड विवरण परिवर्तन गर्ने फारम</button>
+            <button class="tab-btn" data-tab="logout">लगआउट</button>
+        </div>
+
+        <!-- Tab Content Panels -->
+        <div class="tab-content-container">
+            <!-- Transaction Entry Panel -->
+            <div id="transaction-panel" class="tab-panel active">
+                <iframe src="etds_transaction_entry.html" class="content-iframe" frameborder="0"></iframe>
+            </div>
+
+            <!-- Voucher Entry Panel -->
+            <div id="voucher-panel" class="tab-panel">
+                <iframe src="etds_voucher_entry.html" class="content-iframe" frameborder="0"></iframe>
+            </div>
+
+            <!-- Land Details Panel -->
+            <div id="land-panel" class="tab-panel">
+                <iframe src="etds_land_entry.html" class="content-iframe" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/e_tds/etds_main_entry.js"></script>
+</body>
+</html>

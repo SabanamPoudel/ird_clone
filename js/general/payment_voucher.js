@@ -340,7 +340,7 @@ function removeRow(button) {
 // Helper function to get current Nepali date
 function getCurrentNepaliDate() {
     // Simple approximation - in production, use proper Nepali calendar conversion
-    return '2082/08/15';
+    return '2082/08/03';
 }
 
 // Helper function to get tax type name
@@ -512,6 +512,17 @@ function handleMakePayment() {
     
     // Store in sessionStorage
     sessionStorage.setItem('voucherData', JSON.stringify(voucherData));
+    
+    // Save to payment_vouchers in localStorage for voucher reconciliation
+    const paymentVouchers = JSON.parse(localStorage.getItem('payment_vouchers') || '[]');
+    paymentVouchers.push({
+        voucherNumber: transactionCode,
+        paymentDate: getCurrentNepaliDate(),
+        amount: totalAmount,
+        bankName: bankName,
+        pan: voucherData.pan
+    });
+    localStorage.setItem('payment_vouchers', JSON.stringify(paymentVouchers));
     
     // Open voucher in new window
     window.open('payment_voucher_print.html', '_blank', 'width=1000,height=800');

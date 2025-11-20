@@ -17,9 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('displayDateType').textContent = registrationData.dateType || '';
     }
 
-    // Tab functionality
-    initializeTabs();
-
     // Initialize event listeners
     initializeEventListeners();
     
@@ -46,6 +43,21 @@ function initializeEventListeners() {
         });
     }
 
+    // PAN number auto-fill name
+    const panInput = document.getElementById('txtPan');
+    const nameInput = document.getElementById('txtName');
+    
+    if (panInput && nameInput) {
+        panInput.addEventListener('blur', function() {
+            const pan = this.value.trim();
+            if (pan && !nameInput.value) {
+                // Auto-fill name based on PAN
+                const autoName = getPanHolderName(pan);
+                nameInput.value = autoName;
+            }
+        });
+    }
+
     // Add button
     document.getElementById('btnAdd').addEventListener('click', addTransaction);
 
@@ -66,6 +78,44 @@ function initializeEventListeners() {
 
     // Download Sample button
     document.getElementById('btnDownloadSample').addEventListener('click', downloadSample);
+
+    // Load XML file
+    document.getElementById('linkLoadXML').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('fileLoadXML').click();
+    });
+
+    document.getElementById('fileLoadXML').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            loadXMLFile(file);
+        }
+    });
+
+    // Load Excel file
+    document.getElementById('linkLoadExcel').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('fileLoadExcel').click();
+    });
+
+    document.getElementById('fileLoadExcel').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            loadExcelFile(file);
+        }
+    });
+
+    // Save XML file
+    document.getElementById('linkSaveXML').addEventListener('click', function(e) {
+        e.preventDefault();
+        saveToXML();
+    });
+
+    // Save Excel file
+    document.getElementById('linkSaveExcel').addEventListener('click', function(e) {
+        e.preventDefault();
+        saveToExcel();
+    });
 
     // Refresh button
     document.getElementById('btnRefresh').addEventListener('click', refreshTransactions);
@@ -137,7 +187,8 @@ function addTransaction() {
     updateSummary();
     resetForm();
     
-    alert('ट्रान्स्याकशन सफलतापूर्वक थपियो।');
+    // Save to localStorage so voucher form can access TDS types
+    localStorage.setItem('tds_transactions', JSON.stringify(transactions));
 }
 
 function renderTransactions() {
@@ -155,10 +206,13 @@ function renderTransactions() {
             <td>${transaction.tdsAmount.toFixed(2)}</td>
             <td>${transaction.tdsType}</td>
             <td><button class="btn-edit" onclick="editTransaction(${index})">✏️</button></td>
-            <td><button class="btn-delete" onclick="deleteTransaction(${index})">🗑️</button></td>
+            <td><button class="btn-delete" onclick="deleteTransaction(${index})">❌</button></td>
         `;
         tbody.appendChild(row);
     });
+    
+    // Notify parent to resize iframe
+    notifyParentResize();
 }
 
 function editTransaction(index) {
@@ -182,6 +236,10 @@ function deleteTransaction(index) {
         transactions.splice(index, 1);
         renderTransactions();
         updateSummary();
+        
+        // Update localStorage
+        localStorage.setItem('tds_transactions', JSON.stringify(transactions));
+        
         alert('ट्रान्स्याकशन मेटाइयो।');
     }
 }
@@ -192,6 +250,10 @@ function deleteAllTransactions() {
         transactionCounter = 0;
         renderTransactions();
         updateSummary();
+        
+        // Update localStorage
+        localStorage.setItem('tds_transactions', JSON.stringify(transactions));
+        
         alert('सबै ट्रान्स्याकशनहरू मेटाइए।');
     }
 }
@@ -293,46 +355,170 @@ function downloadSample() {
     document.body.removeChild(link);
 }
 
-// Tab functionality
-function initializeTabs() {
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const tabName = this.getAttribute('data-tab');
-            
-            // Handle logout
-            if (tabName === 'logout') {
-                if (confirm('के तपाईं लगआउट गर्न चाहनुहुन्छ?')) {
-                    sessionStorage.removeItem('etds_registration_success');
-                    // Navigate back to home or login
-                    if (window.parent && window.parent !== window) {
-                        window.parent.postMessage({
-                            action: 'loadContent',
-                            url: 'html/e_tds/etds_home.html'
-                        }, '*');
-                    } else {
-                        window.location.href = 'etds_home.html';
-                    }
-                }
-                return;
-            }
-            
-            // Handle other tabs
-            if (tabName === 'voucher') {
-                alert('भौचर भर्ने फारम फिचर आउँदै छ।');
-            } else if (tabName === 'land') {
-                alert('ल्यान्ड विवरण परिवर्तन गर्ने फारम फिचर आउँदै छ।');
-            }
-            
-            // Update active tab
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-}
-
 function refreshTransactions() {
     loadTransactions();
     alert('ट्रान्स्याकशनहरू रिफ्रेस गरियो।');
+}
+
+// Get PAN holder name
+function getPanHolderName(pan) {
+    return `PAN ${pan} वाला को name`;
+}
+
+// Load XML file
+function loadXMLFile(file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(e.target.result, "text/xml");
+            
+            // Parse XML and load transactions
+            const records = xmlDoc.getElementsByTagName('Transaction');
+            const loadedTransactions = [];
+            
+            for (let i = 0; i < records.length; i++) {
+                const record = records[i];
+                loadedTransactions.push({
+                    id: transactionCounter++,
+                    sn: i + 1,
+                    pan: record.getElementsByTagName('PAN')[0]?.textContent || '',
+                    name: record.getElementsByTagName('Name')[0]?.textContent || '',
+                    payDate: record.getElementsByTagName('PayDate')[0]?.textContent || '',
+                    payAmount: parseFloat(record.getElementsByTagName('PayAmount')[0]?.textContent || 0),
+                    tdsAmount: parseFloat(record.getElementsByTagName('TDSAmount')[0]?.textContent || 0),
+                    tdsType: record.getElementsByTagName('TDSType')[0]?.textContent || ''
+                });
+            }
+            
+            transactions.push(...loadedTransactions);
+            renderTransactions();
+            updateSummary();
+            
+            // Save to localStorage
+            localStorage.setItem('tds_transactions', JSON.stringify(transactions));
+            
+            alert(`XML फाइलबाट ${loadedTransactions.length} ट्रान्स्याकशनहरू लोड भए।`);
+        } catch (error) {
+            alert('XML फाइल लोड गर्न समस्या भयो। कृपया मान्य XML फाइल छान्नुहोस्।');
+            console.error('XML Load Error:', error);
+        }
+    };
+    reader.readAsText(file);
+}
+
+// Load Excel file
+function loadExcelFile(file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+            const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+            
+            // Skip header row (first row)
+            const loadedTransactions = [];
+            for (let i = 1; i < jsonData.length; i++) {
+                const row = jsonData[i];
+                if (row[0]) { // Only process rows with PAN
+                    loadedTransactions.push({
+                        id: transactionCounter++,
+                        sn: i,
+                        pan: row[0]?.toString() || '',
+                        name: row[1]?.toString() || '',
+                        payDate: row[2]?.toString() || '',
+                        payAmount: parseFloat(row[3]) || 0,
+                        tdsAmount: parseFloat(row[4]) || 0,
+                        tdsType: row[5]?.toString() || ''
+                    });
+                }
+            }
+            
+            transactions.push(...loadedTransactions);
+            renderTransactions();
+            updateSummary();
+            
+            // Save to localStorage
+            localStorage.setItem('tds_transactions', JSON.stringify(transactions));
+            
+            alert(`Excel फाइलबाट ${loadedTransactions.length} ट्रान्स्याकशनहरू लोड भए।`);
+        } catch (error) {
+            alert('Excel फाइल लोड गर्न समस्या भयो। कृपया मान्य Excel फाइल छान्नुहोस्।');
+            console.error('Excel Load Error:', error);
+        }
+    };
+    reader.readAsArrayBuffer(file);
+}
+
+// Save to XML file
+function saveToXML() {
+    if (transactions.length === 0) {
+        alert('सेभ गर्नका लागि कुनै ट्रान्स्याकशन छैन।');
+        return;
+    }
+    
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n<Transactions>\n';
+    transactions.forEach(t => {
+        xml += '  <Transaction>\n';
+        xml += `    <PAN>${t.pan}</PAN>\n`;
+        xml += `    <Name>${t.name}</Name>\n`;
+        xml += `    <PayDate>${t.payDate}</PayDate>\n`;
+        xml += `    <PayAmount>${t.payAmount}</PayAmount>\n`;
+        xml += `    <TDSAmount>${t.tdsAmount}</TDSAmount>\n`;
+        xml += `    <TDSType>${t.tdsType}</TDSType>\n`;
+        xml += '  </Transaction>\n';
+    });
+    xml += '</Transactions>';
+    
+    const blob = new Blob([xml], { type: 'application/xml' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'TDS_Transactions.xml';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    alert('ट्रान्स्याकशनहरू XML फाइलमा सेभ भए।');
+}
+
+// Save to Excel file
+function saveToExcel() {
+    if (transactions.length === 0) {
+        alert('सेभ गर्नका लागि कुनै ट्रान्स्याकशन छैन।');
+        return;
+    }
+    
+    const data = [
+        ['PAN Number', 'Name', 'Payment Date', 'Payment Amount', 'TDS Amount', 'TDS Type']
+    ];
+    
+    transactions.forEach(t => {
+        data.push([
+            t.pan,
+            t.name,
+            t.payDate,
+            t.payAmount,
+            t.tdsAmount,
+            t.tdsType
+        ]);
+    });
+    
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Transactions');
+    XLSX.writeFile(wb, 'TDS_Transactions.xlsx');
+    
+    alert('ट्रान्स्याकशनहरू Excel फाइलमा सेभ भए।');
+}
+
+// Notify parent window to resize iframe
+function notifyParentResize() {
+    if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+            action: 'resizeIframe'
+        }, '*');
+    }
 }

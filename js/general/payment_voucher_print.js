@@ -40,11 +40,8 @@ function getVoucherData(urlParams) {
 
 // Populate voucher with data
 function populateVoucher(data) {
-    // Extract only the 7-digit code from transaction code (remove year prefix)
-    let voucherNumber = data.transactionCode || '88888829';
-    if (voucherNumber.includes('-')) {
-        voucherNumber = voucherNumber.split('-')[1].trim();
-    }
+    // Keep the full transaction code including year prefix
+    let voucherNumber = data.transactionCode || '2082-88888829';
     
     // First Copy
     document.getElementById('voucherDate1').textContent = data.date || getCurrentNepaliDate();

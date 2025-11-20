@@ -4,6 +4,8 @@ body, html {
     margin: 0;
     padding: 0;
     background-color: #DFE9F6;
+    zoom: 0.92;
+    overflow: auto;
 }
 
 #vatReturnsFormPage {
@@ -30,21 +32,29 @@ body, html {
 fieldset {
     height: auto !important;
     border: 1px solid #99bbe8;
-    width: 1090px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Taxpayer Details Fieldset */
 #fieldset-1508 {
-    width: 1090px !important;
+    width: 100% !important;
+    padding: 0px !important;
+}
+
+#fieldset-1508 .x-fieldset-body {
+    padding: 10px !important;
 }
 
 /* Year/Month Details Fieldset */
 #fieldset-1503 {
-    width: 1090px !important;
+    width: 100% !important;
+    padding: 0px !important;
 }
 
 #fieldset-1503 .x-fieldset-body {
     width: 100% !important;
+    padding: 10px !important;
 }
 
 #fieldset-1503 .x-table-layout {
@@ -59,17 +69,20 @@ fieldset {
 .vat-transaction-fieldset {
     height: auto !important;
     min-height: 1120px;
-    width: 1090px;
+    width: 100% !important;
+    padding: 0px !important;
+    box-sizing: border-box;
 }
 
 .vat-transaction-fieldset .x-fieldset-body {
     height: auto !important;
     min-height: 1118px;
-    width: 1085px;
+    width: 100% !important;
+    padding: 10px !important;
 }
 
 .vat-transaction-fieldset .x-box-inner {
-    width: 1085px;
+    width: 100% !important;
     height: auto !important;
     min-height: 1118px;
 }
@@ -86,7 +99,7 @@ fieldset {
 /* Table Grid */
 .vat-table-grid {
     padding: 15px 0px 0px;
-    margin: 0px;
+    margin: 0px 0px 20px 0px;
     width: 1080px;
     height: 736px;
     left: 5px;
@@ -95,31 +108,34 @@ fieldset {
 }
 
 .vat-transaction-table {
-    border: 1px solid #ccc;
+    border: 2px solid #e0b85f;
     width: 100%;
     border-collapse: collapse;
+    font-size: 17px;
 }
 
 .vat-transaction-table td {
-    border: 1px solid #ccc;
+    border: 2px solid #e0b85f;
 }
 
 .vat-transaction-table tr {
-    border: 1px solid #ccc;
+    border: 2px solid #e0b85f;
 }
 
 .table-header-label {
-    font-size: 15px;
+    font-size: 16px;
     padding: 0px 60px;
+    font-weight: 600;
 }
 
 .section-header {
-    font-size: 14px;
+    font-size: 17px;
 }
 
 .field-label {
     margin-left: 30px;
     width: 24px;
+    font-size: 17px;
 }
 
 .input-wrapper {
@@ -198,7 +214,7 @@ fieldset {
 .refund-basis-section {
     margin: 0px;
     width: 787px;
-    height: 55px;
+    height: 35px;
     left: 30px;
     top: 794px;
 }
@@ -217,9 +233,8 @@ fieldset {
 /* Payment Section */
 .payment-section {
     width: 787px;
-    height: 54px;
     overflow: visible;
-    margin: 10px 0;
+    margin: 5px 0;
     left: 30px;
     top: 849px;
 }
@@ -257,24 +272,25 @@ fieldset {
 
 /* Document Section */
 .document-section {
-    margin: 20px 0px 20px 30px;
+    margin: 20px 0px 20px 5px;
     width: 787px;
     height: auto !important;
-    min-height: 280px;
-    padding-bottom: 20px;
+    min-height: 160px;
+    padding-bottom: 10px;
 }
 
 .document-section-title {
     display: block;
     margin-bottom: 15px;
     font-weight: bold;
+    font-size: 16px;
 }
 
 .document-grid {
     display: flex;
     flex-direction: column;
     gap: 0px;
-    margin-left: 60px;
+    margin-left: 0px;
 }
 
 .document-row {
@@ -287,6 +303,7 @@ fieldset {
     width: 250px;
     text-align: left;
     white-space: nowrap;
+    font-size: 16px;
 }
 
 .document-input {
@@ -295,10 +312,15 @@ fieldset {
 
 /* Large Turnover Section */
 .large-turnover-section {
-    width: 1090px !important;
+    width: 100% !important;
     margin: 20px 0;
-    padding-top: 15px;
+    padding: 0px !important;
     clear: both;
+    box-sizing: border-box;
+}
+
+.large-turnover-section .x-fieldset-body {
+    padding: 15px 10px !important;
 }
 
 .turnover-notice {

@@ -1,0 +1,214 @@
+/* Land Entry Page Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    background-color: #dfe9f6;
+    color: #333;
+    padding: 10px;
+    zoom: 0.75;
+    height: 100vh;
+    overflow: auto;
+}
+
+.land-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    background-color: #dfe9f6;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Header Information */
+.header-info {
+    display: none;
+    background-color: #dfe9f6;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.header-info-row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.info-field {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.info-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.info-value {
+    color: #333;
+}
+
+.info-separator {
+    margin: 0 5px;
+    color: #666;
+}
+
+/* Form Panel */
+.form-panel {
+    background-color: #dfe9f6;
+    padding: 15px;
+    border-radius: 5px;
+    border: 0.2px solid #b5b8c8;
+}
+
+.form-body {
+    background-color: #dfe9f6;
+    padding: 10px;
+}
+
+/* Form Field Rows */
+.form-field-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 350px;
+}
+
+.field-label {
+    width: 170px;
+    margin-right: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.form-input {
+    width: 175px;
+    height: 23px;
+    padding: 2px 5px;
+    border: 1px solid #b5b8c8;
+    border-radius: 3px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #5b9dd9;
+    box-shadow: 0 0 3px rgba(91, 157, 217, 0.5);
+}
+
+.form-input:read-only {
+    background-color: #f5f5f5;
+}
+
+/* TDS Collection Interval Label */
+.interval-label {
+    margin: 15px 0 10px;
+}
+
+.interval-label label {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Date Range Rows */
+.date-range-row {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    width: 91px;
+}
+
+.date-checkbox {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.date-checkbox:disabled {
+    cursor: not-allowed;
+}
+
+.checkbox-label {
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    user-select: none;
+}
+
+.date-input {
+    width: 100px;
+    height: 25px;
+    padding: 2px 5px;
+    border: 1px solid #b5b8c8;
+    border-radius: 3px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.date-input:focus {
+    outline: none;
+    border-color: #5b9dd9;
+    box-shadow: 0 0 3px rgba(91, 157, 217, 0.5);
+}
+
+.date-input:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.date-separator {
+    margin: 0 10px;
+    font-size: 16px;
+    color: #333;
+    width: 91px;
+}
+
+/* Update Button */
+.button-container {
+    margin: 5px 0 0 470px;
+    height: 32px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.update-btn {
+    min-width: 80px;
+    height: 32px;
+    padding: 0 20px;
+    background: linear-gradient(to bottom, #ffffff 0%, #e6e6e6 100%);
+    border: 1px solid #b5b8c8;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.update-btn:hover {
+    background: linear-gradient(to bottom, #f5f5f5 0%, #d9d9d9 100%);
+}
+
+.update-btn:active {
+    background: linear-gradient(to bottom, #e6e6e6 0%, #d9d9d9 100%);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}

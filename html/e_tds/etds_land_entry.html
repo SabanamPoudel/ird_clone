@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ल्यान्ड विवरण परिवर्तन - E-TDS</title>
+    <link rel="stylesheet" href="../../css/e_tds/etds_land_entry.css">
+</head>
+<body>
+    <div class="land-container">
+        <!-- Header Information -->
+        <div class="header-info">
+            <div class="header-info-row">
+                <div class="info-field">
+                    <label class="info-label">सब्मिशन नं.:</label>
+                    <span id="dpfLandTran" class="info-value">820075440572</span>
+                </div>
+                <div class="info-field">
+                    <label class="info-label">विथहोल्डर स्थायी लेखा नं.:</label>
+                    <span id="dpfLandWithPan" class="info-value">610015263</span>
+                </div>
+                <div class="info-field">
+                    <label class="info-label">विथहोल्डर नाम:</label>
+                    <span id="dpfLandWithName" class="info-value">खाता विजनेश एकेडेमी प्रा.लि.</span>
+                </div>
+                <div class="info-field">
+                    <label class="info-label">टि. डि. एस कलेक्सन अन्तराल :</label>
+                    <span id="dpfLandFrom" class="info-value">2082.07.01</span>
+                    <span class="info-separator">देखि</span>
+                    <span id="dpfLandTo" class="info-value">2082.08.02</span>
+                    <span id="dpfLandType" class="info-value">BS</span>
+                    <span class="info-separator">सम्म</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Land Details Form -->
+        <div class="form-panel">
+            <div class="form-body">
+                <!-- Submission Number (Read-only) -->
+                <div class="form-field-row">
+                    <label class="field-label">सब्मिशन नं. *:</label>
+                    <input type="text" id="txtSubNo" class="form-input" readonly>
+                </div>
+
+                <!-- Username -->
+                <div class="form-field-row">
+                    <label class="field-label">प्रयोगकर्ताको नाम *:</label>
+                    <input type="text" id="txtUsername" class="form-input" maxlength="10">
+                </div>
+
+                <!-- Email -->
+                <div class="form-field-row">
+                    <label class="field-label">इमेल:</label>
+                    <input type="text" id="txtEmail" class="form-input">
+                </div>
+
+                <!-- Phone Number -->
+                <div class="form-field-row">
+                    <label class="field-label">फोन नं. *:</label>
+                    <input type="text" id="txtPhone" class="form-input">
+                </div>
+
+                <!-- Address -->
+                <div class="form-field-row">
+                    <label class="field-label">ठेगाना:</label>
+                    <input type="text" id="txtAddress" class="form-input">
+                </div>
+
+                <!-- TDS Collection Interval Label -->
+                <div class="interval-label">
+                    <label>टि. डि. एस कलेक्सन अन्तराल</label>
+                </div>
+
+                <!-- BS (Bikram Sambat) Date Range -->
+                <div class="date-range-row">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="chkBS" class="date-checkbox" checked>
+                        <label for="chkBS" class="checkbox-label">वि.सं.</label>
+                    </div>
+                    <input type="text" id="txtBSFrom" class="date-input" maxlength="10" placeholder="YYYY.MM.DD">
+                    <label class="date-separator">देखि *</label>
+                    <input type="text" id="txtBSTo" class="date-input" maxlength="10" placeholder="YYYY.MM.DD">
+                    <label class="date-separator">सम्म *</label>
+                </div>
+
+                <!-- AD (Anno Domini) Date Range -->
+                <div class="date-range-row">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="chkAD" class="date-checkbox">
+                        <label for="chkAD" class="checkbox-label">ई.सं.</label>
+                    </div>
+                    <input type="text" id="txtADFrom" class="date-input" maxlength="10" placeholder="YYYY.MM.DD" disabled>
+                    <label class="date-separator">देखि *</label>
+                    <input type="text" id="txtADTO" class="date-input" maxlength="10" placeholder="YYYY.MM.DD" disabled>
+                    <label class="date-separator">सम्म *</label>
+                </div>
+
+                <!-- Update Button -->
+                <div class="button-container">
+                    <button type="button" id="btnUpdate" class="update-btn">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/e_tds/etds_land_entry.js"></script>
+</body>
+</html>

@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', function() {
         panField.addEventListener('blur', function() {
             const pan = this.value.trim();
             if (pan.length === 9) {
-                // Auto-fill with generic company registered name for any 9-digit PAN
-                withholderNameField.value = 'company registered name';
+                // Auto-fill with generic placeholder for any 9-digit PAN
+                withholderNameField.value = 'PAN नम्बर भएको व्यक्ति/फर्मको नाम';
                 withholderNameField.style.backgroundColor = '#e8f5e9'; // Light green to indicate auto-filled
             } else if (pan.length > 0 && pan.length !== 9) {
                 // Show alert if PAN is not 9 digits
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const adTo = document.getElementById('txtRTTDSADto').value.trim();
 
         // Generate submission number
-        const submissionNumber = 'SUB-' + Date.now();
+        const submissionNumber = Date.now().toString();
 
         // Create user object
         const userData = {
@@ -248,6 +248,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Store success data in sessionStorage
         sessionStorage.setItem('etds_registration_success', JSON.stringify(successData));
+        
+        // Store individual fields for land entry form
+        sessionStorage.setItem('submissionNo', submissionNumber);
+        sessionStorage.setItem('username', username);
+        sessionStorage.setItem('email', email);
+        sessionStorage.setItem('phone', phone);
+        sessionStorage.setItem('address', address);
+        sessionStorage.setItem('pan', pan);
+        sessionStorage.setItem('withholder_name', whName);
+        sessionStorage.setItem('dateFrom', bsCheckbox.checked ? bsFrom : adFrom);
+        sessionStorage.setItem('dateTo', bsCheckbox.checked ? bsTo : adTo);
+        sessionStorage.setItem('dateType', bsCheckbox.checked ? 'BS' : 'AD');
 
         // Send message to parent window to load success page in iframe
         if (window.parent && window.parent !== window) {

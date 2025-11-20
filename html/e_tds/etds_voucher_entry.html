@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भौचर विवरण - E-TDS</title>
+    <link rel="stylesheet" href="../../css/e_tds/etds_voucher_entry.css">
+</head>
+<body>
+    <div class="voucher-container">
+        <!-- Header Information -->
+        <div class="header-info">
+            <div class="header-info-row">
+                <div class="info-field">
+                    <label class="info-label">सब्मिशन नं.:</label>
+                    <span id="dpfVITDSTran" class="info-value">820075440572</span>
+                </div>
+                <div class="info-field">
+                    <label class="info-label">विथहोल्डर स्थायी लेखा नं.:</label>
+                    <span id="dpfVITDSWithPan" class="info-value">610015263</span>
+                </div>
+                <div class="info-field">
+                    <label class="info-label">विथहोल्डर नाम:</label>
+                    <span id="dpfVITDSWithName" class="info-value">खाता विजनेश एकेडेमी प्रा.लि.</span>
+                </div>
+                <div class="info-field">
+                    <label class="info-label">टि. डि. एस कलेक्सन अन्तराल :</label>
+                    <span id="dpfVITDSFrom" class="info-value">2082/07/01</span>
+                    <span class="info-separator">देखि</span>
+                    <span id="dpfVITDSTo" class="info-value">2082/08/02</span>
+                    <span id="dpfVITDSType" class="info-value">BS</span>
+                    <span class="info-separator">सम्म</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Panel -->
+        <div class="form-panel">
+            <div class="form-body">
+                <!-- Field Labels Row -->
+                <div class="form-labels-row">
+                    <label class="field-label" style="left: 0px;">शिर्षक</label>
+                    <label class="field-label" style="left: 138px;">भौचर नं.</label>
+                    <label class="field-label" style="left: 255px;">तिरेको प्रकार</label>
+                    <div class="date-label-container" style="left: 355px;">
+                        <label class="field-label">दाखिला मिति:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="chkVITDSBS" class="x-form-checkbox" checked>
+                                <label for="chkVITDSBS" class="x-form-cb-label">वि.सं.</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="chkVITDSAD" class="x-form-checkbox">
+                                <label for="chkVITDSAD" class="x-form-cb-label">ई.सं.</label>
+                            </div>
+                        </div>
+                    </div>
+                    <label class="field-label" id="lblVITDSCashCode" style="left: 505px; display: none;">आ.रा.का / क.से.का</label>
+                    <label class="field-label" id="lblVITDSBankCode" style="left: 465px;">आ.रा.का / क.से.का</label>
+                    <label class="field-label" style="left: 725px;">टि.डि.एस रकम</label>
+                </div>
+
+                <!-- Form Inputs Row -->
+                <div class="form-inputs-row">
+                    <!-- Account Head Dropdown -->
+                    <div class="form-field" style="left: 0px; width: 106px;">
+                        <select id="cboVITDSAcc" class="x-form-select">
+                            <option value="">----Select----</option>
+                            <option value="11122">11122</option>
+                            <option value="11123">11123</option>
+                            <option value="11124">11124</option>
+                        </select>
+                    </div>
+
+                    <!-- Voucher Number -->
+                    <div class="form-field" style="left: 126px; width: 92px;">
+                        <input type="text" id="txtVITDSVouchNo" class="x-form-text" autocomplete="off">
+                    </div>
+
+                    <!-- Payment Mode Dropdown -->
+                    <div class="form-field" style="left: 238px; width: 106px;">
+                        <select id="cboVITDSPayMode" class="x-form-select">
+                            <option value="">----Select----</option>
+                            <option value="Tax office">Tax office</option>
+                            <option value="Bank">Bank</option>
+                            <option value="Online Payment">Online Payment</option>
+                            <option value="Good for Payment">Good for Payment</option>
+                        </select>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="form-field" style="left: 364px; width: 101px;">
+                        <input type="text" id="txtVITDSPayDate" class="x-form-text" maxlength="10" placeholder="YYYY/MM/DD" autocomplete="off">
+                    </div>
+
+                    <!-- IRO/Cash Code Dropdown (Hidden by default) -->
+                    <div class="form-field" id="cboVITDSCashCodeContainer" style="left: 485px; width: 250px; display: none;">
+                        <select id="cboVITDSCashCode" class="x-form-select">
+                            <option value="">----Select IRO----</option>
+                        </select>
+                    </div>
+
+                    <!-- IRO/TSO Dropdown -->
+                    <div class="form-field" id="cboVITDSBankCodeContainer" style="left: 485px; width: 250px;">
+                        <select id="cboVITDSBankCode" class="x-form-select">
+                            <option value="">----Select----</option>
+                            <option value="Inland Revenue Office Baglung">Inland Revenue Office Baglung</option>
+                            <option value="Inland Revenue Office Balaju">Inland Revenue Office Balaju</option>
+                            <option value="Inland Revenue Office Bardibash">Inland Revenue Office Bardibash</option>
+                            <option value="Inland Revenue Office Battishputali">Inland Revenue Office Battishputali</option>
+                            <option value="Inland Revenue Office Bhadrapur">Inland Revenue Office Bhadrapur</option>
+                            <option value="Inland Revenue Office Bhairahawa">Inland Revenue Office Bhairahawa</option>
+                            <option value="Inland Revenue Office Bhaktapur">Inland Revenue Office Bhaktapur</option>
+                            <option value="Inland Revenue Office Bharatpur">Inland Revenue Office Bharatpur</option>
+                            <option value="Inland Revenue Office Biratnagar">Inland Revenue Office Biratnagar</option>
+                            <option value="Inland Revenue Office Birgunj">Inland Revenue Office Birgunj</option>
+                            <option value="Inland Revenue Office Butwal">Inland Revenue Office Butwal</option>
+                            <option value="Inland Revenue Office Chabahil">Inland Revenue Office Chabahil</option>
+                            <option value="Inland Revenue Office Dadeldhura">Inland Revenue Office Dadeldhura</option>
+                            <option value="Inland Revenue Office Damak">Inland Revenue Office Damak</option>
+                            <option value="Inland Revenue Office Damauli">Inland Revenue Office Damauli</option>
+                            <option value="Inland Revenue Office Dang">Inland Revenue Office Dang</option>
+                            <option value="Inland Revenue Office Dhangadi">Inland Revenue Office Dhangadi</option>
+                            <option value="Inland Revenue Office Dharan">Inland Revenue Office Dharan</option>
+                            <option value="Inland Revenue Office Dhulikhel">Inland Revenue Office Dhulikhel</option>
+                            <option value="Inland Revenue Office Galchhi">Inland Revenue Office Galchhi</option>
+                            <option value="Inland Revenue Office Hetauda">Inland Revenue Office Hetauda</option>
+                            <option value="Inland Revenue Office Itahari">Inland Revenue Office Itahari</option>
+                            <option value="Inland Revenue Office Janakpur">Inland Revenue Office Janakpur</option>
+                            <option value="Inland Revenue Office Jorpati">Inland Revenue Office Jorpati</option>
+                            <option value="Inland Revenue Office Jumla">Inland Revenue Office Jumla</option>
+                            <option value="Inland Revenue Office Kalanki">Inland Revenue Office Kalanki</option>
+                            <option value="Inland Revenue Office Kalimati">Inland Revenue Office Kalimati</option>
+                            <option value="Inland Revenue Office Kathmandu 1">Inland Revenue Office Kathmandu 1</option>
+                            <option value="Inland Revenue Office Kathmandu 2">Inland Revenue Office Kathmandu 2</option>
+                            <option value="Inland Revenue Office Kathmandu 3">Inland Revenue Office Kathmandu 3</option>
+                            <option value="Inland Revenue Office Kawasoti">Inland Revenue Office Kawasoti</option>
+                            <option value="Inland Revenue Office Khairhani">Inland Revenue Office Khairhani</option>
+                            <option value="Inland Revenue Office Koteshwor">Inland Revenue Office Koteshwor</option>
+                            <option value="Inland Revenue Office Krishnanagar">Inland Revenue Office Krishnanagar</option>
+                            <option value="Inland Revenue Office Lahan">Inland Revenue Office Lahan</option>
+                            <option value="Inland Revenue Office Lalitpur-1">Inland Revenue Office Lalitpur-1</option>
+                            <option value="Inland Revenue Office Lalitpur-2">Inland Revenue Office Lalitpur-2</option>
+                            <option value="Inland Revenue Office Maharajgunj">Inland Revenue Office Maharajgunj</option>
+                            <option value="Inland Revenue Office Mahendranagar">Inland Revenue Office Mahendranagar</option>
+                            <option value="Inland Revenue Office Naya Baneshwor">Inland Revenue Office Naya Baneshwor</option>
+                            <option value="Inland Revenue Office Nayasadak">Inland Revenue Office Nayasadak</option>
+                            <option value="Inland Revenue Office Nepalganj">Inland Revenue Office Nepalganj</option>
+                            <option value="Inland Revenue Office Pokhara">Inland Revenue Office Pokhara</option>
+                            <option value="Inland Revenue Office Putalisadak">Inland Revenue Office Putalisadak</option>
+                            <option value="Inland Revenue Office Simra">Inland Revenue Office Simra</option>
+                            <option value="Inland Revenue Office Surkhet">Inland Revenue Office Surkhet</option>
+                            <option value="Inland Revenue Office Tangal">Inland Revenue Office Tangal</option>
+                            <option value="Inland Revenue Office Thamel">Inland Revenue Office Thamel</option>
+                            <option value="Inland Revenue Office Tripureshwor">Inland Revenue Office Tripureshwor</option>
+                            <option value="Large Taxpayer Office">Large Taxpayer Office</option>
+                            <option value="Middle Level Taxpayer Office">Middle Level Taxpayer Office</option>
+                            <option value="One Stop">One Stop</option>
+                            <option value="Taxpayer Service Office Beshisahar">Taxpayer Service Office Beshisahar</option>
+                            <option value="Taxpayer Service Office Bhojpur">Taxpayer Service Office Bhojpur</option>
+                            <option value="Taxpayer Service Office Biratchowk">Taxpayer Service Office Biratchowk</option>
+                            <option value="Taxpayer Service Office Chakchake Pyuthan">Taxpayer Service Office Chakchake Pyuthan</option>
+                            <option value="Taxpayer Service Office Chandrapur">Taxpayer Service Office Chandrapur</option>
+                            <option value="Taxpayer Service Office Charikot">Taxpayer Service Office Charikot</option>
+                            <option value="Taxpayer Service Office Dhankuta">Taxpayer Service Office Dhankuta</option>
+                            <option value="Taxpayer Service Office Dipayal Silgadhi">Taxpayer Service Office Dipayal Silgadhi</option>
+                            <option value="Taxpayer Service Office Gaighat">Taxpayer Service Office Gaighat</option>
+                            <option value="Taxpayer Service Office Gaur">Taxpayer Service Office Gaur</option>
+                            <option value="Taxpayer Service Office Gorkha">Taxpayer Service Office Gorkha</option>
+                            <option value="Taxpayer Service Office Gulariya">Taxpayer Service Office Gulariya</option>
+                            <option value="Taxpayer Service Office Illam">Taxpayer Service Office Illam</option>
+                            <option value="Taxpayer Service Office Jaleshwor">Taxpayer Service Office Jaleshwor</option>
+                            <option value="Taxpayer Service Office Kalaiya">Taxpayer Service Office Kalaiya</option>
+                            <option value="Taxpayer Service Office Khandbari">Taxpayer Service Office Khandbari</option>
+                            <option value="Taxpayer Service Office Khotang">Taxpayer Service Office Khotang</option>
+                            <option value="Taxpayer Service Office Kushma">Taxpayer Service Office Kushma</option>
+                            <option value="Taxpayer Service Office Lalbandi">Taxpayer Service Office Lalbandi</option>
+                            <option value="Taxpayer Service Office Lamki">Taxpayer Service Office Lamki</option>
+                            <option value="Taxpayer Service Office Lukla">Taxpayer Service Office Lukla</option>
+                            <option value="Taxpayer Service Office Malangawa">Taxpayer Service Office Malangawa</option>
+                            <option value="Taxpayer Service Office Manthali">Taxpayer Service Office Manthali</option>
+                            <option value="Taxpayer Service Office Okhaldhunga">Taxpayer Service Office Okhaldhunga</option>
+                            <option value="Taxpayer Service Office Parasi">Taxpayer Service Office Parasi</option>
+                            <option value="Taxpayer Service Office Pathari">Taxpayer Service Office Pathari</option>
+                            <option value="Taxpayer Service Office Phidim">Taxpayer Service Office Phidim</option>
+                            <option value="Taxpayer Service Office Rajbiraj">Taxpayer Service Office Rajbiraj</option>
+                            <option value="Taxpayer Service Office Salyan">Taxpayer Service Office Salyan</option>
+                            <option value="Taxpayer Service Office Sandhikharka">Taxpayer Service Office Sandhikharka</option>
+                            <option value="Taxpayer Service Office Sanphebagar">Taxpayer Service Office Sanphebagar</option>
+                            <option value="Taxpayer Service Office Sindhuli">Taxpayer Service Office Sindhuli</option>
+                            <option value="Taxpayer Service Office Syangja">Taxpayer Service Office Syangja</option>
+                            <option value="Taxpayer Service Office Tamghas Gulmi">Taxpayer Service Office Tamghas Gulmi</option>
+                            <option value="Taxpayer Service Office Tansen">Taxpayer Service Office Tansen</option>
+                            <option value="Taxpayer Service Office Taulihawa Kapilbastu">Taxpayer Service Office Taulihawa Kapilbastu</option>
+                        </select>
+                    </div>
+
+                    <!-- TDS Amount -->
+                    <div class="form-field" style="left: 755px; width: 106px;">
+                        <input type="text" id="txtVITDSAmt" class="x-form-text" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="control-buttons">
+            <button type="button" id="btnVITDSPrint" class="x-btn" disabled>Print Preview</button>
+            <button type="button" id="btnVITDSPrintEng" class="x-btn" disabled>Print Preview in English</button>
+            <button type="button" id="btnVITDSAdd" class="x-btn">Add</button>
+            <button type="button" id="btnVITDSReset" class="x-btn">Reset</button>
+        </div>
+
+        <!-- Voucher Grid -->
+        <div class="voucher-grid-panel">
+            <div class="grid-header">
+                <span class="grid-title">भौचरहरु</span>
+            </div>
+            <div class="grid-container">
+                <table class="voucher-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">सि. न.</th>
+                            <th style="width: 100px;">शिर्षक</th>
+                            <th style="width: 100px;">भौचर नं.</th>
+                            <th style="width: 100px;">तिरेको प्रकार</th>
+                            <th style="width: 100px;">दाखिला मिति</th>
+                            <th style="width: 100px;">आ. रा. का / बैंक</th>
+                            <th style="width: 100px;">टि.डि.एस रकम</th>
+                            <th style="width: 200px;">भौचर रिकनसाइल</th>
+                            <th style="width: 30px;">Edit</th>
+                            <th style="width: 30px;">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="voucherTableBody">
+                        <!-- Voucher rows will be added here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-section">
+            <div class="summary-item">
+                <label class="summary-label">जम्मा टि.डि.एस रकम:</label>
+                <span id="dpTDSVouchAmt" class="summary-value">0.00</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/e_tds/etds_voucher_entry.js"></script>
+</body>
+</html>

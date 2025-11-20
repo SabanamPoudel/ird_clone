@@ -38,15 +38,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Enter Transaction button - navigate to transaction entry page
     document.getElementById('btnEnterTransaction').addEventListener('click', function() {
-        // Send message to parent to load transaction entry page in iframe
+        // Send message to parent to load main entry page in iframe
         if (window.parent && window.parent !== window) {
             window.parent.postMessage({
                 action: 'loadContent',
-                url: 'html/e_tds/etds_transaction_entry.html'
+                url: 'html/e_tds/etds_main_entry.html'
             }, '*');
         } else {
             // If not in iframe, navigate directly
-            window.location.href = 'etds_transaction_entry.html';
+            window.location.href = 'etds_main_entry.html';
         }
     });
 });
