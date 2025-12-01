@@ -10,13 +10,14 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    zoom: 1.15;
 }
 
 .navbar {
     background: #1F548A;
-    padding: 12px 0px;
+    padding: 8px 0px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    height: 95px;
+    height: 65px;
     display: flex;
     align-items: center;
 }
@@ -71,7 +72,7 @@ body {
 }
 
 .header-left img {
-    height: 75px;
+    height: 50px;
     width: auto;
     margin-left: 0;
 }
@@ -86,7 +87,7 @@ body {
 }
 
 .header-center img {
-    height: 75px;
+    height: 50px;
     width: auto;
 }
 
@@ -110,7 +111,7 @@ body {
     color: white;
     padding: 0;
     display: inline-block;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 500;
 }
 
@@ -129,7 +130,7 @@ body {
 }
 
 .sidebar {
-    width: 240px;
+    width: 200px;
     background-color: #1F548A;
     color: white;
     overflow-y: auto;
@@ -159,12 +160,12 @@ body {
 
 .dropdown-toggle {
     display: block;
-    padding: 12px 20px;
+    padding: 8px 15px;
     color: white;
     text-decoration: none;
     cursor: pointer;
     font-weight: normal;
-    font-size: 13px;
+    font-size: 11px;
     background-color: transparent;
     border: none;
     width: 100%;
@@ -208,10 +209,10 @@ body {
 
 .submenu li a {
     display: block;
-    padding: 10px 20px 10px 40px;
+    padding: 6px 15px 6px 30px;
     color: white;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 10px;
     transition: background-color 0.2s;
     position: relative;
 }
@@ -219,8 +220,8 @@ body {
 .submenu li a::before {
     content: '📄';
     position: absolute;
-    left: 20px;
-    font-size: 12px;
+    left: 15px;
+    font-size: 10px;
     filter: brightness(0) invert(1);
 }
 
@@ -235,28 +236,28 @@ body {
 }
 
 .container-fluid {
-    padding: 20px;
+    padding: 12px;
 }
 
 .card {
     background: white;
-    border-radius: 8px;
+    border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin: 20px auto;
+    margin: 10px auto;
     max-width: 1200px;
 }
 
 .card-header {
     background-color: #1F548A;
     color: white;
-    padding: 15px 20px;
-    border-radius: 8px 8px 0 0;
-    font-size: 18px;
+    padding: 10px 15px;
+    border-radius: 6px 6px 0 0;
+    font-size: 15px;
     font-weight: bold;
 }
 
 .card-body {
-    padding: 30px;
+    padding: 20px;
     display: flex;
     gap: 0;
 }
@@ -267,33 +268,33 @@ body {
 }
 
 .col-sm-6:first-child {
-    padding-right: 30px;
+    padding-right: 20px;
 }
 
 .surface-card-title {
     background-color: #eef4f7;
-    padding: 12px 15px;
-    margin-bottom: 20px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
     border-radius: 0;
     box-shadow: none;
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 12px;
+    line-height: 1.5;
     color: #333;
 }
 
 .row {
     display: flex;
     align-items: center;
-    margin-bottom: 18px;
+    margin-bottom: 12px;
 }
 
 .col-form-label {
     flex: 0 0 auto;
     text-align: left;
-    padding-right: 15px;
-    font-size: 14px;
+    padding-right: 12px;
+    font-size: 12px;
     white-space: nowrap;
-    min-width: 160px;
+    min-width: 140px;
 }
 
 .col-sm-5 {
@@ -302,11 +303,11 @@ body {
 
 .form-control {
     width: 100%;
-    max-width: 300px;
-    padding: 6px 10px;
+    max-width: 280px;
+    padding: 5px 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .form-control:focus {
@@ -347,15 +348,15 @@ body {
 
 .notice-bg {
     background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
-    padding: 40px 30px;
+    padding: 25px 20px;
     border-radius: 15px 0 0 15px;
     color: white;
-    min-height: 400px;
+    min-height: 320px;
 }
 
 .notice-bg label {
-    line-height: 2.2;
-    font-size: 15px;
+    line-height: 1.8;
+    font-size: 13px;
     color: white;
     font-weight: 400;
 }
@@ -363,24 +364,24 @@ body {
 .download-btn {
     background-color: #3066be;
     color: white;
-    padding: 4px 10px;
-    margin-left: 10px;
-    height: 20px;
-    font-size: 12px;
+    padding: 3px 8px;
+    margin-left: 8px;
+    height: 18px;
+    font-size: 11px;
     border: none;
     border-radius: 3px;
     cursor: pointer;
 }
 
 svg {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     vertical-align: middle;
 }
 
 .button-container {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
+    gap: 12px;
+    margin-top: 20px;
 }

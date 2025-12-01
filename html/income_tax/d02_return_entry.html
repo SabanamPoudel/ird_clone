@@ -64,7 +64,7 @@
                                                         <div id="combobox-1370" class="x-field x-form-item x-field-default" style="width: 275px;">
                                                             <label id="combobox-1370-labelEl" for="d02-fiscal-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">आर्थिक बर्ष  *:</label>
                                                             <div class="x-form-item-body" id="combobox-1370-bodyEl" role="presentation" style="width: 150px;">
-                                                                <select id="d02-fiscal-input" class="x-form-field x-form-text x-form-empty-field" autocomplete="off" aria-invalid="false" role="textbox" aria-required="false" style="width: 150px;">
+                                                                <select id="d02-fiscal-input" class="x-form-field x-form-text x-form-empty-field" autocomplete="off" aria-invalid="false" role="textbox" aria-required="false" style="width: 150px;" onchange="showAdditionalFields()">
                                                                     <option value="">---छान्नुहोस् ---</option>
                                                                     <option value="2072/073">2072/073</option>
                                                                     <option value="2073/074">2073/074</option>
@@ -97,6 +97,46 @@
                                                             <label id="textfield-1371-labelEl" for="d02-contact-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">सम्पर्क नम्बर *:</label>
                                                             <div class="x-form-item-body" id="textfield-1371-bodyEl" role="presentation" style="width: 150px;">
                                                                 <input id="d02-contact-input" type="text" name="ext-gen3446" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" maxlength="10" role="textbox" aria-required="false" style="width: 150px;">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr id="transactionAmountRow" style="display: none;">
+                                                    <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                        <div id="txtTransactionAmount" class="x-field x-form-item x-field-default" style="width: 275px;">
+                                                            <label id="txtTransactionAmount-labelEl" for="d02-transaction-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">कारोबार रकम रु. *:</label>
+                                                            <div class="x-form-item-body" id="txtTransactionAmount-bodyEl" role="presentation" style="width: 150px;">
+                                                                <input id="d02-transaction-input" type="text" name="txtTransactionAmount" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-required="true" style="width: 150px;">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr id="profitAmountRow" style="display: none;">
+                                                    <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                        <div id="txtProfitAmount" class="x-field x-form-item x-field-default" style="width: 275px;">
+                                                            <label id="txtProfitAmount-labelEl" for="d02-profit-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">नाफा रकम रु. *:</label>
+                                                            <div class="x-form-item-body" id="txtProfitAmount-bodyEl" role="presentation" style="width: 150px;">
+                                                                <input id="d02-profit-input" type="text" name="txtProfitAmount" size="20" class="x-form-field x-form-text" autocomplete="off" aria-invalid="false" role="textbox" aria-required="true" style="width: 150px;">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr id="professionTypeRow" style="display: none;">
+                                                    <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                        <div id="comboProfessionType" class="x-field x-form-item x-field-default" style="width: 275px;">
+                                                            <label id="comboProfessionType-labelEl" for="d02-profession-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">किसिम *:</label>
+                                                            <div class="x-form-item-body" id="comboProfessionType-bodyEl" role="presentation" style="width: 150px;">
+                                                                <select id="d02-profession-input" class="x-form-field x-form-text x-form-empty-field" autocomplete="off" aria-invalid="false" role="textbox" aria-required="true" style="width: 150px;">
+                                                                    <option value="">---छान्नुहोस् ---</option>
+                                                                    <option value="चिकित्सक">चिकित्सक</option>
+                                                                    <option value="परामर्शदाता">परामर्शदाता</option>
+                                                                    <option value="इन्जिनियर">इन्जिनियर</option>
+                                                                    <option value="लेखापरीक्षक">लेखापरीक्षक</option>
+                                                                    <option value="कानुन व्यवसायी">कानुन व्यवसायी</option>
+                                                                    <option value="खेलाडी">खेलाडी</option>
+                                                                    <option value="कलाकार">कलाकार</option>
+                                                                    <option value="अन्य">अन्य</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </td>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-01 Return Form - IRD</title>
+    <link rel="stylesheet" href="../../css/income_tax/d01_return_entry.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <nav class="navbar shadow-sm mb-2">
+        <div class="container-fluid">
+            <div class="collapse show navbar-collapse">
+                <div class="header-section">
+                    <div class="header-left">
+                        <img src="../../media/resources/logo.gif" alt="IRD Logo">
+                    </div>
+                    
+                    <div class="header-center">
+                        <img src="../../media/resources/flag.gif" alt="Nepal Flag">
+                        <img src="../../media/resources/slogan.jpg" alt="Slogan" style="height: 75px; width: auto; margin-left: 150px;">
+                    </div>
+                    
+                    <div class="header-right">
+                        <label class="dt" id="currentDate">Date: 2082.07.23</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div class="sidebar is-open">
+            <div class="side-menu">
+                <ul class="list-unstyled pb-3 nav flex-column">
+                    <!-- General -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">General</a>
+                        <ul class="submenu">
+                            <li><a href="#">Taxpayer Login</a></li>
+                            <li><a href="#">Create Taxpayer Login</a></li>
+                            <li><a href="#">Forgot Password</a></li>
+                            <li><a href="#">Drug Manufacturer's Login</a></li>
+                            <li><a href="#">Payment Voucher Search</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Registration -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Registration(PAN, VAT, EXCISE)</a>
+                        <ul class="submenu">
+                            <li><a href="#">Application For Registration</a></li>
+                            <li><a href="#">Registration Log In</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- VAT -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">VAT</a>
+                        <ul class="submenu">
+                            <li><a href="#">VAT Return Entry</a></li>
+                            <li><a href="#">VAT Return Login</a></li>
+                            <li><a href="#">VAT Close Of Business Entry</a></li>
+                            <li><a href="#">VAT Close Of Business Login</a></li>
+                            <li><a href="#">Help</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Non-Resident Person -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Non-Resident Person (DST/VAT)</a>
+                        <ul class="submenu">
+                            <li><a href="#">Application For DST Registration</a></li>
+                            <li><a href="#">Registration Log In</a></li>
+                            <li><a href="#">VAT Return Entry</a></li>
+                            <li><a href="#">VAT Return Login</a></li>
+                            <li><a href="#">DST Return Entry</a></li>
+                            <li><a href="#">DST VAT Return Entry</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Non-Resident Airlines -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Non-Resident Airlines</a>
+                        <ul class="submenu">
+                            <li><a href="#">Application For Registration</a></li>
+                            <li><a href="#">Registration Log In</a></li>
+                            <li><a href="#">NRA VAT Return Entry</a></li>
+                            <li><a href="#">NRA VAT Return Login</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Estimated Return -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Estimated Return</a>
+                        <ul class="submenu">
+                            <li><a href="#">Estimated Return Entry</a></li>
+                            <li><a href="#">Estimated Return D02 Entry</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Income Tax -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link active" href="#" onclick="toggleMenu(this)">Income Tax</a>
+                        <ul class="submenu">
+                            <li><a href="d01_return_entry.html">D-01 Return Entry</a></li>
+                            <li><a href="#" onclick="loadInParentIframe('income_tax/d02_return_entry.html'); return false;">D-02 Return Entry</a></li>
+                            <li><a href="#">D-03 Return Entry</a></li>
+                            <li><a href="#">D-04 Return Entry</a></li>
+                            <li><a href="#">Jeopardy Assessment</a></li>
+                            <li><a href="#">Change of Control</a></li>
+                            <li><a href="#">Close of Business D-01</a></li>
+                            <li><a href="#">Close of Business D-02</a></li>
+                            <li><a href="#">Close of Business D-03</a></li>
+                            <li><a href="#">Tax Return Login</a></li>
+                            <li><a href="#">Help</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Excise -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Excise</a>
+                        <ul class="submenu">
+                            <li><a href="#">Return Entry</a></li>
+                            <li><a href="#">Excise Return Login</a></li>
+                            <li><a href="#">Close Of Business Entry</a></li>
+                            <li><a href="#">Excise Close Of Business Login</a></li>
+                            <li><a href="#">Self Renew Permit</a></li>
+                            <li><a href="#">New Permit</a></li>
+                            <li><a href="#">Manufacturer's Login</a></li>
+                            <li><a href="#">Brand Registration</a></li>
+                            <li><a href="#">Brand Registration Login</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- E-TDS -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">E-TDS</a>
+                        <ul class="submenu">
+                            <li><a href="#">E-TDS</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Diplomatic Refund -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Diplomatic Refund</a>
+                        <ul class="submenu">
+                            <li><a href="#">Diplomatic Refund Login</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Health Tax -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Health Tax</a>
+                        <ul class="submenu">
+                            <li><a href="#">Returns Entry</a></li>
+                            <li><a href="#">Returns Login</a></li>
+                            <li><a href="#">Close of Business Entry</a></li>
+                            <li><a href="#">Close of Business Login</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Education Tax -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Education Tax</a>
+                        <ul class="submenu">
+                            <li><a href="#">Returns Entry</a></li>
+                            <li><a href="#">Returns Login</a></li>
+                            <li><a href="#">Close Of Business Entry</a></li>
+                            <li><a href="#">Close Of Business Login</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Electronic Billing -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Electronic Billing</a>
+                        <ul class="submenu">
+                            <li><a href="#">Electronic Billing Software Listing</a></li>
+                            <li><a href="#">Software Listing Login</a></li>
+                            <li><a href="#">Electronic Billing User Permission</a></li>
+                            <li><a href="#">User Permission Login</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Education Service Fee -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Education Service Fee</a>
+                        <ul class="submenu">
+                            <li><a href="#">Education Service Fee Entry</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Foreign Employment Service Fee -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Foreign Employment Service Fee</a>
+                        <ul class="submenu">
+                            <li><a href="#">Foreign Employment Service Fee Entry</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Foreign Tourism Fee -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Foreign Tourism Fee</a>
+                        <ul class="submenu">
+                            <li><a href="#">Foreign Tourism Fee Entry</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Luxury Fee -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Luxury Fee</a>
+                        <ul class="submenu">
+                            <li><a href="#">Luxury Fee Entry</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Other Offices -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle nav-link" href="#" onclick="toggleMenu(this)">Other Offices</a>
+                        <ul class="submenu">
+                            <li><a href="#">Log In/Out</a></li>
+                            <li><a href="#">Bank Login</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <div class="container-fluid" style="padding: 20px;">
+                <!-- Main Card -->
+                <div style="background: white; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                    <div style="background: #e9ecef; padding: 12px 20px; border-bottom: 1px solid #dee2e6; font-weight: 600; font-size: 12px; margin-bottom: 15px;">
+                        Eself Voucher D01
+                    </div>
+                    
+                    <!-- Inner Card -->
+                    <div style="padding: 20px;">
+                        <!-- ESelfAssessment Card -->
+                        <div style="background: white; border: 1px solid #dee2e6; border-radius: 4px; margin-bottom: 20px; box-shadow: 0 4px 10px #cdcee5;">
+                            <div style="background: #f8f9fa; padding: 10px 20px; border-bottom: 1px solid #dee2e6; font-weight: 600; font-size: 11px; margin-bottom: 15px;">
+                                ESelfAssessment D01
+                            </div>
+                            <div style="padding: 15px 20px;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr>
+                                        <td style="padding: 8px 15px; width: 25%;">
+                                            <span style="font-size: 11px;">स्थायी लेखा नम्बर:</span>
+                                            <strong style="font-size: 12px; margin-left: 10px;" id="displayPan"></strong>
+                                        </td>
+                                        <td style="padding: 8px 15px; width: 25%;">
+                                            <span style="font-size: 11px;">व्यवसायको नाम:</span>
+                                            <strong style="font-size: 12px;" id="displayBusinessName"></strong>
+                                        </td>
+                                        <td style="padding: 8px 15px; width: 25%;">
+                                            <span style="font-size: 11px;">Payer Address:</span>
+                                            <strong style="font-size: 12px;" id="displayAddress"></strong>
+                                        </td>
+                                        <td style="padding: 8px 15px; width: 25%;">
+                                            <span style="font-size: 11px;">मोबाइल नम्बर:</span>
+                                            <strong style="font-size: 12px;" id="displayMobile"></strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 15px;">
+                                            <span style="font-size: 11px;">मिति:</span>
+                                            <strong style="font-size: 12px; margin-left: 10px;" id="displayDate"></strong>
+                                        </td>
+                                        <td style="padding: 8px 15px;">
+                                            <span style="font-size: 11px;">कर कार्यालय:</span>
+                                            <strong style="font-size: 12px;">आन्तरिक राजस्व कार्यालय भरतपुर</strong>
+                                        </td>
+                                        <td style="padding: 8px 15px;">
+                                            <span style="font-size: 11px;">इमेल ठेगाना:</span>
+                                            <strong style="font-size: 12px;" id="displayEmail"></strong>
+                                        </td>
+                                        <td style="padding: 8px 15px;">
+                                            <span style="font-size: 11px;">Request Code:</span>
+                                            <strong style="font-size: 12px;" id="displayRequestCode"></strong>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Filter Section -->
+                        <div style="background: white; border: 1px solid #dee2e6; border-radius: 4px; margin-bottom: 20px; box-shadow: 0 4px 10px #cdcee5;">
+                            <div style="background: #f8f9fa; padding: 10px 20px; border-bottom: 1px solid #dee2e6; font-weight: 600; font-size: 12px; margin-bottom: 15px;">
+                                Filter
+                            </div>
+                            <div style="padding: 25px;">
+                                <!-- Fiscal Year -->
+                                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                                    <label style="width: 150px; font-size: 11px; font-weight: 500;">आर्थिक बर्ष *:</label>
+                                    <select id="fiscalYear" style="width: 200px; padding: 6px 10px; border: 1px solid #ced4da; border-radius: 3px; font-size: 11px;">
+                                        <option value="">--छान्नुहोस्--</option>
+                                        <option value="2081/82">2081/82</option>
+                                        <option value="2080/81">2080/81</option>
+                                        <option value="2079/80">2079/80</option>
+                                    </select>
+                                    <span style="margin-left: 15px; font-size: 11px;">१. कृपया आर्थिक बर्ष छान्नुहोस् ।</span>
+                                </div>
+                                
+                                <!-- Transaction Amount -->
+                                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                                    <label style="width: 150px; font-size: 11px; font-weight: 500;">कारोबार रकम *:</label>
+                                    <input type="text" id="transactionAmt" style="width: 200px; padding: 6px 10px; border: 1px solid #ced4da; border-radius: 3px; font-size: 11px;">
+                                    <span style="margin-left: 15px; font-size: 11px;">२. कृपया कारोबार रकम उल्लेख गर्नुहोस् ।</span>
+                                </div>
+                                
+                                <!-- Deductible Amount -->
+                                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                                    <label style="width: 150px; font-size: 11px; font-weight: 500;">कट्टी हुने रकम * :</label>
+                                    <input type="text" id="expenseAmt" style="width: 200px; padding: 6px 10px; border: 1px solid #ced4da; border-radius: 3px; font-size: 11px;">
+                                    <span style="margin-left: 15px; font-size: 11px;">३. कृपया कट्टी हुने रकम उल्लेख गर्नुहोस् र Tab Key थिच्नुहोस्।</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Payment Section -->
+                        <div style="background: white; border: 1px solid #dee2e6; border-radius: 4px; margin-bottom: 20px; box-shadow: 0 4px 10px #cdcee5;">
+                            <div style="background: #f8f9fa; padding: 10px 20px; border-bottom: 1px solid #dee2e6; font-weight: 600; font-size: 12px; margin-bottom: 15px;">
+                                Payment
+                            </div>
+                            <div style="padding: 25px;">
+                                <div id="paymentDetails" style="margin-bottom: 5px;"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bank and Instructions Section -->
+                        <div style="background: white; border: 1px solid #dee2e6; border-radius: 4px; margin-bottom: 20px; box-shadow: 0 4px 10px #cdcee5;">
+                            <div style="padding: 25px;">
+                                <!-- Bank Selection -->
+                                <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                                    <label style="width: 100px; font-size: 11px; font-weight: 500;">बैंक:<span style="color: red;">*</span></label>
+                                    <select id="bankCode" style="width: 500px; padding: 6px 10px; border: 1px solid #ced4da; border-radius: 3px; font-size: 11px;">
+                                        <option value="">---छान्नुहोस्---</option>
+                                        <option value="001">नेपाल बैंक लिमिटेड</option>
+                                        <option value="002">राष्ट्रिय वाणिज्य बैंक</option>
+                                        <option value="003">नेपाल इन्भेष्टमेन्ट बैंक लि.</option>
+                                        <option value="004">नेपाल बंगलादेश बैंक</option>
+                                        <option value="005">नेपाल क्रेडिट एण्ड कमर्स बैंक</option>
+                                        <option value="006">एनआईसी एशिया बैंक</option>
+                                        <option value="007">कृषि विकास बैंक</option>
+                                        <option value="008">ग्लोबल आइएमई बैंक</option>
+                                    </select>
+                                    <span style="margin-left: 15px; font-size: 11px;">४. कृपया बैंक छान्नुहोस् ।</span>
+                                </div>
+                                
+                                <!-- Instructions -->
+                                <div style="padding: 10px 0;">
+                                    <p style="font-size: 11px; line-height: 1.6; margin-bottom: 10px;">
+                                        तपाईंले घोषणा गरेको कारोबार रकम र कट्टी हुने रकम ठीक भए नभएको पुन चेकजाच गर्नुहोस् ।<br>
+                                        यदि ठीक भएमा Submit बटन थिच्नुहोस् । बेठीक भएमा Delete गरी पुन विवरण भर्नु होस् ।
+                                    </p>
+                                    
+                                    <!-- Submit Button -->
+                                    <div style="text-align: right; padding-right: 150px;">
+                                        <button id="submitBtn" style="background-color: #0066cc; color: white; padding: 8px 30px; border: none; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: 500;">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/income_tax/d01_form_page.js"></script>
+</body>
+</html>

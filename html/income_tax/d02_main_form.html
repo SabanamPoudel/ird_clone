@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-02 Main Form - Self Assessment</title>
+    <link rel="stylesheet" href="../../extjs/resources/ext-all.css">
+    <link rel="stylesheet" href="../../css/all.css">
+    <link rel="stylesheet" href="../../css/income_tax/d02_return_entry.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #DFE9F6;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        #CntMainPage {
+            margin: 0;
+            width: 100%;
+            max-width: 100%;
+            background: #DFE9F6;
+            border: 1px solid #C5D9F1;
+            box-sizing: border-box;
+        }
+        
+        .x-panel-header {
+            background: linear-gradient(#B7D3F3, #8DB3E3);
+            padding: 10px;
+            font-weight: bold;
+            border-bottom: 1px solid #99BCE8;
+        }
+        
+        .x-panel-body {
+            padding: 10px;
+        }
+        
+        .x-form-item-label {
+            font-weight: normal;
+            display: inline-block;
+            vertical-align: top;
+        }
+        
+        .x-form-field {
+            border: 1px solid #B5B8C8;
+            padding: 3px;
+        }
+        
+        .x-form-readonly {
+            background-color: #F0F0F0;
+        }
+        
+        .x-btn {
+            background: linear-gradient(#FEFEFE, #E6E6E6);
+            border: 1px solid #B5B8C8;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .x-btn:hover {
+            background: linear-gradient(#F5F5F5, #D5D5D5);
+        }
+        
+        table.x-table-layout {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .extTbl {
+            margin: 10px 0;
+        }
+        
+        .TxtRight {
+            text-align: right;
+        }
+        
+        input[type="text"]:disabled {
+            background-color: #F0F0F0;
+            cursor: not-allowed;
+        }
+        
+        .form-section {
+            margin: 10px 0;
+            padding: 0;
+            border: 1px solid #C5D9F1;
+            background: #DFE9F6;
+        }
+        
+        .section-header {
+            background: #DCE6F1;
+            padding: 10px;
+            font-weight: bold;
+            border-bottom: 1px solid #C5D9F1;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="CntMainPage" class="x-container">
+        <div id="pnlSelfAssessmentD02" class="x-panel">
+            
+            <!-- Panel Body -->
+            <div id="pnlSelfAssessmentD02-body" class="x-panel-body" style="overflow: auto; height: 669px;">
+                <div id="form-1105" class="x-panel" style="height: 629px;">
+                    <div class="x-panel-body" style="overflow: auto; height: 619px;">
+                        
+                        <!-- Title Row -->
+                        <div style="margin: 0 0 5px; height: 40px;">
+                            <table role="presentation" class="x-table-layout" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 196px;">
+                                            <div id="errorDisplay" style="color: red;"></div>
+                                        </td>
+                                        <td style="text-align: center; padding-right: 150px;">
+                                            <label style="font-size: 15px; font-weight: bolder;">फाराम-आयकर-डे-०२</label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- आय विवरण Section -->
+                        <div class="form-section">
+                            <div class="section-header">आय विवरण</div>
+                            <div style="padding-left: 9px;">
+                                <div style="text-align: center; margin: 10px 0 20px 0;">
+                                    <div>(ब्यवसायबाट प्राप्त करयोग्य आय दश लाख रुपैयां सम्म र ब्यवसायको कारोबार तीस लाख रुपैयां भन्दा बढी एक करोड रुपैयां भन्दा घटी भएका बासिन्दा प्राकृतिक ब्यक्तिको लागि)</div>
+                                </div>
+                                <div style="margin: 15px 0;">
+                                    <label><strong>आ.रा.का. को नाम:</strong> <span id="iroName">आन्तरिक राजस्व कार्यालय भरतपुर</span></label>
+                                </div>
+                                <div style="margin: 15px 0;">
+                                    <label><strong>सब्मिशन न.:</strong> <span id="submissionNo"></span></label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- १ करदाता सम्बन्धी विवरण -->
+                        <div class="form-section">
+                            <div class="section-header">१ करदाता सम्बन्धी विवरण</div>
+                            <table class="x-table-layout" cellspacing="0" style="width: 100%; border-collapse: collapse; background-color: #DFE9F6;">
+                                <tbody>
+                                    <tr style="background-color: #DFE9F6;">
+                                        <td style="padding: 10px; border: 1px solid #C5D9F1;">
+                                            <label style="margin-right:10px; font-weight: normal;">स्था . ले . नं . :</label>
+                                            <input type="text" id="panNo" maxlength="9" readonly style="width: 130px; padding: 6px; border: 1px solid #A8B9CF; background: white;">
+                                        </td>
+                                        <td style="padding: 10px; border: 1px solid #C5D9F1;">
+                                            <label style="margin-right:10px; font-weight: normal;">सब्मिशन न.:</label>
+                                            <input type="text" id="submissionNo2" maxlength="14" disabled style="width: 200px; padding: 6px; border: 1px solid #A8B9CF; background-color: #F5F5F5;">
+                                        </td>
+                                        <td style="padding: 10px; border: 1px solid #C5D9F1;">
+                                            <label style="margin-right:10px; font-weight: normal;">खाताको किसिम:</label>
+                                            <input type="text" id="accountType" maxlength="2" readonly style="width: 60px; padding: 6px; border: 1px solid #A8B9CF; background: white;">
+                                        </td>
+                                    </tr>
+                                    <tr style="background-color: #DFE9F6;">
+                                        <td colspan="3" style="padding: 10px; border: 1px solid #C5D9F1;">
+                                            <label style="margin-right:10px; font-weight: normal;">नाम :</label>
+                                            <input type="text" id="taxpayerName" readonly style="width: calc(100% - 60px); padding: 6px; border: 1px solid #A8B9CF; background: white;">
+                                        </td>
+                                    </tr>
+                                    <tr style="background-color: #DFE9F6;">
+                                        <td style="padding: 15px; border: 1px solid #C5D9F1; font-weight: normal; width: 12%;">ठेगाना</td>
+                                        <td style="padding: 15px; border: 1px solid #C5D9F1; font-weight: normal; width: 13%;">घर नं .</td>
+                                        <td style="padding: 15px; border: 1px solid #C5D9F1; font-weight: normal; width: 12%;">वार्ड नं .</td>
+                                        <td style="padding: 15px; border: 1px solid #C5D9F1; font-weight: normal; width: 25%;">गांउ / टोल र बाटोको नाम</td>
+                                        <td style="padding: 15px; border: 1px solid #C5D9F1; text-align: center; width: 28%;">
+                                            <label style="margin-right: 10px;"><input type="radio" name="municipalityType" value="municipal" checked> म. न. पा.</label>
+                                            <label><input type="radio" name="municipalityType" value="umanapa"> उ. म. न. पा.</label><br>
+                                            <label style="margin-right: 10px;"><input type="radio" name="municipalityType" value="napa"> न. पा.</label>
+                                            <label><input type="radio" name="municipalityType" value="gapa"> गा. पा.</label>
+                                        </td>
+                                        <td style="padding: 15px; border: 1px solid #C5D9F1; font-weight: normal; width: 10%;">जिल्ला</td>
+                                    </tr>
+                                    <tr style="background-color: #DFE9F6;">
+                                        <td style="padding: 15px; border: 1px solid #C5D9F1;"></td>
+                                        <td style="padding: 15px; border: 1px solid #C5D9F1;">
+                                            <input type="text" id="houseNo" readonly style="width: 100%; padding: 6px; border: 1px solid #A8B9CF; box-sizing: border-box; background: white;">
+                                        </td>
+                                        <td style="padding: 15px; border: 1px solid #C5D9F1;">
+                                            <input type="text" id="wardNo" readonly style="width: 100%; padding: 6px; border: 1px solid #A8B9CF; box-sizing: border-box; background: white;">
+                                        </td>
+                                        <td style="padding: 15px; border: 1px solid #C5D9F1;">
+                                            <input type="text" id="streetName" readonly style="width: 100%; padding: 6px; border: 1px solid #A8B9CF; box-sizing: border-box; background: white;">
+                                        </td>
+                                        <td style="padding: 15px; border: 1px solid #C5D9F1;">
+                                            <input type="text" id="municipalityName" readonly style="width: 100%; padding: 6px; border: 1px solid #A8B9CF; box-sizing: border-box; background: white;">
+                                        </td>
+                                        <td style="padding: 15px; border: 1px solid #C5D9F1;">
+                                            <input type="text" id="district" readonly style="width: 100%; padding: 6px; border: 1px solid #A8B9CF; box-sizing: border-box; background: white;">
+                                        </td>
+                                    </tr>
+                                    <tr style="background-color: #DFE9F6;">
+                                        <td style="padding: 10px; border: 1px solid #C5D9F1;">
+                                            <label style="margin-right:10px; font-weight: normal;">फोन :</label>
+                                            <input type="text" id="phone" readonly style="width: 60%; padding: 6px; border: 1px solid #A8B9CF; background: white;">
+                                        </td>
+                                        <td colspan="2" style="padding: 10px; border: 1px solid #C5D9F1;">
+                                            <label style="margin-right:10px; font-weight: normal;">मोबाइल :</label>
+                                            <input type="text" id="mobile" readonly style="width: calc(100% - 100px); padding: 6px; border: 1px solid #A8B9CF; background: white;">
+                                        </td>
+                                        <td colspan="3" style="padding: 10px; border: 1px solid #C5D9F1;">
+                                            <label style="margin-right:10px; font-weight: normal;">इमेल :</label>
+                                            <input type="text" id="email" readonly style="width: calc(100% - 70px); padding: 6px; border: 1px solid #A8B9CF; background: white;">
+                                        </td>
+                                    </tr>
+                                    <tr style="background-color: #DFE9F6;">
+                                        <td colspan="3" style="padding: 10px; border: 1px solid #C5D9F1;">
+                                            <label style="margin-right:10px; font-weight: normal;">आय बर्ष *:</label>
+                                            <input type="text" id="fiscalYear" readonly style="width: 180px; padding: 6px; border: 1px solid #A8B9CF; background: white;">
+                                            <label style="margin-left: 10px; color: #666; font-size: 13px;">( भर्ने उदाहरण २०६२.०६३ )</label>
+                                        </td>
+                                        <td colspan="3" style="padding: 10px; border: 1px solid #C5D9F1;"></td>
+                                    </tr>
+                                    <tr style="background-color: #DFE9F6;">
+                                        <td colspan="6" style="padding: 10px; border: 1px solid #C5D9F1;">
+                                            <label style="margin-right:10px; font-weight: normal;">करदाताको स्थिति :</label>
+                                            <span id="taxpayerStatus" style="font-weight: normal;">सक्रिय</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Annex 10 Link -->
+                        <div style="margin: 10px; padding: 10px;">
+                            <label>अनुसूची १० तय गर्न <span style="cursor:pointer;color:red;text-decoration:underline;" onclick="openAnnex10Modal()">यहाँ कि्लक</span> गर्नुहोस् ।</label>
+                        </div>
+                        
+                        <!-- २ आयको विवरण -->
+                        <div class="form-section" style="height: auto; margin: 15px 0; padding: 10px 15px;">
+                            <div class="section-header">२ आयको विवरण</div>
+                            <div style="padding-left: 24px;">
+                                <table class="x-table-layout" cellspacing="0" style="width: 100%;">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2" style="padding: 8px 0;">
+                                                <label style="display: inline-block; width: 200px; text-align: left;">१. कारोबार रकम:</label>
+                                                <input type="text" id="transactionAmount" class="TxtRight" style="width: 145px; margin-left: 10px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="padding: 8px 0;">
+                                                <label style="display: inline-block; width: 200px; text-align: left;">२. कट्टी हुने रकम:</label>
+                                                <input type="text" id="deductibleAmount" class="TxtRight" style="width: 145px; margin-left: 10px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="padding: 8px 0;">
+                                                <label style="display: inline-block; width: 200px; text-align: left;">३. जम्मा आय (१ - २):</label>
+                                                <input type="text" id="totalIncome" class="TxtRight" readonly style="width: 145px; margin-left: 10px;">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- ३ करको गणना -->
+                        <div class="form-section" style="height: auto; margin: 15px 0; padding: 10px 15px;">
+                            <div class="section-header">३ करको गणना</div>
+                            <table class="x-table-layout" cellspacing="0" style="margin-bottom: 10px; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 55px; text-align: center; padding: 8px;">क्र.सं.:</th>
+                                        <th style="width: 350px; padding: 8px;">विवरण :</th>
+                                        <th style="width: 195px; padding: 8px;">आयमा समाबेस हुने रकम (रु)</th>
+                                        <th style="width: 55px; text-align: center; padding: 8px;">करको दर:</th>
+                                        <th style="width: 200px; text-align: center; padding: 8px;">लाग्ने कर / शुल्क / ब्याज (रु):</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: 8px 10px;">१</td>
+                                        <td style="padding: 8px 10px;">
+                                            <label>आयकर ऐन, २०५८ को दफा ४ उपदफा ४ बमोजिमको कर</label>
+                                        </td>
+                                        <td style="padding: 8px 10px;">
+                                            <input type="text" id="tax1Amount" class="TxtRight" maxlength="7" style="width: 195px;">
+                                        </td>
+                                        <td style="padding: 8px 10px;"></td>
+                                        <td style="padding: 8px 10px;">
+                                            <input type="text" id="tax1Calculated" class="TxtRight" readonly disabled style="width: 200px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 10px;">१.१.</td>
+                                        <td style="padding: 8px 10px;"><label>ग्याँस, चुरोट लगायतका तीन प्रतिशतसम्म कमिशन वा मूल्य थप गरी कारोबार गर्ने वस्तुको कारोबार [अनुसूची १ को दफा १ को उपदफा १७(क)] (३० लाख देखि ५० लाख सम्म )</label></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="tax1_1Amount" class="TxtRight" maxlength="18" style="width: 195px;"></td>
+                                        <td style="text-align: right; padding: 8px 10px;">0.25%</td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="tax1_1Calculated" class="TxtRight" disabled style="width: 200px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 10px;">१.२.</td>
+                                        <td style="padding: 8px 10px;"><label>ग्याँस, चुरोट लगायतका तीन प्रतिशतसम्म कमिशन वा मूल्य थप गरी कारोबार गर्ने वस्तुको कारोबार [अनुसूची १ को दफा १ को उपदफा १७(क)] ( ५० लाख भन्दा माथि १ करोड सम्म )</label></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="tax1_2Amount" class="TxtRight" maxlength="18" style="width: 195px;"></td>
+                                        <td style="text-align: right; padding: 8px 10px;">0.3%</td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="tax1_2Calculated" class="TxtRight" disabled style="width: 200px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 10px;">१.३.</td>
+                                        <td style="padding: 8px 10px;"><label>क्र.सं. (१.१) मा उल्लिखित कारोबार बाहेकको व्यावसायिक कारोबार [अनुसूची १ को दफा १ को उपदफा १७(ख)] (३० लाख देखि ५० लाख सम्म )</label></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="tax1_3Amount" class="TxtRight" maxlength="18" style="width: 195px;"></td>
+                                        <td style="text-align: right; padding: 8px 10px;">1%</td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="tax1_3Calculated" class="TxtRight" disabled style="width: 200px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 10px;">१.४.</td>
+                                        <td style="padding: 8px 10px;"><label>क्र.सं. (१.२) मा उल्लिखित कारोबार बाहेकको व्यावसायिक कारोबार [अनुसूची १ को दफा १ को उपदफा १७(ख)] (५० लाख भन्दा माथि १ करोड सम्म)</label></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="tax1_4Amount" class="TxtRight" maxlength="18" style="width: 195px;"></td>
+                                        <td style="text-align: right; padding: 8px 10px;">0.8%</td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="tax1_4Calculated" class="TxtRight" disabled style="width: 200px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 10px;">१.५.</td>
+                                        <td style="padding: 8px 10px;"><label>सेवा व्यवसायको कारोबार [अनुसूची १ को दफा १ को उपदफा १७(ग)]</label></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="tax1_5Amount" class="TxtRight" maxlength="18" style="width: 195px;"></td>
+                                        <td style="text-align: right; padding: 8px 10px;">2%</td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="tax1_5Calculated" class="TxtRight" disabled style="width: 200px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 10px;">२.</td>
+                                        <td style="padding: 8px 10px;"><label>जम्मा (१ +१.१+१.२+१.३+१.४+१.५)</label></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="subtotal1Amount" class="TxtRight" readonly maxlength="18" style="width: 195px;"></td>
+                                        <td style="padding: 8px 10px;"></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="subtotal1Calculated" class="TxtRight" readonly style="width: 200px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 10px;">५.</td>
+                                        <td style="padding: 8px 10px;"><label>दफा ११७ बमोजिमको शुल्क</label></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="fee117Amount" class="TxtRight" readonly disabled maxlength="18" style="width: 195px; background-color: #F0F0F0;"></td>
+                                        <td style="padding: 8px 10px;"></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="fee117Calculated" class="TxtRight" readonly disabled style="width: 200px; background-color: #F0F0F0;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 10px;">६.</td>
+                                        <td style="padding: 8px 10px;"><label>दफा ११८ बमोजिमको ब्याज</label></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="interest118Amount" class="TxtRight" readonly disabled maxlength="18" style="width: 195px; background-color: #F0F0F0;"></td>
+                                        <td style="padding: 8px 10px;"></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="interest118Calculated" class="TxtRight" readonly disabled style="width: 200px; background-color: #F0F0F0;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 10px;">७.</td>
+                                        <td style="padding: 8px 10px;"><label>दफा ११९ बमोजिमको ब्याज</label></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="interest119Amount" class="TxtRight" readonly disabled maxlength="18" style="width: 195px; background-color: #F0F0F0;"></td>
+                                        <td style="padding: 8px 10px;"></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="interest119Calculated" class="TxtRight" readonly disabled style="width: 200px; background-color: #F0F0F0;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 10px;">८.</td>
+                                        <td style="padding: 8px 10px;"><label>जम्मा (२+५+६+७)</label></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="grandTotalAmount" class="TxtRight" readonly maxlength="18" style="width: 195px;"></td>
+                                        <td style="padding: 8px 10px;"></td>
+                                        <td style="padding: 8px 10px;"><input type="text" id="grandTotalCalculated" class="TxtRight" readonly style="width: 200px;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <div style="margin: 10px 0;">
+                                <label style="color:red;">( शुल्क र ब्याज हिसाब गर्न यो संगैको बटन कि्लक गर्नुहोस् ।)</label>
+                                <button class="x-btn" onclick="calculateFeesAndInterest()">
+                                    <span>Calculate</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- ४ कट्टी हुने रकमको विवरण -->
+                        <div class="form-section" style="min-height: 500px;">
+                            <div class="section-header">४ कट्टी हुने रकमको विवरण</div>
+                            
+                            <!-- Cost Details -->
+                            <div style="border: 1px solid #99BCE8; padding: 10px; margin-bottom: 10px;">
+                                <table class="x-table-layout" cellspacing="0" style="width: 100%;">
+                                    <tr>
+                                        <td style="padding: 8px 0; width: 350px;"><label>यस वर्षको</label></td>
+                                        <td style="padding: 8px 0; padding-left: 50px;"><label>रकम</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0;">
+                                            <label>(क) सुरु मौज्दात:</label>
+                                        </td>
+                                        <td style="padding: 8px 0; padding-left: 50px;">
+                                            <input type="text" id="openingStock" class="TxtRight" style="width: 195px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0;">
+                                            <label>(ख) खरिद रकम :</label>
+                                        </td>
+                                        <td style="padding: 8px 0; padding-left: 50px;">
+                                            <input type="text" id="purchaseAmount" class="TxtRight" style="width: 195px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0;">
+                                            <label>(ग) प्रत्यक्ष खर्च :</label>
+                                        </td>
+                                        <td style="padding: 8px 0; padding-left: 50px;">
+                                            <input type="text" id="directExpense" class="TxtRight" style="width: 195px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0;">
+                                            <label>(घ) अन्तिम मौज्दात :</label>
+                                        </td>
+                                        <td style="padding: 8px 0; padding-left: 50px;">
+                                            <input type="text" id="closingStock" class="TxtRight" style="width: 195px;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px 0;">
+                                            <label>लागत खर्च (क + ख + ग - घ):</label>
+                                        </td>
+                                        <td style="padding: 8px 0; padding-left: 50px;">
+                                            <input type="text" id="costExpense" class="TxtRight" readonly style="width: 195px;">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <!-- Other Expenses Grid -->
+                            <div style="border: 1px solid #99BCE8; margin: 5px 0; max-width: 620px; background: #DFE9F6;">
+                                <div class="section-header" style="margin: 0;">अन्य खर्च</div>
+                                <div style="padding: 5px; background: #EAF4FF; border-bottom: 1px solid #99BCE8;">
+                                    <button class="x-btn" onclick="addOtherExpense()">Add</button>
+                                </div>
+                                <div style="background: #DFE9F6; padding: 0;">
+                                    <div style="display: flex; border-bottom: 1px solid #99BCE8; background: #DCE6F1; max-width: 620px;">
+                                        <div style="width: 60px; text-align: center; font-weight: bold; padding: 8px 0;">क्र. स.</div>
+                                        <div style="width: 300px; text-align: left; font-weight: bold; padding: 8px 0 8px 10px;">विवरण</div>
+                                        <div style="width: 120px; text-align: center; font-weight: bold; padding: 8px 0;">रकम</div>
+                                        <div style="width: 40px;"></div>
+                                    </div>
+                                    <div id="otherExpensesBox" style="background: #fff; border: 1px solid #99BCE8; border-top: none; min-height: 40px; padding: 0 0 8px 0; max-width: 620px;">
+                                        <!-- Expense rows will be added here dynamically -->
+                                    </div>
+                                </div>
+                                                <!-- Empty spacious area for blank entry -->
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div style="margin: 5px 0;">
+                                <label style="margin-right:5px;width:180px;">जम्मा अन्य खर्च:</label>
+                                <input type="text" id="totalOtherExpenses" class="TxtRight" readonly style="width: 150px; text-align: right;">
+                            </div>
+                        </div>
+                        
+                        <div style="margin: 0 8px 5px;">
+                            <label style="margin-right:5px;width:180px;">जम्मा (लागत खर्च + अन्य खर्च):</label>
+                            <input type="text" id="totalExpenses" class="TxtRight" readonly style="width: 150px; text-align: right;">
+                        </div>
+                        
+                        <!-- Annex 13 Link -->
+                        <div style="margin: 5px;">
+                            <label>आनुसूची १३ तय गर्न <span style="cursor:pointer;color:red;text-decoration:underline" onclick="openAnnex13Modal()">यहाँ कि्लक</span> गर्नुहोस् ।</label>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div style="text-align: right; margin: 10px 0;">
+                            <button class="x-btn" onclick="saveD02Form()">Save</button>
+                            <button class="x-btn" onclick="submitD02Form()">Submit</button>
+                            <button class="x-btn" disabled>Print</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Annex 10 Modal -->
+    <div id="annex10Modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);">
+        <div style="background-color: #fefefe; margin: 5% auto; padding: 0; border: 1px solid #888; width: 70%; max-width: 800px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            <!-- Modal Header -->
+            <div style="background: linear-gradient(#B7D3F3, #8DB3E3); padding: 15px; border-bottom: 1px solid #99BCE8; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0; color: #333;">अनुसूची १०</h3>
+                <span onclick="closeAnnex10Modal()" style="cursor: pointer; font-size: 28px; font-weight: bold; color: #666;">&times;</span>
+            </div>
+            
+            <!-- Modal Body -->
+            <div style="padding: 20px; max-height: 500px; overflow-y: auto;">
+                <p style="text-align: center; margin-bottom: 20px;">के तपाईं अनुसूची १० भर्न चाहनुहुन्छ?</p>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="x-btn" onclick="confirmAnnex10()" style="margin: 0 10px; padding: 8px 20px;">
+                        <span>Yes</span>
+                    </button>
+                    <button class="x-btn" onclick="closeAnnex10Modal()" style="margin: 0 10px; padding: 8px 20px;">
+                        <span>No</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Annex 10 Success Message Modal -->
+    <div id="annex10MessageModal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);">
+        <div style="background-color: #fefefe; margin: 10% auto; padding: 0; border: 1px solid #888; width: 60%; max-width: 600px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            <!-- Modal Header -->
+            <div style="background: linear-gradient(#B7D3F3, #8DB3E3); padding: 12px 15px; border-bottom: 1px solid #99BCE8; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0; color: #333; font-size: 16px;">message</h3>
+                <span onclick="closeAnnex10MessageModal()" style="cursor: pointer; font-size: 24px; font-weight: bold; color: #666;">&times;</span>
+            </div>
+            
+            <!-- Modal Body -->
+            <div style="padding: 30px 20px; text-align: center;">
+                <div style="display: flex; align-items: flex-start; justify-content: center; gap: 15px;">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%234A90E2'/%3E%3Ctext x='12' y='16' font-family='Arial' font-size='14' fill='white' text-anchor='middle' font-weight='bold'%3Ei%3C/text%3E%3C/svg%3E" alt="info" style="width: 48px; height: 48px;">
+                    <p style="margin: 0; font-size: 14px; text-align: left; line-height: 1.6;">यस फारममा विवरणहरु उल्लेख गरी save गरी सकेपछि मात्र अनुसूची १० भर्नुहोस् ।</p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="x-btn" onclick="closeAnnex10MessageModal()" style="padding: 6px 30px;">
+                        <span>OK</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Annex 13 Modal -->
+    <div id="annex13Modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);">
+        <div style="background-color: #fefefe; margin: 5% auto; padding: 0; border: 1px solid #888; width: 70%; max-width: 800px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            <!-- Modal Header -->
+            <div style="background: linear-gradient(#B7D3F3, #8DB3E3); padding: 15px; border-bottom: 1px solid #99BCE8; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0; color: #333;">आनुसूची १३</h3>
+                <span onclick="closeAnnex13Modal()" style="cursor: pointer; font-size: 28px; font-weight: bold; color: #666;">&times;</span>
+            </div>
+            
+            <!-- Modal Body -->
+            <div style="padding: 20px; max-height: 500px; overflow-y: auto;">
+                <p style="text-align: center; margin-bottom: 20px;">के तपाईं आनुसूची १३ भर्न चाहनुहुन्छ?</p>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="x-btn" onclick="confirmAnnex13()" style="margin: 0 10px; padding: 8px 20px;">
+                        <span>Yes</span>
+                    </button>
+                    <button class="x-btn" onclick="closeAnnex13Modal()" style="margin: 0 10px; padding: 8px 20px;">
+                        <span>No</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Annex 13 Success Message Modal -->
+    <div id="annex13MessageModal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);">
+        <div style="background-color: #fefefe; margin: 10% auto; padding: 0; border: 1px solid #888; width: 60%; max-width: 600px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            <!-- Modal Header -->
+            <div style="background: linear-gradient(#B7D3F3, #8DB3E3); padding: 12px 15px; border-bottom: 1px solid #99BCE8; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0; color: #333; font-size: 16px;">message</h3>
+                <span onclick="closeAnnex13MessageModal()" style="cursor: pointer; font-size: 24px; font-weight: bold; color: #666;">&times;</span>
+            </div>
+            
+            <!-- Modal Body -->
+            <div style="padding: 30px 20px; text-align: center;">
+                <div style="display: flex; align-items: flex-start; justify-content: center; gap: 15px;">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%234A90E2'/%3E%3Ctext x='12' y='16' font-family='Arial' font-size='14' fill='white' text-anchor='middle' font-weight='bold'%3Ei%3C/text%3E%3C/svg%3E" alt="info" style="width: 48px; height: 48px;">
+                    <p style="margin: 0; font-size: 14px; text-align: left; line-height: 1.6;">यस फारममा विवरणहरु उल्लेख गरी save गरी सकेपछि मात्र आनुसूची १३ भर्नुहोस् ।</p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="x-btn" onclick="closeAnnex13MessageModal()" style="padding: 6px 30px;">
+                        <span>OK</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Save Success Modal -->
+    <div id="saveSuccessModal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);">
+        <div style="background-color: #fefefe; margin: 10% auto; padding: 0; border: 1px solid #888; width: 50%; max-width: 500px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            <!-- Modal Header -->
+            <div style="background: linear-gradient(#B7D3F3, #8DB3E3); padding: 12px 15px; border-bottom: 1px solid #99BCE8; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0; color: #1a5490; font-size: 18px; font-weight: bold;">SUCCESS</h3>
+                <span onclick="closeSaveSuccessModal()" style="cursor: pointer; font-size: 24px; font-weight: bold; color: #666;">&times;</span>
+            </div>
+            
+            <!-- Modal Body -->
+            <div style="padding: 30px 20px; text-align: center;">
+                <div style="display: flex; align-items: flex-start; justify-content: center; gap: 15px; margin-bottom: 20px;">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%234A90E2'/%3E%3Ctext x='12' y='16' font-family='Arial' font-size='14' fill='white' text-anchor='middle' font-weight='bold'%3Ei%3C/text%3E%3C/svg%3E" alt="info" style="width: 48px; height: 48px;">
+                    <div style="text-align: left;">
+                        <p style="margin: 0 0 10px 0; font-size: 16px; font-weight: bold;">Successfull Saved !!!</p>
+                        <p style="margin: 0; font-size: 14px;" id="saveSubmissionInfo">
+                            सब्मिशन नं. टिप्पनहोस्<br>
+                            <span id="savedSubmissionNo" style="font-weight: bold;"></span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="x-btn" onclick="closeSaveSuccessModal()" style="padding: 6px 30px;">
+                        <span>OK</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../../js/income_tax/d02_main_form.js"></script>
+</body>
+</html>

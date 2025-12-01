@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annex-10 - अनुसूची -१०</title>
+    <link rel="stylesheet" href="../../extjs/resources/ext-all.css">
+    <link rel="stylesheet" href="../../css/all.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #DFE9F6;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+        
+        .annex-container {
+            background: #DFE9F6;
+            border: 1px solid #C5D9F1;
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .annex-header {
+            background: linear-gradient(#E8F1FA, #D0E4F7);
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #99BCE8;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #003366;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .print-btn {
+            background: linear-gradient(#FEFEFE, #E6E6E6);
+            border: 1px solid #B5B8C8;
+            padding: 8px 20px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 3px;
+        }
+        
+        .print-btn:hover {
+            background: linear-gradient(#F5F5F5, #D5D5D5);
+        }
+        
+        .info-box {
+            background: #E8F4FF;
+            border: 1px solid #99BCE8;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 3px;
+        }
+        
+        .info-box.warning {
+            background: #FFF9E6;
+            border-color: #FFD700;
+        }
+        
+        .info-box.note {
+            background: #F0F8FF;
+        }
+        
+        .red-text {
+            color: red;
+            font-weight: bold;
+        }
+        
+        .blue-text {
+            color: #003366;
+            font-weight: bold;
+        }
+        
+        .load-voucher-btn {
+            background: #F5F5F5;
+            border: 1px solid #B5B8C8;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+        
+        .load-voucher-btn:hover {
+            background: #E8E8E8;
+        }
+        
+        table.tax-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        table.tax-table th,
+        table.tax-table td {
+            border: 1px solid #C5D9F1;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        table.tax-table th {
+            background: linear-gradient(#E8F1FA, #D0E4F7);
+            font-weight: bold;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        select.dropdown {
+            padding: 6px;
+            border: 1px solid #B5B8C8;
+            border-radius: 3px;
+            min-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="annex-container">
+        <div class="annex-header">
+            Annex-10
+        </div>
+        
+        <button class="print-btn" onclick="window.print()">
+            <span>🖨</span>
+            <span>Print</span>
+        </button>
+        
+        <div class="section-title">अनुसूची -१०</div>
+        
+        <div class="info-box">
+            <span>पछाडि गएर अनुसूची तय गर्नु </span>
+            <span class="red-text">यहाँ क्लिक</span>
+            <span> गर्नुहोस् ।</span>
+        </div>
+        
+        <div style="margin: 15px 0;">
+            <label style="margin-right: 10px;">कर दायीको किसिम :</label>
+            <select class="dropdown" id="taxPayerType" onchange="showTransferFields()">
+                <option value="">Select ...</option>
+                <option value="transfer_of_credit">Transfer Of Credit</option>
+            </select>
+        </div>
+        
+        <!-- Transfer of Credit Fields (Hidden by default) -->
+        <div id="transferFields" style="display: none; margin: 20px 0; padding: 15px; background: #E8F4FF; border: 1px solid #99BCE8; border-radius: 5px;">
+            <div style="margin-bottom: 15px;">
+                <label style="display: inline-block; width: 200px; text-align: right; margin-right: 10px; font-weight: normal;">आर्थिक वर्ष:</label>
+                <input type="text" id="fiscalYear" value="2081.082" readonly style="padding: 8px; border: 1px solid #B5B8C8; border-radius: 3px; width: 150px; background-color: #F0F0F0;">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: inline-block; width: 200px; text-align: right; margin-right: 10px; font-weight: normal;">क्रेडिट सारेको आर्थिक वर्ष:</label>
+                <input type="text" id="creditTransferYear" style="padding: 8px; border: 1px solid #B5B8C8; border-radius: 3px; width: 150px;">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: inline-block; width: 200px; text-align: right; margin-right: 10px; font-weight: normal;">दाखीला रकम :</label>
+                <input type="text" id="submissionAmount" style="padding: 8px; border: 1px solid #B5B8C8; border-radius: 3px; width: 200px;">
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button onclick="addTransferRecord()" style="background: linear-gradient(#FEFEFE, #E6E6E6); border: 1px solid #B5B8C8; padding: 8px 20px; cursor: pointer; border-radius: 4px; display: inline-flex; align-items: center; gap: 8px;">
+                    <span style="color: green; font-size: 18px; font-weight: bold;">+</span>
+                    <span>Add</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="info-box blue-text">
+            सौ आर्थिक बर्षको कर दाखिला र TDS रकम समाबेश गर्नु तल लेखिएको Load Payment Vouchers and TDS Amount बटन क्लिक गर्नुहोस् ।
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <button class="load-voucher-btn" onclick="openTaxpayerLoginModal()">Load Payment Vouchers and TDS Amount</button>
+        </div>
+        
+        <div class="annex-header" style="margin-top: 25px;">
+            कर भुक्तान दावी विवरण
+        </div>
+        
+        <div style="overflow-x: auto; overflow-y: auto; max-height: 400px; border: 1px solid #C5D9F1;">
+            <table class="tax-table">
+                <thead>
+                    <tr>
+                        <th>१</th>
+                        <th>२</th>
+                        <th>३</th>
+                        <th>४</th>
+                        <th>५</th>
+                        <th>६</th>
+                        <th>७</th>
+                        <th>८</th>
+                        <th>९</th>
+                        <th>१०</th>
+                        <th>११</th>
+                        <th>१२</th>
+                    </tr>
+                    <tr>
+                        <th style="min-width: 150px;">कर दायीको किसिम</th>
+                        <th style="min-width: 150px;">राजस्व शिर्षक</th>
+                        <th style="min-width: 150px;">दाखिलाको तारिख</th>
+                        <th style="min-width: 150px;">दाखिला नंस्या नम्बर</th>
+                        <th style="min-width: 150px;">बैंकको नाम</th>
+                        <th style="min-width: 120px;">दाखिला मिति</th>
+                        <th style="min-width: 120px;">कार्यालय</th>
+                        <th style="min-width: 250px;">अग्रिम कर कट्टीको किसिम / अग्रिम कर कट्टी गर्नेको नाम</th>
+                        <th style="min-width: 150px;">दाखिला रकम</th>
+                        <th style="min-width: 180px;">हिसाब मितनको कारण</th>
+                        <th style="min-width: 120px;">लिखत नम्बर</th>
+                    </tr>
+                </thead>
+                <tbody id="taxPaymentTableBody">
+                    <tr>
+                        <td colspan="11" style="padding: 30px; text-align: center; color: #999;">
+                            No data available
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr style="background: #E8F4FF; font-weight: bold;">
+                        <td colspan="8" style="text-align: right; padding: 10px;">Total Credit</td>
+                        <td style="text-align: right; padding: 10px;">0.00</td>
+                        <td colspan="2"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        
+        <div class="info-box warning">
+            **माथिको भुक्तानि विवरणमा दावी गर्नु नपर्ने भुक्तानि हटाउनको लागी छेडैको डिलिट बटनमा क्लिक गर्नुहोला ।
+        </div>
+        
+        <div class="checkbox-label">
+            <input type="checkbox" id="showAllPayments">
+            <label for="showAllPayments">
+                <strong>यस अनुसूचिमा समाबेस भएका कर दाखिला विवरण सहि सांचो भएको घोषणा गर्दछु ।</strong>
+            </label>
+        </div>
+        
+        <div style="margin: 10px 0; font-size: 13px;">
+            **Check Box Select भए पछि मात्र Save वा Update बटन देखिने छ । ।
+        </div>
+        
+        <div class="info-box note">
+            पछाडि गएर अनुसूची तय गर्नु <span class="red-text">यहाँ क्लिक</span> गर्नुहोस् ।
+        </div>
+    </div>
+    
+    <!-- Taxpayer Login Modal -->
+    <div id="taxpayerLoginModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);">
+        <div style="background-color: #E8F4FF; margin: 8% auto; padding: 0; border: 2px solid #5B9BD5; width: 50%; max-width: 600px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+            <!-- Modal Header -->
+            <div style="background: linear-gradient(#B7D3F3, #8DB3E3); padding: 12px 15px; border-bottom: 2px solid #5B9BD5; display: flex; justify-content: space-between; align-items: center; border-radius: 6px 6px 0 0;">
+                <h3 style="margin: 0; color: #003366; font-size: 18px; font-weight: bold;">Taxpayer Login</h3>
+                <span onclick="closeTaxpayerLoginModal()" style="cursor: pointer; font-size: 24px; font-weight: bold; color: #666;">&times;</span>
+            </div>
+            
+            <!-- Modal Body -->
+            <div style="padding: 30px 40px; background-color: #E8F4FF;">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px;">Pan:</label>
+                    <input type="text" id="loginPan" maxlength="9" value="604842925" readonly style="width: 100%; padding: 10px; border: 1px solid #B5B8C8; border-radius: 4px; box-sizing: border-box; background-color: #F0F0F0; font-size: 14px;">
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px;">User Name:</label>
+                    <input type="text" id="loginUsername" style="width: 100%; padding: 10px; border: 1px solid #B5B8C8; border-radius: 4px; box-sizing: border-box; font-size: 14px;">
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px;">Password:</label>
+                    <input type="password" id="loginPassword" style="width: 100%; padding: 10px; border: 1px solid #B5B8C8; border-radius: 4px; box-sizing: border-box; font-size: 14px;">
+                </div>
+                
+                <div style="text-align: center;">
+                    <button onclick="handleTaxpayerLogin()" style="background: linear-gradient(#FEFEFE, #E6E6E6); border: 1px solid #B5B8C8; padding: 8px 30px; cursor: pointer; border-radius: 4px; font-size: 14px; font-weight: bold;">
+                        Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Show/Hide Transfer of Credit fields
+        function showTransferFields() {
+            const selectedValue = document.getElementById('taxPayerType').value;
+            const transferFields = document.getElementById('transferFields');
+            
+            if (selectedValue === 'transfer_of_credit') {
+                transferFields.style.display = 'block';
+            } else {
+                transferFields.style.display = 'none';
+            }
+        }
+        
+        // Add Transfer Record
+        function addTransferRecord() {
+            const creditTransferYear = document.getElementById('creditTransferYear').value;
+            const submissionAmount = document.getElementById('submissionAmount').value;
+            
+            if (!creditTransferYear || !submissionAmount) {
+                alert('कृपया सबै फिल्ड भर्नुहोस्! (Please fill all fields!)');
+                return;
+            }
+            
+            alert('रेकर्ड थपियो! (Record Added!)\nक्रेडिट सारेको आर्थिक वर्ष: ' + creditTransferYear + '\nदाखीला रकम: ' + submissionAmount);
+            
+            // Clear fields after adding
+            document.getElementById('creditTransferYear').value = '';
+            document.getElementById('submissionAmount').value = '';
+        }
+        
+        // Open Taxpayer Login Modal
+        function openTaxpayerLoginModal() {
+            document.getElementById('taxpayerLoginModal').style.display = 'block';
+        }
+        
+        // Close Taxpayer Login Modal
+        function closeTaxpayerLoginModal() {
+            document.getElementById('taxpayerLoginModal').style.display = 'none';
+        }
+        
+        // Handle Taxpayer Login
+        function handleTaxpayerLogin() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!username || !password) {
+                alert('कृपया User Name र Password भर्नुहोस्! (Please enter User Name and Password!)');
+                return;
+            }
+            
+            // Close modal and load data (you can add actual authentication logic here)
+            closeTaxpayerLoginModal();
+            alert('लगइन सफल! (Login Successful!)\nPayment Vouchers लोड भइरहेको छ...');
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('taxpayerLoginModal');
+            if (event.target == modal) {
+                closeTaxpayerLoginModal();
+            }
+        }
+    </script>
+    
+    <script>
+        // Enable save/update buttons when checkbox is checked
+        $('#showAllPayments').on('change', function() {
+            if ($(this).is(':checked')) {
+                console.log('Checkbox checked - Enable Save/Update buttons');
+                // You can add buttons here when checkbox is checked
+            }
+        });
+    </script>
+</body>
+</html>

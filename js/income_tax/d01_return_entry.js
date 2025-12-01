@@ -2,6 +2,37 @@ $(document).ready(function() {
     // Update date on page load
     updateDate();
 
+    // Load saved PAN on page load
+    loadSavedData();
+
+    // Auto-fill fields when PAN is entered
+    $('#pan').on('input', function() {
+        const pan = $(this).val().trim();
+        
+        // Save PAN to sessionStorage
+        sessionStorage.setItem('d01_pan', pan);
+        
+        // When PAN reaches 9 digits, auto-fill the fields
+        if (pan.length === 9 && /^\d+$/.test(pan)) {
+            // Auto-fill business name
+            $('#businessName').val('PAN नम्बर भएको व्यक्ति/फर्मको नाम');
+            
+            // Auto-fill address
+            $('#address').val('Company भएको Location');
+            
+            // Auto-fill mobile number with masked format
+            $('#mobile').val('98XXXXXXXX');
+            
+            // Save all fields
+            saveFormData();
+        }
+    });
+
+    // Save other fields on input
+    $('#businessName, #address, #mobile, #email').on('input', function() {
+        saveFormData();
+    });
+
     // Register button functionality
     $('#registerBtn').on('click', function() {
         const pan = $('#pan').val().trim();
@@ -35,7 +66,7 @@ $(document).ready(function() {
             return;
         }
 
-        if (mobile.length !== 10 || !/^\d+$/.test(mobile)) {
+        if (mobile.length !== 10) {
             alert('मोबाइल नम्बर १० अंकको हुनुपर्छ । (Mobile number must be 10 digits)');
             return;
         }
@@ -54,10 +85,11 @@ $(document).ready(function() {
         d01Entries.push(d01Entry);
         localStorage.setItem('d01Entries', JSON.stringify(d01Entries));
 
-        alert('दर्ता सफल भयो ! (Registration Successful!)\n\nPAN: ' + pan + '\nBusiness: ' + businessName);
+        // Save current registration to sessionStorage for the next page
+        sessionStorage.setItem('d01_current_registration', JSON.stringify(d01Entry));
 
-        // Clear form
-        clearForm();
+        // Redirect to D-01 form page (you'll need to create this page)
+        window.location.href = 'd01_form_page.html';
     });
 
     // Reset button functionality
@@ -80,6 +112,37 @@ function clearForm() {
     $('#address').val('');
     $('#mobile').val('');
     $('#email').val('');
+    
+    // Clear from sessionStorage
+    sessionStorage.removeItem('d01_pan');
+    sessionStorage.removeItem('d01_businessName');
+    sessionStorage.removeItem('d01_address');
+    sessionStorage.removeItem('d01_mobile');
+    sessionStorage.removeItem('d01_email');
+}
+
+// Function to save form data
+function saveFormData() {
+    sessionStorage.setItem('d01_pan', $('#pan').val());
+    sessionStorage.setItem('d01_businessName', $('#businessName').val());
+    sessionStorage.setItem('d01_address', $('#address').val());
+    sessionStorage.setItem('d01_mobile', $('#mobile').val());
+    sessionStorage.setItem('d01_email', $('#email').val());
+}
+
+// Function to load saved data
+function loadSavedData() {
+    const savedPan = sessionStorage.getItem('d01_pan');
+    const savedBusinessName = sessionStorage.getItem('d01_businessName');
+    const savedAddress = sessionStorage.getItem('d01_address');
+    const savedMobile = sessionStorage.getItem('d01_mobile');
+    const savedEmail = sessionStorage.getItem('d01_email');
+    
+    if (savedPan) $('#pan').val(savedPan);
+    if (savedBusinessName) $('#businessName').val(savedBusinessName);
+    if (savedAddress) $('#address').val(savedAddress);
+    if (savedMobile) $('#mobile').val(savedMobile);
+    if (savedEmail) $('#email').val(savedEmail);
 }
 
 // Function to convert AD to BS (Bikram Sambat)

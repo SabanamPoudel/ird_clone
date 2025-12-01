@@ -1,3 +1,15 @@
+function showAdditionalFieldsD03() {
+    const fiscalYear = document.getElementById('d03-fiscal-input').value;
+    if (fiscalYear) {
+        document.getElementById('d03-transactionAmountRow').style.display = '';
+        document.getElementById('d03-profitAmountRow').style.display = '';
+        document.getElementById('d03-professionTypeRow').style.display = '';
+    } else {
+        document.getElementById('d03-transactionAmountRow').style.display = 'none';
+        document.getElementById('d03-profitAmountRow').style.display = 'none';
+        document.getElementById('d03-professionTypeRow').style.display = 'none';
+    }
+}
 // D-03 Return Entry JavaScript
 
 function registerD03User() {
@@ -71,17 +83,13 @@ function registerD03User() {
     d03Users.push(newUser);
     localStorage.setItem('d03Users', JSON.stringify(d03Users));
     
-    alert('दर्ता सफल भयो !\nRegistration Successful!\n\n' +
-          'तपाईंको सब्मिशन नं.: ' + submissionNo + '\n' +
-          'प्रयोगकर्ताको नाम: ' + username + '\n' +
-          'आर्थिक वर्ष: ' + fiscalYear + '\n\n' +
-          'कृपया यो सब्मिशन नं. सुरक्षित राख्नुहोस् ।\n' +
-          'Please save this Submission Number.');
-    
+    // Hide registration form and show iframe IMMEDIATELY
+    document.getElementById('frmD03ReturnsSubNo').style.display = 'none';
+    document.getElementById('d03FormIframeContainer').style.display = '';
+
+
     console.log('D-03 User registered:', newUser);
     
-    // Reset form
-    resetD03Form();
 }
 
 function resetD03Form() {

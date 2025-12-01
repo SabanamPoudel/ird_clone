@@ -42,6 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Function to go back to taxpayer portal
+function goBackToPortal() {
+    window.location.href = '../../taxpayer_portal.html';
+}
+
 // Clear all payment voucher form data on page refresh
 function clearAllPaymentVoucherData() {
     // Clear bank selection
