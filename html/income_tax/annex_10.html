@@ -109,6 +109,7 @@
             border: 1px solid #C5D9F1;
             padding: 8px;
             text-align: center;
+            font-size: 12px;
         }
         
         table.tax-table th {
@@ -199,6 +200,7 @@
             <table class="tax-table">
                 <thead>
                     <tr>
+                        <th>क्र.स.</th>
                         <th>१</th>
                         <th>२</th>
                         <th>३</th>
@@ -213,8 +215,9 @@
                         <th>१२</th>
                     </tr>
                     <tr>
-                        <th style="min-width: 150px;">कर दायीको किसिम</th>
-                        <th style="min-width: 150px;">राजस्व शिर्षक</th>
+                        <th style="min-width: 60px;"></th>
+                        <th style="min-width: 100px;">कर दायीको किसिम</th>
+                        <th style="min-width: 120px;">राजस्व शिर्षक</th>
                         <th style="min-width: 150px;">दाखिलाको तारिख</th>
                         <th style="min-width: 150px;">दाखिला नंस्या नम्बर</th>
                         <th style="min-width: 150px;">बैंकको नाम</th>
@@ -224,20 +227,21 @@
                         <th style="min-width: 150px;">दाखिला रकम</th>
                         <th style="min-width: 180px;">हिसाब मितनको कारण</th>
                         <th style="min-width: 120px;">लिखत नम्बर</th>
+                        <th style="min-width: 100px;">LCG Status</th>
                     </tr>
                 </thead>
                 <tbody id="taxPaymentTableBody">
                     <tr>
-                        <td colspan="11" style="padding: 30px; text-align: center; color: #999;">
+                        <td colspan="13" style="padding: 30px; text-align: center; color: #999;">
                             No data available
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr style="background: #E8F4FF; font-weight: bold;">
-                        <td colspan="8" style="text-align: right; padding: 10px;">Total Credit</td>
+                        <td colspan="9" style="text-align: right; padding: 10px;">Total Credit</td>
                         <td style="text-align: right; padding: 10px;">0.00</td>
-                        <td colspan="2"></td>
+                        <td colspan="3"></td>
                     </tr>
                 </tfoot>
             </table>
@@ -276,7 +280,7 @@
             <div style="padding: 30px 40px; background-color: #E8F4FF;">
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; margin-bottom: 8px; font-weight: bold; font-size: 14px;">Pan:</label>
-                    <input type="text" id="loginPan" maxlength="9" value="604842925" readonly style="width: 100%; padding: 10px; border: 1px solid #B5B8C8; border-radius: 4px; box-sizing: border-box; background-color: #F0F0F0; font-size: 14px;">
+                    <input type="text" id="loginPan" maxlength="9" value="" readonly style="width: 100%; padding: 10px; border: 1px solid #B5B8C8; border-radius: 4px; box-sizing: border-box; background-color: #F0F0F0; font-size: 14px;">
                 </div>
                 
                 <div style="margin-bottom: 20px;">
@@ -299,6 +303,14 @@
     </div>
     
     <script>
+        // Load PAN number from sessionStorage on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedPan = sessionStorage.getItem('d02_panNo');
+            if (savedPan) {
+                document.getElementById('loginPan').value = savedPan;
+            }
+        });
+        
         // Show/Hide Transfer of Credit fields
         function showTransferFields() {
             const selectedValue = document.getElementById('taxPayerType').value;
@@ -330,6 +342,11 @@
         
         // Open Taxpayer Login Modal
         function openTaxpayerLoginModal() {
+            // Get PAN number from sessionStorage
+            const savedPan = sessionStorage.getItem('d02_panNo');
+            if (savedPan) {
+                document.getElementById('loginPan').value = savedPan;
+            }
             document.getElementById('taxpayerLoginModal').style.display = 'block';
         }
         
@@ -348,9 +365,129 @@
                 return;
             }
             
-            // Close modal and load data (you can add actual authentication logic here)
+            // Close modal and load data
             closeTaxpayerLoginModal();
-            alert('लगइन सफल! (Login Successful!)\nPayment Vouchers लोड भइरहेको छ...');
+            
+            // Load demo TDS data into table
+            loadDemoTDSData();
+            
+            alert('लगइन सफल! (Login Successful!)\nPayment Vouchers लोड भएको छ!');
+        }
+        
+        // Load demo TDS data
+        function loadDemoTDSData() {
+            const tableBody = document.getElementById('taxPaymentTableBody');
+            
+            // Demo TDS data
+            const tdsData = [
+                {
+                    type: 'TDS',
+                    revenueHead: '11132',
+                    dateSubmitted: '',
+                    voucherNo: '810065432724',
+                    bankName: '',
+                    submissionDate: '2081.06.30',
+                    office: '11132',
+                    advanceTaxType: 'एयरभबि बैंक लिमिटेड',
+                    amount: '17.94',
+                    accountReason: '',
+                    documentNo: '500106495',
+                    lcgStatus: 'delete'
+                },
+                {
+                    type: 'TDS',
+                    revenueHead: '11132',
+                    dateSubmitted: '',
+                    voucherNo: '810068028751',
+                    bankName: '',
+                    submissionDate: '2081.09.29',
+                    office: '11132',
+                    advanceTaxType: 'एयरभबि बैंक लिमिटेड',
+                    amount: '0.42',
+                    accountReason: '',
+                    documentNo: '500106495',
+                    lcgStatus: 'delete'
+                },
+                {
+                    type: 'TDS',
+                    revenueHead: '11132',
+                    dateSubmitted: '',
+                    voucherNo: '820070194194',
+                    bankName: '',
+                    submissionDate: '2081.12.31',
+                    office: '11132',
+                    advanceTaxType: 'एयरभबि बैंक लिमिटेड',
+                    amount: '78.59',
+                    accountReason: '',
+                    documentNo: '500106495',
+                    lcgStatus: 'delete'
+                }
+            ];
+            
+            // Calculate total
+            let totalCredit = 0;
+            tdsData.forEach(item => {
+                totalCredit += parseFloat(item.amount);
+            });
+            
+            // Build table rows
+            let rows = '';
+            tdsData.forEach((item, index) => {
+                rows += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${item.type}</td>
+                        <td>${item.revenueHead}</td>
+                        <td>${item.dateSubmitted}</td>
+                        <td>${item.voucherNo}</td>
+                        <td>${item.bankName}</td>
+                        <td>${item.submissionDate}</td>
+                        <td>${item.office}</td>
+                        <td>${item.advanceTaxType}</td>
+                        <td style="text-align: right;">${item.amount}</td>
+                        <td>${item.accountReason}</td>
+                        <td>${item.documentNo}</td>
+                        <td style="text-align: center;">
+                            <button onclick="deleteTDSRow(${index + 1})" style="background: none; border: none; cursor: pointer; padding: 0;">
+                                <span style="color: red; font-size: 20px; font-weight: bold;">⊖</span>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            // Update table
+            tableBody.innerHTML = rows;
+            
+            // Update total
+            document.querySelector('tfoot td[style*="text-align: right"]').textContent = totalCredit.toFixed(2);
+        }
+        
+        // Delete TDS row
+        function deleteTDSRow(rowIndex) {
+            if (confirm('के तपाईं यो रेकर्ड हटाउन चाहनुहुन्छ? (Do you want to delete this record?)')) {
+                const tableBody = document.getElementById('taxPaymentTableBody');
+                tableBody.deleteRow(rowIndex - 1);
+                
+                // Recalculate total
+                let total = 0;
+                const rows = tableBody.querySelectorAll('tr');
+                rows.forEach(row => {
+                    const amountCell = row.cells[9];
+                    if (amountCell) {
+                        const amount = parseFloat(amountCell.textContent) || 0;
+                        total += amount;
+                    }
+                });
+                
+                // Update total
+                document.querySelector('tfoot td[style*="text-align: right"]').textContent = total.toFixed(2);
+                
+                // If no rows left, show "No data available"
+                if (rows.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="13" style="padding: 30px; text-align: center; color: #999;">No data available</td></tr>';
+                }
+            }
         }
         
         // Close modal when clicking outside

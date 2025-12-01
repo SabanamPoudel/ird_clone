@@ -377,6 +377,12 @@ function saveD02Form() {
     
     sessionStorage.setItem('d02FormData', JSON.stringify(formData));
     
+    // Save PAN number separately for Annex-10 page
+    const panNo = $('#panNo').val();
+    if (panNo) {
+        sessionStorage.setItem('d02_panNo', panNo);
+    }
+    
     // Get submission number and show success modal
     const registrationData = JSON.parse(sessionStorage.getItem('d02_current_registration') || '{}');
     const submissionNo = registrationData.submissionNo || '';
