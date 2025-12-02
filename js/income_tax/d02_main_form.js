@@ -263,6 +263,18 @@ function closeAnnex10Modal() {
 
 function confirmAnnex10() {
     closeAnnex10Modal();
+    
+    // Check if transaction amount has been entered
+    const transactionAmount = $('#transactionAmount').val();
+    
+    if (!transactionAmount || parseFloat(transactionAmount) <= 0) {
+        // Transaction amount not entered, show message modal
+        setTimeout(() => {
+            document.getElementById('annex10MessageModal').style.display = 'block';
+        }, 300);
+        return;
+    }
+    
     // Check if form has been saved
     const savedData = sessionStorage.getItem('d02FormData');
     
@@ -308,6 +320,7 @@ window.onclick = function(event) {
     const annex10MessageModal = document.getElementById('annex10MessageModal');
     const annex13MessageModal = document.getElementById('annex13MessageModal');
     const saveSuccessModal = document.getElementById('saveSuccessModal');
+    const warningModal = document.getElementById('warningModal');
     
     if (event.target == annex10Modal) {
         closeAnnex10Modal();
@@ -324,10 +337,22 @@ window.onclick = function(event) {
     if (event.target == saveSuccessModal) {
         closeSaveSuccessModal();
     }
+    if (event.target == warningModal) {
+        closeWarningModal();
+    }
 }
 
 // Save form data
 function saveD02Form() {
+    // Validate that transaction amount is entered
+    const transactionAmount = $('#transactionAmount').val();
+    
+    if (!transactionAmount || parseFloat(transactionAmount) <= 0) {
+        // Show warning modal
+        document.getElementById('warningModal').style.display = 'block';
+        return;
+    }
+    
     // Collect all other expenses
     const expenses = [];
     $('.expense-amount').each(function() {
@@ -393,6 +418,12 @@ function saveD02Form() {
 
 function closeSaveSuccessModal() {
     document.getElementById('saveSuccessModal').style.display = 'none';
+}
+
+function closeWarningModal() {
+    document.getElementById('warningModal').style.display = 'none';
+    // Focus on transaction amount field
+    $('#transactionAmount').focus();
 }
 
 // Load saved form data
