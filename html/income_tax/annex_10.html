@@ -8,27 +8,37 @@
     <link rel="stylesheet" href="../../css/all.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
+        html, body {
+            height: 100%;
+            overflow: auto;
+        }
+
         body {
             background-color: #DFE9F6;
             margin: 0;
-            padding: 20px;
+            padding: 18px;
             font-family: Arial, sans-serif;
-            font-size: 13px;
+            font-size: 11px;
+            -webkit-overflow-scrolling: touch;
         }
         
         .annex-container {
             background: #DFE9F6;
             border: 1px solid #C5D9F1;
             border-radius: 5px;
-            padding: 20px;
+            padding: 12px;
             max-width: 1400px;
             margin: 0 auto;
+            box-sizing: border-box;
+            /* allow the container to scroll when iframe is small - give it more vertical room */
+            max-height: calc(100vh - 8px);
+            overflow: auto;
         }
         
         .annex-header {
             background: linear-gradient(#E8F1FA, #D0E4F7);
-            padding: 10px 15px;
-            margin-bottom: 15px;
+            padding: 8px 12px;
+            margin-bottom: 10px;
             border: 1px solid #99BCE8;
             border-radius: 3px;
             font-weight: bold;
@@ -37,20 +47,20 @@
         
         .section-title {
             text-align: center;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
-            margin: 20px 0;
+            margin: 6px 0;
         }
         
         .print-btn {
             background: linear-gradient(#FEFEFE, #E6E6E6);
             border: 1px solid #B5B8C8;
-            padding: 8px 20px;
+            padding: 6px 14px;
             cursor: pointer;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             border-radius: 3px;
         }
         
@@ -61,8 +71,8 @@
         .info-box {
             background: #E8F4FF;
             border: 1px solid #99BCE8;
-            padding: 10px 15px;
-            margin: 10px 0;
+            padding: 8px 10px;
+            margin: 8px 0;
             border-radius: 3px;
         }
         
@@ -88,9 +98,9 @@
         .load-voucher-btn {
             background: #F5F5F5;
             border: 1px solid #B5B8C8;
-            padding: 10px 20px;
+            padding: 8px 16px;
             cursor: pointer;
-            margin: 15px 0;
+            margin: 10px 0;
             border-radius: 3px;
         }
         
@@ -101,15 +111,15 @@
         table.tax-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
+            margin: 10px 0;
         }
         
         table.tax-table th,
         table.tax-table td {
             border: 1px solid #C5D9F1;
-            padding: 8px;
+            padding: 4px 6px;
             text-align: center;
-            font-size: 12px;
+            font-size: 11px;
         }
         
         table.tax-table th {
@@ -120,8 +130,22 @@
         .checkbox-label {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin: 15px 0;
+            gap: 8px;
+            margin: 8px 0;
+        }
+
+        /* Improve checkbox visibility inside iframes */
+        .checkbox-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            accent-color: #1F548A;
+            vertical-align: middle;
+        }
+
+        .checkbox-label label {
+            font-size: 13px;
+            color: #003366;
         }
         
         select.dropdown {
@@ -129,6 +153,15 @@
             border: 1px solid #B5B8C8;
             border-radius: 3px;
             min-width: 200px;
+        }
+
+        /* Action buttons container: hidden by default, left-aligned when shown */
+        #actionButtonsContainer {
+            margin: 8px 0;
+            display: none; /* toggled to flex by JS when checkbox checked */
+            justify-content: flex-start;
+            gap: 8px;
+            align-items: center;
         }
     </style>
 </head>
@@ -160,7 +193,7 @@
         </div>
         
         <!-- Transfer of Credit Fields (Hidden by default) -->
-        <div id="transferFields" style="display: none; margin: 20px 0; padding: 15px; background: #E8F4FF; border: 1px solid #99BCE8; border-radius: 5px;">
+        <div id="transferFields" style="display: none; margin: 6px 0; padding: 8px; background: #E8F4FF; border: 1px solid #99BCE8; border-radius: 5px;">
             <div style="margin-bottom: 15px;">
                 <label style="display: inline-block; width: 200px; text-align: right; margin-right: 10px; font-weight: normal;">आर्थिक वर्ष:</label>
                 <input type="text" id="fiscalYear" value="2081.082" readonly style="padding: 8px; border: 1px solid #B5B8C8; border-radius: 3px; width: 150px; background-color: #F0F0F0;">
@@ -232,15 +265,15 @@
                 </thead>
                 <tbody id="taxPaymentTableBody">
                     <tr>
-                        <td colspan="13" style="padding: 30px; text-align: center; color: #999;">
+                        <td colspan="13" style="padding: 12px; text-align: center; color: #999;">
                             No data available
                         </td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr style="background: #E8F4FF; font-weight: bold;">
-                        <td colspan="9" style="text-align: right; padding: 10px;">Total Credit</td>
-                        <td style="text-align: right; padding: 10px;">0.00</td>
+                        <td colspan="9" style="text-align: right; padding: 6px;">Total Credit</td>
+                        <td style="text-align: right; padding: 6px;">0.00</td>
                         <td colspan="3"></td>
                     </tr>
                 </tfoot>
@@ -260,6 +293,16 @@
         
         <div style="margin: 10px 0; font-size: 13px;">
             **Check Box Select भए पछि मात्र Save वा Update बटन देखिने छ । ।
+        </div>
+        
+        <!-- Save/Update Buttons - Hidden by default -->
+        <div id="actionButtonsContainer">
+            <button class="x-btn" onclick="saveAnnex10Data()" style="margin: 0 8px 0 0; padding: 8px 20px; background: linear-gradient(#FEFEFE, #E6E6E6); border: 1px solid #B5B8C8; cursor: pointer; border-radius: 4px;">
+                <span>Save</span>
+            </button>
+            <button class="x-btn" onclick="updateAnnex10Data()" style="margin: 0 8px 0 0; padding: 8px 20px; background: linear-gradient(#FEFEFE, #E6E6E6); border: 1px solid #B5B8C8; cursor: pointer; border-radius: 4px;">
+                <span>Update</span>
+            </button>
         </div>
         
         <div class="info-box note">
@@ -359,19 +402,15 @@
         function handleTaxpayerLogin() {
             const username = document.getElementById('loginUsername').value;
             const password = document.getElementById('loginPassword').value;
-            
+
             if (!username || !password) {
                 alert('कृपया User Name र Password भर्नुहोस्! (Please enter User Name and Password!)');
                 return;
             }
-            
-            // Close modal and load data
+
+            // Close modal and load data silently (no native alert)
             closeTaxpayerLoginModal();
-            
-            // Load demo TDS data into table
             loadDemoTDSData();
-            
-            alert('लगइन सफल! (Login Successful!)\nPayment Vouchers लोड भएको छ!');
         }
         
         // Load demo TDS data
@@ -498,15 +537,112 @@
             }
         }
     </script>
+
+    <script>
+        // Adjust parent iframe height (works when same-origin)
+        function adjustIframeHeight() {
+            try {
+                const doc = document.documentElement;
+                const body = document.body;
+                // total height of content
+                const height = Math.max(
+                    body.scrollHeight, body.offsetHeight,
+                    doc.clientHeight, doc.scrollHeight, doc.offsetHeight
+                );
+
+                if (window.frameElement && window.frameElement.tagName === 'IFRAME') {
+                    window.frameElement.style.height = (height + 20) + 'px';
+                }
+            } catch (e) {
+                // silent fail if cross-origin
+                console.warn('Could not adjust iframe height:', e);
+            }
+        }
+
+        // Run on load and when content changes
+        window.addEventListener('load', adjustIframeHeight);
+        window.addEventListener('resize', adjustIframeHeight);
+
+        // Observe DOM changes and adjust
+        const observer = new MutationObserver(function() {
+            adjustIframeHeight();
+        });
+        observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+
+        // Call adjust when interactive actions may change layout
+        function showTransferFields() {
+            const selectedValue = document.getElementById('taxPayerType').value;
+            const transferFields = document.getElementById('transferFields');
+            if (selectedValue === 'transfer_of_credit') {
+                transferFields.style.display = 'block';
+            } else {
+                transferFields.style.display = 'none';
+            }
+            adjustIframeHeight();
+        }
+
+        // Ensure action buttons toggle adjusts iframe
+        document.addEventListener('DOMContentLoaded', function() {
+            const cb = document.getElementById('showAllPayments');
+            if (cb) {
+                cb.addEventListener('change', function() {
+                    adjustIframeHeight();
+                });
+            }
+        });
+
+        // When demo data loads, adjust
+        function loadDemoTDSDataWrapper() {
+            if (typeof loadDemoTDSData === 'function') loadDemoTDSData();
+            adjustIframeHeight();
+        }
+        // Replace the handler used by login to call wrapper if needed
+        const origHandle = window.handleTaxpayerLogin;
+        window.handleTaxpayerLogin = function() {
+            if (typeof origHandle === 'function') origHandle();
+            // Delay to allow DOM updates
+            setTimeout(adjustIframeHeight, 250);
+        };
+    </script>
     
     <script>
         // Enable save/update buttons when checkbox is checked
         $('#showAllPayments').on('change', function() {
+            const actionButtons = document.getElementById('actionButtonsContainer');
             if ($(this).is(':checked')) {
-                console.log('Checkbox checked - Enable Save/Update buttons');
-                // You can add buttons here when checkbox is checked
+                // Show Save/Update buttons (use flex to left-align)
+                actionButtons.style.display = 'flex';
+                console.log('Checkbox checked - Save/Update buttons visible');
+            } else {
+                // Hide Save/Update buttons
+                actionButtons.style.display = 'none';
+                console.log('Checkbox unchecked - Save/Update buttons hidden');
             }
+            // Adjust iframe height when buttons container toggles
+            try { adjustIframeHeight(); } catch(e) { /* ignore */ }
         });
+        
+        // Save Annex-10 data
+        function saveAnnex10Data() {
+            if (!document.getElementById('showAllPayments').checked) {
+                alert('कृपया पहिले checkbox select गर्नुहोस्! (Please check the checkbox first!)');
+                return;
+            }
+            
+            alert('Annex-10 डेटा सफलतापूर्वक सेभ गरियो! (Annex-10 data saved successfully!)');
+            // You can add actual save logic here
+        }
+        
+        // Update Annex-10 data
+        function updateAnnex10Data() {
+            if (!document.getElementById('showAllPayments').checked) {
+                alert('कृपया पहिले checkbox select गर्नुहोस्! (Please check the checkbox first!)');
+                return;
+            }
+            
+            alert('Annex-10 डेटा सफलतापूर्वक अपडेट गरियो! (Annex-10 data updated successfully!)');
+            // You can add actual update logic here
+        }
     </script>
 </body>
 </html>
