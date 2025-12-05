@@ -294,7 +294,8 @@ function closeAnnex10MessageModal() {
 }
 
 function openAnnex13Modal() {
-    document.getElementById('annex13Modal').style.display = 'block';
+    // Directly load Annex-13 in the parent iframe instead of showing a modal
+    loadInParentIframe('income_tax/annex_13.html');
 }
 
 function closeAnnex13Modal() {
