@@ -336,3 +336,41 @@ function updateDate() {
         headerRight.textContent = 'Date: ' + bsDate;
     }
 }
+
+// Global function to load content in parent iframe (called from child iframes)
+function loadInParentIframe(url) {
+    console.log('loadInParentIframe called with URL:', url);
+    const $contentArea = $('.panel-body');
+    
+    // Show loading state
+    $contentArea.html('<div class="loading-content"><i class="fa fa-spinner fa-spin"></i> लोड गर्दै...</div>');
+    
+    // Load content via AJAX and create iframe
+    $.ajax({
+        url: url,
+        method: 'GET',
+        success: function(data) {
+            // Add has-iframe class to fix height
+            $contentArea.addClass('has-iframe');
+            
+            // Hide footer when content is loaded
+            $('.footer').hide();
+            
+            // Create iframe to load the form
+            var iframe = '<iframe src="' + url + '" style="width: 100%; height: 800px; border: none;" frameborder="0"></iframe>';
+            $contentArea.html(iframe);
+            
+            console.log('Content loaded successfully:', url);
+        },
+        error: function(error) {
+            // Remove has-iframe class on error
+            $contentArea.removeClass('has-iframe');
+            
+            // Show footer again on error
+            $('.footer').show();
+            
+            console.error('Error loading content:', error);
+            $contentArea.html('<div class="error-content"><i class="fa fa-exclamation-triangle"></i> सामग्री लोड गर्न असफल भयो। कृपया पुन: प्रयास गर्नुहोस्।</div>');
+        }
+    });
+}
