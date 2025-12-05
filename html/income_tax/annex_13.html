@@ -10,145 +10,195 @@
     <link rel="stylesheet" href="../../css/income_tax/d01_return_entry.css">
     <style>
         body { margin: 0; padding: 0; background: #DFE9F6; font-family: Arial, sans-serif; }
-        #annex13-container { width: 725px; height: 704px; margin: 0 auto; }
-        .x-container { box-sizing: border-box; }
-        .x-panel { box-sizing: border-box; }
-        .x-field { box-sizing: border-box; }
+        .annex13-page { width: 100%; max-width: 100%; background: #DFE9F6; }
+        .x-panel-header { background: linear-gradient(#B7D3F3, #8DB3E3); padding: 10px; font-weight: bold; }
+        .section-header { background: #DCE6F1; padding: 10px; font-weight: bold; border: 1px solid #C5D9F1; }
+        .x-btn { background: linear-gradient(#FEFEFE, #E6E6E6); border: 1px solid #B5B8C8; padding: 5px 10px; cursor: pointer; margin: 5px; }
+        .x-btn:hover { background: linear-gradient(#F5F5F5, #D5D5D5); }
+        table { width: 100%; border-collapse: collapse; }
+        td { border: 1px solid #C5D9F1; padding: 8px; }
+        input[type="text"] { border: 1px solid #B5B8C8; padding: 4px; width: 95%; }
+        .TxtRight { text-align: right; }
     </style>
 </head>
 <body>
-    <div id="annex13-container">
-        <div id="CntMainPage" class="x-container x-box-item x-container-default x-box-layout-ct" role="presentation" style="margin: 0px; width: 725px; height: 704px; left: 0px; top: 25px;">
-            <div class="x-box-inner" role="presentation" id="ext-gen1091" style="width: 725px; height: 704px;">
-                <div id="ext-comp-1626" class="x-panel x-box-item x-panel-default-framed" role="presentation" aria-labelledby="component-1749" style="width: 725px; height: 704px; margin: 0px; left: 0px; top: 0px;">
-                    <div id="header-1748" class="x-panel-header x-panel-header-default-framed x-horizontal x-panel-header-horizontal x-panel-header-default-framed-horizontal x-top x-panel-header-top x-panel-header-default-framed-top x-unselectable x-docked x-docked-top x-panel-header-docked-top x-panel-header-default-framed-docked-top" role="presentation" style="width: 725px; left: -1px; top: -1px;">
-                        <div id="header-1748-body" class="x-panel-header-body x-panel-header-body-default-framed-horizontal x-panel-header-body-default-framed-top x-panel-header-body-default-framed x-panel-header-body-horizontal x-panel-header-body-top x-box-layout-ct">
-                            <div class="x-box-inner" role="presentation" id="ext-gen4087" style="width: 713px; height: 15px;">
-                                <div id="component-1749" class="x-component x-panel-header-text-container x-box-item x-component-default" role="heading" style="margin: 0px; width: 713px; height: 15px; left: 0px; top: 0px;">
-                                    <span id="component-1749-textEl" class="x-panel-header-text x-panel-header-text-default-framed">Annex-13(Ka)</span>
-                                </div>
-                            </div>
-                        </div>
+    <div class="annex13-page">
+        <div style="margin: 5px; background: white; border: 1px solid #C5D9F1;">
+            <!-- Header -->
+            <div style="background: linear-gradient(#B7D3F3, #8DB3E3); padding: 10px; color: white; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+                <span>Annex-13(Ka)</span>
+                <button class="x-btn" onclick="window.print();" style="margin: 0;">
+                    <span>🖨 Print</span>
+                </button>
+            </div>
+
+            <!-- Form Content -->
+            <div style="padding: 15px;">
+                <!-- Title -->
+                <div style="text-align: center; font-size: 18px; font-weight: bold; margin: 15px 0;">
+                    अनुसूची - १३ (क)
+                </div>
+
+                <!-- Back Link Panel -->
+                <div style="background: #E8F4FF; border: 1px solid #5B9BD5; padding: 10px; margin: 10px 0; border-radius: 4px;">
+                    <span style="color: #003366;">पछाडि गएर अनुसूची तय गर्न </span>
+                    <span id="lnkRedirectD02" style="cursor: pointer; color: red; text-decoration: underline; font-weight: bold;">यहाँ क्लिक</span>
+                    <span style="color: #003366;"> गर्नुहोस् ।</span>
+                </div>
+
+                <!-- Submission Details Panel -->
+                <div style="border: 1px solid #C5D9F1; margin: 10px 0;">
+                    <div class="section-header">सब्मिशन विवरण</div>
+                    <table>
+                        <tr>
+                            <td style="width: 30%;">सब्मिशन नं.:</td>
+                            <td><input type="text" id="submissionNo" readonly /></td>
+                            <td style="width: 30%;">आर्थिक वर्ष:</td>
+                            <td><input type="text" id="fiscalYear" readonly /></td>
+                        </tr>
+                        <tr>
+                            <td>स्थायी लेखा नम्बर:</td>
+                            <td colspan="3"><input type="text" id="panNo" readonly style="width: 100%;" /></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Financial Description Panel -->
+                <div style="border: 1px solid #C5D9F1; margin: 10px 0;">
+                    <div class="section-header">वित्तिय विवरण प्रविस्ट गर्नुहोस्</div>
+                    <table>
+                        <thead>
+                            <tr style="background: #DCE6F1;">
+                                <th style="width: 50%; text-align: left;">सुची</th>
+                                <th style="width: 50%; text-align: left;">रकम वा प्रतिशत</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>बिक्री यस आ.व.<br><span style="font-size: 12px; color: #666;">Sales This Year</span></td>
+                                <td><input type="text" id="txtFinDesc0" class="TxtRight" /></td>
+                            </tr>
+                            <tr>
+                                <td>सेवा र व्यवसायको बिक्रि कारोबार<br><span style="font-size: 12px; color: #666;">Services and Sales of Business</span></td>
+                                <td><input type="text" id="txtFinDesc1" class="TxtRight" /></td>
+                            </tr>
+                            <tr>
+                                <td>कर अघिको खुद आय/नोक्सानी यस आ.व.<br><span style="font-size: 12px; color: #666;">Net Profit / Loss Before Tax This Year</span></td>
+                                <td><input type="text" id="txtFinDesc2" class="TxtRight" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Save Button -->
+                <div style="margin: 15px 0;">
+                    <button class="x-btn" onclick="saveAnnex13();">
+                        💾 Save
+                    </button>
+                </div>
+
+                <!-- Less than 100,000 Section -->
+                <div style="border: 1px solid #C5D9F1; margin: 10px 0;">
+                    <div class="section-header">रु एक लाख भन्दा कम बिक्री बिवरण</div>
+                    <table>
+                        <tr>
+                            <td>कुनै पनि व्यक्ति / संस्था संग आर्थिक वर्ष भरिमा रू एक लाख भन्दा कम बिक्रि एकमुष्ठ रकम</td>
+                            <td><input type="text" id="lessThan100k" class="TxtRight" /></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Greater than 100,000 Section -->
+                <div style="border: 1px solid #C5D9F1; margin: 10px 0;">
+                    <div class="section-header">रु एक लाख भन्दा बढी कारोबार विवरण</div>
+                    <table>
+                        <tr style="background: #EFF5FB;">
+                            <td colspan="2">
+                                <input type="checkbox" id="chkTransaction" /> कुनै पनि व्यक्ति / संस्था संग आर्थिक वर्ष भरिमा रू एक लाख भन्दा बढीको कारोबार छैन
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Load From Excel Section -->
+                <div style="border: 1px solid #C5D9F1; margin: 10px 0; padding: 10px;">
+                    <div class="section-header">एक्सेल फाइलबाट लोड गर्नुहोस्</div>
+                    <div style="padding: 10px;">
+                        <label>लोड XLS: </label>
+                        <input type="file" id="excelFile" accept=".xls,.xlsx" />
+                        <button class="x-btn" onclick="alert('Upload functionality coming soon');">⬆ Upload</button>
+                        <button class="x-btn" onclick="alert('Sample view coming soon');">📋 View Sample</button>
                     </div>
-                    <div id="ext-comp-1626-body" class="x-panel-body x-panel-body-default x-panel-body-default-framed x-panel-body-default-framed" style="overflow: auto; width: 715px; height: 669px; left: 0px; top: 25px;">
-                        <div id="form-1627" class="x-panel x-panel-default-framed" role="form" style="margin: 5px; height: 1208px; width: 705px;">
-                            <div id="form-1627-body" class="x-panel-body x-panel-body-default x-panel-body-default-framed x-panel-body-default-framed x-docked-noborder-top x-docked-noborder-right x-docked-noborder-bottom x-docked-noborder-left" style="padding: 10px; left: 0px; top: 0px;">
-                                <!-- Print Button -->
-                                <div id="button-1628" class="x-btn x-btn-default-small x-icon-text-left x-btn-icon-text-left x-btn-default-small-icon-text-left" style="margin: 0px;">
-                                    <em id="button-1628-btnWrap" class=""><button id="button-1628-btnEl" type="button" hidefocus="true" role="button" autocomplete="off" class="x-btn-center"><span id="button-1628-btnInnerEl" class="x-btn-inner" style="">Print</span><span id="button-1628-btnIconEl" class="x-btn-icon icon-print">&nbsp;</span></button></em>
-                                </div>
-                                
-                                <!-- Title -->
-                                <label id="label-1629" for="" class="x-component x-component-default" role="presentation" style="font-size: 20px; margin: 0px 0px 0px 320px; height: 50px;">अनुसूची - १३ (क)</label>
-                                
-                                <!-- Panel Header with Back Link -->
-                                <div id="panel-1630" class="x-panel x-panel-default-framed" role="presentation" aria-labelledby="component-1751" style="margin: 10px 0px 5px; height: 120px; width: 675px;">
-                                    <div id="header-1750" class="x-panel-header x-panel-header-default-framed x-horizontal x-panel-header-horizontal x-panel-header-default-framed-horizontal x-top x-panel-header-top x-panel-header-default-framed-top x-unselectable x-docked x-docked-top x-panel-header-docked-top x-panel-header-default-framed-docked-top" role="presentation" style="width: 675px; left: -1px; top: -1px;">
-                                        <div id="header-1750-body" class="x-panel-header-body x-panel-header-body-default-framed-horizontal x-panel-header-body-default-framed-top x-panel-header-body-default-framed x-panel-header-body-horizontal x-panel-header-body-top x-box-layout-ct">
-                                            <div class="x-box-inner" role="presentation" id="ext-gen4095" style="width: 663px; height: 15px;">
-                                                <div id="component-1751" class="x-component x-panel-header-text-container x-box-item x-component-default" role="heading" style="margin: 0px; width: 663px; height: 15px; left: 0px; top: 0px;">
-                                                    <span id="component-1751-textEl" class="x-panel-header-text x-panel-header-text-default-framed"> पछाडि गएर अनुसूची तय गर्न <div id="lnkRedirectD02" style="cursor:pointer;color:red;display:inline;text-decoration:underline"><span>यहाँ क्लिक</span></div> गर्नुहोस् । </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="panel-1630-body" class="x-panel-body x-panel-body-default x-panel-body-default-framed x-panel-body-default-framed x-table-layout-ct" style="height: 85px; width: 665px; left: 0px; top: 25px;">
-                                        <table role="presentation" class="x-table-layout" cellspacing="0">
-                                            <tbody>
-                                                <tr>
-                                                    <td id="" colspan="1" rowspan="1" class="x-table-layout-cell ">
-                                                        <div id="container-1631" class="x-container x-container-default x-table-layout-ct" role="presentation">
-                                                            <table role="presentation" class="x-table-layout" cellspacing="0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td id="" colspan="2" rowspan="1" class="x-table-layout-cell ">
-                                                                            <div id="textfield-1632" class="x-field x-form-item x-field-default x-form-readonly x-form-dirty" style="width: 305px;">
-                                                                                <label id="textfield-1632-labelEl" for="ext-gen4024" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:150px;">सब्मिशन नं.:</label>
-                                                                                <div class="x-form-item-body " id="textfield-1632-bodyEl" role="presentation" style="width: 150px;">
-                                                                                    <input id="ext-gen4024" type="text" name="ext-gen4024" size="20" class="x-form-field x-form-text" autocomplete="off" readonly="" aria-readonly="true" aria-invalid="false" role="textbox" aria-describedby="textfield-1632-errorEl" aria-required="false" data-errorqtip="" style="width: 150px;">
-                                                                                </div>
-                                                                                <div id="textfield-1632-errorEl" class="x-form-error-msg" style="display:none"></div>
-                                                                                <div class="x-clear" role="presentation"><!-- --></div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td id="" colspan="1" rowspan="1" class="x-table-layout-cell ">
-                                                                            <div id="textfield-1633" class="x-field x-form-item x-field-default x-form-readonly x-form-dirty" style="width: 305px;">
-                                                                                <label id="textfield-1633-labelEl" for="ext-gen4026" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:150px;">आर्थिक वर्ष:</label>
-                                                                                <div class="x-form-item-body " id="textfield-1633-bodyEl" role="presentation" style="width: 150px;">
-                                                                                    <input id="ext-gen4026" type="text" name="ext-gen4026" size="20" class="x-form-field x-form-text" autocomplete="off" readonly="" aria-readonly="true" aria-invalid="false" role="textbox" aria-describedby="textfield-1633-errorEl" aria-required="false" data-errorqtip="" style="width: 150px;">
-                                                                                </div>
-                                                                                <div id="textfield-1633-errorEl" class="x-form-error-msg" style="display:none"></div>
-                                                                                <div class="x-clear" role="presentation"><!-- --></div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td id="" colspan="2" rowspan="1" class="x-table-layout-cell ">
-                                                                            <div id="textfield-1634" class="x-field x-form-item x-field-default x-form-readonly x-form-dirty" style="width: 305px;">
-                                                                                <label id="textfield-1634-labelEl" for="ext-gen4027" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:150px;">स्थायी लेखा नम्बर:</label>
-                                                                                <div class="x-form-item-body " id="textfield-1634-bodyEl" role="presentation" style="width: 150px;">
-                                                                                    <input id="ext-gen4027" type="text" name="ext-gen4027" size="20" class="x-form-field x-form-text" autocomplete="off" readonly="" aria-readonly="true" aria-invalid="false" role="textbox" aria-describedby="textfield-1634-errorEl" aria-required="false" data-errorqtip="" style="width: 150px;">
-                                                                                </div>
-                                                                                <div id="textfield-1634-errorEl" class="x-form-error-msg" style="display:none"></div>
-                                                                                <div class="x-clear" role="presentation"><!-- --></div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                </div>
 
-                                <!-- Financial Description Grid -->
-                                <div id="gridpanel-1635" class="x-panel x-grid x-panel-default x-horizontal-scroller-present" role="presentation" aria-labelledby="component-1753" style="margin: 0px 0px 5px; height: 180px; width: 675px;">
-                                    <div id="header-1752" class="x-panel-header x-panel-header-default x-horizontal x-panel-header-horizontal x-panel-header-default-horizontal x-top x-panel-header-top x-panel-header-default-top x-unselectable x-docked x-docked-top x-panel-header-docked-top x-panel-header-default-docked-top" role="presentation" style="width: 675px; left: 0px; top: 0px;">
-                                        <div id="header-1752-body" class="x-panel-header-body x-panel-header-body-default-horizontal x-panel-header-body-default-top x-panel-header-body-default x-panel-header-body-horizontal x-panel-header-body-top x-box-layout-ct">
-                                            <div class="x-box-inner" role="presentation" id="ext-gen4115" style="width: 664px; height: 15px;">
-                                                <div id="component-1753" class="x-component x-panel-header-text-container x-box-item x-component-default" role="heading" style="margin: 0px; width: 664px; height: 15px; left: 0px; top: 0px;">
-                                                    <span id="component-1753-textEl" class="x-panel-header-text x-panel-header-text-default">वित्तिय विवरण प्रविस्ट गर्नुहोस्। </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="gridpanel-1635-body" class="x-panel-body x-grid-body x-panel-body-default x-panel-body-default x-layout-fit" style="height: 131px; left: 0px; top: 48px; width: 675px;">
-                                        <table class="x-grid-table" border="0" cellspacing="0" cellpadding="0" style="width: 100%;">
-                                            <tbody>
-                                                <tr class="x-grid-row">
-                                                    <td style="width: 60%; padding: 8px;"><strong>बिक्री यस आ.व. (Sales This Year)</strong></td>
-                                                    <td style="width: 40%; padding: 8px;"><input type="text" class="TxtRight" style="width: 150px; padding: 4px;" id="txtFinDesc0Anx13"></td>
-                                                </tr>
-                                                <tr class="x-grid-row x-grid-row-alt">
-                                                    <td style="width: 60%; padding: 8px;"><strong>सेवा र व्यवसायको बिक्रि कारोबार (Services and Sales of Business)</strong></td>
-                                                    <td style="width: 40%; padding: 8px;"><input type="text" class="TxtRight" style="width: 150px; padding: 4px;" id="txtFinDesc1Anx13"></td>
-                                                </tr>
-                                                <tr class="x-grid-row">
-                                                    <td style="width: 60%; padding: 8px;"><strong>कर अघिको खुद आय/नोक्सानी यस आ.व. (Net Profit / Loss Before Tax This Year)</strong></td>
-                                                    <td style="width: 40%; padding: 8px;"><input type="text" class="TxtRight" style="width: 150px; padding: 4px;" id="txtFinDesc2Anx13"></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <!-- Save Button -->
-                                <div id="button-1643" class="x-btn x-btn-default-small x-icon-text-left x-btn-icon-text-left x-btn-default-small-icon-text-left" style="padding: 5px; margin: 10px 0;">
-                                    <em id="button-1643-btnWrap" class=""><button id="button-1643-btnEl" type="button" hidefocus="true" role="button" autocomplete="off" class="x-btn-center"><span id="button-1643-btnInnerEl" class="x-btn-inner" style="">Save</span><span id="button-1643-btnIconEl" class="x-btn-icon icon-save">&nbsp;</span></button></em>
-                                </div>
-
-                                <!-- Additional sections (collapsed/hidden for now) -->
-                                <div style="margin-top: 20px; font-style: italic; color: #666;">
-                                    <p>Additional sections for greater than 100,000 transactions and less than 100,000 transactions are available.</p>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Transaction Grid Section -->
+                <div style="border: 1px solid #C5D9F1; margin: 10px 0;">
+                    <div class="section-header">शुरु मौज्दात, खरिद, विक्री विवरण (एक लाख भन्दा बढी)</div>
+                    <div style="overflow-x: auto; margin: 10px 0;">
+                        <table style="min-width: 100%; font-size: 12px;">
+                            <thead>
+                                <tr style="background: #DCE6F1;">
+                                    <th style="width: 5%;">क्र.</th>
+                                    <th style="width: 15%;">स्थायी लेखा नम्बर</th>
+                                    <th style="width: 25%;">व्यवसायको नाम</th>
+                                    <th style="width: 15%;">शुरु लिन बाकी (रकम)</th>
+                                    <th style="width: 15%;">यो वर्ष खरिद</th>
+                                    <th style="width: 15%;">यो वर्ष बिक्रि</th>
+                                    <th style="width: 15%;">अन्त लिन बाकी (रकम)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>१</td>
+                                    <td><input type="text" style="width: 95%;" /></td>
+                                    <td><input type="text" style="width: 95%;" /></td>
+                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
+                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
+                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
+                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>२</td>
+                                    <td><input type="text" style="width: 95%;" /></td>
+                                    <td><input type="text" style="width: 95%;" /></td>
+                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
+                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
+                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
+                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
+                    <button class="x-btn" onclick="addTransactionRow();">➕ Add New</button>
+                    <button class="x-btn" onclick="deleteAllRows();">❌ Delete All</button>
+                    <button class="x-btn" onclick="checkSum();">🧮 Check Sum</button>
+                </div>
+
+                <!-- Totals Section -->
+                <div style="border: 1px solid #C5D9F1; margin: 10px 0;">
+                    <div class="section-header">जम्मा</div>
+                    <table>
+                        <tr>
+                            <td style="width: 30%;">जम्मा बिक्री रकम:</td>
+                            <td><input type="text" id="totalSales" readonly class="TxtRight" /></td>
+                            <td style="width: 30%;">जम्मा खरिद रकम:</td>
+                            <td><input type="text" id="totalPurchase" readonly class="TxtRight" /></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Save Transaction Button -->
+                <div style="margin: 15px 0;">
+                    <button class="x-btn" onclick="saveTransaction();">
+                        💾 Save Transaction
+                    </button>
+                </div>
+
+                <!-- Back Link at Bottom -->
+                <div style="background: #E8F4FF; border: 1px solid #5B9BD5; padding: 10px; margin: 10px 0; border-radius: 4px; text-align: center;">
+                    <span style="color: #003366;">पछाडि गएर अनुसूची तय गर्न </span>
+                    <span id="lnkRedirectD02Bottom" style="cursor: pointer; color: red; text-decoration: underline; font-weight: bold;">यहाँ क्लिक</span>
+                    <span style="color: #003366;"> गर्नुहोस् ।</span>
                 </div>
             </div>
         </div>
@@ -169,21 +219,53 @@
             }
         };
 
-        // Handle back link to D-02
+        // Handle back links to D-02
         document.getElementById('lnkRedirectD02').addEventListener('click', function(e) {
             e.preventDefault();
             loadInParentIframe('income_tax/d02_main_form.html');
         });
-
-        // Handle Save button
-        document.getElementById('button-1643-btnEl').addEventListener('click', function() {
-            alert('Form saved successfully (demo)');
+        
+        document.getElementById('lnkRedirectD02Bottom').addEventListener('click', function(e) {
+            e.preventDefault();
+            loadInParentIframe('income_tax/d02_main_form.html');
         });
 
-        // Handle Print button
-        document.getElementById('button-1628-btnEl').addEventListener('click', function() {
-            window.print();
-        });
+        // Form functions
+        function saveAnnex13() {
+            alert('Financial description saved (demo)');
+        }
+
+        function addTransactionRow() {
+            alert('Add new transaction row (demo)');
+        }
+
+        function deleteAllRows() {
+            if (confirm('Delete all transaction rows?')) {
+                alert('All rows deleted (demo)');
+            }
+        }
+
+        function checkSum() {
+            alert('Check Sum calculation (demo)');
+        }
+
+        function saveTransaction() {
+            alert('Transaction saved (demo)');
+        }
+
+        // Load data from D-02 if available
+        window.onload = function() {
+            const d02Data = JSON.parse(sessionStorage.getItem('d02_current_registration') || '{}');
+            if (d02Data.submissionNo) {
+                document.getElementById('submissionNo').value = d02Data.submissionNo;
+            }
+            if (d02Data.fiscalYear) {
+                document.getElementById('fiscalYear').value = d02Data.fiscalYear;
+            }
+            if (d02Data.pan) {
+                document.getElementById('panNo').value = d02Data.pan;
+            }
+        };
     </script>
 </body>
 </html>
