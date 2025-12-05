@@ -337,20 +337,20 @@ function updateDate() {
     }
 }
 
-// Global function to load content in parent iframe (called from child iframes)
-function loadInParentIframe(url) {
+// Global function to load content in parent iframe (called from child iframes like D-02, Annex-13)
+window.loadInParentIframe = function(url) {
     console.log('loadInParentIframe called with URL:', url);
     const $contentArea = $('.panel-body');
     
     // Show loading state
-    $contentArea.html('<div class="loading-content"><i class="fa fa-spinner fa-spin"></i> लोड गर्दै...</div>');
+    $contentArea.html('<div class="loading-content" style="padding: 20px; text-align: center;"><i class="fa fa-spinner fa-spin"></i> लोड गर्दै...</div>');
     
     // Load content via AJAX and create iframe
     $.ajax({
         url: url,
         method: 'GET',
         success: function(data) {
-            // Add has-iframe class to fix height
+            // Add has-iframe class
             $contentArea.addClass('has-iframe');
             
             // Hide footer when content is loaded
@@ -370,7 +370,7 @@ function loadInParentIframe(url) {
             $('.footer').show();
             
             console.error('Error loading content:', error);
-            $contentArea.html('<div class="error-content"><i class="fa fa-exclamation-triangle"></i> सामग्री लोड गर्न असफल भयो। कृपया पुन: प्रयास गर्नुहोस्।</div>');
+            $contentArea.html('<div class="error-content" style="padding: 20px; color: red;"><i class="fa fa-exclamation-triangle"></i> सामग्री लोड गर्न असफल भयो। कृपया पुन: प्रयास गर्नुहोस्।</div>');
         }
     });
-}
+};

@@ -503,28 +503,16 @@ function submitD02Form() {
     }
 }
 
-// Load a form in the parent iframe
-function loadInParentIframe(url) {
+// Fallback loadInParentIframe for D-02 form
+window.loadInParentIframe = function(url) {
     try {
-        // Try to access parent window
-        if (parent && parent !== window) {
-            // Call parent's iframe loading function
-            if (parent.loadInParentIframe) {
-                parent.loadInParentIframe(url);
-            } else if (parent.document.querySelector) {
-                // Fallback: try to find and set iframe src
-                const panelBody = parent.document.querySelector('.panel-body.has-iframe');
-                if (panelBody && panelBody.querySelector('iframe')) {
-                    panelBody.querySelector('iframe').src = url;
-                }
-            }
+        if (parent && parent.loadInParentIframe && parent !== window) {
+            parent.loadInParentIframe(url);
         } else {
-            // Not in iframe, open in new tab
             window.open(url, '_blank');
         }
     } catch (e) {
-        console.error('Error loading in parent iframe:', e);
-        // Fallback: open in new tab
+        console.error('Error in loadInParentIframe:', e);
         window.open(url, '_blank');
     }
-}
+};
