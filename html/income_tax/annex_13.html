@@ -10,44 +10,465 @@
     <link rel="stylesheet" href="../../css/income_tax/d01_return_entry.css">
     <style>
         body { margin: 0; padding: 0; background: #DFE9F6; font-family: Arial, sans-serif; }
-        .annex13-page { width: 100%; max-width: 100%; background: #DFE9F6; }
-        .x-panel-header { background: linear-gradient(#B7D3F3, #8DB3E3); padding: 10px; font-weight: bold; }
-        .section-header { background: #DCE6F1; padding: 10px; font-weight: bold; border: 1px solid #C5D9F1; }
-        .x-btn { background: linear-gradient(#FEFEFE, #E6E6E6); border: 1px solid #B5B8C8; padding: 5px 10px; cursor: pointer; margin: 5px; }
-        .x-btn:hover { background: linear-gradient(#F5F5F5, #D5D5D5); }
-        table { width: 100%; border-collapse: collapse; }
-        td { border: 1px solid #C5D9F1; padding: 8px; }
-        input[type="text"] { border: 1px solid #B5B8C8; padding: 4px; width: 95%; }
+        .x-panel { background: white; border: 1px solid #BED7EB; margin-bottom: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .x-panel-header { background: linear-gradient(180deg, #B7D3F3 0%, #8DB3E3 100%); color: white; padding: 8px 12px; font-weight: bold; border-bottom: 1px solid #7FA8D1; }
+        .x-panel-body { padding: 10px; }
+        .x-fieldset { border: 1px solid #BED7EB; margin: 5px 0; padding: 10px; background: #F3F6FB; }
+        .x-fieldset-header { background: #DCE6F1; padding: 6px 10px; font-weight: bold; border-bottom: 1px solid #BED7EB; }
+        .x-field { margin: 8px 0; }
+        .x-field-label { font-weight: bold; color: #333; margin-right: 10px; display: inline-block; }
+        input[type="text"], input[type="number"] { border: 1px solid #BED7EB; padding: 4px 6px; background: white; width: 95%; }
+        input[readonly] { background: #F0F0F0; color: #666; }
+        .x-btn { background: linear-gradient(180deg, #E8E8E8 0%, #D0D0D0 100%); border: 1px solid #999; padding: 6px 12px; cursor: pointer; margin: 5px 2px; font-size: 12px; border-radius: 3px; }
+        .x-btn:hover { background: linear-gradient(180deg, #F5F5F5 0%, #E0E0E0 100%); }
+        .x-btn:active { background: linear-gradient(180deg, #D0D0D0 0%, #B0B0B0 100%); }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        table th { background: #DCE6F1; border: 1px solid #BED7EB; padding: 6px; font-weight: bold; text-align: left; }
+        table td { border: 1px solid #BED7EB; padding: 6px; vertical-align: middle; }
         .TxtRight { text-align: right; }
+        .TxtCenter { text-align: center; }
+        .x-grid-header { background: #DCE6F1; border-bottom: 1px solid #BED7EB; }
+        .x-toolbar { background: #F3F6FB; border-bottom: 1px solid #BED7EB; padding: 8px; margin-bottom: 10px; }
+        .back-link-panel { background: #E8F1F8; border: 1px solid #7FA8D1; padding: 10px; margin: 10px 0; border-radius: 2px; }
+        .section-title { font-size: 16px; font-weight: bold; text-align: center; margin: 15px 0; color: #333; }
     </style>
 </head>
 <body>
-    <div class="annex13-page">
-        <div style="margin: 5px; background: white; border: 1px solid #C5D9F1;">
-            <!-- Header -->
-            <div style="background: linear-gradient(#B7D3F3, #8DB3E3); padding: 10px; color: white; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
-                <span>Annex-13(Ka)</span>
-                <button class="x-btn" onclick="window.print();" style="margin: 0;">
-                    <span>🖨 Print</span>
-                </button>
+    <div id="CntMainPage" class="x-container x-box-layout-ct" style="margin: 0; width: 100%; background: #DFE9F6; padding: 10px;">
+        <div id="ext-comp-1307" class="x-panel">
+            <!-- Main Panel Header -->
+            <div id="header-1429" class="x-panel-header">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>Annex-13(Ka)</span>
+                    <button class="x-btn" onclick="window.print();" title="Print this form">
+                        <span style="margin-right: 5px;">🖨</span>Print
+                    </button>
+                </div>
             </div>
 
-            <!-- Form Content -->
-            <div style="padding: 15px;">
-                <!-- Title -->
-                <div style="text-align: center; font-size: 18px; font-weight: bold; margin: 15px 0;">
-                    अनुसूची - १३ (क)
+            <!-- Panel Body -->
+            <div id="ext-comp-1307-body" class="x-panel-body" style="background: white; padding: 15px;">
+                <!-- Form Title -->
+                <div class="section-title">अनुसूची - १३ (क)</div>
+
+                <!-- Back Link Navigation Panel -->
+                <div id="panel-back-nav" class="x-panel">
+                    <div id="header-back" class="x-panel-header">
+                        <div class="back-link-panel" style="margin: 0; background: transparent; border: none; padding: 0;">
+                            <span style="color: black;">पछाडि गएर अनुसूची तय गर्न </span>
+                            <span id="lnkRedirectD02" style="cursor: pointer; color: red; text-decoration: underline; font-weight: bold;">यहाँ क्लिक</span>
+                            <span style="color: black;"> गर्नुहोस् ।</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Back Link Panel -->
-                <div style="background: #E8F4FF; border: 1px solid #5B9BD5; padding: 10px; margin: 10px 0; border-radius: 4px;">
-                    <span style="color: #003366;">पछाडि गएर अनुसूची तय गर्न </span>
-                    <span id="lnkRedirectD02" style="cursor: pointer; color: red; text-decoration: underline; font-weight: bold;">यहाँ क्लिक</span>
-                    <span style="color: #003366;"> गर्नुहोस् ।</span>
+                <!-- Submission Details Section -->
+                <div id="panel-submission" class="x-panel" style="margin: 10px 0;">
+                    <div class="x-panel-header">सब्मिशन विवरण</div>
+                    <div class="x-panel-body">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 33%; vertical-align: top;">
+                                    <div class="x-field">
+                                        <label class="x-field-label">सब्मिशन नं.:</label>
+                                        <input type="text" id="txtSubmissionNo" readonly style="width: 90%;" />
+                                    </div>
+                                </td>
+                                <td style="width: 33%; vertical-align: top;">
+                                    <div class="x-field">
+                                        <label class="x-field-label">आर्थिक वर्ष:</label>
+                                        <input type="text" id="txtFiscalYear" readonly style="width: 90%;" />
+                                    </div>
+                                </td>
+                                <td style="width: 34%; vertical-align: top;">
+                                    <div class="x-field">
+                                        <label class="x-field-label">स्थायी लेखा नम्बर:</label>
+                                        <input type="text" id="txtPAN" readonly style="width: 90%;" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
-                <!-- Submission Details Panel -->
-                <div style="border: 1px solid #C5D9F1; margin: 10px 0;">
+                <!-- Financial Description Grid Section -->
+                <div id="panel-fin-desc" class="x-panel" style="margin: 10px 0;">
+                    <div class="x-panel-header">वित्तिय विवरण प्रविस्ट गर्नुहोस्</div>
+                    <div class="x-panel-body">
+                        <table style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 70%;">सुची</th>
+                                    <th style="width: 30%;">रकम वा प्रतिसत</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div>बिक्री यस आ.व.<br/><small style="color: #666;">Sales This Year</small></div>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtFinDesc0" class="TxtRight" placeholder="0" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>सेवा र व्यवसायको बिक्रि कारोबार<br/><small style="color: #666;">Services and Sales of Business</small></div>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtFinDesc1" class="TxtRight" placeholder="0" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>कर अघिको खुद आय/नोक्सानी यस आ.व.<br/><small style="color: #666;">Net Profit / Loss Before Tax This Year</small></div>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtFinDesc2" class="TxtRight" placeholder="0" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="padding: 10px 0;">
+                            <button class="x-btn" onclick="saveFinancialDescription();" title="Save financial description">
+                                💾 Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Less Than 100k Transaction Section -->
+                <div id="panel-less-100k" class="x-panel" style="margin: 10px 0;">
+                    <div class="x-panel-header">रु एक लाख भन्दा कम बिक्री बिवरण</div>
+                    <div class="x-panel-body">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td>
+                                    <span>कुनै पनि व्यक्ति / संस्था संग आर्थिक वर्ष भरिमा रू एक लाख भन्दा कम बिक्रि एकमुष्ठ रकम </span>
+                                </td>
+                                <td style="width: 150px;">
+                                    <input type="text" id="txtLess100k" class="TxtRight" placeholder="0" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Greater Than 100k Comprehensive Section -->
+                <div id="panel-greater-100k-desc" class="x-panel" style="margin: 10px 0;">
+                    <div class="x-panel-header">शुरु मौज्दात, खरिद, विक्री, लिनबाँकी वा दिनबाँकी मध्ये सबै रकम रु १ लाख वा सो भन्दा कम हुनेको एकमुष्ट विवरण</div>
+                    <div class="x-panel-body">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 50%;">
+                                    <div class="x-field">
+                                        <label class="x-field-label">वर्षको शुरुको लिन बाकी (दिन बाकी) रकम:</label>
+                                        <input type="text" id="txtYrStartDebit" class="TxtRight" placeholder="0" />
+                                    </div>
+                                </td>
+                                <td style="width: 50%;">
+                                    <div class="x-field">
+                                        <label class="x-field-label">पुजिगत सेवा खरिद:</label>
+                                        <input type="text" id="txtCapitalServiceBuy" class="TxtRight" placeholder="0" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 50%;">
+                                    <div class="x-field">
+                                        <label class="x-field-label">अन्य सेवा खरिद:</label>
+                                        <input type="text" id="txtOtherServiceBuy" class="TxtRight" placeholder="0" />
+                                    </div>
+                                </td>
+                                <td style="width: 50%;">
+                                    <div class="x-field">
+                                        <label class="x-field-label">यो वर्ष को अन्य समान खरिद:</label>
+                                        <input type="text" id="txtYrOtherGoodsBuy" class="TxtRight" placeholder="0" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 50%;">
+                                    <div class="x-field">
+                                        <label class="x-field-label">यो वर्ष को पुजिगत समान खरिद:</label>
+                                        <input type="text" id="txtYrCapitalGoodsBuy" class="TxtRight" placeholder="0" />
+                                    </div>
+                                </td>
+                                <td style="width: 50%;">
+                                    <div class="x-field">
+                                        <label class="x-field-label">यो वर्ष को सेवा बिक्रि:</label>
+                                        <input type="text" id="txtYrServiceSale" class="TxtRight" placeholder="0" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 50%;">
+                                    <div class="x-field">
+                                        <label class="x-field-label">यो वर्षको समान बिक्रि:</label>
+                                        <input type="text" id="txtYrGoodsSale" class="TxtRight" placeholder="0" />
+                                    </div>
+                                </td>
+                                <td style="width: 50%;">
+                                    <div class="x-field">
+                                        <label class="x-field-label">वर्षको अन्तमा लिन बाकी (दिन बाकी) रकम:</label>
+                                        <input type="text" id="txtYrEndDebit" class="TxtRight" placeholder="0" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Greater Than 100k Transaction Section -->
+                <div id="panel-greater-100k" class="x-panel" style="margin: 10px 0;">
+                    <div class="x-panel-header">शुरु मौज्दात, खरिद, विक्री, लिन बाँकी वा दिन बाँकी मध्ये कुनै रकम रु १ लाख भन्दा बढी हुनेको विवरण</div>
+                    <div class="x-panel-body">
+                        <div style="margin: 10px 0; padding: 10px; background: #F9F9F9; border: 1px solid #DDD;">
+                            <label style="display: inline-block; margin-right: 10px;">
+                                <span>कुनै पनि व्यक्ति / संस्था संग आर्थिक वर्ष भरिमा रू एक लाख भन्दा बढीको कारोबार छैन </span>
+                            </label>
+                            <input type="checkbox" id="chkNoGreater100k" checked />
+                        </div>
+
+                        <!-- Transaction Grid (Hidden by default) -->
+                        <div id="divTransactionGrid" style="display: none; margin-top: 10px;">
+                            <div class="x-toolbar" style="margin: 10px 0; padding: 8px; background: #F3F6FB;">
+                                <button class="x-btn" onclick="addTransactionRow();" title="Add new transaction row">
+                                    ➕ Add New
+                                </button>
+                                <button class="x-btn" onclick="deleteAllTransactionRows();" title="Delete all rows">
+                                    🗑 Delete All
+                                </button>
+                                <button class="x-btn" onclick="checkTransactionSum();" title="Check sum of transactions">
+                                    🧮 Check Sum
+                                </button>
+                            </div>
+
+                            <table id="tblTransactions" style="width: 100%; margin-bottom: 10px;">
+                                <thead>
+                                    <tr class="x-grid-header">
+                                        <th style="width: 5%;">क्र.म.</th>
+                                        <th style="width: 10%;">स्थायी लेखा नम्बर</th>
+                                        <th style="width: 20%;">व्यवसायको नाम</th>
+                                        <th style="width: 15%;">वर्षको शुरुको लिन बाकी</th>
+                                        <th style="width: 12%;">पुजिगत सेवा खरिद</th>
+                                        <th style="width: 12%;">अन्य सेवा खरिद</th>
+                                        <th style="width: 12%;">पुजिगत समान खरिद</th>
+                                        <th style="width: 12%;">अन्य समान खरिद</th>
+                                        <th style="width: 12%;">यो वर्ष को सेवा बिक्रि</th>
+                                        <th style="width: 12%;">यो वर्षको समान बिक्रि</th>
+                                        <th style="width: 15%;">वर्षको अन्तमा लिन बाकी</th>
+                                        <th style="width: 8%;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="transactionTableBody">
+                                    <!-- Transaction rows will be added here -->
+                                </tbody>
+                            </table>
+
+                            <!-- Totals Section -->
+                            <div id="panel-totals" class="x-fieldset" style="margin-top: 10px;">
+                                <div class="x-fieldset-header">जम्मा</div>
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td style="width: 20%;"><label class="x-field-label">वर्षको शुरुको लिन बाकी:</label></td>
+                                        <td style="width: 15%;"><input type="text" id="totalYrStartDebit" readonly class="TxtRight" /></td>
+                                        
+                                        <td style="width: 20%;"><label class="x-field-label">पुजिगत सेवा खरिद:</label></td>
+                                        <td style="width: 15%;"><input type="text" id="totalCapitalService" readonly class="TxtRight" /></td>
+                                        
+                                        <td style="width: 20%;"><label class="x-field-label">अन्य सेवा खरिद:</label></td>
+                                        <td style="width: 15%;"><input type="text" id="totalOtherService" readonly class="TxtRight" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="x-field-label">पुजिगत समान खरिद:</label></td>
+                                        <td><input type="text" id="totalCapitalGoods" readonly class="TxtRight" /></td>
+                                        
+                                        <td><label class="x-field-label">अन्य समान खरिद:</label></td>
+                                        <td><input type="text" id="totalOtherGoods" readonly class="TxtRight" /></td>
+                                        
+                                        <td><label class="x-field-label">यो वर्ष को सेवा बिक्रि:</label></td>
+                                        <td><input type="text" id="totalServiceSale" readonly class="TxtRight" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="x-field-label">यो वर्षको समान बिक्रि:</label></td>
+                                        <td><input type="text" id="totalGoodsSale" readonly class="TxtRight" /></td>
+                                        
+                                        <td><label class="x-field-label">वर्षको अन्तमा लिन बाकी:</label></td>
+                                        <td><input type="text" id="totalYrEndDebit" readonly class="TxtRight" /></td>
+                                        
+                                        <td colspan="2"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div style="padding: 10px 0; margin-top: 10px;">
+                            <button class="x-btn" onclick="saveAnnex13();" title="Save transaction data">
+                                💾 Save Transaction
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Navigation -->
+                <div id="panel-bottom-nav" class="x-panel" style="margin: 15px 0;">
+                    <div class="x-toolbar" style="background: #F9F9F9; border: 1px solid #DDD; padding: 10px;">
+                        <span style="margin-right: 10px;">पछाडि गएर अनुसूची तय गर्न</span>
+                        <a href="#" id="lnkBottomRedirect" style="color: red; text-decoration: underline; margin: 0 5px;">यहाँ क्लिक</a>
+                        <span>गर्नुहोस् ।</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load from sessionStorage on page load
+        window.addEventListener('load', function() {
+            loadAnnex13Data();
+        });
+
+        function loadAnnex13Data() {
+            try {
+                const data = sessionStorage.getItem('d02FormData');
+                if (data) {
+                    const formData = JSON.parse(data);
+                    document.getElementById('txtSubmissionNo').value = formData.submissionNo || '';
+                    document.getElementById('txtFiscalYear').value = formData.fiscalYear || '';
+                    document.getElementById('txtPAN').value = formData.pan || '';
+                }
+            } catch (e) {
+                console.log('No D-02 data found in sessionStorage');
+            }
+        }
+
+        function saveFinancialDescription() {
+            const desc0 = document.getElementById('txtFinDesc0').value;
+            const desc1 = document.getElementById('txtFinDesc1').value;
+            const desc2 = document.getElementById('txtFinDesc2').value;
+            
+            sessionStorage.setItem('annex13FinDesc', JSON.stringify({
+                sales: desc0,
+                serviceSales: desc1,
+                netProfit: desc2
+            }));
+            alert('Financial description saved!');
+        }
+
+        function addTransactionRow() {
+            const tbody = document.getElementById('transactionTableBody');
+            const rowNum = tbody.children.length + 1;
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="TxtCenter">${rowNum}</td>
+                <td><input type="text" class="transactionPAN" placeholder="PAN" /></td>
+                <td><input type="text" class="transactionName" placeholder="Business Name" /></td>
+                <td><input type="text" class="transactionYrStart TxtRight" placeholder="0" /></td>
+                <td><input type="text" class="transactionCapSvc TxtRight" placeholder="0" /></td>
+                <td><input type="text" class="transactionOthSvc TxtRight" placeholder="0" /></td>
+                <td><input type="text" class="transactionCapGds TxtRight" placeholder="0" /></td>
+                <td><input type="text" class="transactionOthGds TxtRight" placeholder="0" /></td>
+                <td><input type="text" class="transactionSvcSale TxtRight" placeholder="0" /></td>
+                <td><input type="text" class="transactionGdsSale TxtRight" placeholder="0" /></td>
+                <td><input type="text" class="transactionYrEnd TxtRight" placeholder="0" /></td>
+                <td><button class="x-btn" onclick="deleteTransactionRow(this)" style="margin: 0; padding: 2px 5px;">🗑</button></td>
+            `;
+            tbody.appendChild(row);
+        }
+
+        function deleteTransactionRow(btn) {
+            btn.closest('tr').remove();
+            updateRowNumbers();
+        }
+
+        function deleteAllTransactionRows() {
+            if (confirm('Delete all transaction rows?')) {
+                document.getElementById('transactionTableBody').innerHTML = '';
+                clearTotals();
+            }
+        }
+
+        function updateRowNumbers() {
+            const tbody = document.getElementById('transactionTableBody');
+            Array.from(tbody.children).forEach((row, index) => {
+                row.cells[0].textContent = index + 1;
+            });
+        }
+
+        function checkTransactionSum() {
+            const tbody = document.getElementById('transactionTableBody');
+            const rows = tbody.querySelectorAll('tr');
+            
+            let totals = {
+                yrStart: 0, capSvc: 0, othSvc: 0, capGds: 0, othGds: 0,
+                svcSale: 0, gdsSale: 0, yrEnd: 0
+            };
+
+            rows.forEach(row => {
+                totals.yrStart += parseFloat(row.querySelector('.transactionYrStart').value) || 0;
+                totals.capSvc += parseFloat(row.querySelector('.transactionCapSvc').value) || 0;
+                totals.othSvc += parseFloat(row.querySelector('.transactionOthSvc').value) || 0;
+                totals.capGds += parseFloat(row.querySelector('.transactionCapGds').value) || 0;
+                totals.othGds += parseFloat(row.querySelector('.transactionOthGds').value) || 0;
+                totals.svcSale += parseFloat(row.querySelector('.transactionSvcSale').value) || 0;
+                totals.gdsSale += parseFloat(row.querySelector('.transactionGdsSale').value) || 0;
+                totals.yrEnd += parseFloat(row.querySelector('.transactionYrEnd').value) || 0;
+            });
+
+            document.getElementById('totalYrStartDebit').value = totals.yrStart.toFixed(2);
+            document.getElementById('totalCapitalService').value = totals.capSvc.toFixed(2);
+            document.getElementById('totalOtherService').value = totals.othSvc.toFixed(2);
+            document.getElementById('totalCapitalGoods').value = totals.capGds.toFixed(2);
+            document.getElementById('totalOtherGoods').value = totals.othGds.toFixed(2);
+            document.getElementById('totalServiceSale').value = totals.svcSale.toFixed(2);
+            document.getElementById('totalGoodsSale').value = totals.gdsSale.toFixed(2);
+            document.getElementById('totalYrEndDebit').value = totals.yrEnd.toFixed(2);
+
+            alert('Totals calculated!');
+        }
+
+        function clearTotals() {
+            document.getElementById('totalYrStartDebit').value = '';
+            document.getElementById('totalCapitalService').value = '';
+            document.getElementById('totalOtherService').value = '';
+            document.getElementById('totalCapitalGoods').value = '';
+            document.getElementById('totalOtherGoods').value = '';
+            document.getElementById('totalServiceSale').value = '';
+            document.getElementById('totalGoodsSale').value = '';
+            document.getElementById('totalYrEndDebit').value = '';
+        }
+
+        function saveAnnex13() {
+            alert('Annex-13 data saved successfully!');
+        }
+
+        // Back navigation
+        document.getElementById('lnkRedirectD02').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (typeof window.parent.loadInParentIframe === 'function') {
+                window.parent.loadInParentIframe('income_tax/d02_main_form.html');
+            } else {
+                console.log('Parent iframe navigation function not available');
+            }
+        });
+
+        document.getElementById('lnkBottomRedirect').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (typeof window.parent.loadInParentIframe === 'function') {
+                window.parent.loadInParentIframe('income_tax/d02_main_form.html');
+            } else {
+                console.log('Parent iframe navigation function not available');
+            }
+        });
+
+        // Toggle transaction grid based on checkbox
+        document.getElementById('chkNoGreater100k').addEventListener('change', function() {
+            document.getElementById('divTransactionGrid').style.display = this.checked ? 'none' : 'block';
+        });
+    </script>
+</body>
+</html>
                     <div class="section-header">सब्मिशन विवरण</div>
                     <table>
                         <tr>
