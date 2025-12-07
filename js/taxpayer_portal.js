@@ -357,7 +357,8 @@ window.loadInParentIframe = function(url) {
             $('.footer').hide();
             
             // Create iframe to load the form
-            var iframe = '<iframe src="' + url + '" style="width: 100%; height: 800px; border: none;" frameborder="0"></iframe>';
+            var iframeHeight = url.includes('annex_13') ? '1200px' : '800px';
+            var iframe = '<iframe src="' + url + '" style="width: 100%; height: ' + iframeHeight + '; border: none;" frameborder="0" scrolling="yes"></iframe>';
             $contentArea.html(iframe);
             
             console.log('Content loaded successfully:', url);
