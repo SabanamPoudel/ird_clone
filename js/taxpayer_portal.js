@@ -345,9 +345,12 @@ window.loadInParentIframe = function(url) {
     // Show loading state
     $contentArea.html('<div class="loading-content" style="padding: 20px; text-align: center;"><i class="fa fa-spinner fa-spin"></i> लोड गर्दै...</div>');
     
+    // Construct full path to HTML file
+    var fullPath = 'html/' + url;
+    
     // Load content via AJAX and create iframe
     $.ajax({
-        url: url,
+        url: fullPath,
         method: 'GET',
         success: function(data) {
             // Add has-iframe class
@@ -358,10 +361,10 @@ window.loadInParentIframe = function(url) {
             
             // Create iframe to load the form
             var iframeHeight = url.includes('annex_13') ? '1200px' : '800px';
-            var iframe = '<iframe src="' + url + '" style="width: 100%; height: ' + iframeHeight + '; border: none;" frameborder="0" scrolling="yes"></iframe>';
+            var iframe = '<iframe src="' + fullPath + '" style="width: 100%; height: ' + iframeHeight + '; border: none;" frameborder="0" scrolling="yes"></iframe>';
             $contentArea.html(iframe);
             
-            console.log('Content loaded successfully:', url);
+            console.log('Content loaded successfully:', fullPath);
         },
         error: function(error) {
             // Remove has-iframe class on error

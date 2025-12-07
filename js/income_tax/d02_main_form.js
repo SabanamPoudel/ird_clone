@@ -295,14 +295,18 @@ function closeAnnex10MessageModal() {
 
 function openAnnex13Modal() {
     // Directly load Annex-13 in the parent iframe instead of showing a modal
+    console.log('openAnnex13Modal called');
     if (typeof window.parent.loadInParentIframe === 'function') {
+        console.log('Using parent.loadInParentIframe');
         window.parent.loadInParentIframe('income_tax/annex_13.html');
     } else if (typeof loadInParentIframe === 'function') {
+        console.log('Using local loadInParentIframe');
         loadInParentIframe('income_tax/annex_13.html');
     } else {
         console.error('loadInParentIframe not found in parent or current context');
         alert('Unable to load Annex-13. Please try again.');
     }
+    return false;
 }
 
 function closeAnnex13Modal() {

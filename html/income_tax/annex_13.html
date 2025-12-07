@@ -9,315 +9,461 @@
     <link rel="stylesheet" href="../../css/taxpayer_portal.css">
     <link rel="stylesheet" href="../../css/income_tax/d01_return_entry.css">
     <style>
-        body { margin: 0; padding: 0; background: #DFE9F6; font-family: Arial, sans-serif; }
-        .x-panel { background: white; border: 1px solid #BED7EB; margin-bottom: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-        .x-panel-header { background: linear-gradient(180deg, #B7D3F3 0%, #8DB3E3 100%); color: white; padding: 8px 12px; font-weight: bold; border-bottom: 1px solid #7FA8D1; }
-        .x-panel-body { padding: 10px; }
-        .x-fieldset { border: 1px solid #BED7EB; margin: 5px 0; padding: 10px; background: #F3F6FB; }
-        .x-fieldset-header { background: #DCE6F1; padding: 6px 10px; font-weight: bold; border-bottom: 1px solid #BED7EB; }
-        .x-field { margin: 8px 0; }
-        .x-field-label { font-weight: bold; color: #333; margin-right: 10px; display: inline-block; }
-        input[type="text"], input[type="number"] { border: 1px solid #BED7EB; padding: 4px 6px; background: white; width: 95%; }
-        input[readonly] { background: #F0F0F0; color: #666; }
-        .x-btn { background: linear-gradient(180deg, #E8E8E8 0%, #D0D0D0 100%); border: 1px solid #999; padding: 6px 12px; cursor: pointer; margin: 5px 2px; font-size: 12px; border-radius: 3px; }
-        .x-btn:hover { background: linear-gradient(180deg, #F5F5F5 0%, #E0E0E0 100%); }
-        .x-btn:active { background: linear-gradient(180deg, #D0D0D0 0%, #B0B0B0 100%); }
-        table { width: 100%; border-collapse: collapse; background: white; }
-        table th { background: #DCE6F1; border: 1px solid #BED7EB; padding: 6px; font-weight: bold; text-align: left; }
-        table td { border: 1px solid #BED7EB; padding: 6px; vertical-align: middle; }
-        .TxtRight { text-align: right; }
-        .TxtCenter { text-align: center; }
-        .x-grid-header { background: #DCE6F1; border-bottom: 1px solid #BED7EB; }
-        .x-toolbar { background: #F3F6FB; border-bottom: 1px solid #BED7EB; padding: 8px; margin-bottom: 10px; }
-        .back-link-panel { background: #E8F1F8; border: 1px solid #7FA8D1; padding: 10px; margin: 10px 0; border-radius: 2px; }
-        .section-title { font-size: 16px; font-weight: bold; text-align: center; margin: 15px 0; color: #333; }
+        /* Body and Main Container Colors */
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background: #DFE9F6; 
+            font-family: Arial, sans-serif; 
+        }
+        
+        /* Panel Colors */
+        .x-panel { 
+            background: #DFE9F6; 
+            border: 1px solid #99BCE8; 
+            margin-bottom: 5px; 
+        }
+        
+        /* Panel Header Colors */
+        .x-panel-header { 
+            background: linear-gradient(180deg, #B7D3F3 0%, #8DB3E3 100%); 
+            color: #003366; 
+            padding: 8px 12px; 
+            font-weight: bold; 
+            border-bottom: 1px solid #7FA8D1; 
+        }
+        
+        /* Panel Body Colors */
+        .x-panel-body { 
+            padding: 10px; 
+            background: #DFE9F6; 
+        }
+        
+        /* Fieldset Colors */
+        .x-fieldset { 
+            border: 1px solid #99BCE8; 
+            margin: 5px 0; 
+            padding: 10px; 
+            background: #DFE9F6 
+        }
+        
+        /* Fieldset Header Colors */
+        .x-fieldset-header { 
+            background: #B8D4F1; 
+            padding: 6px 10px; 
+            font-weight: bold; 
+            border-bottom: 1px solid #99BCE8; 
+            color: #003366; 
+        }
+        
+        /* Form Field Colors */
+        .x-field { 
+            margin: 8px 0; 
+        }
+        
+        .x-field-label { 
+            font-weight: normal; 
+            color: #333; 
+            margin-right: 10px; 
+            display: inline-block; 
+        }
+        
+        /* Input Field Colors */
+        input[type="text"], 
+        input[type="number"], 
+        input[type="file"] { 
+            border: 1px solid #A8B9CF; 
+            padding: 4px 6px; 
+            background: #ffff; 
+        }
+        
+        /* Readonly Input Colors */
+        input[readonly] { 
+            background: ffffff; 
+            color: #666; 
+        }
+        
+        /* Button Colors */
+        .x-btn { 
+            background: linear-gradient(180deg, #FEFEFE 0%, #E6E6E6 100%); 
+            border: 1px solid #B5B8C8; 
+            padding: 5px 10px; 
+            cursor: pointer; 
+            margin: 3px 2px; 
+            font-size: 12px; 
+        }
+        
+        .x-btn:hover { 
+            background: linear-gradient(180deg, #F5F5F5 0%, #D5D5D5 100%); 
+        }
+        
+        /* Table Colors */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            background: #ffff; 
+        }
+        
+        /* Table Header Colors */
+        table th { 
+            background: #DFE9F6; 
+            border: 1px solid #99BCE8; 
+            padding: 6px; 
+            font-weight: bold; 
+            text-align: center; 
+            font-size: 12px; 
+        }
+        
+        /* Table Cell Colors */
+        table td { 
+            border: 1px solid #99BCE8; 
+            padding: 6px; 
+            vertical-align: middle; 
+        }
+        
+        /* Text Alignment Classes */
+        .TxtRight { 
+            text-align: right; 
+        }
+        
+        .TxtCenter { 
+            text-align: center; 
+        }
+        
+        /* Section Title Colors */
+        .section-title { 
+            font-size: 16px; 
+            font-weight: bold; 
+            text-align: center; 
+            margin: 10px 0; 
+            color: #003366; 
+        }
+        
+        /* Warning Text Colors */
+        .warning-text { 
+            color: red; 
+            font-weight: normal; 
+            margin: 10px 0; 
+        }
+        
+        /* Blue Section Colors */
+        .blue-section { 
+            background: #DFE9F6; 
+            border: 1px solid #99BCE8; 
+            padding: 10px; 
+            margin: 10px 0; 
+        }
+        
+        /* Blue Header Colors */
+        .blue-header { 
+            background: #B8D4F1; 
+            padding: 8px 10px; 
+            font-weight: bold; 
+            color: #003366; 
+            border-bottom: 1px solid #99BCE8; 
+        }
     </style>
 </head>
 <body>
-    <div id="CntMainPage" class="x-container x-box-layout-ct" style="margin: 0; width: 100%; background: #DFE9F6; padding: 10px;">
+    <div id="CntMainPage" class="x-container" style="margin: 0; width: 100%; background: #DFE9F6; padding: 10px;">
         <div id="ext-comp-1307" class="x-panel">
             <!-- Main Panel Header -->
             <div id="header-1429" class="x-panel-header">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <span>Annex-13(Ka)</span>
-                    <button class="x-btn" onclick="window.print();" title="Print this form">
-                        <span style="margin-right: 5px;">🖨</span>Print
+                    <button class="x-btn" onclick="window.print();" title="Print this form" style="background: linear-gradient(180deg, #FEFEFE 0%, #E6E6E6 100%); border: 1px solid #B5B8C8;">
+                        🖨 Print
                     </button>
                 </div>
             </div>
 
             <!-- Panel Body -->
-            <div id="ext-comp-1307-body" class="x-panel-body" style="background: white; padding: 15px;">
+            <div id="ext-comp-1307-body" class="x-panel-body" style="background: #DFE9F6; padding: 15px;">
                 <!-- Form Title -->
                 <div class="section-title">अनुसूची - १३ (क)</div>
 
-                <!-- Back Link Navigation Panel -->
-                <div id="panel-back-nav" class="x-panel">
-                    <div id="header-back" class="x-panel-header">
-                        <div class="back-link-panel" style="margin: 0; background: transparent; border: none; padding: 0;">
-                            <span style="color: black;">पछाडि गएर अनुसूची तय गर्न </span>
-                            <span id="lnkRedirectD02" style="cursor: pointer; color: red; text-decoration: underline; font-weight: bold;">यहाँ क्लिक</span>
-                            <span style="color: black;"> गर्नुहोस् ।</span>
-                        </div>
-                    </div>
+                <!-- Warning Text -->
+                <div class="warning-text" style="color: #003366; font-weight: normal; margin: 10px 0;">
+                    पछाडि गएर अनुसूची तय गर्नु <span style="font-weight: bold; color: red; text-decoration: underline;">यहाँ कि्लक</span> गर्नुहोस् ।
                 </div>
 
-                <!-- Submission Details Section -->
-                <div id="panel-submission" class="x-panel" style="margin: 10px 0;">
-                    <div class="x-panel-header">सब्मिशन विवरण</div>
-                    <div class="x-panel-body">
-                        <table style="width: 100%;">
+                <!-- Submission Details -->
+                <table style="width: 100%; margin-bottom: 15px; background: #DFE9F6;">
+                    <tr>
+                        <td style="width: 20%; padding: 5px; border-bottom: 1px solid #99BCE8;">
+                            <label>सब्मिशन नं.:</label>
+                        </td>
+                        <td style="width: 80%; padding: 5px; border-bottom: 1px solid #99BCE8;">
+                            <input type="text" id="txtSubmissionNo" readonly style="width: 30%; padding: 3px;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px; border-bottom: 1px solid #99BCE8;">
+                            <label>आर्थिक वर्ष:</label>
+                        </td>
+                        <td style="padding: 5px; border-bottom: 1px solid #99BCE8;">
+                            <input type="text" id="txtFiscalYear" readonly style="width: 30%; padding: 3px;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;">
+                            <label>स्थायी लेखा नम्बर:</label>
+                        </td>
+                        <td style="padding: 5px;">
+                            <input type="text" id="txtPAN" readonly style="width: 30%; padding: 3px;" />
+                        </td>
+                    </tr>
+                </table>
+
+                </table>
+
+                <!-- Financial Description Section -->
+                <div class="blue-section" style="margin: 15px 0;">
+                    <div class="blue-header">वित्तिय विवरण प्रविस्ट गर्नुहोस्</div>
+                    <table style="width: 100%; margin-top: 10px;">
+                        <thead>
                             <tr>
-                                <td style="width: 33%; vertical-align: top;">
-                                    <div class="x-field">
-                                        <label class="x-field-label">सब्मिशन नं.:</label>
-                                        <input type="text" id="txtSubmissionNo" readonly style="width: 90%;" />
-                                    </div>
+                                <th style="width: 60%; text-align: left; padding: 3px; font-size: 11px;">सुची</th>
+                                <th style="width: 40%; text-align: center; padding: 3px; font-size: 11px;">रकम वा प्रतिशत</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 3px; font-size: 11px;">
+                                    <div>यस आ.व.<br/><small style="color: #666; font-size: 10px;">This Year</small></div>
                                 </td>
-                                <td style="width: 33%; vertical-align: top;">
-                                    <div class="x-field">
-                                        <label class="x-field-label">आर्थिक वर्ष:</label>
-                                        <input type="text" id="txtFiscalYear" readonly style="width: 90%;" />
-                                    </div>
-                                </td>
-                                <td style="width: 34%; vertical-align: top;">
-                                    <div class="x-field">
-                                        <label class="x-field-label">स्थायी लेखा नम्बर:</label>
-                                        <input type="text" id="txtPAN" readonly style="width: 90%;" />
-                                    </div>
+                                <td style="padding: 3px;">
+                                    <input type="text" id="txtFinDesc0" class="TxtRight" style="width: 95%; padding: 2px; font-size: 11px;" />
                                 </td>
                             </tr>
-                        </table>
+                            <tr>
+                                <td style="padding: 3px; font-size: 11px;">
+                                    <div>व्यवसायको बिक्री कारोबार<br/><small style="color: #666; font-size: 10px;">Sales and Sales of Business</small></div>
+                                </td>
+                                <td style="padding: 3px;">
+                                    <input type="text" id="txtFinDesc1" class="TxtRight" style="width: 95%; padding: 2px; font-size: 11px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 3px; font-size: 11px;">
+                                    <div>चोखो खुद आय/नोक्सानी यस आ.व.<br/><small style="color: #666; font-size: 10px;">Profit / Loss Before Tax This Year</small></div>
+                                </td>
+                                <td style="padding: 3px;">
+                                    <input type="text" id="txtFinDesc2" class="TxtRight" style="width: 95%; padding: 2px; font-size: 11px;" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="padding: 8px 0;">
+                        <button class="x-btn" onclick="saveFinancialDescription();">
+                            💾 Save
+                        </button>
                     </div>
                 </div>
 
-                <!-- Financial Description Grid Section -->
-                <div id="panel-fin-desc" class="x-panel" style="margin: 10px 0;">
-                    <div class="x-panel-header">वित्तिय विवरण प्रविस्ट गर्नुहोस्</div>
-                    <div class="x-panel-body">
-                        <table style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th style="width: 70%;">सुची</th>
-                                    <th style="width: 30%;">रकम वा प्रतिसत</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div>बिक्री यस आ.व.<br/><small style="color: #666;">Sales This Year</small></div>
-                                    </td>
-                                    <td>
-                                        <input type="text" id="txtFinDesc0" class="TxtRight" placeholder="0" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div>सेवा र व्यवसायको बिक्रि कारोबार<br/><small style="color: #666;">Services and Sales of Business</small></div>
-                                    </td>
-                                    <td>
-                                        <input type="text" id="txtFinDesc1" class="TxtRight" placeholder="0" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div>कर अघिको खुद आय/नोक्सानी यस आ.व.<br/><small style="color: #666;">Net Profit / Loss Before Tax This Year</small></div>
-                                    </td>
-                                    <td>
-                                        <input type="text" id="txtFinDesc2" class="TxtRight" placeholder="0" />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div style="padding: 10px 0;">
-                            <button class="x-btn" onclick="saveFinancialDescription();" title="Save financial description">
-                                💾 Save
+                <!-- First Blue Section - Less than 100k comprehensive -->
+                <div class="blue-section" style="margin: 15px 0;">
+                    <div class="blue-header">शुर मौज्दात, खरिद, विक्री, लिनबाँकी वा दिनबाँकी मध्ये सबै रकम रू १ लाख वा सो भन्दा कम हुनेको एकमुष्ट विवरण</div>
+                    <table style="width: 100%; margin-top: 10px; background: #DFE9F6;">
+                        <tr>
+                            <td style="width: 25%; padding: 5px; font-size: 12px;">
+                                <label>वर्षको शुरुको लिन बाकी (दिन बाकी) रकम:</label>
+                            </td>
+                            <td style="width: 25%; padding: 5px;">
+                                <input type="text" id="txtYrStartDebitCredit" class="TxtRight" style="width: 70%; padding: 3px; font-size: 12px;" />
+                            </td>
+                            <td style="width: 25%; padding: 5px; font-size: 12px;">
+                                <label>पुजिगत सेवा खरिद:</label>
+                            </td>
+                            <td style="width: 25%; padding: 5px;">
+                                <input type="text" id="txtCapitalServiceBuy" class="TxtRight" style="width: 70%; padding: 3px; font-size: 12px;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 5px; font-size: 12px;">
+                                <label>अन्य सेवा खरिद:</label>
+                            </td>
+                            <td style="padding: 5px;">
+                                <input type="text" id="txtOtherServiceBuy" class="TxtRight" style="width: 70%; padding: 3px; font-size: 12px;" />
+                            </td>
+                            <td style="padding: 5px; font-size: 12px;">
+                                <label>यो वर्ष को अन्य समान खरिद :</label>
+                            </td>
+                            <td style="padding: 5px;">
+                                <input type="text" id="txtYrOtherGoodsBuy" class="TxtRight" style="width: 70%; padding: 3px; font-size: 12px;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 5px; font-size: 12px;">
+                                <label>यो वर्ष को पुजिगत समान खरिद :</label>
+                            </td>
+                            <td style="padding: 5px;">
+                                <input type="text" id="txtYrCapitalGoodsBuy" class="TxtRight" style="width: 70%; padding: 3px; font-size: 12px;" />
+                            </td>
+                            <td style="padding: 5px; font-size: 12px;">
+                                <label>यो वर्ष को सेवा बिक्रि :</label>
+                            </td>
+                            <td style="padding: 5px;">
+                                <input type="text" id="txtYrServiceSale" class="TxtRight" style="width: 70%; padding: 3px; font-size: 12px;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 5px; font-size: 12px;">
+                                <label>यो वर्षको समान बिविध:</label>
+                            </td>
+                            <td style="padding: 5px;">
+                                <input type="text" id="txtGoodsMisc" class="TxtRight" style="width: 70%; padding: 3px; font-size: 12px;" />
+                            </td>
+                            <td style="padding: 5px; font-size: 12px;">
+                                <label>वर्षको अन्तमा लिन बाकी (दिन बाकी) रकम :</label>
+                            </td>
+                            <td style="padding: 5px;">
+                                <input type="text" id="txtYrEndDebitCredit" class="TxtRight" style="width: 70%; padding: 3px; font-size: 12px;" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Second Blue Section - Greater than 100k -->
+                <div class="blue-section" style="margin: 15px 0;">
+                    <div class="blue-header">शुर मौज्दात, खरिद, विक्री, लिन बाँकी वा दिन बाँकी मध्ये कुनै रकम रू १ लाख भन्दा बढी हुनेको विवरण</div>
+                    <div style="padding: 10px; background: #DFE9F6; margin-top: 10px;">
+                        <label style="display: inline-flex; align-items: center;">
+                            <input type="checkbox" id="chkNoGreater100k" style="margin-right: 8px;" checked />
+                            <span>कुने पनि व्यक्ती व्यवसाय / संस्था संग आर्थिक वर्ष भरिमा रू एक लाख भन्दा माथि व्यवहार वा एक लाख भन्दा बढीको कारोबार छैन</span>
+                        </label>
+                    </div>
+
+                    <!-- Excel Upload Section -->
+                    <div style="padding: 10px; background: #DFE9F6; margin-top: 10px;">
+                        <div style="margin-bottom: 10px; font-weight: bold;">Load From Excel File</div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label>Load XLS:</label>
+                            <input type="file" id="excelFile" accept=".xls,.xlsx" style="flex: 1;" />
+                            <button class="x-btn" onclick="uploadExcel();">
+                                📤 Upload
+                            </button>
+                            <button class="x-btn" onclick="viewSample();">
+                                📄 View Sample
                             </button>
                         </div>
                     </div>
-                </div>
 
-                <!-- Less Than 100k Transaction Section -->
-                <div id="panel-less-100k" class="x-panel" style="margin: 10px 0;">
-                    <div class="x-panel-header">रु एक लाख भन्दा कम बिक्री बिवरण</div>
-                    <div class="x-panel-body">
-                        <table style="width: 100%;">
-                            <tr>
-                                <td>
-                                    <span>कुनै पनि व्यक्ति / संस्था संग आर्थिक वर्ष भरिमा रू एक लाख भन्दा कम बिक्रि एकमुष्ठ रकम </span>
-                                </td>
-                                <td style="width: 150px;">
-                                    <input type="text" id="txtLess100k" class="TxtRight" placeholder="0" />
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Greater Than 100k Comprehensive Section -->
-                <div id="panel-greater-100k-desc" class="x-panel" style="margin: 10px 0;">
-                    <div class="x-panel-header">शुरु मौज्दात, खरिद, विक्री, लिनबाँकी वा दिनबाँकी मध्ये सबै रकम रु १ लाख वा सो भन्दा कम हुनेको एकमुष्ट विवरण</div>
-                    <div class="x-panel-body">
-                        <table style="width: 100%;">
-                            <tr>
-                                <td style="width: 50%;">
-                                    <div class="x-field">
-                                        <label class="x-field-label">वर्षको शुरुको लिन बाकी (दिन बाकी) रकम:</label>
-                                        <input type="text" id="txtYrStartDebit" class="TxtRight" placeholder="0" />
-                                    </div>
-                                </td>
-                                <td style="width: 50%;">
-                                    <div class="x-field">
-                                        <label class="x-field-label">पुजिगत सेवा खरिद:</label>
-                                        <input type="text" id="txtCapitalServiceBuy" class="TxtRight" placeholder="0" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%;">
-                                    <div class="x-field">
-                                        <label class="x-field-label">अन्य सेवा खरिद:</label>
-                                        <input type="text" id="txtOtherServiceBuy" class="TxtRight" placeholder="0" />
-                                    </div>
-                                </td>
-                                <td style="width: 50%;">
-                                    <div class="x-field">
-                                        <label class="x-field-label">यो वर्ष को अन्य समान खरिद:</label>
-                                        <input type="text" id="txtYrOtherGoodsBuy" class="TxtRight" placeholder="0" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%;">
-                                    <div class="x-field">
-                                        <label class="x-field-label">यो वर्ष को पुजिगत समान खरिद:</label>
-                                        <input type="text" id="txtYrCapitalGoodsBuy" class="TxtRight" placeholder="0" />
-                                    </div>
-                                </td>
-                                <td style="width: 50%;">
-                                    <div class="x-field">
-                                        <label class="x-field-label">यो वर्ष को सेवा बिक्रि:</label>
-                                        <input type="text" id="txtYrServiceSale" class="TxtRight" placeholder="0" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%;">
-                                    <div class="x-field">
-                                        <label class="x-field-label">यो वर्षको समान बिक्रि:</label>
-                                        <input type="text" id="txtYrGoodsSale" class="TxtRight" placeholder="0" />
-                                    </div>
-                                </td>
-                                <td style="width: 50%;">
-                                    <div class="x-field">
-                                        <label class="x-field-label">वर्षको अन्तमा लिन बाकी (दिन बाकी) रकम:</label>
-                                        <input type="text" id="txtYrEndDebit" class="TxtRight" placeholder="0" />
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Greater Than 100k Transaction Section -->
-                <div id="panel-greater-100k" class="x-panel" style="margin: 10px 0;">
-                    <div class="x-panel-header">शुरु मौज्दात, खरिद, विक्री, लिन बाँकी वा दिन बाँकी मध्ये कुनै रकम रु १ लाख भन्दा बढी हुनेको विवरण</div>
-                    <div class="x-panel-body">
-                        <div style="margin: 10px 0; padding: 10px; background: #F9F9F9; border: 1px solid #DDD;">
-                            <label style="display: inline-block; margin-right: 10px;">
-                                <span>कुनै पनि व्यक्ति / संस्था संग आर्थिक वर्ष भरिमा रू एक लाख भन्दा बढीको कारोबार छैन </span>
-                            </label>
-                            <input type="checkbox" id="chkNoGreater100k" checked />
+                    <!-- Transaction Grid -->
+                    <div id="divTransactionGrid" style="margin-top: 10px; background: #DFE9F6; padding: 10px;">
+                        <div style="margin-bottom: 10px;">
+                            <button class="x-btn" id="btnAddNew" onclick="addTransactionRow();" disabled style="opacity: 0.5;">
+                                ➕ Add New
+                            </button>
+                            <button class="x-btn" onclick="deleteAllTransactionRows();">
+                                ❌ Delete All
+                            </button>
+                            <button class="x-btn" onclick="checkTransactionSum();">
+                                🧮 Check Sum
+                            </button>
                         </div>
 
-                        <!-- Transaction Grid (Hidden by default) -->
-                        <div id="divTransactionGrid" style="display: none; margin-top: 10px;">
-                            <div class="x-toolbar" style="margin: 10px 0; padding: 8px; background: #F3F6FB;">
-                                <button class="x-btn" onclick="addTransactionRow();" title="Add new transaction row">
-                                    ➕ Add New
-                                </button>
-                                <button class="x-btn" onclick="deleteAllTransactionRows();" title="Delete all rows">
-                                    🗑 Delete All
-                                </button>
-                                <button class="x-btn" onclick="checkTransactionSum();" title="Check sum of transactions">
-                                    🧮 Check Sum
-                                </button>
-                            </div>
-
-                            <table id="tblTransactions" style="width: 100%; margin-bottom: 10px;">
+                        <div style="overflow-x: auto;">
+                            <table id="tblTransactions" style="width: 100%; min-width: 1200px; border-collapse: collapse;">
                                 <thead>
-                                    <tr class="x-grid-header">
-                                        <th style="width: 5%;">क्र.म.</th>
-                                        <th style="width: 10%;">स्थायी लेखा नम्बर</th>
-                                        <th style="width: 20%;">व्यवसायको नाम</th>
-                                        <th style="width: 15%;">वर्षको शुरुको लिन बाकी</th>
-                                        <th style="width: 12%;">पुजिगत सेवा खरिद</th>
-                                        <th style="width: 12%;">अन्य सेवा खरिद</th>
-                                        <th style="width: 12%;">पुजिगत समान खरिद</th>
-                                        <th style="width: 12%;">अन्य समान खरिद</th>
-                                        <th style="width: 12%;">यो वर्ष को सेवा बिक्रि</th>
-                                        <th style="width: 12%;">यो वर्षको समान बिक्रि</th>
-                                        <th style="width: 15%;">वर्षको अन्तमा लिन बाकी</th>
-                                        <th style="width: 8%;">Action</th>
+                                    <tr>
+                                        <th style="width: 3%; text-align: center; border: 1px solid #99BCE8; padding: 5px; background-color: #F2F2F3; color: #003366; font-size: 11px;">S.N.</th>
+                                        <th style="width: 10%; text-align: center; border: 1px solid #99BCE8; padding: 5px; background-color: #F2F2F3; color: #003366; font-size: 11px;">स्थायी लेखा नम्बर</th>
+                                        <th style="width: 12%; text-align: center; border: 1px solid #99BCE8; padding: 5px; background-color: #F2F2F3; color: #003366; font-size: 11px;">व्यवसायको नाम</th>
+                                        <th style="width: 9%; text-align: center; border: 1px solid #99BCE8; padding: 5px; background-color: #F2F2F3; color: #003366; font-size: 11px;">वर्षको सुरुको लिन बाँकी (दिन बाँकी) रकम</th>
+                                        <th style="width: 9%; text-align: center; border: 1px solid #99BCE8; padding: 5px; background-color: #F2F2F3; color: #003366; font-size: 11px;">पुँजीगत सेवा खरीद</th>
+                                        <th style="width: 9%; text-align: center; border: 1px solid #99BCE8; padding: 5px; background-color: #F2F2F3; color: #003366; font-size: 11px;">अन्य सेवा खरीद</th>
+                                        <th style="width: 9%; text-align: center; border: 1px solid #99BCE8; padding: 5px; background-color: #F2F2F3; color: #003366; font-size: 11px;">पुँजीगत समान खरीद</th>
+                                        <th style="width: 9%; text-align: center; border: 1px solid #99BCE8; padding: 5px; background-color: #F2F2F3; color: #003366; font-size: 11px;">अन्य सामान खरीद</th>
+                                        <th style="width: 9%; text-align: center; border: 1px solid #99BCE8; padding: 5px; background-color: #F2F2F3; color: #003366; font-size: 11px;">यो वर्ष को सेवा बिक्रि</th>
+                                        <th style="width: 9%; text-align: center; border: 1px solid #99BCE8; padding: 5px; background-color: #F2F2F3; color: #003366; font-size: 11px;">यो वर्षको सामान बिक्रि</th>
+                                        <th style="width: 9%; text-align: center; border: 1px solid #99BCE8; padding: 5px; background-color: #F2F2F3; color: #003366; font-size: 11px;">वर्षको अन्तमा लिन बाँकी (दिन बाँकी) रकम</th>
+                                        <th style="width: 3%; text-align: center; border: 1px solid #99BCE8; padding: 5px; background-color: #F2F2F3; color: #003366; font-size: 11px;">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody id="transactionTableBody">
-                                    <!-- Transaction rows will be added here -->
+                                <tbody id="transactionTableBody" style="background-color: white; min-height: 150px;">
+                                    <!-- Transaction rows will be added dynamically -->
                                 </tbody>
                             </table>
-
-                            <!-- Totals Section -->
-                            <div id="panel-totals" class="x-fieldset" style="margin-top: 10px;">
-                                <div class="x-fieldset-header">जम्मा</div>
-                                <table style="width: 100%;">
-                                    <tr>
-                                        <td style="width: 20%;"><label class="x-field-label">वर्षको शुरुको लिन बाकी:</label></td>
-                                        <td style="width: 15%;"><input type="text" id="totalYrStartDebit" readonly class="TxtRight" /></td>
-                                        
-                                        <td style="width: 20%;"><label class="x-field-label">पुजिगत सेवा खरिद:</label></td>
-                                        <td style="width: 15%;"><input type="text" id="totalCapitalService" readonly class="TxtRight" /></td>
-                                        
-                                        <td style="width: 20%;"><label class="x-field-label">अन्य सेवा खरिद:</label></td>
-                                        <td style="width: 15%;"><input type="text" id="totalOtherService" readonly class="TxtRight" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="x-field-label">पुजिगत समान खरिद:</label></td>
-                                        <td><input type="text" id="totalCapitalGoods" readonly class="TxtRight" /></td>
-                                        
-                                        <td><label class="x-field-label">अन्य समान खरिद:</label></td>
-                                        <td><input type="text" id="totalOtherGoods" readonly class="TxtRight" /></td>
-                                        
-                                        <td><label class="x-field-label">यो वर्ष को सेवा बिक्रि:</label></td>
-                                        <td><input type="text" id="totalServiceSale" readonly class="TxtRight" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="x-field-label">यो वर्षको समान बिक्रि:</label></td>
-                                        <td><input type="text" id="totalGoodsSale" readonly class="TxtRight" /></td>
-                                        
-                                        <td><label class="x-field-label">वर्षको अन्तमा लिन बाकी:</label></td>
-                                        <td><input type="text" id="totalYrEndDebit" readonly class="TxtRight" /></td>
-                                        
-                                        <td colspan="2"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div style="padding: 10px 0; margin-top: 10px;">
-                            <button class="x-btn" onclick="saveAnnex13();" title="Save transaction data">
-                                💾 Save Transaction
-                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Bottom Navigation -->
-                <div id="panel-bottom-nav" class="x-panel" style="margin: 15px 0;">
-                    <div class="x-toolbar" style="background: #F9F9F9; border: 1px solid #DDD; padding: 10px;">
-                        <span style="margin-right: 10px;">पछाडि गएर अनुसूची तय गर्न</span>
-                        <a href="#" id="lnkBottomRedirect" style="color: red; text-decoration: underline; margin: 0 5px;">यहाँ क्लिक</a>
-                        <span>गर्नुहोस् ।</span>
-                    </div>
+                <!-- Totals Section -->
+                <div class="blue-section" style="margin: 15px 0;">
+                    <div class="blue-header">जम्मा</div>
+                    <table style="width: 100%; margin-top: 10px; background: #DFE9F6;">
+                        <tr>
+                            <td style="width: 25%; padding: 8px;">
+                                <label>वर्षको शुरुको लिन बाकी (दिन बाकी) रकम:</label>
+                            </td>
+                            <td style="width: 25%; padding: 8px;">
+                                <input type="text" id="totalYrStartDebit" readonly class="TxtRight" style="width: 95%; background: #F0F0F0;" />
+                            </td>
+                            <td style="width: 25%; padding: 8px;">
+                                <label>पुजिगत सेवा खरिद:</label>
+                            </td>
+                            <td style="width: 25%; padding: 8px;">
+                                <input type="text" id="totalCapitalService" readonly class="TxtRight" style="width: 95%; background: #F0F0F0;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">
+                                <label>अन्य सेवा खरिद:</label>
+                            </td>
+                            <td style="padding: 8px;">
+                                <input type="text" id="totalOtherService" readonly class="TxtRight" style="width: 95%; background: #F0F0F0;" />
+                            </td>
+                            <td style="padding: 8px;">
+                                <label>पुजिगत समान खरिद:</label>
+                            </td>
+                            <td style="padding: 8px;">
+                                <input type="text" id="totalCapitalGoods" readonly class="TxtRight" style="width: 95%; background: #F0F0F0;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">
+                                <label>अन्य समान खरिद:</label>
+                            </td>
+                            <td style="padding: 8px;">
+                                <input type="text" id="totalOtherGoods" readonly class="TxtRight" style="width: 95%; background: #F0F0F0;" />
+                            </td>
+                            <td style="padding: 8px;">
+                                <label>सेवा विविध:</label>
+                            </td>
+                            <td style="padding: 8px;">
+                                <input type="text" id="totalServiceMisc" readonly class="TxtRight" style="width: 95%; background: #F0F0F0;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;">
+                                <label>सामान विविध:</label>
+                            </td>
+                            <td style="padding: 8px;">
+                                <input type="text" id="totalGoodsMisc" readonly class="TxtRight" style="width: 95%; background: #F0F0F0;" />
+                            </td>
+                            <td style="padding: 8px;">
+                                <label>वर्षको अन्तमा लिन बाकी (दिन बाकी) रकम:</label>
+                            </td>
+                            <td style="padding: 8px;">
+                                <input type="text" id="totalYrEndDebit" readonly class="TxtRight" style="width: 95%; background: #F0F0F0;" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Save Transaction Button -->
+                <div style="margin: 15px 0;">
+                    <button class="x-btn" onclick="saveAnnex13Transaction();">
+                        💾 Save Transaction
+                    </button>
+                </div>
+
+                <!-- Bottom Link -->
+                <div style="margin: 15px 0; padding: 10px; background: #DFE9F6; border: 1px solid #DDD; text-align: left;">
+                    <span style="color: #003366;">पछाडि गएर अनुसूची तय गर्नु </span>
+                    <span id="lnkRedirectD02" style="cursor: pointer; color: red; text-decoration: underline; font-weight: bold;">यहाँ कि्लक</span>
+                    <span style="color: #003366;"> गर्नुहोस् ।</span>
                 </div>
             </div>
         </div>
@@ -331,7 +477,7 @@
 
         function loadAnnex13Data() {
             try {
-                const data = sessionStorage.getItem('d02FormData');
+                const data = sessionStorage.getItem('d02_current_registration');
                 if (data) {
                     const formData = JSON.parse(data);
                     document.getElementById('txtSubmissionNo').value = formData.submissionNo || '';
@@ -349,83 +495,164 @@
             const desc2 = document.getElementById('txtFinDesc2').value;
             
             sessionStorage.setItem('annex13FinDesc', JSON.stringify({
-                sales: desc0,
-                serviceSales: desc1,
+                thisYear: desc0,
+                businessSales: desc1,
                 netProfit: desc2
             }));
-            alert('Financial description saved!');
+            
+            // Show success modal
+            document.getElementById('saveFinDescModal').style.display = 'flex';
+        }
+
+        function uploadExcel() {
+            const fileInput = document.getElementById('excelFile');
+            if (fileInput.files.length === 0) {
+                console.log('Please select an Excel file');
+                return;
+            }
+            console.log('Excel upload feature coming soon');
+        }
+
+        function viewSample() {
+            // Download the sample file from the resources folder
+            const link = document.createElement('a');
+            link.href = '../../resources/Annex13New-Sample.xls';
+            link.download = 'Annex13New-Sample.xls';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            console.log('Sample file download initiated');
         }
 
         function addTransactionRow() {
             const tbody = document.getElementById('transactionTableBody');
-            const rowNum = tbody.children.length + 1;
+            const rowCount = tbody.querySelectorAll('tr').length + 1;
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td class="TxtCenter">${rowNum}</td>
-                <td><input type="text" class="transactionPAN" placeholder="PAN" /></td>
-                <td><input type="text" class="transactionName" placeholder="Business Name" /></td>
-                <td><input type="text" class="transactionYrStart TxtRight" placeholder="0" /></td>
-                <td><input type="text" class="transactionCapSvc TxtRight" placeholder="0" /></td>
-                <td><input type="text" class="transactionOthSvc TxtRight" placeholder="0" /></td>
-                <td><input type="text" class="transactionCapGds TxtRight" placeholder="0" /></td>
-                <td><input type="text" class="transactionOthGds TxtRight" placeholder="0" /></td>
-                <td><input type="text" class="transactionSvcSale TxtRight" placeholder="0" /></td>
-                <td><input type="text" class="transactionGdsSale TxtRight" placeholder="0" /></td>
-                <td><input type="text" class="transactionYrEnd TxtRight" placeholder="0" /></td>
-                <td><button class="x-btn" onclick="deleteTransactionRow(this)" style="margin: 0; padding: 2px 5px;">🗑</button></td>
+                <td style="text-align: center; border: 1px solid #99BCE8; padding: 5px;">${rowCount}</td>
+                <td style="border: 1px solid #99BCE8; padding: 3px;"><input type="text" class="transactionPAN" style="width: 95%; border: 1px solid #ccc; padding: 4px;" placeholder="PAN" /></td>
+                <td style="border: 1px solid #99BCE8; padding: 3px;"><input type="text" class="transactionName" style="width: 95%; border: 1px solid #ccc; padding: 4px;" placeholder="व्यवसायको नाम" /></td>
+                <td style="border: 1px solid #99BCE8; padding: 3px;"><input type="text" class="transactionOpenBal TxtRight" style="width: 95%; border: 1px solid #ccc; padding: 4px;" placeholder="0" /></td>
+                <td style="border: 1px solid #99BCE8; padding: 3px;"><input type="text" class="transactionCapSvc TxtRight" style="width: 95%; border: 1px solid #ccc; padding: 4px;" placeholder="0" /></td>
+                <td style="border: 1px solid #99BCE8; padding: 3px;"><input type="text" class="transactionOthSvc TxtRight" style="width: 95%; border: 1px solid #ccc; padding: 4px;" placeholder="0" /></td>
+                <td style="border: 1px solid #99BCE8; padding: 3px;"><input type="text" class="transactionCapGds TxtRight" style="width: 95%; border: 1px solid #ccc; padding: 4px;" placeholder="0" /></td>
+                <td style="border: 1px solid #99BCE8; padding: 3px;"><input type="text" class="transactionOthGds TxtRight" style="width: 95%; border: 1px solid #ccc; padding: 4px;" placeholder="0" /></td>
+                <td style="border: 1px solid #99BCE8; padding: 3px;"><input type="text" class="transactionSvcSale TxtRight" style="width: 95%; border: 1px solid #ccc; padding: 4px;" placeholder="0" /></td>
+                <td style="border: 1px solid #99BCE8; padding: 3px;"><input type="text" class="transactionGdsSale TxtRight" style="width: 95%; border: 1px solid #ccc; padding: 4px;" placeholder="0" /></td>
+                <td style="border: 1px solid #99BCE8; padding: 3px;"><input type="text" class="transactionCloseBal TxtRight" style="width: 95%; border: 1px solid #ccc; padding: 4px;" placeholder="0" /></td>
+                <td style="text-align: center; border: 1px solid #99BCE8; padding: 3px;">
+                    <button onclick="deleteTransactionRow(this)" style="background: none; border: none; color: red; font-size: 18px; cursor: pointer; padding: 0;" title="Delete">✖</button>
+                </td>
             `;
             tbody.appendChild(row);
         }
 
-        function deleteTransactionRow(btn) {
-            btn.closest('tr').remove();
-            updateRowNumbers();
+        let rowToDelete = null;
+
+        function deleteTransactionRow(button) {
+            rowToDelete = button.closest('tr');
+            
+            // Show first confirmation modal
+            const confirmModal = document.getElementById('deleteConfirmModal');
+            confirmModal.style.display = 'flex';
         }
+
+        // Handle Yes button on confirmation modal
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('confirmYes').addEventListener('click', function() {
+                // Hide confirmation modal
+                document.getElementById('deleteConfirmModal').style.display = 'none';
+                
+                // Show success modal
+                document.getElementById('deleteSuccessModal').style.display = 'flex';
+            });
+
+            document.getElementById('confirmNo').addEventListener('click', function() {
+                // Hide confirmation modal
+                document.getElementById('deleteConfirmModal').style.display = 'none';
+                rowToDelete = null;
+            });
+
+            document.getElementById('successOk').addEventListener('click', function() {
+                // Hide success modal
+                document.getElementById('deleteSuccessModal').style.display = 'none';
+                
+                // Actually delete the row
+                if (rowToDelete) {
+                    rowToDelete.remove();
+                    
+                    // Re-number all rows
+                    const tbody = document.getElementById('transactionTableBody');
+                    const rows = tbody.querySelectorAll('tr');
+                    rows.forEach((row, index) => {
+                        row.querySelector('td:first-child').textContent = index + 1;
+                    });
+                    
+                    rowToDelete = null;
+                    console.log('Transaction row deleted');
+                }
+            });
+
+            document.getElementById('saveFinDescOk').addEventListener('click', function() {
+                document.getElementById('saveFinDescModal').style.display = 'none';
+            });
+
+            document.getElementById('saveTransactionErrorOk').addEventListener('click', function() {
+                document.getElementById('saveTransactionErrorModal').style.display = 'none';
+            });
+
+            document.getElementById('saveTransactionSuccessOk').addEventListener('click', function() {
+                document.getElementById('saveTransactionSuccessModal').style.display = 'none';
+            });
+        });
 
         function deleteAllTransactionRows() {
-            if (confirm('Delete all transaction rows?')) {
-                document.getElementById('transactionTableBody').innerHTML = '';
-                clearTotals();
-            }
-        }
-
-        function updateRowNumbers() {
-            const tbody = document.getElementById('transactionTableBody');
-            Array.from(tbody.children).forEach((row, index) => {
-                row.cells[0].textContent = index + 1;
-            });
+            document.getElementById('transactionTableBody').innerHTML = '';
+            clearTotals();
+            console.log('All transactions deleted');
         }
 
         function checkTransactionSum() {
             const tbody = document.getElementById('transactionTableBody');
             const rows = tbody.querySelectorAll('tr');
             
+            if (rows.length === 0) {
+                // No rows, set all totals to 0
+                document.getElementById('totalYrStartDebit').value = '0.00';
+                document.getElementById('totalCapitalService').value = '0.00';
+                document.getElementById('totalOtherService').value = '0.00';
+                document.getElementById('totalCapitalGoods').value = '0.00';
+                document.getElementById('totalOtherGoods').value = '0.00';
+                document.getElementById('totalServiceMisc').value = '0.00';
+                document.getElementById('totalGoodsMisc').value = '0.00';
+                document.getElementById('totalYrEndDebit').value = '0.00';
+                console.log('Totals calculated - all zeros');
+                return;
+            }
+
             let totals = {
-                yrStart: 0, capSvc: 0, othSvc: 0, capGds: 0, othGds: 0,
-                svcSale: 0, gdsSale: 0, yrEnd: 0
+                capSvc: 0, othSvc: 0, capGds: 0, othGds: 0,
+                svcSale: 0, gdsSale: 0, svcMisc: 0
             };
 
             rows.forEach(row => {
-                totals.yrStart += parseFloat(row.querySelector('.transactionYrStart').value) || 0;
                 totals.capSvc += parseFloat(row.querySelector('.transactionCapSvc').value) || 0;
                 totals.othSvc += parseFloat(row.querySelector('.transactionOthSvc').value) || 0;
                 totals.capGds += parseFloat(row.querySelector('.transactionCapGds').value) || 0;
                 totals.othGds += parseFloat(row.querySelector('.transactionOthGds').value) || 0;
                 totals.svcSale += parseFloat(row.querySelector('.transactionSvcSale').value) || 0;
                 totals.gdsSale += parseFloat(row.querySelector('.transactionGdsSale').value) || 0;
-                totals.yrEnd += parseFloat(row.querySelector('.transactionYrEnd').value) || 0;
+                totals.svcMisc += parseFloat(row.querySelector('.transactionSvcMisc').value) || 0;
             });
 
-            document.getElementById('totalYrStartDebit').value = totals.yrStart.toFixed(2);
             document.getElementById('totalCapitalService').value = totals.capSvc.toFixed(2);
             document.getElementById('totalOtherService').value = totals.othSvc.toFixed(2);
             document.getElementById('totalCapitalGoods').value = totals.capGds.toFixed(2);
             document.getElementById('totalOtherGoods').value = totals.othGds.toFixed(2);
-            document.getElementById('totalServiceSale').value = totals.svcSale.toFixed(2);
-            document.getElementById('totalGoodsSale').value = totals.gdsSale.toFixed(2);
-            document.getElementById('totalYrEndDebit').value = totals.yrEnd.toFixed(2);
+            document.getElementById('totalServiceMisc').value = totals.svcSale.toFixed(2);
+            document.getElementById('totalGoodsMisc').value = totals.gdsSale.toFixed(2);
 
-            alert('Totals calculated!');
+            console.log('Totals calculated');
         }
 
         function clearTotals() {
@@ -434,259 +661,178 @@
             document.getElementById('totalOtherService').value = '';
             document.getElementById('totalCapitalGoods').value = '';
             document.getElementById('totalOtherGoods').value = '';
-            document.getElementById('totalServiceSale').value = '';
-            document.getElementById('totalGoodsSale').value = '';
+            document.getElementById('totalServiceMisc').value = '';
+            document.getElementById('totalGoodsMisc').value = '';
             document.getElementById('totalYrEndDebit').value = '';
         }
 
-        function saveAnnex13() {
-            alert('Annex-13 data saved successfully!');
+        function saveAnnex13Transaction() {
+            // Check if financial description is saved
+            const savedFinDesc = sessionStorage.getItem('annex13FinDesc');
+            
+            if (!savedFinDesc) {
+                // Show error modal
+                document.getElementById('saveTransactionErrorModal').style.display = 'flex';
+                return;
+            }
+            
+            // Collect all form data
+            const formData = {
+                submissionNo: document.getElementById('txtSubmissionNo').value,
+                fiscalYear: document.getElementById('txtFiscalYear').value,
+                pan: document.getElementById('txtPAN').value,
+                financialDesc: {
+                    thisYear: document.getElementById('txtFinDesc0').value,
+                    businessSales: document.getElementById('txtFinDesc1').value,
+                    netProfit: document.getElementById('txtFinDesc2').value
+                },
+                lessThan100k: {
+                    yrStartDebitCredit: document.getElementById('txtYrStartDebitCredit').value,
+                    capitalServiceBuy: document.getElementById('txtCapitalServiceBuy').value,
+                    otherServiceBuy: document.getElementById('txtOtherServiceBuy').value,
+                    yrCapitalGoodsBuy: document.getElementById('txtYrCapitalGoodsBuy').value,
+                    yrOtherGoodsBuy: document.getElementById('txtYrOtherGoodsBuy').value,
+                    yrServiceSale: document.getElementById('txtYrServiceSale').value,
+                    yrGoodsSale: document.getElementById('txtYrGoodsSale').value,
+                    goodsMisc: document.getElementById('txtGoodsMisc').value,
+                    yrEndDebitCredit: document.getElementById('txtYrEndDebitCredit').value
+                },
+                noGreater100k: document.getElementById('chkNoGreater100k').checked,
+                transactions: []
+            };
+
+            // Collect transaction rows
+            const tbody = document.getElementById('transactionTableBody');
+            const rows = tbody.querySelectorAll('tr');
+            rows.forEach(row => {
+                formData.transactions.push({
+                    pan: row.querySelector('.transactionPAN').value,
+                    name: row.querySelector('.transactionName').value,
+                    capSvc: row.querySelector('.transactionCapSvc').value,
+                    othSvc: row.querySelector('.transactionOthSvc').value,
+                    capGds: row.querySelector('.transactionCapGds').value,
+                    othGds: row.querySelector('.transactionOthGds').value,
+                    svcSale: row.querySelector('.transactionSvcSale').value,
+                    gdsSale: row.querySelector('.transactionGdsSale').value,
+                    svcMisc: row.querySelector('.transactionSvcMisc').value
+                });
+            });
+
+            sessionStorage.setItem('annex13Data', JSON.stringify(formData));
+            
+            // Show success modal
+            document.getElementById('saveTransactionSuccessModal').style.display = 'flex';
         }
 
-        // Back navigation
+        // Back navigation to D-02
         document.getElementById('lnkRedirectD02').addEventListener('click', function(e) {
             e.preventDefault();
-            if (typeof window.parent.loadInParentIframe === 'function') {
-                window.parent.loadInParentIframe('income_tax/d02_main_form.html');
+            
+            // Try multiple methods to navigate back to D-02
+            if (window.parent && window.parent !== window) {
+                // We're in an iframe
+                if (typeof window.parent.loadInParentIframe === 'function') {
+                    window.parent.loadInParentIframe('income_tax/d02_main_form.html');
+                } else if (typeof window.parent.location !== 'undefined') {
+                    // Reload parent with d02_main_form
+                    try {
+                        window.parent.location.href = 'd02_main_form.html';
+                    } catch(e) {
+                        window.location.href = 'd02_main_form.html';
+                    }
+                }
             } else {
-                console.log('Parent iframe navigation function not available');
-            }
-        });
-
-        document.getElementById('lnkBottomRedirect').addEventListener('click', function(e) {
-            e.preventDefault();
-            if (typeof window.parent.loadInParentIframe === 'function') {
-                window.parent.loadInParentIframe('income_tax/d02_main_form.html');
-            } else {
-                console.log('Parent iframe navigation function not available');
+                // Not in iframe, direct navigation
+                window.location.href = 'd02_main_form.html';
             }
         });
 
         // Toggle transaction grid based on checkbox
         document.getElementById('chkNoGreater100k').addEventListener('change', function() {
-            document.getElementById('divTransactionGrid').style.display = this.checked ? 'none' : 'block';
+            const btnAddNew = document.getElementById('btnAddNew');
+            if (this.checked) {
+                // Checkbox is checked - disable and dim the Add New button
+                btnAddNew.disabled = true;
+                btnAddNew.style.opacity = '0.5';
+                btnAddNew.style.cursor = 'not-allowed';
+            } else {
+                // Checkbox is unchecked - enable the Add New button
+                btnAddNew.disabled = false;
+                btnAddNew.style.opacity = '1';
+                btnAddNew.style.cursor = 'pointer';
+            }
         });
     </script>
-</body>
-</html>
-                    <div class="section-header">सब्मिशन विवरण</div>
-                    <table>
-                        <tr>
-                            <td style="width: 30%;">सब्मिशन नं.:</td>
-                            <td><input type="text" id="submissionNo" readonly /></td>
-                            <td style="width: 30%;">आर्थिक वर्ष:</td>
-                            <td><input type="text" id="fiscalYear" readonly /></td>
-                        </tr>
-                        <tr>
-                            <td>स्थायी लेखा नम्बर:</td>
-                            <td colspan="3"><input type="text" id="panNo" readonly style="width: 100%;" /></td>
-                        </tr>
-                    </table>
-                </div>
 
-                <!-- Financial Description Panel -->
-                <div style="border: 1px solid #C5D9F1; margin: 10px 0;">
-                    <div class="section-header">वित्तिय विवरण प्रविस्ट गर्नुहोस्</div>
-                    <table>
-                        <thead>
-                            <tr style="background: #DCE6F1;">
-                                <th style="width: 50%; text-align: left;">सुची</th>
-                                <th style="width: 50%; text-align: left;">रकम वा प्रतिशत</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>बिक्री यस आ.व.<br><span style="font-size: 12px; color: #666;">Sales This Year</span></td>
-                                <td><input type="text" id="txtFinDesc0" class="TxtRight" /></td>
-                            </tr>
-                            <tr>
-                                <td>सेवा र व्यवसायको बिक्रि कारोबार<br><span style="font-size: 12px; color: #666;">Services and Sales of Business</span></td>
-                                <td><input type="text" id="txtFinDesc1" class="TxtRight" /></td>
-                            </tr>
-                            <tr>
-                                <td>कर अघिको खुद आय/नोक्सानी यस आ.व.<br><span style="font-size: 12px; color: #666;">Net Profit / Loss Before Tax This Year</span></td>
-                                <td><input type="text" id="txtFinDesc2" class="TxtRight" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Save Button -->
-                <div style="margin: 15px 0;">
-                    <button class="x-btn" onclick="saveAnnex13();">
-                        💾 Save
-                    </button>
-                </div>
-
-                <!-- Less than 100,000 Section -->
-                <div style="border: 1px solid #C5D9F1; margin: 10px 0;">
-                    <div class="section-header">रु एक लाख भन्दा कम बिक्री बिवरण</div>
-                    <table>
-                        <tr>
-                            <td>कुनै पनि व्यक्ति / संस्था संग आर्थिक वर्ष भरिमा रू एक लाख भन्दा कम बिक्रि एकमुष्ठ रकम</td>
-                            <td><input type="text" id="lessThan100k" class="TxtRight" /></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <!-- Greater than 100,000 Section -->
-                <div style="border: 1px solid #C5D9F1; margin: 10px 0;">
-                    <div class="section-header">रु एक लाख भन्दा बढी कारोबार विवरण</div>
-                    <table>
-                        <tr style="background: #EFF5FB;">
-                            <td colspan="2">
-                                <input type="checkbox" id="chkTransaction" /> कुनै पनि व्यक्ति / संस्था संग आर्थिक वर्ष भरिमा रू एक लाख भन्दा बढीको कारोबार छैन
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-                <!-- Load From Excel Section -->
-                <div style="border: 1px solid #C5D9F1; margin: 10px 0; padding: 10px;">
-                    <div class="section-header">एक्सेल फाइलबाट लोड गर्नुहोस्</div>
-                    <div style="padding: 10px;">
-                        <label>लोड XLS: </label>
-                        <input type="file" id="excelFile" accept=".xls,.xlsx" />
-                        <button class="x-btn" onclick="alert('Upload functionality coming soon');">⬆ Upload</button>
-                        <button class="x-btn" onclick="alert('Sample view coming soon');">📋 View Sample</button>
-                    </div>
-                </div>
-
-                <!-- Transaction Grid Section -->
-                <div style="border: 1px solid #C5D9F1; margin: 10px 0;">
-                    <div class="section-header">शुरु मौज्दात, खरिद, विक्री विवरण (एक लाख भन्दा बढी)</div>
-                    <div style="overflow-x: auto; margin: 10px 0;">
-                        <table style="min-width: 100%; font-size: 12px;">
-                            <thead>
-                                <tr style="background: #DCE6F1;">
-                                    <th style="width: 5%;">क्र.</th>
-                                    <th style="width: 15%;">स्थायी लेखा नम्बर</th>
-                                    <th style="width: 25%;">व्यवसायको नाम</th>
-                                    <th style="width: 15%;">शुरु लिन बाकी (रकम)</th>
-                                    <th style="width: 15%;">यो वर्ष खरिद</th>
-                                    <th style="width: 15%;">यो वर्ष बिक्रि</th>
-                                    <th style="width: 15%;">अन्त लिन बाकी (रकम)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>१</td>
-                                    <td><input type="text" style="width: 95%;" /></td>
-                                    <td><input type="text" style="width: 95%;" /></td>
-                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
-                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
-                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
-                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
-                                </tr>
-                                <tr>
-                                    <td>२</td>
-                                    <td><input type="text" style="width: 95%;" /></td>
-                                    <td><input type="text" style="width: 95%;" /></td>
-                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
-                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
-                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
-                                    <td><input type="text" class="TxtRight" style="width: 95%;" /></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <button class="x-btn" onclick="addTransactionRow();">➕ Add New</button>
-                    <button class="x-btn" onclick="deleteAllRows();">❌ Delete All</button>
-                    <button class="x-btn" onclick="checkSum();">🧮 Check Sum</button>
-                </div>
-
-                <!-- Totals Section -->
-                <div style="border: 1px solid #C5D9F1; margin: 10px 0;">
-                    <div class="section-header">जम्मा</div>
-                    <table>
-                        <tr>
-                            <td style="width: 30%;">जम्मा बिक्री रकम:</td>
-                            <td><input type="text" id="totalSales" readonly class="TxtRight" /></td>
-                            <td style="width: 30%;">जम्मा खरिद रकम:</td>
-                            <td><input type="text" id="totalPurchase" readonly class="TxtRight" /></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <!-- Save Transaction Button -->
-                <div style="margin: 15px 0;">
-                    <button class="x-btn" onclick="saveTransaction();">
-                        💾 Save Transaction
-                    </button>
-                </div>
-
-                <!-- Back Link at Bottom -->
-                <div style="background: #E8F4FF; border: 1px solid #5B9BD5; padding: 10px; margin: 10px 0; border-radius: 4px; text-align: center;">
-                    <span style="color: #003366;">पछाडि गएर अनुसूची तय गर्न </span>
-                    <span id="lnkRedirectD02Bottom" style="cursor: pointer; color: red; text-decoration: underline; font-weight: bold;">यहाँ क्लिक</span>
-                    <span style="color: #003366;"> गर्नुहोस् ।</span>
-                </div>
+    <!-- Custom Modal for Delete Confirmation -->
+    <div id="deleteConfirmModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center;">
+        <div style="background: #DFE9F6; border: 2px solid #003366; border-radius: 6px; padding: 15px; width: 280px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 24px; color: #003366; margin-right: 10px;">❓</span>
+                <h3 style="margin: 0; color: #003366; font-size: 14px;">Confirm Action</h3>
+            </div>
+            <p style="margin: 10px 0; color: #003366; font-size: 13px;">Do you want to Remove?</p>
+            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
+                <button id="confirmYes" style="background: #E8F1F9; border: 1px solid #003366; padding: 6px 25px; cursor: pointer; border-radius: 4px; font-size: 13px;">Yes</button>
+                <button id="confirmNo" style="background: #E8F1F9; border: 1px solid #003366; padding: 6px 25px; cursor: pointer; border-radius: 4px; font-size: 13px;">No</button>
             </div>
         </div>
     </div>
 
-    <script>
-        // Global loadInParentIframe function for consistency
-        window.loadInParentIframe = function(url) {
-            try {
-                if (parent && parent.loadInParentIframe && parent !== window) {
-                    parent.loadInParentIframe(url);
-                } else {
-                    window.open(url, '_blank');
-                }
-            } catch (e) {
-                console.error('Error in loadInParentIframe:', e);
-                window.open(url, '_blank');
-            }
-        };
+    <!-- Custom Modal for Success Message -->
+    <div id="deleteSuccessModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center;">
+        <div style="background: #DFE9F6; border: 2px solid #003366; border-radius: 6px; padding: 15px; width: 280px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 24px; color: #003366; margin-right: 10px;">ℹ️</span>
+                <h3 style="margin: 0; color: #003366; font-size: 14px;">Success</h3>
+            </div>
+            <p style="margin: 10px 0; color: #003366; font-size: 13px;">Successfully Deleted. Click CheckSum for new total</p>
+            <div style="display: flex; justify-content: center; margin-top: 15px;">
+                <button id="successOk" style="background: #4A90E2; color: white; border: none; padding: 6px 25px; cursor: pointer; border-radius: 4px; font-size: 13px;">OK</button>
+            </div>
+        </div>
+    </div>
 
-        // Handle back links to D-02
-        document.getElementById('lnkRedirectD02').addEventListener('click', function(e) {
-            e.preventDefault();
-            loadInParentIframe('income_tax/d02_main_form.html');
-        });
-        
-        document.getElementById('lnkRedirectD02Bottom').addEventListener('click', function(e) {
-            e.preventDefault();
-            loadInParentIframe('income_tax/d02_main_form.html');
-        });
+    <!-- Custom Modal for Financial Description Save -->
+    <div id="saveFinDescModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: flex-start; padding-top: 100px;">
+        <div style="background: #DFE9F6; border: 2px solid #003366; border-radius: 6px; padding: 15px; width: 280px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 24px; color: #003366; margin-right: 10px;">✓</span>
+                <h3 style="margin: 0; color: #003366; font-size: 14px;">Success</h3>
+            </div>
+            <p style="margin: 10px 0; color: #003366; font-size: 13px;">Saved Successfully</p>
+            <div style="display: flex; justify-content: center; margin-top: 15px;">
+                <button id="saveFinDescOk" style="background: #4A90E2; color: white; border: none; padding: 6px 25px; cursor: pointer; border-radius: 4px; font-size: 13px;">OK</button>
+            </div>
+        </div>
+    </div>
 
-        // Form functions
-        function saveAnnex13() {
-            alert('Financial description saved (demo)');
-        }
+    <!-- Custom Modal for Save Transaction Error -->
+    <div id="saveTransactionErrorModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: flex-start; padding-top: 100px;">
+        <div style="background: #DFE9F6; border: 2px solid #003366; border-radius: 6px; padding: 15px; width: 280px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 24px; color: #003366; margin-right: 10px;">⚠️</span>
+                <h3 style="margin: 0; color: #003366; font-size: 14px;">Warning</h3>
+            </div>
+            <p style="margin: 10px 0; color: #003366; font-size: 13px;">Please enter सुची amount and then do save there</p>
+            <div style="display: flex; justify-content: center; margin-top: 15px;">
+                <button id="saveTransactionErrorOk" style="background: #4A90E2; color: white; border: none; padding: 6px 25px; cursor: pointer; border-radius: 4px; font-size: 13px;">OK</button>
+            </div>
+        </div>
+    </div>
 
-        function addTransactionRow() {
-            alert('Add new transaction row (demo)');
-        }
-
-        function deleteAllRows() {
-            if (confirm('Delete all transaction rows?')) {
-                alert('All rows deleted (demo)');
-            }
-        }
-
-        function checkSum() {
-            alert('Check Sum calculation (demo)');
-        }
-
-        function saveTransaction() {
-            alert('Transaction saved (demo)');
-        }
-
-        // Load data from D-02 if available
-        window.onload = function() {
-            const d02Data = JSON.parse(sessionStorage.getItem('d02_current_registration') || '{}');
-            if (d02Data.submissionNo) {
-                document.getElementById('submissionNo').value = d02Data.submissionNo;
-            }
-            if (d02Data.fiscalYear) {
-                document.getElementById('fiscalYear').value = d02Data.fiscalYear;
-            }
-            if (d02Data.pan) {
-                document.getElementById('panNo').value = d02Data.pan;
-            }
-        };
-    </script>
+    <!-- Custom Modal for Save Transaction Success -->
+    <div id="saveTransactionSuccessModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: flex-start; padding-top: 100px;">
+        <div style="background: #DFE9F6; border: 2px solid #003366; border-radius: 6px; padding: 15px; width: 280px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 24px; color: #003366; margin-right: 10px;">✓</span>
+                <h3 style="margin: 0; color: #003366; font-size: 14px;">Success</h3>
+            </div>
+            <p style="margin: 10px 0; color: #003366; font-size: 13px;">Saved Successfully</p>
+            <div style="display: flex; justify-content: center; margin-top: 15px;">
+                <button id="saveTransactionSuccessOk" style="background: #4A90E2; color: white; border: none; padding: 6px 25px; cursor: pointer; border-radius: 4px; font-size: 13px;">OK</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
