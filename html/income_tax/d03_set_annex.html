@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Annex - D-03</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #dfe9f6;
+            padding: 20px;
+        }
+        
+        .main-container {
+            background-color: #dfe9f6;
+            border: 1px solid #99BCE8;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(to bottom, #D9E8FB 0%, #C5D9ED 100%);
+            border-bottom: 1px solid #99BCE8;
+            padding: 8px 12px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .content {
+            padding: 15px;
+            overflow: auto;
+            max-height: 700px;
+        }
+        
+        .button-row {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 6px 12px;
+            background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+            border: 1px solid #a0a0a0;
+            cursor: pointer;
+            font-size: 13px;
+            border-radius: 3px;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(to bottom, #e8e8e8 0%, #d8d8d8 100%);
+        }
+        
+        .instructions {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #dfe9f6;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .instructions p {
+            margin: 5px 0;
+            font-size: 13px;
+        }
+        
+        .finalize-btn {
+            padding: 6px 20px;
+            background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+            border: 1px solid #a0a0a0;
+            cursor: pointer;
+            font-size: 13px;
+            border-radius: 3px;
+            margin: 10px 0;
+        }
+        
+        .section-panel {
+            margin: 15px 0;
+            border: 1px solid #99BCE8;
+        }
+        
+        .section-header {
+            background: linear-gradient(to bottom, #D9E8FB 0%, #C5D9ED 100%);
+            border-bottom: 1px solid #99BCE8;
+            padding: 6px 10px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        .section-toolbar {
+            background-color: #fff;
+            padding: 5px 10px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 12px;
+        }
+        
+        .section-toolbar a {
+            color: red;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        .annex-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+        
+        .annex-table tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .annex-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .annex-table td {
+            padding: 8px;
+            font-size: 13px;
+        }
+        
+        .annex-name {
+            width: 120px;
+        }
+        
+        .annex-desc {
+            width: 450px;
+        }
+        
+        .annex-action {
+            width: 100px;
+            text-align: center;
+        }
+        
+        .action-icon {
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">Set Annex</div>
+        
+        <div class="content">
+            <div class="button-row">
+                <button class="btn" onclick="backToD03()">← Back to D03</button>
+                <button class="btn">🖨 Print Pages</button>
+            </div>
+            
+            <div class="instructions">
+                <p>• अनुसूचीहरु तल दिएको क्रम अनुसार भर्नु पर्नेछ ।</p>
+                <p>• अनुसूची - १ र अनुसूची - २ स्वत: भरिन्छ , छुट र शुल्कहरु मात्र भर्नुपर्छ ।</p>
+                <p>• निकायले अनिवार्य कागजातहरु upload अनिवार्य गर्नुपर्नेछ ।</p>
+                <p>• आँफै भरिएको अनुसुची १ र अनुसुची २ हेरी ठीक छ भने Set Annex Button क्लिक गर्नु होला ।</p>
+            </div>
+            
+            <button class="finalize-btn">✓ Finalized Submit</button>
+            
+            <!-- Section 1: आय अनुसूची भर्ने ब्लक -->
+            <div class="section-panel">
+                <div class="section-header">१. आय अनुसूची भर्ने ब्लक</div>
+                <div class="section-toolbar">
+                    अन्य अनिवार्य कागजातहरु upload गर्न को लागि <a href="#">यहाँ क्लिक</a> गर्नुहोस् ।
+                </div>
+                <table class="annex-table">
+                    <tr>
+                        <td class="annex-name">अनुसूची - ५(क)</td>
+                        <td class="annex-desc">कर छुट कारोबारको विवरण राख्ने</td>
+                        <td class="annex-action">
+                            <span class="action-icon" style="color: green; font-size: 18px;" title="Add New">➕</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="annex-name">अनुसूची - ५</td>
+                        <td class="annex-desc">व्यापार आयको विवरण राख्ने</td>
+                        <td class="annex-action">
+                            <span class="action-icon" style="color: green; font-size: 18px;" title="Add New">➕</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="annex-name">अनुसूची - ७</td>
+                        <td class="annex-desc">लगानीबाट भएको आयको गणानाको विवरण राख्ने</td>
+                        <td class="annex-action">
+                            <span class="action-icon" style="color: green; font-size: 18px;" title="Add New">➕</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="annex-name">अनुसूची - ८</td>
+                        <td class="annex-desc">गैर व्यावसायिक सम्पत्तिको निसर्गबाट प्राप्त खुद लाभ</td>
+                        <td class="annex-action">
+                            <span class="action-icon" style="color: green; font-size: 18px;" title="Add New">➕</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <!-- Section 3: करदाबी अनुसूची -->
+            <div class="section-panel">
+                <div class="section-header">३. करदाबी अनुसूची</div>
+                <table class="annex-table">
+                    <tr>
+                        <td class="annex-name">अनुसूची - १०</td>
+                        <td class="annex-desc">कर मिलान सम्बन्धी विवरण राख्ने</td>
+                        <td class="annex-action">
+                            <span class="action-icon" style="color: blue; font-size: 18px;" title="Submit">💾</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="annex-name">अनुसूची - १२</td>
+                        <td class="annex-desc">विदेशमा तिरेको कर मिलान दावीको विवरण राख्ने</td>
+                        <td class="annex-action">
+                            <span class="action-icon" style="color: blue; font-size: 18px;" title="Submit">💾</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <!-- Section 4: बित्तीय विवरण तथा अन्य विवरणका सुचनाहरु -->
+            <div class="section-panel">
+                <div class="section-header">४. बित्तीय विवरण तथा अन्य विवरणका सुचनाहरु</div>
+                <table class="annex-table">
+                    <tr>
+                        <td class="annex-name">अनुसूची - १३</td>
+                        <td class="annex-desc">वित्तिय तथा खरिद बिक्री विवरण</td>
+                        <td class="annex-action">
+                            <span class="action-icon" style="color: blue; font-size: 18px;" title="Submit">💾</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../../js/income_tax/d03_set_annex.js"></script>
+</body>
+</html>

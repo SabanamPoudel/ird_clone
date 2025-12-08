@@ -13,14 +13,27 @@ function proceedToD03Form() {
 
 // Load user data when page loads
 window.addEventListener('DOMContentLoaded', function() {
-    const d03Users = JSON.parse(localStorage.getItem('d03Users') || '[]');
+    // First try to get from sessionStorage (current registration)
+    const currentUser = sessionStorage.getItem('d03_current_registration');
     
-    if (d03Users.length > 0) {
-        const lastUser = d03Users[d03Users.length - 1];
+    if (currentUser) {
+        const userData = JSON.parse(currentUser);
         
         // Populate the values in the page
-        document.getElementById('submissionNo').textContent = lastUser.submissionNo;
-        document.getElementById('userName').textContent = lastUser.username;
-        document.getElementById('panNo').textContent = lastUser.pan;
+        document.getElementById('submissionNo').textContent = userData.submissionNo;
+        document.getElementById('userName').textContent = userData.username;
+        document.getElementById('panNo').textContent = userData.pan;
+    } else {
+        // Fallback to localStorage
+        const d03Users = JSON.parse(localStorage.getItem('d03Users') || '[]');
+        
+        if (d03Users.length > 0) {
+            const lastUser = d03Users[d03Users.length - 1];
+            
+            // Populate the values in the page
+            document.getElementById('submissionNo').textContent = lastUser.submissionNo;
+            document.getElementById('userName').textContent = lastUser.username;
+            document.getElementById('panNo').textContent = lastUser.pan;
+        }
     }
 });

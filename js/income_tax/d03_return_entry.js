@@ -64,13 +64,14 @@ function registerD03User() {
     
     // Generate submission number
     const timestamp = new Date().getTime();
-    const submissionNo = 'D03-' + timestamp.toString().slice(-8);
+    const random = Math.floor(Math.random() * 10000);
+    const submissionNumber = '820' + timestamp.toString().slice(-9) + String(random).padStart(4, '0');
     
     // Save to localStorage
     let d03Users = JSON.parse(localStorage.getItem('d03Users') || '[]');
     
     const newUser = {
-        submissionNo: submissionNo,
+        submissionNo: submissionNumber,
         username: username,
         password: password,
         pan: pan,
@@ -83,13 +84,23 @@ function registerD03User() {
     d03Users.push(newUser);
     localStorage.setItem('d03Users', JSON.stringify(d03Users));
     
-    // Hide registration form and show iframe IMMEDIATELY
-    document.getElementById('frmD03ReturnsSubNo').style.display = 'none';
-    document.getElementById('d03FormIframeContainer').style.display = '';
-
-
+    // Save current registration to sessionStorage
+    sessionStorage.setItem('d03_current_registration', JSON.stringify({
+        submissionNumber: submissionNumber,
+        username: username,
+        pan: pan,
+        fiscalYear: fiscalYear,
+        email: email,
+        contact: contact,
+        transactionAmount: document.getElementById('d03-transaction-input').value,
+        profitAmount: document.getElementById('d03-profit-input').value,
+        professionType: document.getElementById('d03-profession-input').value
+    }));
+    
     console.log('D-03 User registered:', newUser);
     
+    // Redirect to D-03 form page
+    window.location.href = 'd03_form_page.html';
 }
 
 function resetD03Form() {

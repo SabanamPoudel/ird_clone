@@ -9,110 +9,90 @@
     <style>
         body, html {
             margin: 0;
-            padding: 0;
-            overflow: hidden;
+            padding: 20px;
             background-color: #DFE9F6;
-            width: 100%;
-            height: 100%;
+            font-family: Arial, sans-serif;
         }
         
-        #ext-comp-1081-body,
-        #form-1082,
-        #form-1082-body,
-        .x-panel-body,
-        .x-container {
-            background-color: #DFE9F6 !important;
-        }
-        
-        /* Full width container with right border */
-        #ext-comp-1081-body {
-            width: 100% !important;
-            position: relative;
+        .success-container {
+            background-color: #DFE9F6;
+            padding: 30px;
+            text-align: center;
             border-right: 2px solid #1F548A;
-            box-sizing: border-box;
+            min-height: 400px;
         }
         
-        .x-box-inner {
-            width: 100% !important;
-        }
-        
-        #form-1082 {
-            width: 100% !important;
-        }
-        
-        #form-1082-body {
-            width: 100% !important;
-        }
-        
-        /* Button styling */
-        .x-btn-center {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-        }
-        
-        /* Labels styling - normal weight for messages */
-        label.x-component {
-            font-weight: normal;
-        }
-        
-        /* Bold only for the values */
-        .x-form-display-field {
+        .success-title {
+            font-size: 20px;
             font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
         }
         
-        /* Override ExtJS padding */
-        .x-panel-body-default-framed {
-            padding: 10px !important;
+        .success-subtitle {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 30px;
         }
         
-        #ext-comp-1081-body {
-            padding: 0 !important;
+        .info-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .info-item {
+            font-size: 15px;
+        }
+        
+        .info-label {
+            font-weight: normal;
+            color: #000;
+        }
+        
+        .info-value {
+            font-weight: bold;
+            color: #000;
+        }
+        
+        .proceed-button {
+            background: linear-gradient(180deg, #FEFEFE 0%, #E6E6E6 100%);
+            border: 1px solid #B5B8C8;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+        
+        .proceed-button:hover {
+            background: linear-gradient(180deg, #F5F5F5 0%, #D5D5D5 100%);
         }
     </style>
 </head>
 <body>
-    <div id="ext-comp-1081-body" class="x-panel-body x-panel-body-default x-panel-body-default-framed x-panel-body-default-framed x-box-layout-ct" style="overflow: auto; height: 100vh; left: 0px; top: 0px; width: 100%; padding: 0;">
-        <div class="x-box-inner" role="presentation" style="height: 100%; width: 100%;">
-            <div id="form-1082" class="x-panel x-box-item x-panel-default-framed" role="form" style="text-align: center; margin: 0px; width: 100%; height: 100%; left: 0px; top: 0px;">
-                <div id="form-1082-body" class="x-panel-body x-panel-body-default x-panel-body-default-framed x-panel-body-default-framed x-box-layout-ct x-docked-noborder-top x-docked-noborder-right x-docked-noborder-bottom x-docked-noborder-left" style="text-align: center; width: 100%; height: 100%; left: 0px; top: 0px;">
-                    <div class="x-box-inner" role="presentation" style="height: 100%; width: 100%;">
-                        <div id="container-1083" class="x-container x-box-item x-container-default x-box-layout-ct" role="presentation" style="text-align: center; margin: 0px; height: 80px; left: 0px; top: 20px; width: 100%;">
-                            <div class="x-box-inner" role="presentation" style="height: 80px; width: 100%;">
-                                <label class="x-component x-box-item x-component-default" role="presentation" style="font-size: 20px; font-weight: normal; margin: 0px; height: 30px; width: 100%; left: 0px; top: 10px; display: block; line-height: 30px;">तपाई सफलतापूर्वक दर्ता हुनुभयो!!!</label>
-                                <label class="x-component x-box-item x-component-default" role="presentation" style="font-size: 16px; font-weight: normal; height: 30px; margin: 0px; width: 100%; left: 0px; top: 40px; display: block; line-height: 30px;">कृपया तपाईको सब्मिशन नं., प्रयोगकर्ताको नाम र पासवर्ड टिपिराख्नुहोस् ।</label>
-                            </div>
-                        </div>
-                        <div id="container-1086" class="x-container x-box-item x-container-default x-box-layout-ct" role="presentation" style="text-align: center; height: 30px; margin: 10px 0px; left: 0px; top: 105px; width: 100%;">
-                            <div class="x-box-inner" role="presentation" style="height: 30px; width: 100%; display: flex; flex-wrap: nowrap; justify-content: center; align-items: center; gap: 30px;">
-                                <div style="display: inline-flex; align-items: center; font-size: 15px; white-space: nowrap;">
-                                    <span style="font-weight: normal;">तपाईको सब्मिशन नं.: </span>
-                                    <span id="submissionNo" style="font-weight: bold; margin-left: 5px;"></span>
-                                </div>
-                                <div style="display: inline-flex; align-items: center; font-size: 15px; white-space: nowrap;">
-                                    <span style="font-weight: normal;">प्रयोगकर्ताको नाम : </span>
-                                    <span id="userName" style="font-weight: bold; margin-left: 5px;"></span>
-                                </div>
-                                <div style="display: inline-flex; align-items: center; font-size: 15px; white-space: nowrap;">
-                                    <span style="font-weight: normal;">स्था. ले. नं. : </span>
-                                    <span id="panNo" style="font-weight: bold; margin-left: 5px;"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="container-1090" class="x-container x-box-item x-container-default x-box-layout-ct" role="presentation" style="text-align: left; margin: 0px; width: 150px; height: 40px; left: 10px; top: 145px;">
-                            <div class="x-box-inner" role="presentation" style="height: 40px; width: 150px;">
-                                <div id="button-1092" class="x-btn x-box-item x-btn-default-small x-noicon x-btn-noicon x-btn-default-small-noicon" style="margin: 0px;">
-                                    <em id="button-1092-btnWrap">
-                                        <button id="button-1092-btnEl" type="button" role="button" autocomplete="off" class="x-btn-center" onclick="proceedToD03Form()">
-                                            <span id="button-1092-btnInnerEl" class="x-btn-inner">Proceed &gt;</span>
-                                        </button>
-                                    </em>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="success-container">
+        <div class="success-title">तपाई सफलतापूर्वक दर्ता हुनुभयो!!!</div>
+        <div class="success-subtitle">कृपया तपाईको सब्मिशन नं., प्रयोगकर्ताको नाम र पासवर्ड टिपिराख्नुहोस् ।</div>
+        
+        <div class="info-container">
+            <div class="info-item">
+                <span class="info-label">तपाईको सब्मिशन नं.: </span>
+                <span id="submissionNo" class="info-value"></span>
             </div>
+            <div class="info-item">
+                <span class="info-label">प्रयोगकर्ताको नाम : </span>
+                <span id="userName" class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">स्था. ले. नं. : </span>
+                <span id="panNo" class="info-value"></span>
+            </div>
+        </div>
+        
+        <div style="text-align: left; margin-top: 30px;">
+            <button class="proceed-button" onclick="proceedToD03Form()">Proceed &gt;</button>
         </div>
     </div>
     
