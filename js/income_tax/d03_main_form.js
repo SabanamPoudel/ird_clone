@@ -25,6 +25,16 @@ function loadUserData() {
         // Set IRO field
         document.getElementById('iro').value = 'आन्तरिक राजस्व कार्यालय भरतपुर';
         
+        // Save initial data to localStorage for use in annex pages
+        const initialData = {
+            fiscalYear: userData.fiscalYear || '',
+            pan: userData.pan || '',
+            taxpayerName: userData.username || '',
+            iro: 'आन्तरिक राजस्व कार्यालय भरतपुर',
+            submissionNumber: submissionNumber
+        };
+        localStorage.setItem('d03_return_data', JSON.stringify(initialData));
+        
         // Get PAN registration data (this should come from PAN registration system)
         // For now, we'll use the username as firm name
         // In a real system, this would query a PAN database
@@ -82,30 +92,116 @@ function getPanHolderData(panNumber) {
 }
 
 function registerForm() {
+    // Validate taxpayer type is selected
+    const taxpayerType = document.getElementById('taxpayerType').value;
+    if (!taxpayerType) {
+        showValidationPopup('कृपया करदाताको किसिम चयन गर्नुहोस्');
+        return;
+    }
+    
     // Collect all form data
     const formData = {
         submissionNumber: document.getElementById('submissionNo').textContent,
         fiscalYear: document.getElementById('fiscalYear').value,
         pan: document.getElementById('pan').value,
         firmName: document.getElementById('firmName').value,
+        taxpayerName: document.getElementById('firmName').value,
         email: document.getElementById('email').value,
         mobile: document.getElementById('mobile').value,
         iro: document.getElementById('iro').value,
+        taxpayerType: taxpayerType,
         registrationDate: new Date().toISOString()
     };
-    
-    // No validation needed - just save and switch buttons
     
     // Save to localStorage
     const d03Submissions = JSON.parse(localStorage.getItem('d03Submissions') || '[]');
     d03Submissions.push(formData);
     localStorage.setItem('d03Submissions', JSON.stringify(d03Submissions));
     
-    // Hide Register button and show Update/Enter Annex buttons
-    document.getElementById('registerBtn').style.display = 'none';
-    document.getElementById('actionButtons').style.display = 'block';
+    // Also save to d03_return_data for use in annex pages
+    localStorage.setItem('d03_return_data', JSON.stringify(formData));
+    
+    // Show popup with submission number
+    showSubmissionPopup(formData.submissionNumber);
     
     console.log('D-03 form registered:', formData);
+}
+
+function showSubmissionPopup(submissionNumber) {
+    // Create modal overlay
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; display: flex; align-items: center; justify-content: center;';
+    
+    // Create modal content
+    const modal = document.createElement('div');
+    modal.style.cssText = 'background: #E8EEF7; padding: 0; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); width: 350px; border: 2px solid #B8C5D6;';
+    
+    modal.innerHTML = `
+        <div style="background: linear-gradient(to bottom, #E8EEF7, #D0DBEB); padding: 8px 15px; border-bottom: 1px solid #B8C5D6; display: flex; justify-content: space-between; align-items: center; border-radius: 6px 6px 0 0;">
+            <h3 style="margin: 0; color: #1F548A; font-size: 14px; font-weight: bold;">SUCCESS</h3>
+            <button onclick="this.closest('.modal-overlay').remove()" style="background: none; border: none; color: #666; font-size: 18px; cursor: pointer; padding: 0; width: 20px; height: 20px; line-height: 18px;">×</button>
+        </div>
+        <div style="padding: 20px; text-align: center;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(to bottom, #4A90E2, #2E5C8A); display: flex; align-items: center; justify-content: center;">
+                    <span style="color: white; font-size: 28px; font-weight: bold; font-family: serif;">i</span>
+                </div>
+                <h4 style="margin: 0; color: #333; font-size: 16px;">Successfully Saved !!!</h4>
+            </div>
+            <p style="margin: 8px 0 4px 0; color: #333; font-size: 13px;">सब्मिशन नं. दिएनुहोस्</p>
+            <p style="margin: 0 0 20px 0; font-size: 18px; font-weight: bold; color: #000;">${submissionNumber}</p>
+            <button id="modalOkBtn" style="padding: 5px 35px; background: linear-gradient(to bottom, #F0F0F0, #D8D8D8); border: 1px solid #999; cursor: pointer; font-size: 13px; border-radius: 3px; color: #333;">OK</button>
+        </div>
+    `;
+    
+    overlay.className = 'modal-overlay';
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    
+    // Handle OK button click
+    document.getElementById('modalOkBtn').onclick = function() {
+        // Remove modal
+        document.body.removeChild(overlay);
+        
+        // Hide Register button and show Update/Enter Annex buttons
+        document.getElementById('registerBtn').style.display = 'none';
+        document.getElementById('actionButtons').style.display = 'block';
+    };
+}
+
+function showValidationPopup(message) {
+    // Create modal overlay
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; display: flex; align-items: center; justify-content: center;';
+    
+    // Create modal content
+    const modal = document.createElement('div');
+    modal.style.cssText = 'background: #E8EEF7; padding: 0; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); width: 350px; border: 2px solid #B8C5D6;';
+    
+    modal.innerHTML = `
+        <div style="background: linear-gradient(to bottom, #E8EEF7, #D0DBEB); padding: 8px 15px; border-bottom: 1px solid #B8C5D6; display: flex; justify-content: space-between; align-items: center; border-radius: 6px 6px 0 0;">
+            <h3 style="margin: 0; color: #1F548A; font-size: 14px; font-weight: bold;">सूचना</h3>
+            <button onclick="this.closest('.validation-overlay').remove()" style="background: none; border: none; color: #666; font-size: 18px; cursor: pointer; padding: 0; width: 20px; height: 20px; line-height: 18px;">×</button>
+        </div>
+        <div style="padding: 20px; text-align: center;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(to bottom, #E2A94A, #C68A2E); display: flex; align-items: center; justify-content: center;">
+                    <span style="color: white; font-size: 28px; font-weight: bold; font-family: serif;">!</span>
+                </div>
+                <h4 style="margin: 0; color: #333; font-size: 16px;">${message}</h4>
+            </div>
+            <button id="validationOkBtn" style="padding: 5px 35px; background: linear-gradient(to bottom, #F0F0F0, #D8D8D8); border: 1px solid #999; cursor: pointer; font-size: 13px; border-radius: 3px; color: #333;">OK</button>
+        </div>
+    `;
+    
+    overlay.className = 'validation-overlay';
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    
+    // Handle OK button click
+    document.getElementById('validationOkBtn').onclick = function() {
+        document.body.removeChild(overlay);
+    };
 }
 
 // Function to update form

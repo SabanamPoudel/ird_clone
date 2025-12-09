@@ -19,10 +19,10 @@ window.addEventListener('DOMContentLoaded', function() {
     if (currentUser) {
         const userData = JSON.parse(currentUser);
         
-        // Populate the values in the page
-        document.getElementById('submissionNo').textContent = userData.submissionNo;
-        document.getElementById('userName').textContent = userData.username;
-        document.getElementById('panNo').textContent = userData.pan;
+        // Populate the values in the page (handle both submissionNo and submissionNumber)
+        document.getElementById('submissionNo').textContent = userData.submissionNumber || userData.submissionNo || '';
+        document.getElementById('userName').textContent = userData.username || '';
+        document.getElementById('panNo').textContent = userData.pan || '';
     } else {
         // Fallback to localStorage
         const d03Users = JSON.parse(localStorage.getItem('d03Users') || '[]');
@@ -31,9 +31,9 @@ window.addEventListener('DOMContentLoaded', function() {
             const lastUser = d03Users[d03Users.length - 1];
             
             // Populate the values in the page
-            document.getElementById('submissionNo').textContent = lastUser.submissionNo;
-            document.getElementById('userName').textContent = lastUser.username;
-            document.getElementById('panNo').textContent = lastUser.pan;
+            document.getElementById('submissionNo').textContent = lastUser.submissionNo || '';
+            document.getElementById('userName').textContent = lastUser.username || '';
+            document.getElementById('panNo').textContent = lastUser.pan || '';
         }
     }
 });
