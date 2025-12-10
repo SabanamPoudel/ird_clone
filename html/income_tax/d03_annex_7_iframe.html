@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अनुसूची - ७</title>
+    <link rel="stylesheet" href="../../extjs/resources/ext-all.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 970px;
+            margin: 0 auto;
+        }
+
+        .form-header {
+            background-color: #d0e4f7;
+            padding: 10px;
+            border: 1px solid #9bc2e6;
+            margin-bottom: 10px;
+            border-radius: 3px;
+        }
+
+        .form-title {
+            font-size: 20px;
+            text-align: center;
+            margin: 10px 0 20px;
+            font-weight: bold;
+        }
+
+        .print-btn {
+            background-color: #5b9bd5;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .print-btn:hover {
+            background-color: #4a8bc2;
+        }
+
+        .info-panel {
+            background-color: #f2f2f2;
+            border: 1px solid #d0d0d0;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .info-label {
+            font-weight: bold;
+            margin-right: 10px;
+            min-width: 150px;
+        }
+
+        .info-input {
+            flex: 1;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .grid-container {
+            margin: 10px 0;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .grid-header {
+            background-color: #d0e4f7;
+            padding: 10px;
+            font-weight: bold;
+            border-bottom: 1px solid #9bc2e6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background-color: #e8f4f8;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .input-field {
+            width: 150px;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            text-align: right;
+        }
+
+        .readonly {
+            background-color: #f0f0f0;
+        }
+
+        .action-buttons {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-save {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-save:hover {
+            background-color: #45a049;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
+        .back-link {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .back-link a {
+            color: red;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <button class="print-btn">Print</button>
+        
+        <div class="form-title">अनुसूची - ७</div>
+
+        <div class="info-panel">
+            <div class="info-row">
+                <label class="info-label">आर्थिक वर्ष:</label>
+                <input type="text" class="info-input" id="fiscalYear" style="max-width: 150px;">
+                <label class="info-label" style="margin-left: 370px; min-width: 100px;">आ.रा.का:</label>
+                <input type="text" class="info-input" id="internalCode" style="max-width: 150px;">
+            </div>
+            <div class="info-row">
+                <label class="info-label">स्थायी लेखा नम्बर:</label>
+                <input type="text" class="info-input" id="panNumber" style="max-width: 150px;">
+            </div>
+            <div class="info-row">
+                <label class="info-label">नाम:</label>
+                <input type="text" class="info-input" id="taxpayerName">
+            </div>
+            
+            <div class="back-link">
+                पछाडि गएर अनुसूची तय गर्न <a id="backLink">यहाँ कि्लक</a> गर्नुहोस् ।
+            </div>
+        </div>
+
+        <!-- Inclusion Section -->
+        <div class="grid-container">
+            <div class="grid-header">Inclusion (IN)</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 40px;">ID</th>
+                        <th>ItemDescEng</th>
+                        <th style="width: 180px;">ItemValue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>लाभांश (अन्तिम रुपमा कर कट्टी नभएको मात्र)दफा ९(२)क<br>Dividends (Section 9.2.a)</td>
+                        <td><input type="text" class="input-field" id="txtIN0"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>लगानी बीमाबाट प्राप्त लाभ अन्तिम रुपमा कर कट्टी नभएको मात्र दफा ९(२)क<br>Gain from Investment Insurance other than final Withholding (Section 9.2.a)</td>
+                        <td><input type="text" class="input-field" id="txtIN1"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>ब्याज (अन्तिम रुपमा कर कट्टी नभएको मात्र)दफा ९(२)क<br>Interests other than final Withholding (Section 9.2.a)</td>
+                        <td><input type="text" class="input-field" id="txtIN2"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>भाडा (अन्तिम रुपमा कर कट्टी नभएको मात्र)दफा ९(२)क<br>Rent other than final Withholding  (Section 9.2.a)</td>
+                        <td><input type="text" class="input-field" id="txtIN3"></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>प्राकृतिक स्रोत वापतको भुक्तानी दफा ९(२)क<br>Payment for natural Resources other than final Withholding  (Section 9.2.a)</td>
+                        <td><input type="text" class="input-field" id="txtIN4"></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>रोयल्टी दफा ९(२)क<br>Royalties (Section 9.2.a)</td>
+                        <td><input type="text" class="input-field" id="txtIN5"></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>स्वीकृत प्राप्त नगरेको अवकाश कोषको हितबाट प्राप्त लाभ अन्तिम रुपमा कर कट्टी नभएमा दफा ९(२)क<br>Unapproved Retirement Fund other than Withholding (Section 9.2.a)</td>
+                        <td><input type="text" class="input-field" id="txtIN6"></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>ह्रासयोग्य सम्‍पत्‍तिको निसर्गबाट प्राप्‍त लाभ दफा ९(२)ग<br>Disposal of depreciable Assets (Section 9.2.c)</td>
+                        <td><input type="text" class="input-field" id="txtIN7"></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>लगानीका सम्बन्धमा प्राप्त गरेको उपहार दफा ९(२)घ<br>Gifts received by the Person in Respect of Investment  (Section 9.2.d)</td>
+                        <td><input type="text" class="input-field" id="txtIN8"></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>अवकास भुक्तानी र सो व्यक्तिको लागि अवकास कोषमा जम्मा गरिएको रकम समेतको अवकाश योगदान दफा ९(२)ङ<br>Retirement Payment along with Payments Retirement Contributions made on behalf (Section 9.2.e)</td>
+                        <td><input type="text" class="input-field" id="txtIN9"></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>लगानीको सम्बन्धमा कुनै प्रतिबन्ध स्वीकार गरे वापत प्राप्त गरेको रकम दफा ९(२)च<br>Amounts derived as Consideration for accepting a Restriction of Investment (Section 9.2.f)</td>
+                        <td><input type="text" class="input-field" id="txtIN10"></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>लेखांकनको तरिकामा परिवर्तन गर्दा आय गणनामा समावेश गर्नु पर्ने रकम दफा २२(६)<br>Amounts to be included by Reason of Timing (Section 24.3)</td>
+                        <td><input type="text" class="input-field" id="txtIN11"></td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>मुद्राको मूल्यांकनको फरकको कारणले गर्दा समेत बढी भुक्तानी पाएको रकम दफा २४(४)<br>Excess Amount received by reason of Exchange Rate (Section 24.4)</td>
+                        <td><input type="text" class="input-field" id="txtIN12"></td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>डुबेको ऋण लगायतका रकमहरु मिन्हा भएको मध्ये असुल उपर भएको रकम दफा २५(१)<br>Recovered Amount of bad Debts deducted earlier (Section 25.1)</td>
+                        <td><input type="text" class="input-field" id="txtIN13"></td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>प्रचलित ब्याजदर भन्दा कम दरमा ब्याज तिरेको भए कम भएजति रकम (२७.१.३)<br>Difference of actual Interest and Interest as per Market Rate in Case of a Soft Loan (Section 25.1.d)</td>
+                        <td><input type="text" class="input-field" id="txtIN14"></td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>भुक्तानी पाउनु पर्ने रकम अर्को व्यक्तिले भुक्तानी पाएमा सो रकम दफा २९<br>Amounts paid to third Person instead of actual Payee (Section 29)</td>
+                        <td><input type="text" class="input-field" id="txtIN15"></td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>संयुक्त स्वामित्वमा रहेको लगानीबाट प्राप्त गरेको रकम दफा ३०<br>Amounts derived from joint Ownership Investment (Section 30)</td>
+                        <td><input type="text" class="input-field" id="txtIN16"></td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>क्षतिपूर्ति वापत प्राप्त गरेको रकम दफा ३१<br>Amounts derived as Compensation (Section 31)</td>
+                        <td><input type="text" class="input-field" id="txtIN17"></td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>मुनाफा तथा लाभमा समावेश गर्नु पर्ने अन्य रकमहरु विवरण संलग्न गर्ने<br>Other Amounts to be included in Profit and Gains (details attached)</td>
+                        <td><input type="text" class="input-field" id="txtIN18"></td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td><strong>जम्मा:(१ देखि १९)<br>Total:(1 to 19)</strong></td>
+                        <td><input type="text" class="input-field readonly" id="txtIN19" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Deduction Section -->
+        <div class="grid-container">
+            <div class="grid-header">Deduction (DE)</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 40px;">ID</th>
+                        <th>ItemDescEng</th>
+                        <th style="width: 180px;">ItemValue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>21</td>
+                        <td>दफा १४ बमोजिम कट्टी हुने ब्याज खर्च<br>Interest (Section 14)</td>
+                        <td><input type="text" class="input-field" id="txtDE0"></td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td>दफा १६ बमोजिम कट्टी हुने मर्मत तथा सुधार खर्च<br>Repairs and Improvements (Section 16)</td>
+                        <td><input type="text" class="input-field" id="txtDE1"></td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td>दफा १९ बमोजिम कट्टी हुने ह्रास खर्च<br>Depreciation (Section 19)</td>
+                        <td><input type="text" class="input-field" id="txtDE2"></td>
+                    </tr>
+                    <tr>
+                        <td>24</td>
+                        <td>उपरोक्त बाहेक आयकर ऐन २०५८ बमोजिम कट्टी हुने अन्य खर्चहरु विवरण संलग्न गर्ने<br>Others than mentioned in Lines 18 to 20</td>
+                        <td><input type="text" class="input-field" id="txtDE3"></td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td><strong>जम्मा:(२१ देखि २४)<br>Total:(1 to 24)</strong></td>
+                        <td><input type="text" class="input-field readonly" id="txtDE4" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Deductible Loss Section -->
+        <div class="grid-container">
+            <div class="grid-header">Deductible Loss (DL)</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 40px;">ID</th>
+                        <th>ItemDescEng</th>
+                        <th style="width: 180px;">ItemValue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>26</td>
+                        <td>यस आ.ब.को व्यवसाय वा अन्य लगानीको नोक्सानी<br>Losses transferred from other Businesses and/or Investments in this Year</td>
+                        <td><input type="text" class="input-field" id="txtDL0"></td>
+                    </tr>
+                    <tr>
+                        <td>27</td>
+                        <td>गत आ.ब. बाट जिम्मेवारी सरेको व्यवसायको नोक्सानी<br>Carried forward of unrelieved Business Losses from previous Years</td>
+                        <td><input type="text" class="input-field" id="txtDL1"></td>
+                    </tr>
+                    <tr>
+                        <td>28</td>
+                        <td><strong>जम्मा:(२६ देखि २७)<br>Total:(26 to 27)</strong></td>
+                        <td><input type="text" class="input-field readonly" id="txtDL2" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>29</td>
+                        <td><strong>जम्मा कट्टी:(२५ + २८)<br>Total:(25 + 28)</strong></td>
+                        <td><input type="text" class="input-field readonly" id="txtDL3" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td><strong>व्यवसायको आय र नोक्सानी :(२० - २९)<br>Gain or Loss :(20 - 29)</strong></td>
+                        <td><input type="text" class="input-field readonly" id="txtDL4" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Miscellaneous Inclusion Section -->
+        <div class="grid-container">
+            <div class="grid-header">Miscellaneous Inclusion(MI)</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 40px;">ID</th>
+                        <th>ItemDescEng</th>
+                        <th style="width: 180px;">ItemValue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>31</td>
+                        <td>अन्य लगानीको आयमा कट्टी गरेको नोक्सानी (हरफ ३१ मा नोक्सानी भए मात्र )<br>LOSS TRANSFERRED TO OTHER INVESTMENT INCOMES (only if row 30 is less than 0)</td>
+                        <td><input type="text" class="input-field" id="txtMI0"></td>
+                    </tr>
+                    <tr>
+                        <td>32</td>
+                        <td><strong>जम्मा:(३० + ‌३१)<br>Total:(30 + 31)</strong></td>
+                        <td><input type="text" class="input-field readonly" id="txtMI1" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn-save" id="saveBtn">Save</button>
+            <button class="btn-delete" id="deleteBtn">Delete</button>
+        </div>
+    </div>
+
+    <script>
+        // Auto-calculation functions
+        function calculateTotals() {
+            // Calculate Inclusion Total (txtIN19)
+            let inclusionTotal = 0;
+            for (let i = 0; i <= 18; i++) {
+                const value = parseFloat(document.getElementById('txtIN' + i).value) || 0;
+                inclusionTotal += value;
+            }
+            document.getElementById('txtIN19').value = inclusionTotal.toFixed(2);
+
+            // Calculate Deduction Total (txtDE4)
+            let deductionTotal = 0;
+            for (let i = 0; i <= 3; i++) {
+                const value = parseFloat(document.getElementById('txtDE' + i).value) || 0;
+                deductionTotal += value;
+            }
+            document.getElementById('txtDE4').value = deductionTotal.toFixed(2);
+
+            // Calculate Deductible Loss totals
+            const dl0 = parseFloat(document.getElementById('txtDL0').value) || 0;
+            const dl1 = parseFloat(document.getElementById('txtDL1').value) || 0;
+            const dl2 = dl0 + dl1;
+            document.getElementById('txtDL2').value = dl2.toFixed(2);
+
+            const de4 = parseFloat(document.getElementById('txtDE4').value) || 0;
+            const dl3 = de4 + dl2;
+            document.getElementById('txtDL3').value = dl3.toFixed(2);
+
+            const in19 = parseFloat(document.getElementById('txtIN19').value) || 0;
+            const dl4 = in19 - dl3;
+            document.getElementById('txtDL4').value = dl4.toFixed(2);
+
+            // Calculate Miscellaneous Inclusion
+            const mi0 = parseFloat(document.getElementById('txtMI0').value) || 0;
+            const mi1 = dl4 + mi0;
+            document.getElementById('txtMI1').value = mi1.toFixed(2);
+        }
+
+        // Add event listeners to all input fields
+        document.querySelectorAll('.input-field:not(.readonly)').forEach(input => {
+            input.addEventListener('input', calculateTotals);
+        });
+
+        // Load data from parent
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'loadData') {
+                const data = event.data.data;
+                if (data) {
+                    // Load basic info
+                    document.getElementById('fiscalYear').value = data.fiscalYear || '';
+                    document.getElementById('internalCode').value = data.internalCode || '';
+                    document.getElementById('panNumber').value = data.panNumber || '';
+                    document.getElementById('taxpayerName').value = data.taxpayerName || '';
+
+                    // Load inclusion values
+                    for (let i = 0; i <= 18; i++) {
+                        if (data['txtIN' + i] !== undefined) {
+                            document.getElementById('txtIN' + i).value = data['txtIN' + i];
+                        }
+                    }
+
+                    // Load deduction values
+                    for (let i = 0; i <= 3; i++) {
+                        if (data['txtDE' + i] !== undefined) {
+                            document.getElementById('txtDE' + i).value = data['txtDE' + i];
+                        }
+                    }
+
+                    // Load deductible loss values
+                    for (let i = 0; i <= 1; i++) {
+                        if (data['txtDL' + i] !== undefined) {
+                            document.getElementById('txtDL' + i).value = data['txtDL' + i];
+                        }
+                    }
+
+                    // Load miscellaneous inclusion
+                    if (data.txtMI0 !== undefined) {
+                        document.getElementById('txtMI0').value = data.txtMI0;
+                    }
+
+                    calculateTotals();
+                }
+            }
+        });
+
+        // Back link handler
+        document.getElementById('backLink').addEventListener('click', function() {
+            window.parent.postMessage({ type: 'goBackToSetAnnex' }, '*');
+        });
+
+        // Save button handler
+        document.getElementById('saveBtn').addEventListener('click', function() {
+            const data = {
+                fiscalYear: document.getElementById('fiscalYear').value,
+                internalCode: document.getElementById('internalCode').value,
+                panNumber: document.getElementById('panNumber').value,
+                taxpayerName: document.getElementById('taxpayerName').value
+            };
+
+            // Collect all input values
+            for (let i = 0; i <= 19; i++) {
+                data['txtIN' + i] = document.getElementById('txtIN' + i).value;
+            }
+            for (let i = 0; i <= 4; i++) {
+                data['txtDE' + i] = document.getElementById('txtDE' + i).value;
+            }
+            for (let i = 0; i <= 4; i++) {
+                data['txtDL' + i] = document.getElementById('txtDL' + i).value;
+            }
+            for (let i = 0; i <= 1; i++) {
+                data['txtMI' + i] = document.getElementById('txtMI' + i).value;
+            }
+
+            window.parent.postMessage({ type: 'saveAnnex7', data: data }, '*');
+        });
+
+        // Delete button handler
+        document.getElementById('deleteBtn').addEventListener('click', function() {
+            if (confirm('के तपाइँ यो डाटा मेट्न निश्चित हुनुहुन्छ?')) {
+                window.parent.postMessage({ type: 'deleteAnnex7' }, '*');
+            }
+        });
+
+        // Request data on load
+        window.parent.postMessage({ type: 'requestAnnex7Data' }, '*');
+    </script>
+</body>
+</html>
