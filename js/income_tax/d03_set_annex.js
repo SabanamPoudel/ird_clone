@@ -8,7 +8,32 @@ function backToD03() {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('D-03 Set Annex page loaded');
     setupAnnexClickHandlers();
+    checkAnnex5Data();
+    checkAnnex10Data();
 });
+
+// Check if Annex 5 data exists and show Business1 link
+function checkAnnex5Data() {
+    const annex5Data = localStorage.getItem('d03_annex5_data');
+    const businessLink = document.getElementById('annex5BusinessLink');
+    
+    if (annex5Data && businessLink) {
+        businessLink.style.display = 'inline';
+    }
+}
+
+// Check if Annex 10 data exists and show Update label
+function checkAnnex10Data() {
+    const annex10Data = localStorage.getItem('d03_annex10_data');
+    const updateLabel = document.getElementById('annex10UpdateLabel');
+    
+    if (annex10Data && updateLabel) {
+        const data = JSON.parse(annex10Data);
+        if (data.saved) {
+            updateLabel.style.display = 'inline';
+        }
+    }
+}
 
 // Setup click handlers for all annex plus icons
 function setupAnnexClickHandlers() {
@@ -20,7 +45,9 @@ function setupAnnexClickHandlers() {
             const row = this.closest('tr');
             const annexName = row.querySelector('.annex-name').textContent.trim();
             
-            if (annexName === 'अनुसूची - ५') {
+            if (annexName === 'अनुसूची - २') {
+                openAnnex2Modal();
+            } else if (annexName === 'अनुसूची - ५') {
                 openAnnex5Modal();
             } else if (annexName === 'अनुसूची - ५(क)') {
                 openAnnex5KaModal();
@@ -39,6 +66,11 @@ function setupAnnexClickHandlers() {
     });
 }
 
+// Open Annex 2 in new page
+function openAnnex2Modal() {
+    window.location.href = 'd03_annex_2.html';
+}
+
 // Open Annex 5 in new page with iframe
 function openAnnex5Modal() {
     window.location.href = 'd03_annex_5_iframe.html';
@@ -51,7 +83,7 @@ function openAnnex5KaModal() {
 
 // Open Annex 7 in modal (placeholder)
 function openAnnex7Modal() {
-    alert('अनुसूची - ७: लगानीबाट भएको आयको गणानाको विवरण\nयो अनुसूची हालै उपलब्ध छैन।\n(This annex is not available yet.)');
+    window.location.href = 'd03_annex_7.html';
 }
 
 // Open Annex 8 in modal (placeholder)
@@ -59,9 +91,9 @@ function openAnnex8Modal() {
     alert('अनुसूची - ८: गैर व्यावसायिक सम्पत्तिको निसर्गबाट प्राप्त खुद लाभ\nयो अनुसूची हालै उपलब्ध छैन।\n(This annex is not available yet.)');
 }
 
-// Open Annex 10 in modal (placeholder)
+// Open Annex 10 in modal
 function openAnnex10Modal() {
-    alert('अनुसूची - १०: कर गणना\nयो अनुसूची हालै उपलब्ध छैन।\n(This annex is not available yet.)');
+    window.location.href = 'd03_annex_10.html';
 }
 
 // Open Annex 13 in modal (placeholder)

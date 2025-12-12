@@ -2,7 +2,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     loadFormData();
     setupEventListeners();
+    checkSavedData();
 });
+
+// Check if data is already saved and toggle buttons accordingly
+function checkSavedData() {
+    const savedData = localStorage.getItem('d03_annex5_data');
+    if (savedData) {
+        toggleButtons(true);
+    } else {
+        toggleButtons(false);
+    }
+}
 
 // Load saved form data
 function loadFormData() {
@@ -69,6 +80,14 @@ function populateForm(data) {
 
 // Setup event listeners
 function setupEventListeners() {
+    // Tax type change event - auto-populate tax rate
+    const taxTypeSelect = document.getElementById('taxType');
+    if (taxTypeSelect) {
+        taxTypeSelect.addEventListener('change', function() {
+            updateTaxRate(this.value);
+        });
+    }
+    
     // Number input formatting
     const numberInputs = document.querySelectorAll('.number-input');
     numberInputs.forEach(input => {
@@ -85,6 +104,33 @@ function setupEventListeners() {
             this.value = this.value.replace(/,/g, '');
         });
     });
+}
+
+// Update tax rate based on selected tax type
+function updateTaxRate(taxTypeValue) {
+    const taxRateMap = {
+        '1': '10',   // बचत तथा ऋणको कारोबार गर्ने सहकारी संस्था नगरपालिकाका क्षेत्रभित्र सञ्चालन भएकोमा
+        '2': '15',   // बचत तथा ऋणको कारोबार गर्ने सहकारी संस्था उपमहानगरपालिकाका क्षेत्रभित्र सञ्चालन भएकोमा
+        '3': '7',    // सहकारी ऐन ७४ बमोजिम दर्ता भएको उपमहानगरपालिका क्षेत्रका सहकारी संस्था (बचत तथा ऋण बाहेक)
+        '4': '5',    // सहकारी ऐन ७४ बमोजिम दर्ता भएको नगरपालिका क्षेत्रका सहकारी संस्था (बचत तथा ऋण बाहेक)
+        '5': '20',   // बचत तथा ऋणको कारोबार गर्ने सहकारी संस्था महानगरपालिका क्षेत्रभित्र सञ्चालन भएकोमा
+        '6': '10',   // सहकारी ऐन ७४ बमोजिम दर्ता भएको महानगरपालिका क्षेत्रका सहकारी संस्था (बचत तथा ऋण बाहेक)
+        '7': '30',   // बैंक, वित्तीय संस्था, सामान्य बीमा व्यवसाय, etc.
+        '8': '5',    // नेपालस्थित विदेशी स्थायी संस्थामाथि विदेशमा पठाएको आय
+        '9': '5',    // दफा ७० अन्तर्गतका गैर बासिन्दा व्यक्ति
+        '10': '25',  // साधारण व्यवसाय (निकाय)
+        '11': '20',  // ट्रस्ट (अनुसूची १ को २(५))
+        '12': '2',   // दफा ७० अन्तर्गतका तर जल तथा हवाई यातायात वा दूर सञ्चार सेवा उपलब्ध गराउने गैर बासिन्दा व्यक्ति
+        '13': '20',  // सार्वजनिक गुठी अन्तर्गत दर्ता भई सञ्चालित विद्यालय महाविद्यालय
+        '14': '20'   // ऐक्यका दफा ९२ मा उल्लिखित विशेष उद्योग संचालनमा वर्ष भरी संलग्न
+    };
+    
+    const taxRateInput = document.getElementById('taxRate');
+    if (taxRateInput && taxTypeValue && taxRateMap[taxTypeValue]) {
+        taxRateInput.value = taxRateMap[taxTypeValue] + '%';
+    } else if (taxRateInput) {
+        taxRateInput.value = '';
+    }
 }
 
 // Calculate Inclusion Total (IN)
@@ -176,8 +222,15 @@ function calculateMiTotal() {
 
 // Save Annex 5 data
 function saveAnnex5() {
+    // Validate required field
+    const taxType = document.getElementById('taxType').value;
+    if (!taxType || taxType === '') {
+        showAlertModal('कृपया "करको किसिम" छान्नुहोस्।\n(Please select Tax Type)');
+        return;
+    }
+    
     const data = {
-        taxType: document.getElementById('taxType').value,
+        taxType: taxType,
         taxRate: document.getElementById('taxRate').value,
         foreignCountry: document.getElementById('foreignCountry').value,
         
@@ -235,7 +288,80 @@ function saveAnnex5() {
     // Update main D03 form with business income
     updateMainForm();
     
-    alert('अनुसूची -५ को डाटा सफलतापूर्वक सेभ भयो।\n(Annex-5 data saved successfully.)');
+    // Show success modal and switch to update/delete buttons
+    showSuccessModal();
+    toggleButtons(true);
+}
+
+// Update Annex 5 data
+function updateAnnex5() {
+    // Validate required field
+    const taxType = document.getElementById('taxType').value;
+    if (!taxType || taxType === '') {
+        showAlertModal('कृपया "करको किसिम" छान्नुहोस्।\n(Please select Tax Type)');
+        return;
+    }
+    
+    const data = {
+        taxType: taxType,
+        taxRate: document.getElementById('taxRate').value,
+        foreignCountry: document.getElementById('foreignCountry').value,
+        
+        // Inclusion (IN)
+        in1: document.getElementById('in1').value,
+        in2: document.getElementById('in2').value,
+        in3: document.getElementById('in3').value,
+        in4: document.getElementById('in4').value,
+        in5: document.getElementById('in5').value,
+        in6: document.getElementById('in6').value,
+        in7: document.getElementById('in7').value,
+        in8: document.getElementById('in8').value,
+        in9: document.getElementById('in9').value,
+        in10: document.getElementById('in10').value,
+        in11: document.getElementById('in11').value,
+        in12: document.getElementById('in12').value,
+        in13: document.getElementById('in13').value,
+        in14: document.getElementById('in14').value,
+        in15: document.getElementById('in15').value,
+        in16: document.getElementById('in16').value,
+        inTotal: document.getElementById('inTotal').value,
+        
+        // Deduction (DE)
+        de1: document.getElementById('de1').value,
+        de2: document.getElementById('de2').value,
+        de3: document.getElementById('de3').value,
+        de4: document.getElementById('de4').value,
+        de5: document.getElementById('de5').value,
+        de6: document.getElementById('de6').value,
+        de7: document.getElementById('de7').value,
+        de8: document.getElementById('de8').value,
+        de9: document.getElementById('de9').value,
+        deTotal: document.getElementById('deTotal').value,
+        
+        // Deductible Loss (DL)
+        dl1: document.getElementById('dl1').value,
+        dl2: document.getElementById('dl2').value,
+        dlSubTotal: document.getElementById('dlSubTotal').value,
+        totalDeduction: document.getElementById('totalDeduction').value,
+        businessIncome: document.getElementById('businessIncome').value,
+        
+        // Miscellaneous Inclusion (MI)
+        mi1: document.getElementById('mi1').value,
+        miTotal: document.getElementById('miTotal').value,
+        
+        // Discount
+        discountReason: document.getElementById('discountReason').value,
+        discountPercent: document.getElementById('discountPercent').value,
+        
+        savedDate: new Date().toISOString()
+    };
+    
+    localStorage.setItem('d03_annex5_data', JSON.stringify(data));
+    
+    // Update main D03 form with business income
+    updateMainForm();
+    
+    showAlertModal('अनुसूची -५ को डाटा अद्यावधिक भयो।\n(Annex-5 data updated successfully.)');
 }
 
 // Update main D03 form with calculated business income
@@ -258,24 +384,57 @@ function deleteAnnex5() {
         localStorage.removeItem('d03_annex5_data');
         
         // Clear all form fields
-        document.querySelectorAll('input[type="text"]').forEach(input => {
-            if (!input.readOnly || input.id.includes('Total')) {
+        document.getElementById('taxType').value = '';
+        document.getElementById('taxRate').value = '';
+        document.getElementById('foreignCountry').value = '';
+        
+        // Clear all input fields
+        const inputs = document.querySelectorAll('input[type="text"]');
+        inputs.forEach(input => {
+            if (!input.disabled) {
                 input.value = '';
             }
         });
         
-        document.getElementById('taxType').value = '';
         document.getElementById('discountReason').value = '';
         
-        alert('अनुसूची -५ को डाटा मेटाइयो।\n(Annex-5 data deleted.)');
+        showAlertModal('अनुसूची -५ को डाटा मेटाइयो।\n(Annex-5 data deleted.)');
+        toggleButtons(false);
+    }
+}
+
+// Toggle between Save and Update/Delete buttons
+function toggleButtons(saved) {
+    const saveBtn = document.getElementById('saveBtn');
+    const deleteBtn = document.getElementById('deleteBtn');
+    const updateBtn = document.getElementById('updateBtn');
+    
+    if (saved) {
+        saveBtn.style.display = 'none';
+        deleteBtn.style.display = 'inline-block';
+        updateBtn.style.display = 'inline-block';
+    } else {
+        saveBtn.style.display = 'inline-block';
+        deleteBtn.style.display = 'none';
+        updateBtn.style.display = 'none';
     }
 }
 
 // Go back to set annex page
 function goBackToSetAnnex() {
-    if (confirm('के तपाईं अनुसूची सेट गर्ने पेजमा जान चाहनुहुन्छ?\n(Do you want to go back to set annex page?)')) {
-        window.location.href = 'd03_set_annex.html';
-    }
+    // Show confirmation modal
+    document.getElementById('confirmModal').classList.add('active');
+}
+
+// Close confirmation modal
+function closeConfirmModal() {
+    document.getElementById('confirmModal').classList.remove('active');
+}
+
+// Confirm and go back
+function confirmGoBack() {
+    closeConfirmModal();
+    window.location.href = 'd03_set_annex.html';
 }
 
 // Detail popup functions (placeholders for future implementation)
@@ -548,44 +707,51 @@ function saveRepairDetails() {
 
 // Depreciation Modal Functions
 function addDepreciationDetails() {
+    // Show modal first
+    document.getElementById('depreciationModal').classList.add('active');
+    
     // Load saved depreciation details if any
     const savedData = localStorage.getItem('d03_annex5_depreciation_details');
     if (savedData) {
-        const data = JSON.parse(savedData);
-        // Load all input fields
-        for (let row = 1; row <= 11; row++) {
-            for (let col = 1; col <= 5; col++) {
-                const fieldId = 'dep' + row + '_' + col;
-                if (document.getElementById(fieldId)) {
-                    document.getElementById(fieldId).value = data[fieldId] || '';
+        try {
+            const data = JSON.parse(savedData);
+            // Load all input fields
+            for (let row = 1; row <= 11; row++) {
+                for (let col = 1; col <= 5; col++) {
+                    const fieldId = 'dep' + row + '_' + col;
+                    const field = document.getElementById(fieldId);
+                    if (field) {
+                        field.value = data[fieldId] || '';
+                    }
                 }
-            }
-            // Load sub-rows
-            if (row === 1) {
-                for (let subRow = 1; subRow <= 2; subRow++) {
-                    for (let col = 1; col <= 5; col++) {
-                        const fieldId = 'dep1_' + subRow + '_' + col;
-                        if (document.getElementById(fieldId)) {
-                            document.getElementById(fieldId).value = data[fieldId] || '';
+                // Load sub-rows
+                if (row === 1) {
+                    for (let subRow = 1; subRow <= 2; subRow++) {
+                        for (let col = 1; col <= 5; col++) {
+                            const fieldId = 'dep1_' + subRow + '_' + col;
+                            const field = document.getElementById(fieldId);
+                            if (field) {
+                                field.value = data[fieldId] || '';
+                            }
+                        }
+                    }
+                }
+                // Load checkboxes for row 6.1
+                if (row === 6) {
+                    for (let col = 1; col <= 4; col++) {
+                        const fieldId = 'dep6_1_' + col;
+                        const field = document.getElementById(fieldId);
+                        if (field) {
+                            field.checked = data[fieldId] || false;
                         }
                     }
                 }
             }
-            // Load checkboxes for row 6.1
-            if (row === 6) {
-                for (let col = 1; col <= 4; col++) {
-                    const fieldId = 'dep6_1_' + col;
-                    if (document.getElementById(fieldId)) {
-                        document.getElementById(fieldId).checked = data[fieldId] || false;
-                    }
-                }
-            }
+            calculateDepreciation();
+        } catch (e) {
+            console.error('Error loading depreciation data:', e);
         }
-        calculateDepreciation();
     }
-    
-    // Show modal
-    document.getElementById('depreciationModal').classList.add('active');
 }
 
 function closeDepreciationModal() {
@@ -820,3 +986,21 @@ function saveCarriedForwardLossDetails() {
     closeCarriedForwardLossModal();
 }
 
+// Alert Modal Functions
+function showAlertModal(message) {
+    document.getElementById('alertMessage').innerText = message;
+    document.getElementById('alertModal').classList.add('active');
+}
+
+function closeAlertModal() {
+    document.getElementById('alertModal').classList.remove('active');
+}
+
+// Success Modal Functions
+function showSuccessModal() {
+    document.getElementById('successModal').style.display = 'flex';
+}
+
+function closeSuccessModal() {
+    document.getElementById('successModal').style.display = 'none';
+}

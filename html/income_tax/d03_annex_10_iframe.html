@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अनुसूची - १० (कर मिलान सम्बन्धी विवरण)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Mukta', sans-serif;
+            font-size: 13px;
+            background-color: #dfe9f6;
+            padding: 10px;
+            color: #333;
+        }
+
+        .back-link {
+            color: #333;
+            text-decoration: none;
+            font-size: 13px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .back-link-click-top {
+            color: #dc3545;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .back-link-click-top:hover {
+            color: #bd2130;
+        }
+
+        .form-container {
+            background-color: #dfe9f6;
+            padding: 10px;
+        }
+
+        .page-title {
+            font-size: 20px;
+            text-align: center;
+            margin: 10px 0 20px 0;
+            font-weight: bold;
+        }
+
+        .info-panel {
+            background-color: #dfe9f6;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .info-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 8px;
+            align-items: center;
+        }
+
+        .info-label {
+            font-weight: bold;
+            min-width: 230px;
+            text-align: right;
+        }
+
+        .info-value {
+            flex: 1;
+        }
+
+        select, input[type="text"], textarea {
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 13px;
+            font-family: 'Mukta', sans-serif;
+        }
+
+        select {
+            width: 150px;
+        }
+
+        input[type="text"] {
+            width: 200px;
+        }
+
+        input[readonly] {
+            background-color: #f0f0f0;
+        }
+
+        textarea {
+            width: 300px;
+            resize: vertical;
+        }
+
+        .load-panel {
+            background-color: #dfe9f6;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .load-panel-header {
+            background-color: #b8d4e8;
+            padding: 8px;
+            margin: -10px -10px 10px -10px;
+            border-radius: 4px 4px 0 0;
+            font-size: 13px;
+        }
+
+        .load-button {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 6px 12px;
+            font-size: 13px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: 'Mukta', sans-serif;
+            margin-left: 10px;
+        }
+
+        .load-button:hover {
+            background-color: #e2e6ea;
+        }
+
+        .grid-section {
+            margin-bottom: 20px;
+        }
+
+        .grid-header {
+            background-color: #d0e4f7;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .grid-container {
+            overflow-x: auto;
+            background-color: white;
+            border: 1px solid #ccc;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            min-width: 1400px;
+        }
+
+        th {
+            background-color: #d0e4f7;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ccc;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 6px;
+            border: 1px solid #ccc;
+            font-size: 12px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        .total-label {
+            font-weight: bold;
+        }
+
+        .total-value {
+            width: 120px;
+            text-align: right;
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background-color: #f0f0f0;
+        }
+
+        .notice-box {
+            background-color: yellow;
+            color: black;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+
+        .info-box {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 13px;
+        }
+
+        .checkbox-container {
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .checkbox-label {
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 10px 0;
+        }
+
+        .back-link-bottom {
+            color: #333;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .back-link-click {
+            color: #dc3545;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .back-link-click:hover {
+            color: #bd2130;
+        }
+
+        .save-button {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 6px 12px;
+            font-size: 13px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: 'Mukta', sans-serif;
+            display: none;
+        }
+
+        .save-button:hover {
+            background-color: #e2e6ea;
+        }
+
+        .save-button:before {
+            content: "";
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+
+        .delete-btn:hover {
+            background-color: #bd2130;
+        }
+
+        /* Login Modal Styles */
+        .login-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-modal {
+            background-color: #dfe9f6;
+            border: 2px solid #5b9bd5;
+            border-radius: 8px;
+            width: 380px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-modal-header {
+            background: linear-gradient(to bottom, #5b9bd5 0%, #4a8bc2 100%);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 6px 6px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .login-close-btn {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .login-close-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+
+        .login-modal-body {
+            padding: 20px;
+        }
+
+        .login-form-group {
+            margin-bottom: 15px;
+        }
+
+        .login-form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .login-form-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 13px;
+            font-family: 'Mukta', sans-serif;
+        }
+
+        .login-form-input:focus {
+            outline: none;
+            border-color: #5b9bd5;
+        }
+
+        .login-btn-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .login-submit-btn {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 8px 30px;
+            font-size: 13px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: 'Mukta', sans-serif;
+        }
+
+        .login-submit-btn:hover {
+            background-color: #e2e6ea;
+        }
+
+        /* No Data Modal Styles */
+        .nodata-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nodata-modal {
+            background-color: #dfe9f6;
+            border: 2px solid #5b9bd5;
+            border-radius: 8px;
+            width: 320px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .nodata-modal-header {
+            background: linear-gradient(to bottom, #5b9bd5 0%, #4a8bc2 100%);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 6px 6px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .nodata-modal-body {
+            padding: 25px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nodata-ok-btn {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 6px 25px;
+            font-size: 13px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: 'Mukta', sans-serif;
+            margin-top: 15px;
+        }
+
+        .nodata-ok-btn:hover {
+            background-color: #e2e6ea;
+        }
+
+        /* Success Modal Styles */
+        .success-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .success-modal {
+            background-color: #dfe9f6;
+            border: 2px solid #5b9bd5;
+            border-radius: 8px;
+            width: 320px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .success-modal-header {
+            background: linear-gradient(to bottom, #5b9bd5 0%, #4a8bc2 100%);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 6px 6px 0 0;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .success-modal-body {
+            padding: 25px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .success-ok-btn {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 6px 25px;
+            font-size: 13px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: 'Mukta', sans-serif;
+            margin-top: 15px;
+        }
+
+        .success-ok-btn:hover {
+            background-color: #e2e6ea;
+        }
+
+        /* Confirm Modal Styles */
+        .confirm-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .confirm-modal {
+            background-color: #dfe9f6;
+            border: 2px solid #5b9bd5;
+            border-radius: 8px;
+            width: 420px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .confirm-modal-header {
+            background: linear-gradient(to bottom, #5b9bd5 0%, #4a8bc2 100%);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 6px 6px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .confirm-close-btn {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .confirm-close-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+
+        .confirm-modal-body {
+            padding: 30px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .confirm-icon {
+            font-size: 48px;
+            color: #5b9bd5;
+        }
+
+        .confirm-message {
+            font-size: 14px;
+            color: #333;
+            flex: 1;
+        }
+
+        .confirm-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 20px 20px 20px;
+        }
+
+        .confirm-btn {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 6px 25px;
+            font-size: 13px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: 'Mukta', sans-serif;
+            min-width: 80px;
+        }
+
+        .confirm-btn:hover {
+            background-color: #e2e6ea;
+        }
+
+        .confirm-btn-yes {
+            background-color: #d9e8f5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Confirm Modal -->
+    <div class="confirm-modal-overlay" id="confirmModalOverlay">
+        <div class="confirm-modal">
+            <div class="confirm-modal-header">
+                <span>Confirm Action</span>
+                <button class="confirm-close-btn" id="confirmCloseBtn">✕</button>
+            </div>
+            <div class="confirm-modal-body">
+                <div class="confirm-icon">❓</div>
+                <div class="confirm-message">के तपाईं पछाडि गएर अनुसूची तय गर्न चाहनुहुन्छ?</div>
+            </div>
+            <div class="confirm-buttons">
+                <button class="confirm-btn confirm-btn-yes" id="confirmYesBtn">Yes</button>
+                <button class="confirm-btn" id="confirmNoBtn">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal-overlay" id="successModalOverlay">
+        <div class="success-modal">
+            <div class="success-modal-header">
+                <span>SUCCESS</span>
+            </div>
+            <div class="success-modal-body">
+                <div>Saved Successfully</div>
+                <button class="success-ok-btn" id="successOkBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- No Data Modal -->
+    <div class="nodata-modal-overlay" id="nodataModalOverlay">
+        <div class="nodata-modal">
+            <div class="nodata-modal-header">
+                <span>Message</span>
+            </div>
+            <div class="nodata-modal-body">
+                <div>No Data Found</div>
+                <button class="nodata-ok-btn" id="nodataOkBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal-overlay" id="loginModalOverlay">
+        <div class="login-modal">
+            <div class="login-modal-header">
+                <span>Taxpayer Login</span>
+                <button class="login-close-btn" id="loginCloseBtn">✕</button>
+            </div>
+            <div class="login-modal-body">
+                <div class="login-form-group">
+                    <label class="login-form-label">Pan:</label>
+                    <input type="text" class="login-form-input" id="loginPan" readonly>
+                </div>
+                <div class="login-form-group">
+                    <label class="login-form-label">User Name:</label>
+                    <input type="text" class="login-form-input" id="loginUsername">
+                </div>
+                <div class="login-form-group">
+                    <label class="login-form-label">Password:</label>
+                    <input type="password" class="login-form-input" id="loginPassword">
+                </div>
+                <div class="login-btn-container">
+                    <button class="login-submit-btn" id="loginSubmitBtn">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-container">
+        <span class="back-link">
+            पछाडि गएर अनुसूची तय गर्न 
+            <span class="back-link-click-top" id="backLink">यहाँ कि्लक</span> 
+            गर्नुहोस् ।
+        </span>
+
+        <div class="page-title">अनुसूची -१०</div>
+
+        <!-- Tax Claim Type Selection -->
+        <div class="info-panel">
+            <div class="info-row">
+                <div class="info-label">कर दावीको किसिम :</div>
+                <div class="info-value">
+                    <select id="taxClaimType">
+                        <option value="">Select ...</option>
+                        <option value="1">Transfer of Credit</option>
+                        <option value="2">Land Capital Gain</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load Payment Vouchers Panel -->
+        <div class="load-panel">
+            <div class="load-panel-header">
+                सो आर्थिक बर्षको कर दाखिला र TDS रकम समाबेश गर्न तल लेखिएको Load Payment Vouchers and TDS Amount बटन क्लिक गनुहोस् । सो बाहेक अन्य क्रेडिट भए Transfer of Credit को लागि कार्यालयमा सम्पर्क गर्नुहोस् ।
+            </div>
+            <button class="load-button" id="loadPaymentsBtn">Load Payment Vouchers and TDS Amount</button>
+        </div>
+
+        <!-- Grid Section -->
+        <div class="grid-section">
+            <div class="grid-header">कर मिलान दावी विवरण</div>
+            <div class="grid-container">
+                <table id="taxMatchingGrid">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px;">क्र.सं.</th>
+                            <th style="width: 100px;">कर दाबीको किसिम</th>
+                            <th style="width: 120px;">राजस्व शिर्षक</th>
+                            <th style="width: 100px;">दाखिलाको तरिका</th>
+                            <th style="width: 100px;">दाखिला निस्सा नम्बर</th>
+                            <th style="width: 140px;">बैंकको नाम</th>
+                            <th style="width: 100px;">दाखिला मिति</th>
+                            <th style="width: 80px;">कार्यालय</th>
+                            <th style="width: 120px;">अग्रिम कर कट्टीको किसिम</th>
+                            <th style="width: 120px;">अग्रिम कर कट्टी गर्नेको नाम</th>
+                            <th style="width: 100px;">अग्रिम कर कट्टी गर्नेको प्यान</th>
+                            <th style="width: 100px;">दाबी रकम</th>
+                            <th style="width: 120px;">हिसाब मिलानको कारण</th>
+                            <th style="width: 100px;">लिखत नम्बर</th>
+                            <th style="width: 80px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="gridBody">
+                        <!-- Grid rows will be populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="total-row">
+                <span class="total-label">Total Credit</span>
+                <input type="text" class="total-value" id="totalCredit" readonly value="0.00">
+            </div>
+        </div>
+
+        <!-- Notice Boxes -->
+        <div class="notice-box">
+            **माथिको भुक्तानि विवरणमा दावि गर्नु नपर्ने भुक्तानि हटाउनको लागी छेउको डिलिट बटनमा क्लिक गर्नुहोला ।
+        </div>
+
+        <div class="info-box">
+            घर जग्गा निसर्गवापत दाबी गरेको कर रुजु गर्न अनुसूची १० save वा update गर्नुहोस ।
+        </div>
+
+        <!-- Checkbox Declaration -->
+        <div class="checkbox-container">
+            <label class="checkbox-label">
+                <input type="checkbox" id="declarationCheckbox">
+                यस अनुसुचिमा समाबेश भएका कर दाखिला विवरण सहि साँचो भएको घोषणा गर्दछु ।
+            </label>
+        </div>
+
+        <div class="info-box" style="background-color: white;">
+            **Check Box Select भए पछि मात्र Save वा Update बटन देखिने छ । ।
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="save-button" id="saveBtn">💾 Save Annex 10</button>
+            <span class="back-link-bottom">
+                पछाडि गएर अनुसूची तय गर्न 
+                <span class="back-link-click" id="backLink2">यहाँ कि्लक</span> 
+                गर्नुहोस् ।
+            </span>
+        </div>
+    </div>
+
+    <script>
+        // Load taxpayer info from D03 main form
+        function loadTaxpayerInfo() {
+            const returnData = localStorage.getItem('d03_return_data');
+            if (returnData) {
+                const data = JSON.parse(returnData);
+                // Taxpayer info is already loaded in main form
+            }
+        }
+
+        // Load saved Annex 10 data
+        function loadAnnex10Data() {
+            const savedData = localStorage.getItem('d03_annex10_data');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                
+                if (data.taxClaimType) {
+                    document.getElementById('taxClaimType').value = data.taxClaimType;
+                }
+
+                if (data.declarationChecked) {
+                    document.getElementById('declarationCheckbox').checked = true;
+                    document.getElementById('saveBtn').style.display = 'inline-block';
+                }
+
+                // If data was previously saved, change button to Update
+                if (data.saved) {
+                    document.getElementById('saveBtn').innerHTML = '💾 Update Annex 10';
+                }
+
+                if (data.gridData && data.gridData.length > 0) {
+                    populateGrid(data.gridData);
+                    calculateTotal();
+                }
+            }
+        }
+
+        // Populate grid with data
+        function populateGrid(gridData) {
+            const tbody = document.getElementById('gridBody');
+            tbody.innerHTML = '';
+
+            gridData.forEach((row, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="text-align: center;">${index + 1}</td>
+                    <td>${row.taxClaimType || ''}</td>
+                    <td>${row.revenueHead || ''}</td>
+                    <td>${row.depositMethod || ''}</td>
+                    <td>${row.depositNumber || ''}</td>
+                    <td>${row.bankName || ''}</td>
+                    <td>${row.depositDate || ''}</td>
+                    <td>${row.office || ''}</td>
+                    <td>${row.advanceTaxType || ''}</td>
+                    <td>${row.advanceTaxName || ''}</td>
+                    <td>${row.advanceTaxPan || ''}</td>
+                    <td style="text-align: right;">${row.claimAmount || '0.00'}</td>
+                    <td>${row.matchingReason || ''}</td>
+                    <td>${row.documentNumber || ''}</td>
+                    <td style="text-align: center;">
+                        <button class="delete-btn" onclick="deleteRow(${index})">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Calculate total credit
+        function calculateTotal() {
+            const savedData = localStorage.getItem('d03_annex10_data');
+            let total = 0;
+
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                if (data.gridData) {
+                    data.gridData.forEach(row => {
+                        const amount = parseFloat(row.depositAmount) || 0;
+                        total += amount;
+                    });
+                }
+            }
+
+            document.getElementById('totalCredit').value = total.toFixed(2);
+        }
+
+        // Delete row
+        function deleteRow(index) {
+            if (confirm('यो रेकर्ड मेटाउन चाहनुहुन्छ?')) {
+                const savedData = localStorage.getItem('d03_annex10_data');
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    if (data.gridData) {
+                        data.gridData.splice(index, 1);
+                        localStorage.setItem('d03_annex10_data', JSON.stringify(data));
+                        populateGrid(data.gridData);
+                        calculateTotal();
+                    }
+                }
+            }
+        }
+
+        // Save Annex 10
+        function saveAnnex10() {
+            const taxClaimType = document.getElementById('taxClaimType').value;
+            const declarationChecked = document.getElementById('declarationCheckbox').checked;
+
+            if (!declarationChecked) {
+                alert('कृपया घोषणा checkbox चयन गर्नुहोस्।');
+                return;
+            }
+
+            const savedData = localStorage.getItem('d03_annex10_data');
+            let data = savedData ? JSON.parse(savedData) : {};
+
+            data.taxClaimType = taxClaimType;
+            data.declarationChecked = declarationChecked;
+            data.saved = true;
+
+            localStorage.setItem('d03_annex10_data', JSON.stringify(data));
+            
+            // Show success modal
+            showSuccessModal();
+        }
+
+        // Show success modal
+        function showSuccessModal() {
+            document.getElementById('successModalOverlay').style.display = 'flex';
+        }
+
+        // Close success modal
+        function closeSuccessModal() {
+            document.getElementById('successModalOverlay').style.display = 'none';
+            // Change button text to Update
+            document.getElementById('saveBtn').innerHTML = '💾 Update Annex 10';
+        }
+
+        // Success OK button handler
+        document.getElementById('successOkBtn').addEventListener('click', closeSuccessModal);
+
+        // Load payments button handler
+        document.getElementById('loadPaymentsBtn').addEventListener('click', function() {
+            showLoginModal();
+        });
+
+        // Show login modal
+        function showLoginModal() {
+            const returnData = localStorage.getItem('d03_return_data');
+            if (returnData) {
+                const data = JSON.parse(returnData);
+                document.getElementById('loginPan').value = data.pan || data.panNumber || '';
+            }
+            document.getElementById('loginModalOverlay').style.display = 'flex';
+        }
+
+        // Close login modal
+        function closeLoginModal() {
+            document.getElementById('loginModalOverlay').style.display = 'none';
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+        }
+
+        // Login modal close button
+        document.getElementById('loginCloseBtn').addEventListener('click', closeLoginModal);
+
+        // Close modal when clicking outside
+        document.getElementById('loginModalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLoginModal();
+            }
+        });
+
+        // Login submit handler
+        document.getElementById('loginSubmitBtn').addEventListener('click', function() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (!username || !password) {
+                alert('कृपया Username र Password भर्नुहोस्।');
+                return;
+            }
+
+            // Close login modal
+            closeLoginModal();
+            
+            // Show no data found modal
+            showNoDataModal();
+        });
+
+        // Show no data modal
+        function showNoDataModal() {
+            document.getElementById('nodataModalOverlay').style.display = 'flex';
+        }
+
+        // Close no data modal
+        function closeNoDataModal() {
+            document.getElementById('nodataModalOverlay').style.display = 'none';
+        }
+
+        // No data OK button handler
+        document.getElementById('nodataOkBtn').addEventListener('click', closeNoDataModal);
+
+        // Declaration checkbox handler
+        document.getElementById('declarationCheckbox').addEventListener('change', function() {
+            const saveBtn = document.getElementById('saveBtn');
+            if (this.checked) {
+                saveBtn.style.display = 'inline-block';
+            } else {
+                saveBtn.style.display = 'none';
+            }
+        });
+
+        // Save button handler
+        document.getElementById('saveBtn').addEventListener('click', saveAnnex10);
+
+        // Back link handlers
+        document.getElementById('backLink').addEventListener('click', function() {
+            showConfirmModal();
+        });
+
+        document.getElementById('backLink2').addEventListener('click', function() {
+            showConfirmModal();
+        });
+
+        // Show confirm modal
+        function showConfirmModal() {
+            document.getElementById('confirmModalOverlay').style.display = 'flex';
+        }
+
+        // Close confirm modal
+        function closeConfirmModal() {
+            document.getElementById('confirmModalOverlay').style.display = 'none';
+        }
+
+        // Confirm modal close button
+        document.getElementById('confirmCloseBtn').addEventListener('click', closeConfirmModal);
+
+        // Close modal when clicking outside
+        document.getElementById('confirmModalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeConfirmModal();
+            }
+        });
+
+        // Confirm Yes button - go back to set_annex
+        document.getElementById('confirmYesBtn').addEventListener('click', function() {
+            window.parent.postMessage({ action: 'goBackToSetAnnex' }, '*');
+        });
+
+        // Confirm No button - just close modal and stay on page
+        document.getElementById('confirmNoBtn').addEventListener('click', closeConfirmModal);
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadTaxpayerInfo();
+            loadAnnex10Data();
+        });
+    </script>
+</body>
+</html>

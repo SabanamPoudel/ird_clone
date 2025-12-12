@@ -121,8 +121,9 @@
         }
         
         .annex-table td {
-            padding: 8px;
+            padding: 8px 10px;
             font-size: 13px;
+            vertical-align: middle;
         }
         
         .annex-name {
@@ -130,18 +131,23 @@
         }
         
         .annex-desc {
-            width: 450px;
+            width: auto;
+            padding-right: 0;
         }
         
         .annex-action {
-            width: 100px;
-            text-align: center;
+            width: 20px;
+            text-align: left;
+            padding-left: 0;
+            padding-right: 0;
+            white-space: nowrap;
         }
         
         .action-icon {
             cursor: pointer;
-            width: 16px;
-            height: 16px;
+            font-size: 18px;
+            display: inline-block;
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -183,6 +189,9 @@
                         <td class="annex-desc">व्यापार आयको विवरण राख्ने</td>
                         <td class="annex-action">
                             <span class="action-icon" style="color: green; font-size: 18px;" title="Add New">➕</span>
+                            <span id="annex5BusinessLink" style="display: none; margin-left: 10px;">
+                                <a href="#" style="color: #003d82; text-decoration: underline; font-size: 13px; font-weight: bold;">Business1</a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -202,6 +211,20 @@
                 </table>
             </div>
             
+            <!-- Section 2: अनुसूची १ वा अनुसूची २ -->
+            <div class="section-panel">
+                <div class="section-header">२. अनुसूची १ वा अनुसूची २</div>
+                <table class="annex-table">
+                    <tr>
+                        <td class="annex-name">अनुसूची - २</td>
+                        <td class="annex-desc">करको गणना (निकायको लागि) विवरण राख्ने</td>
+                        <td class="annex-action">
+                            <span class="action-icon" style="color: blue; font-size: 18px;" title="Save">💾</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
             <!-- Section 3: करदाबी अनुसूची -->
             <div class="section-panel">
                 <div class="section-header">३. करदाबी अनुसूची</div>
@@ -210,14 +233,15 @@
                         <td class="annex-name">अनुसूची - १०</td>
                         <td class="annex-desc">कर मिलान सम्बन्धी विवरण राख्ने</td>
                         <td class="annex-action">
-                            <span class="action-icon" style="color: blue; font-size: 18px;" title="Submit">💾</span>
+                            <span class="action-icon" style="color: blue;" title="Submit">💾</span>
+                            <span id="annex10UpdateLabel" style="display: none; margin-left: 10px; color: blue; font-weight: bold;">( Update )</span>
                         </td>
                     </tr>
                     <tr>
                         <td class="annex-name">अनुसूची - १२</td>
                         <td class="annex-desc">विदेशमा तिरेको कर मिलान दावीको विवरण राख्ने</td>
                         <td class="annex-action">
-                            <span class="action-icon" style="color: blue; font-size: 18px;" title="Submit">💾</span>
+                            <span class="action-icon" style="color: blue;" title="Submit">💾</span>
                         </td>
                     </tr>
                 </table>
@@ -231,7 +255,7 @@
                         <td class="annex-name">अनुसूची - १३</td>
                         <td class="annex-desc">वित्तिय तथा खरिद बिक्री विवरण</td>
                         <td class="annex-action">
-                            <span class="action-icon" style="color: blue; font-size: 18px;" title="Submit">💾</span>
+                            <span class="action-icon" style="color: blue;" title="Submit">💾</span>
                         </td>
                     </tr>
                 </table>

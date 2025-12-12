@@ -148,18 +148,20 @@
         }
         
         .data-table input[type="text"] {
-            width: 100%;
+            width: calc(100% - 12px);
             padding: 3px 5px;
             border: 1px solid #ccc;
             font-size: 12px;
             text-align: right;
+            box-sizing: border-box;
         }
         
         .data-table select {
-            width: 100%;
+            width: calc(100% - 12px);
             padding: 3px 5px;
             border: 1px solid #ccc;
             font-size: 12px;
+            box-sizing: border-box;
         }
         
         .data-table .total-row {
@@ -213,6 +215,34 @@
             background: #357abd;
         }
         
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+            border: 1px solid #c0392b;
+            padding: 6px 20px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+        
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+        
+        .btn-update {
+            background: #27ae60;
+            color: white;
+            border: 1px solid #229954;
+            padding: 6px 20px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+        
+        .btn-update:hover {
+            background: #229954;
+        }
+        
         /* Modal Styles */
         .modal-overlay {
             display: none;
@@ -224,7 +254,14 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 9999;
             justify-content: center;
+            align-items: flex-start;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+        
+        .modal-overlay.modal-center {
             align-items: center;
+            padding-top: 0;
         }
         
         .modal-overlay.active {
@@ -357,6 +394,215 @@
         
         .modal-btn:hover {
             background: linear-gradient(to bottom, #e8e8e8, #d0d0d0);
+        }
+        
+        /* Confirmation Modal */
+        .confirm-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .confirm-overlay.active {
+            display: flex;
+        }
+        
+        .confirm-dialog {
+            background: linear-gradient(to bottom, #e8f0fa, #d0dce8);
+            width: 400px;
+            border: 2px solid #4a7cc4;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .confirm-header {
+            background: linear-gradient(to bottom, #5a8dd4, #4a7cc4);
+            padding: 10px 15px;
+            border-bottom: 1px solid #3a6cb4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 6px 6px 0 0;
+        }
+        
+        .confirm-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #002060;
+        }
+        
+        .confirm-close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #003080;
+            cursor: pointer;
+            padding: 0;
+            width: 28px;
+            height: 28px;
+            line-height: 24px;
+            font-weight: bold;
+        }
+        
+        .confirm-close-btn:hover {
+            color: #000;
+        }
+        
+        .confirm-body {
+            padding: 30px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .confirm-icon {
+            font-size: 48px;
+            color: #4a7cc4;
+        }
+        
+        .confirm-message {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        .confirm-footer {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            border-top: 1px solid #b0c0d0;
+        }
+        
+        .confirm-btn {
+            padding: 8px 30px;
+            border: 1px solid #999;
+            background: linear-gradient(to bottom, #f0f0f0, #d8d8d8);
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 4px;
+            min-width: 80px;
+        }
+        
+        .confirm-btn.yes {
+            background: linear-gradient(to bottom, #d0e0f0, #b0c8e0);
+            border-color: #4a7cc4;
+        }
+        
+        .confirm-btn:hover {
+            background: linear-gradient(to bottom, #e8e8e8, #d0d0d0);
+        }
+        
+        .confirm-btn.yes:hover {
+            background: linear-gradient(to bottom, #c0d0e0, #a0b8d0);
+        }
+        
+        /* Success Modal Styles */
+        .success-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .success-modal {
+            background: #d9e8f5;
+            border: 2px solid #5b9bd5;
+            border-radius: 8px;
+            width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .success-modal-header {
+            background: linear-gradient(to bottom, #d9e8f5, #b8d4e8);
+            padding: 10px 15px;
+            border-bottom: 1px solid #5b9bd5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 6px 6px 0 0;
+        }
+        
+        .success-modal-title {
+            font-weight: bold;
+            color: #2c5aa0;
+            font-size: 14px;
+        }
+        
+        .success-modal-close {
+            background: transparent;
+            border: none;
+            color: #2c5aa0;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+        }
+        
+        .success-modal-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+        
+        .success-modal-body {
+            padding: 30px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .success-icon {
+            width: 48px;
+            height: 48px;
+            background: #5b9bd5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .success-message {
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .success-modal-footer {
+            padding: 15px;
+            text-align: center;
+            border-top: 1px solid #b8d4e8;
+        }
+        
+        .success-ok-btn {
+            background: linear-gradient(to bottom, #e8f0f8, #d0e0f0);
+            border: 1px solid #5b9bd5;
+            padding: 6px 30px;
+            cursor: pointer;
+            font-size: 13px;
+            border-radius: 3px;
+            min-width: 80px;
+        }
+        
+        .success-ok-btn:hover {
+            background: linear-gradient(to bottom, #d0e0f0, #b8d0e8);
         }
     </style>
 </head>
@@ -987,7 +1233,9 @@
         
         <!-- Save Button -->
         <div class="action-buttons">
-            <button class="btn-save" onclick="saveAnnex5()">💾 Save</button>
+            <button id="saveBtn" class="btn-save" onclick="saveAnnex5()">💾 Save</button>
+            <button id="deleteBtn" class="btn-delete" onclick="deleteAnnex5()" style="display: none;">🗑️ Delete</button>
+            <button id="updateBtn" class="btn-update" onclick="updateAnnex5()" style="display: none;">✏️ Update</button>
         </div>
         
         <div class="back-link-section">
@@ -996,7 +1244,7 @@
     </div>
     
     <!-- Interest Details Modal -->
-    <div id="interestModal" class="modal-overlay">
+    <div id="interestModal" class="modal-overlay modal-center">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="modal-title">ब्याज विवरण / Interest Details</span>
@@ -1045,7 +1293,7 @@
     </div>
     
     <!-- Trading Stock Modal -->
-    <div id="tradingStockModal" class="modal-overlay">
+    <div id="tradingStockModal" class="modal-overlay modal-center">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="modal-title">व्यापारिक मौज्दातको लागत विवरण / Cost of Trading Stock Details</span>
@@ -1114,81 +1362,81 @@
     </div>
     
     <!-- Repairs and Improvements Modal -->
-    <div id="repairModal" class="modal-overlay">
-        <div class="modal-content">
+    <div id="repairModal" class="modal-overlay modal-center">
+        <div class="modal-content" style="max-width: 950px;">
             <div class="modal-header">
-                <span class="modal-title">मर्मत तथा सुधार खर्च विवरण / Repairs and Improvements Details</span>
+                <span class="modal-title" style="font-size: 12px;">मर्मत तथा सुधार खर्च विवरण / Repairs and Improvements Details</span>
                 <button class="modal-close" onclick="closeRepairModal()">×</button>
             </div>
-            <div class="modal-body">
-                <table class="modal-table">
+            <div class="modal-body" style="padding: 10px;">
+                <table class="modal-table" style="table-layout: fixed; font-size: 11px;">
                     <thead>
                         <tr>
-                            <th>क्र.सं</th>
-                            <th>विवरण</th>
-                            <th>समूह क</th>
-                            <th>समूह ख</th>
-                            <th>समूह ग</th>
-                            <th>समूह घ</th>
-                            <th>समूह ङ</th>
-                            <th>जम्मा</th>
+                            <th style="width: 50px; padding: 4px;">क्र.सं</th>
+                            <th style="width: 180px; padding: 4px;">विवरण</th>
+                            <th style="width: 95px; padding: 4px;">समूह क</th>
+                            <th style="width: 95px; padding: 4px;">समूह ख</th>
+                            <th style="width: 95px; padding: 4px;">समूह ग</th>
+                            <th style="width: 95px; padding: 4px;">समूह घ</th>
+                            <th style="width: 95px; padding: 4px;">समूह ङ</th>
+                            <th style="width: 95px; padding: 4px;">जम्मा</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="row-num">20.1</td>
-                            <td class="desc-col">वास्तविक मर्मत सुधार खर्च</td>
-                            <td class="value-col"><input type="text" id="repair1_1" oninput="calculateRepairRow(1)"></td>
-                            <td class="value-col"><input type="text" id="repair1_2" oninput="calculateRepairRow(1)"></td>
-                            <td class="value-col"><input type="text" id="repair1_3" oninput="calculateRepairRow(1)"></td>
-                            <td class="value-col"><input type="text" id="repair1_4" oninput="calculateRepairRow(1)"></td>
-                            <td class="value-col"><input type="text" id="repair1_5" oninput="calculateRepairRow(1)"></td>
-                            <td class="value-col"><input type="text" id="repair1_total" readonly></td>
+                            <td class="row-num" style="padding: 3px;">20.1</td>
+                            <td style="text-align: left; padding: 3px; font-size: 11px;">वास्तविक मर्मत सुधार खर्च</td>
+                            <td style="padding: 2px;"><input type="text" id="repair1_1" oninput="calculateRepairRow(1)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair1_2" oninput="calculateRepairRow(1)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair1_3" oninput="calculateRepairRow(1)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair1_4" oninput="calculateRepairRow(1)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair1_5" oninput="calculateRepairRow(1)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair1_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 11px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">20.2</td>
-                            <td class="desc-col">सिमा क्तोकिएको मर्मत सुधार खर्च</td>
-                            <td class="value-col"><input type="text" id="repair2_1" oninput="calculateRepairRow(2)"></td>
-                            <td class="value-col"><input type="text" id="repair2_2" oninput="calculateRepairRow(2)"></td>
-                            <td class="value-col"><input type="text" id="repair2_3" oninput="calculateRepairRow(2)"></td>
-                            <td class="value-col"><input type="text" id="repair2_4" oninput="calculateRepairRow(2)"></td>
-                            <td class="value-col"><input type="text" id="repair2_5" oninput="calculateRepairRow(2)"></td>
-                            <td class="value-col"><input type="text" id="repair2_total" readonly></td>
+                            <td class="row-num" style="padding: 3px;">20.2</td>
+                            <td style="text-align: left; padding: 3px; font-size: 11px;">सिमा क्तोकिएको मर्मत सुधार खर्च</td>
+                            <td style="padding: 2px;"><input type="text" id="repair2_1" oninput="calculateRepairRow(2)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair2_2" oninput="calculateRepairRow(2)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair2_3" oninput="calculateRepairRow(2)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair2_4" oninput="calculateRepairRow(2)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair2_5" oninput="calculateRepairRow(2)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair2_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 11px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">20.3</td>
-                            <td class="desc-col">जम्मा मर्मत खर्च</td>
-                            <td class="value-col"><input type="text" id="repair3_1" readonly></td>
-                            <td class="value-col"><input type="text" id="repair3_2" readonly></td>
-                            <td class="value-col"><input type="text" id="repair3_3" readonly></td>
-                            <td class="value-col"><input type="text" id="repair3_4" readonly></td>
-                            <td class="value-col"><input type="text" id="repair3_5" readonly></td>
-                            <td class="value-col"><input type="text" id="repair3_total" readonly></td>
+                            <td class="row-num" style="padding: 3px;">20.3</td>
+                            <td style="text-align: left; padding: 3px; font-size: 11px;">जम्मा मर्मत खर्च</td>
+                            <td style="padding: 2px;"><input type="text" id="repair3_1" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair3_2" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair3_3" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair3_4" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair3_5" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair3_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 11px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">20.4</td>
-                            <td class="desc-col">निलान नभएको मर्मत खर्च</td>
-                            <td class="value-col"><input type="text" id="repair4_1" oninput="calculateRepairRow(4)"></td>
-                            <td class="value-col"><input type="text" id="repair4_2" oninput="calculateRepairRow(4)"></td>
-                            <td class="value-col"><input type="text" id="repair4_3" oninput="calculateRepairRow(4)"></td>
-                            <td class="value-col"><input type="text" id="repair4_4" oninput="calculateRepairRow(4)"></td>
-                            <td class="value-col"><input type="text" id="repair4_5" oninput="calculateRepairRow(4)"></td>
-                            <td class="value-col"><input type="text" id="repair4_total" readonly></td>
+                            <td class="row-num" style="padding: 3px;">20.4</td>
+                            <td style="text-align: left; padding: 3px; font-size: 11px;">निलान नभएको मर्मत खर्च</td>
+                            <td style="padding: 2px;"><input type="text" id="repair4_1" oninput="calculateRepairRow(4)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair4_2" oninput="calculateRepairRow(4)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair4_3" oninput="calculateRepairRow(4)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair4_4" oninput="calculateRepairRow(4)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair4_5" oninput="calculateRepairRow(4)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair4_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 11px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">20.5</td>
-                            <td class="desc-col">समूह ङ को मर्मत खर्च</td>
-                            <td class="value-col"></td>
-                            <td class="value-col"></td>
-                            <td class="value-col"></td>
-                            <td class="value-col"></td>
-                            <td class="value-col"><input type="text" id="repair5_5" oninput="calculateRepairRow(5)"></td>
-                            <td class="value-col"><input type="text" id="repair5_total" readonly></td>
+                            <td class="row-num" style="padding: 3px;">20.5</td>
+                            <td style="text-align: left; padding: 3px; font-size: 11px;">समूह ङ को मर्मत खर्च</td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair5_5" oninput="calculateRepairRow(5)" style="width: 100%; text-align: right; padding: 2px; font-size: 11px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="repair5_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 11px;"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="padding: 8px 10px;">
                 <div>
                     <button class="modal-btn" onclick="saveRepairDetails()">Ok</button>
                     <button class="modal-btn" onclick="closeRepairModal()">Cancel</button>
@@ -1198,174 +1446,174 @@
     </div>
     
     <!-- Depreciation Modal -->
-    <div id="depreciationModal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 1400px;">
+    <div id="depreciationModal" class="modal-overlay modal-center">
+        <div class="modal-content" style="max-width: 1100px;">
             <div class="modal-header">
-                <span class="modal-title">ह्रास विवरण / Depreciation Details</span>
+                <span class="modal-title" style="font-size: 12px;">ह्रास विवरण / Depreciation Details</span>
                 <button class="modal-close" onclick="closeDepreciationModal()">×</button>
             </div>
-            <div class="modal-body">
-                <table class="modal-table">
+            <div class="modal-body" style="padding: 10px; max-height: 70vh; overflow-y: auto;">
+                <table class="modal-table" style="table-layout: fixed; font-size: 10px;">
                     <thead>
                         <tr>
-                            <th>क्र.सं</th>
-                            <th>विवरण</th>
-                            <th>समूह क</th>
-                            <th>समूह ख</th>
-                            <th>समूह ग</th>
-                            <th>समूह घ</th>
-                            <th>समूह ङ</th>
-                            <th>जम्मा</th>
+                            <th style="width: 55px; padding: 4px;">क्र.सं</th>
+                            <th style="width: 200px; padding: 4px;">विवरण</th>
+                            <th style="width: 85px; padding: 4px;">समूह क</th>
+                            <th style="width: 85px; padding: 4px;">समूह ख</th>
+                            <th style="width: 85px; padding: 4px;">समूह ग</th>
+                            <th style="width: 85px; padding: 4px;">समूह घ</th>
+                            <th style="width: 85px; padding: 4px;">समूह ङ</th>
+                            <th style="width: 95px; padding: 4px;">जम्मा</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="row-num">23.01</td>
-                            <td class="desc-col">यो बर्षको शुरुको ह्रासआधार</td>
-                            <td class="value-col"><input type="text" id="dep1_1" readonly></td>
-                            <td class="value-col"><input type="text" id="dep1_2" readonly></td>
-                            <td class="value-col"><input type="text" id="dep1_3" readonly></td>
-                            <td class="value-col"><input type="text" id="dep1_4" readonly></td>
-                            <td class="value-col"><input type="text" id="dep1_5" readonly></td>
-                            <td class="value-col"><input type="text" id="dep1_total" readonly></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.01</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">यो बर्षको शुरुको ह्रासआधार</td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_1" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_2" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_3" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_4" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_5" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">23.01.1</td>
-                            <td class="desc-col">ह्रास आधारमा थपघट</td>
-                            <td class="value-col"><input type="text" id="dep1_1_1" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep1_1_2" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep1_1_3" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep1_1_4" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep1_1_5" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep1_1_total" readonly></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.01.1</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">ह्रास आधारमा थपघट</td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_1_1" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_1_2" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_1_3" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_1_4" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_1_5" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_1_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">23.01.2</td>
-                            <td class="desc-col">यो वर्ष कायम हुने शुरु ह्रास आधार</td>
-                            <td class="value-col"><input type="text" id="dep1_2_1" readonly></td>
-                            <td class="value-col"><input type="text" id="dep1_2_2" readonly></td>
-                            <td class="value-col"><input type="text" id="dep1_2_3" readonly></td>
-                            <td class="value-col"><input type="text" id="dep1_2_4" readonly></td>
-                            <td class="value-col"><input type="text" id="dep1_2_5" readonly></td>
-                            <td class="value-col"><input type="text" id="dep1_2_total" readonly></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.01.2</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">यो वर्ष कायम हुने शुरु ह्रास आधार</td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_2_1" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_2_2" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_2_3" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_2_4" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_2_5" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep1_2_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">23.02</td>
-                            <td class="desc-col">साधन देखि पुष सम्म</td>
-                            <td class="value-col"><input type="text" id="dep2_1" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep2_2" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep2_3" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep2_4" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep2_5" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep2_total" readonly></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.02</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">साधन देखि पुष सम्म</td>
+                            <td style="padding: 2px;"><input type="text" id="dep2_1" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep2_2" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep2_3" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep2_4" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep2_5" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep2_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">23.03</td>
-                            <td class="desc-col">माघ देखि चैत सम्म</td>
-                            <td class="value-col"><input type="text" id="dep3_1" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep3_2" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep3_3" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep3_4" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep3_5" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep3_total" readonly></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.03</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">माघ देखि चैत सम्म</td>
+                            <td style="padding: 2px;"><input type="text" id="dep3_1" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep3_2" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep3_3" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep3_4" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep3_5" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep3_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">23.04</td>
-                            <td class="desc-col">वैशाख देखि असाढ सम्म</td>
-                            <td class="value-col"><input type="text" id="dep4_1" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep4_2" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep4_3" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep4_4" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep4_5" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep4_total" readonly></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.04</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">वैशाख देखि असाढ सम्म</td>
+                            <td style="padding: 2px;"><input type="text" id="dep4_1" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep4_2" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep4_3" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep4_4" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep4_5" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep4_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">23.05</td>
-                            <td class="desc-col">अन्य (भएमा समावेश गर्ने)</td>
-                            <td class="value-col"><input type="text" id="dep5_1" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep5_2" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep5_3" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep5_4" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"></td>
-                            <td class="value-col"><input type="text" id="dep5_total" readonly></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.05</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">अन्य (भएमा समावेश गर्ने)</td>
+                            <td style="padding: 2px;"><input type="text" id="dep5_1" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep5_2" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep5_3" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep5_4" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep5_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">23.06</td>
-                            <td class="desc-col">यो बर्षको निसर्गबाट भएको ह्रास योग्य सम्पत्ति</td>
-                            <td class="value-col"><input type="text" id="dep6_1" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep6_2" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep6_3" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep6_4" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"></td>
-                            <td class="value-col"><input type="text" id="dep6_total" readonly></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.06</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">यो बर्षको निसर्गबाट भएको ह्रास योग्य सम्पत्ति</td>
+                            <td style="padding: 2px;"><input type="text" id="dep6_1" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep6_2" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep6_3" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep6_4" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep6_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">23.06.1</td>
-                            <td class="desc-col">समूहको सबै सम्पत्ति निसर्ग (भएमा टिक लगा...</td>
-                            <td class="value-col"><input type="checkbox" id="dep6_1_1"></td>
-                            <td class="value-col"><input type="checkbox" id="dep6_1_2"></td>
-                            <td class="value-col"><input type="checkbox" id="dep6_1_3"></td>
-                            <td class="value-col"><input type="checkbox" id="dep6_1_4"></td>
-                            <td class="value-col"></td>
-                            <td class="value-col"></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.06.1</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">समूहको सबै सम्पत्ति निसर्ग (भएमा टिक लगा...</td>
+                            <td style="padding: 2px; text-align: center;"><input type="checkbox" id="dep6_1_1"></td>
+                            <td style="padding: 2px; text-align: center;"><input type="checkbox" id="dep6_1_2"></td>
+                            <td style="padding: 2px; text-align: center;"><input type="checkbox" id="dep6_1_3"></td>
+                            <td style="padding: 2px; text-align: center;"><input type="checkbox" id="dep6_1_4"></td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">23.07</td>
-                            <td class="desc-col">ह्रास दर ( १/३ थप पाउने भए थप % समेत )</td>
-                            <td class="value-col"><input type="text" id="dep7_1" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep7_2" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep7_3" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep7_4" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"></td>
-                            <td class="value-col"></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.07</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">ह्रास दर ( १/३ थप पाउने भए थप % समेत )</td>
+                            <td style="padding: 2px;"><input type="text" id="dep7_1" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep7_2" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep7_3" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep7_4" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">23.08</td>
-                            <td class="desc-col">अन्य भए समावेश गर्ने</td>
-                            <td class="value-col"><input type="text" id="dep8_1" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep8_2" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep8_3" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep8_4" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"></td>
-                            <td class="value-col"><input type="text" id="dep8_total" readonly></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.08</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">अन्य भए समावेश गर्ने</td>
+                            <td style="padding: 2px;"><input type="text" id="dep8_1" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep8_2" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep8_3" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep8_4" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep8_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">23.09</td>
-                            <td class="desc-col">निलान नभएको मर्मत सुधार खर्च</td>
-                            <td class="value-col"><input type="text" id="dep9_1" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep9_2" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep9_3" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep9_4" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"></td>
-                            <td class="value-col"><input type="text" id="dep9_total" readonly></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.09</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">निलान नभएको मर्मत सुधार खर्च</td>
+                            <td style="padding: 2px;"><input type="text" id="dep9_1" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep9_2" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep9_3" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep9_4" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep9_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">23.10</td>
-                            <td class="desc-col">आगामी आ. व. को लागि जिम्मेवारी सरेको ज...</td>
-                            <td class="value-col"><input type="text" id="dep10_1" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep10_2" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep10_3" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep10_4" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep10_5" oninput="calculateDepreciation()"></td>
-                            <td class="value-col"><input type="text" id="dep10_total" readonly></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.10</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">आगामी आ. व. को लागि जिम्मेवारी सरेको ज...</td>
+                            <td style="padding: 2px;"><input type="text" id="dep10_1" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep10_2" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep10_3" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep10_4" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep10_5" oninput="calculateDepreciation()" style="width: 100%; text-align: right; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep10_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
                         </tr>
                         <tr>
-                            <td class="row-num">23.11</td>
-                            <td class="desc-col">समूह ङ को कुल जम्मा (ह्रास खर्च)</td>
-                            <td class="value-col"></td>
-                            <td class="value-col"></td>
-                            <td class="value-col"></td>
-                            <td class="value-col"></td>
-                            <td class="value-col"><input type="text" id="dep11_5" readonly></td>
-                            <td class="value-col"><input type="text" id="dep11_total" readonly></td>
+                            <td class="row-num" style="padding: 3px; font-size: 10px;">23.11</td>
+                            <td style="text-align: left; padding: 3px; font-size: 10px;">समूह ङ को कुल जम्मा (ह्रास खर्च)</td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep11_5" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
+                            <td style="padding: 2px;"><input type="text" id="dep11_total" readonly style="width: 100%; text-align: right; background: #f0f0f0; padding: 2px; font-size: 10px;"></td>
                         </tr>
                     </tbody>
                 </table>
-                <div style="background: #fffacd; padding: 8px; margin-top: 10px; border: 1px solid #ddd; font-size: 11px;">
+                <div style="background: #fffacd; padding: 6px; margin-top: 10px; border: 1px solid #ddd; font-size: 10px;">
                     नोट:- करदाताले कोषबाट को प्रकृति अनुसार आ. व. २०७९/८० को शुरु ह्रास आधार मुल्यमा थप/घट गरी कोइै संसोधन गर्नुपर्ने क. सं. २३.०१ पछि क. सं. २३.०१.१ मा ह्रास आधारमा थप/घट वापतको रकम प्रविष्टि गर्न सक्नु।
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="padding: 8px 10px;">
                 <div>
                     <button class="modal-btn" onclick="saveDepreciationDetails()">Ok</button>
                     <button class="modal-btn" onclick="closeDepreciationModal()">Cancel</button>
@@ -1376,7 +1624,7 @@
     </div>
     
     <!-- Others than mentioned Modal -->
-    <div id="otherExpenseModal" class="modal-overlay">
+    <div id="otherExpenseModal" class="modal-overlay modal-center">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="modal-title">उपरोक्त बाहेक अन्य खर्च विवरण / Others than mentioned Details</span>
@@ -1430,7 +1678,7 @@
     </div>
     
     <!-- Carried Forward Loss Modal -->
-    <div id="carriedForwardLossModal" class="modal-overlay">
+    <div id="carriedForwardLossModal" class="modal-overlay modal-center">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="modal-title">गत आ. व. बाट निश्चित हैसियतको प्रमाणित नोक्सानी विवरण / Carried forward of unrelieved Losses Details</span>
@@ -1513,6 +1761,58 @@
         </div>
     </div>
     
-    <script src="../../js/income_tax/d03_annex_5.js"></script>
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="confirm-overlay">
+        <div class="confirm-dialog">
+            <div class="confirm-header">
+                <span class="confirm-title">Confirm Action</span>
+                <button class="confirm-close-btn" onclick="closeConfirmModal()">×</button>
+            </div>
+            <div class="confirm-body">
+                <div class="confirm-icon">❓</div>
+                <div class="confirm-message">के तपाईं पछाडि गएर अनुसूची तय गर्न चाहनुहुन्छ?</div>
+            </div>
+            <div class="confirm-footer">
+                <button class="confirm-btn yes" onclick="confirmGoBack()">Yes</button>
+                <button class="confirm-btn" onclick="closeConfirmModal()">No</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Alert Modal -->
+    <div id="alertModal" class="confirm-overlay">
+        <div class="confirm-dialog" style="background: #dfe8f6;">
+            <div class="confirm-header">
+                <span class="confirm-title">Alert</span>
+                <button class="confirm-close-btn" onclick="closeAlertModal()">×</button>
+            </div>
+            <div class="confirm-body">
+                <div class="confirm-icon">⚠️</div>
+                <div class="confirm-message" id="alertMessage"></div>
+            </div>
+            <div class="confirm-footer">
+                <button class="confirm-btn yes" onclick="closeAlertModal()">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div class="success-modal-overlay" id="successModal">
+        <div class="success-modal">
+            <div class="success-modal-header">
+                <div class="success-modal-title">SUCCESS</div>
+                <button class="success-modal-close" onclick="closeSuccessModal()">✕</button>
+            </div>
+            <div class="success-modal-body">
+                <div class="success-icon">ℹ️</div>
+                <div class="success-message">Successfully saved.</div>
+            </div>
+            <div class="success-modal-footer">
+                <button class="success-ok-btn" onclick="closeSuccessModal()">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../../js/income_tax/d03_annex_5.js?v=1.5"></script>
 </body>
 </html>

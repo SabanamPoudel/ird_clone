@@ -10,16 +10,15 @@
             margin: 0;
             padding: 20px;
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            background-color: #dfe9f6;
+            font-size: 13px;
         }
 
         .form-container {
-            background-color: white;
+            background-color: #dfe9f6;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            max-width: 970px;
-            margin: 0 auto;
+            max-width: 100%;
+            margin: 0;
         }
 
         .form-header {
@@ -52,8 +51,8 @@
         }
 
         .info-panel {
-            background-color: #f2f2f2;
-            border: 1px solid #d0d0d0;
+            background-color: #dfe9f6;
+            border: 1px solid #b8d4e8;
             padding: 15px;
             margin: 10px 0;
             border-radius: 4px;
@@ -86,7 +85,7 @@
         }
 
         .grid-header {
-            background-color: #d0e4f7;
+            background-color: #b8d4e8;
             padding: 10px;
             font-weight: bold;
             border-bottom: 1px solid #9bc2e6;
@@ -95,6 +94,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            background-color: white;
         }
 
         th, td {
@@ -104,7 +104,7 @@
         }
 
         th {
-            background-color: #e8f4f8;
+            background-color: #d0e4f7;
             font-weight: bold;
         }
 
@@ -131,16 +131,28 @@
         }
 
         .btn-save {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 6px 12px;
+            border-radius: 3px;
             cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 13px;
         }
 
         .btn-save:hover {
-            background-color: #45a049;
+            background-color: #e9ecef;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+        
+        .btn-save::before {
+            content: "💾";
+            font-size: 16px;
+            filter: hue-rotate(200deg) saturate(1.5);
         }
 
         .btn-delete {
@@ -159,13 +171,18 @@
 
         .back-link {
             margin: 10px 0;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .back-link a {
-            color: red;
+            color: #dc3545;
             text-decoration: underline;
             cursor: pointer;
+            font-weight: normal;
+        }
+        
+        .back-link a:hover {
+            color: #c82333;
         }
     </style>
 </head>
@@ -175,24 +192,24 @@
         
         <div class="form-title">अनुसूची - ७</div>
 
+        <div class="back-link" style="margin: 10px 0;">
+            पछाडि गएर अनुसूची तय गर्न <a id="backLink">यहाँ कि्लक</a> गर्नुहोस् ।
+        </div>
+
         <div class="info-panel">
             <div class="info-row">
                 <label class="info-label">आर्थिक वर्ष:</label>
-                <input type="text" class="info-input" id="fiscalYear" style="max-width: 150px;">
-                <label class="info-label" style="margin-left: 370px; min-width: 100px;">आ.रा.का:</label>
-                <input type="text" class="info-input" id="internalCode" style="max-width: 150px;">
+                <input type="text" class="info-input" id="fiscalYear" style="max-width: 200px;">
+                <label class="info-label" style="margin-left: auto; margin-right: 10px;">आ.रा.का:</label>
+                <input type="text" class="info-input" id="internalCode" style="max-width: 250px;">
             </div>
             <div class="info-row">
                 <label class="info-label">स्थायी लेखा नम्बर:</label>
-                <input type="text" class="info-input" id="panNumber" style="max-width: 150px;">
+                <input type="text" class="info-input" id="panNumber" style="max-width: 200px;">
             </div>
             <div class="info-row">
                 <label class="info-label">नाम:</label>
                 <input type="text" class="info-input" id="taxpayerName">
-            </div>
-            
-            <div class="back-link">
-                पछाडि गएर अनुसूची तय गर्न <a id="backLink">यहाँ कि्लक</a> गर्नुहोस् ।
             </div>
         </div>
 
@@ -425,6 +442,10 @@
             <button class="btn-save" id="saveBtn">Save</button>
             <button class="btn-delete" id="deleteBtn">Delete</button>
         </div>
+        
+        <div class="back-link">
+            पछाडि गएर अनुसूची तय गर्न <a id="backLink2">यहाँ कि्लक</a> गर्नुहोस् ।
+        </div>
     </div>
 
     <script>
@@ -471,6 +492,21 @@
             input.addEventListener('input', calculateTotals);
         });
 
+        // Load taxpayer info from D03 main form
+        function loadTaxpayerInfo() {
+            const d03Data = localStorage.getItem('d03_return_data');
+            if (d03Data) {
+                const data = JSON.parse(d03Data);
+                document.getElementById('fiscalYear').value = data.fiscalYear || '';
+                document.getElementById('internalCode').value = data.iro || '';
+                document.getElementById('panNumber').value = data.pan || '';
+                document.getElementById('taxpayerName').value = data.taxpayerName || '';
+            }
+        }
+
+        // Load taxpayer info on page load
+        loadTaxpayerInfo();
+
         // Load data from parent
         window.addEventListener('message', function(event) {
             if (event.data.type === 'loadData') {
@@ -515,6 +551,11 @@
 
         // Back link handler
         document.getElementById('backLink').addEventListener('click', function() {
+            window.parent.postMessage({ type: 'goBackToSetAnnex' }, '*');
+        });
+        
+        // Back link handler (bottom)
+        document.getElementById('backLink2').addEventListener('click', function() {
             window.parent.postMessage({ type: 'goBackToSetAnnex' }, '*');
         });
 

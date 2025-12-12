@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अनुसूची - २</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Mukta', Arial, sans-serif;
+            background-color: #d4e4f7;
+            padding: 0;
+            font-size: 13px;
+        }
+        
+        .page-container {
+            background-color: #d4e4f7;
+            padding: 10px;
+        }
+        
+        .content-wrapper {
+            background-color: #ffffff;
+            border: 1px solid #999;
+            padding: 15px;
+        }
+        
+        .page-title-section {
+            background-color: #d4e4f7;
+            padding: 8px 10px;
+            margin-bottom: 15px;
+            border: 1px solid #5b9bd5;
+        }
+        
+        .page-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+        }
+        
+        .print-btn {
+            background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+            border: 1px solid #999;
+            padding: 4px 12px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .print-btn:hover {
+            background: linear-gradient(to bottom, #f5f5f5, #d0d0d0);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .header h1 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .back-link-panel {
+            background-color: #dfe9f6;
+            border: 1px solid #5b9bd5;
+            padding: 8px 10px;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        
+        .back-link-text {
+            color: #000;
+        }
+        
+        .back-link-click {
+            color: red;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .info-header {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+        }
+        
+        .info-field {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        
+        .info-field label {
+            font-size: 11px;
+            color: #333;
+            font-weight: normal;
+        }
+        
+        .info-field input {
+            padding: 4px 6px;
+            border: 1px solid #ccc;
+            background-color: #e9ecef;
+            font-size: 12px;
+        }
+        
+        .main-layout {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .left-section {
+            flex: 1;
+        }
+        
+        .right-section {
+            width: 320px;
+            flex-shrink: 0;
+        }
+        
+        .grid-container {
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+        
+        .data-grid {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #b3b3b3;
+            font-size: 11px;
+        }
+        
+        .data-grid th {
+            background: linear-gradient(to bottom, #5b9bd5, #4a8bc2);
+            color: white;
+            padding: 6px 4px;
+            text-align: center;
+            border: 1px solid #4a8bc2;
+            font-weight: bold;
+            font-size: 10px;
+            line-height: 1.3;
+        }
+        
+        .data-grid td {
+            padding: 2px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        
+        .data-grid input[type="text"] {
+            width: 100%;
+            padding: 2px;
+            border: none;
+            text-align: right;
+            font-size: 11px;
+            background-color: transparent;
+        }
+        
+        .data-grid input[readonly] {
+            background-color: #f5f5f5;
+        }
+        
+        .data-grid .total-row {
+            background-color: #e9ecef;
+            font-weight: bold;
+        }
+        
+        .liability-panel {
+            background-color: #ffffff;
+            border: 1px solid #b3b3b3;
+            margin-bottom: 15px;
+        }
+        
+        .panel-header {
+            background: linear-gradient(to bottom, #5b9bd5, #4a8bc2);
+            color: white;
+            padding: 6px 8px;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .panel-body {
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+        
+        .panel-row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 8px;
+            gap: 3px;
+        }
+        
+        .panel-row label {
+            font-size: 11px;
+            color: #333;
+        }
+        
+        .panel-row input {
+            padding: 4px;
+            border: 1px solid #ccc;
+            background-color: #e9ecef;
+            text-align: right;
+            font-size: 11px;
+        }
+        
+        .installment-panel {
+            background-color: #ffffff;
+            border: 1px solid #b3b3b3;
+            margin-bottom: 15px;
+        }
+        
+        .installment-body {
+            padding: 10px;
+            background-color: #f8f9fa;
+        }
+        
+        .installment-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+        
+        .installment-table th {
+            background-color: #e9ecef;
+            padding: 5px;
+            border: 1px solid #ddd;
+            font-weight: bold;
+            text-align: center;
+            font-size: 10px;
+        }
+        
+        .installment-table td {
+            padding: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        .installment-table td:first-child {
+            text-align: left;
+            padding-left: 5px;
+            font-size: 11px;
+        }
+        
+        .installment-table input {
+            width: 100%;
+            padding: 3px;
+            border: none;
+            background-color: #e9ecef;
+            text-align: right;
+            font-size: 11px;
+        }
+        
+        .info-box {
+            background-color: #fff9c4;
+            border: 2px solid #000;
+            padding: 8px 10px;
+            margin-bottom: 15px;
+            color: #0000ff;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .button-container {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .save-btn {
+            background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);
+            color: #000;
+            border: 1px solid #999;
+            padding: 6px 15px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .save-btn:hover {
+            background: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
+        }
+        
+        .back-link-bottom {
+            margin-top: 10px;
+            font-size: 12px;
+            background-color: #dfe9f6;
+            border: 1px solid #5b9bd5;
+            padding: 8px 10px;
+        }
+        
+        .calc-btn {
+            background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+            border: 1px solid #000;
+            color: blue;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 8px;
+        }
+        
+        .calc-btn:hover {
+            background: linear-gradient(to bottom, #f5f5f5, #d0d0d0);
+        }
+        
+        .pay-btn {
+            background: linear-gradient(to bottom, #70c770, #50a750);
+            color: white;
+            border: 1px solid #4a8bc2;
+            padding: 5px 12px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 11px;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+        
+        .pay-btn:hover {
+            background: linear-gradient(to bottom, #60b760, #409740);
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="content-wrapper">
+            <div class="page-title-section">
+                <span class="page-title">Annex-2</span>
+            </div>
+            
+            <button class="print-btn" onclick="window.print()">🖨️ Print</button>
+            
+            <div class="header">
+                <h1>अनुसूची -२</h1>
+            </div>
+            
+            <!-- Back Link Panel -->
+            <div class="back-link-panel">
+                <span class="back-link-text">पछाडि गएर आनुसूची तय गर्न </span>
+                <span class="back-link-click" onclick="goBackToSetAnnex()">यहाँ कि्लक</span>
+                <span class="back-link-text"> गर्नुहोस् ।</span>
+            </div>
+            
+            <!-- Information Header -->
+            <div class="info-header">
+                <div class="info-field">
+                    <label>आर्थिक वर्ष:</label>
+                    <input type="text" id="fiscalYear" readonly>
+                </div>
+                <div class="info-field">
+                    <label>करको किसिम:</label>
+                    <input type="text" id="taxType" readonly>
+                </div>
+                <div class="info-field">
+                    <label>सावंधिन नं.:</label>
+                    <input type="text" id="submissionNo" readonly>
+                </div>
+                <div class="info-field">
+                    <label>स्थायी लेखा नम्बर:</label>
+                    <input type="text" id="pan" readonly>
+                </div>
+            </div>
+            
+            <div class="main-layout">
+                <!-- Left Section: Main Grid -->
+                <div class="left-section">
+                    <div class="grid-container">
+                        <table class="data-grid">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2">S.N.</th>
+                                    <th rowspan="2">१<br>Annex Type</th>
+                                    <th rowspan="2">२<br>Tax Category</th>
+                                    <th rowspan="2">३<br>Country Code</th>
+                                    <th rowspan="2">४<br>Inclusions</th>
+                                    <th rowspan="2">५<br>Income Gain Loss</th>
+                                    <th rowspan="2">६<br>Assessable Income</th>
+                                    <th rowspan="2">७<br>Retirement Fund</th>
+                                    <th rowspan="2">८<br>Donation</th>
+                                    <th rowspan="2">९<br>Taxable Income</th>
+                                    <th rowspan="2">१०<br>Normal Tax Rate</th>
+                                    <th rowspan="2">११<br>Concession Category</th>
+                                    <th rowspan="2">१२<br>Concession Rate</th>
+                                    <th rowspan="2">१३<br>Effective Tax Rate</th>
+                                    <th rowspan="2">१४<br>Total Payable Tax</th>
+                                </tr>
+                            </thead>
+                            <tbody id="gridBody">
+                                <tr>
+                                    <td>1</td>
+                                    <td><input type="text" value="Business" readonly></td>
+                                    <td><input type="text" value="A2-1" readonly></td>
+                                    <td><input type="text" value="np" readonly></td>
+                                    <td><input type="text" value="0" readonly></td>
+                                    <td><input type="text" value="-9865" readonly></td>
+                                    <td><input type="text" value="0" readonly></td>
+                                    <td><input type="text" value="" readonly></td>
+                                    <td><input type="text"></td>
+                                    <td><input type="text" value="0" readonly></td>
+                                    <td><input type="text" value="25" readonly></td>
+                                    <td><input type="text" value="" readonly></td>
+                                    <td><input type="text" value="" readonly></td>
+                                    <td><input type="text" value="25" readonly></td>
+                                    <td><input type="text" value="0.00" readonly></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="total-row">
+                                    <td colspan="4" style="text-align: right;">Total</td>
+                                    <td><input type="text" id="totalCol4" value="0" readonly></td>
+                                    <td><input type="text" id="totalCol5" value="-9865" readonly></td>
+                                    <td><input type="text" id="totalCol6" value="0" readonly></td>
+                                    <td><input type="text" id="totalCol7" readonly></td>
+                                    <td><input type="text" id="totalCol8" readonly></td>
+                                    <td><input type="text" id="totalCol9" value="0" readonly></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><input type="text" id="totalCol14" value="0" readonly></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Right Section: Tax Liability Panel -->
+                <div class="right-section">
+                    <div class="liability-panel">
+                        <div class="panel-header">कर दायित्व</div>
+                        <div class="panel-body">
+                            <div class="panel-row">
+                                <label>शुल्क र ब्याज गणना गरेको भए गणनाको अन्तिम मिति</label>
+                                <input type="text" id="calcDate" placeholder="YYYY.MM.DD" maxlength="10">
+                            </div>
+                            <div class="panel-row">
+                                <label>जम्मा लाग्ने कर</label>
+                                <input type="text" id="totalTax" value="0.00" readonly>
+                            </div>
+                            <div class="panel-row">
+                                <label>दफा ११७(१) बमोजिमको जम्मा शुल्क</label>
+                                <input type="text" id="totalFee117" value="0.00" readonly>
+                            </div>
+                            <div class="panel-row">
+                                <label>व्याज (दफा ११८)</label>
+                                <input type="text" id="interest118" value="0" readonly>
+                            </div>
+                            <div class="panel-row">
+                                <label>व्याज (दफा ११९)</label>
+                                <input type="text" id="interest119" value="0.00" readonly>
+                            </div>
+                            <div class="panel-row">
+                                <label>जम्मा तिर्नु पर्ने कर</label>
+                                <input type="text" id="totalPayable" value="0.00" readonly>
+                            </div>
+                            <div class="panel-row">
+                                <label>जम्मा तिरेको कर</label>
+                                <input type="text" id="totalPaid" value="0" readonly>
+                            </div>
+                            <div class="panel-row">
+                                <label>दाखिला गर्न बाँकी कर</label>
+                                <input type="text" id="remainingTax" value="0" readonly>
+                            </div>
+                            <button class="pay-btn">✓ Pay Now</button>
+                            <button class="calc-btn">कर दायित्व गणना गर्नुहोस्</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Installment Panel -->
+            <div class="installment-panel">
+                <div class="panel-header">किस्ता गणना</div>
+                <div class="installment-body">
+                    <table class="installment-table">
+                        <thead>
+                            <tr>
+                                <th>विवरण</th>
+                                <th>पहिलो किस्ता ४० प्रतिशतले</th>
+                                <th>दोस्रो किस्ता ७० प्रतिशतले</th>
+                                <th>तेस्रो किस्ता १०० प्रतिशतले</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>आय विवरण बमोजिम किस्ता रकम रु</td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                            </tr>
+                            <tr>
+                                <td>पुर्वामानित विवरण बमोजिम किस्ता रकम रु</td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                            </tr>
+                            <tr>
+                                <td>तिरेको रकम ११८(१)(क) रु</td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                            </tr>
+                            <tr>
+                                <td>न्यूनतम तिनुपर्ने रकम ११८(१)(ख) रु</td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                            </tr>
+                            <tr>
+                                <td>ब्याज लाग्ने रकम रु</td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                            </tr>
+                            <tr>
+                                <td>ब्याज रकम रु</td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                            </tr>
+                            <tr>
+                                <td>दफ ११८ बमोजिमको कुल ब्याज रकम रु</td>
+                                <td></td>
+                                <td></td>
+                                <td><input type="text" value="0" readonly></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Info Box -->
+            <div class="info-box">
+                अनुसूची १० बाट कर भुक्तानी दाबी रु.0
+            </div>
+            
+            <!-- Save Button -->
+            <div class="button-container">
+                <button class="save-btn" onclick="saveAnnex2()">
+                    <span>💾</span>
+                    <span>Save Annex 2</span>
+                </button>
+            </div>
+            
+            <!-- Bottom Back Link -->
+            <div class="back-link-bottom">
+                <span class="back-link-text">पछाडि गएर आनुसूची तय गर्न </span>
+                <span class="back-link-click" onclick="goBackToSetAnnex()">यहाँ कि्लक</span>
+                <span class="back-link-text"> गर्नुहोस् ।</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Load taxpayer information from D03 return data
+        function loadTaxpayerInfo() {
+            const d03Data = JSON.parse(localStorage.getItem('d03_return_data') || '{}');
+            
+            if (d03Data.fiscalYear) {
+                document.getElementById('fiscalYear').value = d03Data.fiscalYear;
+            }
+            if (d03Data.pan) {
+                document.getElementById('pan').value = d03Data.pan;
+            }
+            
+            // Set default tax type
+            document.getElementById('taxType').value = 'आयकर';
+        }
+        
+        // Save Annex 2 data
+        function saveAnnex2() {
+            const annex2Data = {
+                fiscalYear: document.getElementById('fiscalYear').value,
+                taxType: document.getElementById('taxType').value,
+                submissionNo: document.getElementById('submissionNo').value,
+                pan: document.getElementById('pan').value,
+                calcDate: document.getElementById('calcDate').value,
+                totalTax: document.getElementById('totalTax').value,
+                saved: true
+            };
+            
+            localStorage.setItem('d03_annex2_data', JSON.stringify(annex2Data));
+            alert('अनुसूची २ सफलतापूर्वक सुरक्षित गरियो।\n(Annex 2 saved successfully.)');
+        }
+        
+        // Load saved data if exists
+        function loadAnnex2Data() {
+            const savedData = JSON.parse(localStorage.getItem('d03_annex2_data') || '{}');
+            
+            if (savedData.calcDate) {
+                document.getElementById('calcDate').value = savedData.calcDate;
+            }
+        }
+        
+        // Go back to set annex page
+        function goBackToSetAnnex() {
+            window.parent.postMessage({ action: 'goBackToSetAnnex' }, '*');
+        }
+        
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadTaxpayerInfo();
+            loadAnnex2Data();
+        });
+    </script>
+</body>
+</html>
