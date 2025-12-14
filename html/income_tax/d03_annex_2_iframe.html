@@ -24,7 +24,7 @@
         }
         
         .content-wrapper {
-            background-color: #ffffff;
+            background-color: #DFE8F6;;
             border: 1px solid #999;
             padding: 15px;
         }
@@ -118,20 +118,25 @@
         .main-layout {
             display: flex;
             gap: 15px;
+            align-items: flex-start;
+            margin-bottom: 20px;
         }
         
         .left-section {
             flex: 1;
-        }
-        
-        .right-section {
-            width: 320px;
-            flex-shrink: 0;
+            min-width: 0;
         }
         
         .grid-container {
             overflow-x: auto;
-            margin-bottom: 15px;
+            overflow-y: hidden;
+            margin-bottom: 0;
+            border: 1px solid #b3b3b3;
+        }
+        
+        .right-section {
+            width: 300px;
+            flex-shrink: 0;
         }
         
         .data-grid {
@@ -177,7 +182,7 @@
         }
         
         .liability-panel {
-            background-color: #ffffff;
+            background-color: #DFE8F6;;
             border: 1px solid #b3b3b3;
             margin-bottom: 15px;
         }
@@ -193,83 +198,91 @@
         
         .panel-body {
             padding: 10px;
-            background-color: #f8f9fa;
+            background-color: #ffffff;
         }
         
         .panel-row {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 8px;
-            gap: 3px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 8px;
+            margin-bottom: 6px;
+            align-items: center;
         }
         
         .panel-row label {
             font-size: 11px;
             color: #333;
+            text-align: left;
+            padding-right: 5px;
         }
         
         .panel-row input {
-            padding: 4px;
+            padding: 4px 6px;
             border: 1px solid #ccc;
             background-color: #e9ecef;
             text-align: right;
             font-size: 11px;
+            min-width: 100px;
+            width: 120px;
         }
         
         .installment-panel {
             background-color: #ffffff;
             border: 1px solid #b3b3b3;
             margin-bottom: 15px;
+            margin-top: 0;
+            width: 100%;
         }
         
         .installment-body {
-            padding: 10px;
+            padding: 6px;
             background-color: #f8f9fa;
         }
         
         .installment-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 11px;
+            font-size: 12px;
         }
         
         .installment-table th {
             background-color: #e9ecef;
-            padding: 5px;
+            padding: 3px;
             border: 1px solid #ddd;
             font-weight: bold;
             text-align: center;
-            font-size: 10px;
+            font-size: 11px;
         }
         
         .installment-table td {
-            padding: 4px;
+            padding: 2px;
             border: 1px solid #ddd;
         }
         
         .installment-table td:first-child {
             text-align: left;
-            padding-left: 5px;
-            font-size: 11px;
+            padding-left: 3px;
+            font-size: 12px;
         }
         
         .installment-table input {
             width: 100%;
-            padding: 3px;
+            padding: 1px;
             border: none;
             background-color: #e9ecef;
             text-align: right;
-            font-size: 11px;
+            font-size: 12px;
         }
         
         .info-box {
-            background-color: #fff9c4;
+            background-color: #ffff05;
             border: 2px solid #000;
             padding: 8px 10px;
             margin-bottom: 15px;
-            color: #0000ff;
+            color: #000000;
             font-weight: bold;
             font-size: 12px;
+            max-width: 400px;
         }
         
         .button-container {
@@ -337,6 +350,72 @@
         .pay-btn:hover {
             background: linear-gradient(to bottom, #60b760, #409740);
         }
+        
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+        
+        .modal-content {
+            background-color: #ced9e7;
+            border: 2px solid #4a8bc2;
+            border-radius: 8px;
+            width: 320px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+            background: linear-gradient(to bottom, #5b9bd5, #4a8bc2);
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            border-radius: 6px 6px 0 0;
+            position: relative;
+        }
+        
+        .modal-body {
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .modal-icon {
+            font-size: 40px;
+            color: #4a8bc2;
+            margin-bottom: 15px;
+        }
+        
+        .modal-message {
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .modal-ok-btn {
+            background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);
+            border: 1px solid #999;
+            padding: 8px 30px;
+            margin: 0 auto 15px;
+            display: block;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .modal-ok-btn:hover {
+            background: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
+        }
     </style>
 </head>
 <body>
@@ -355,7 +434,7 @@
             <!-- Back Link Panel -->
             <div class="back-link-panel">
                 <span class="back-link-text">पछाडि गएर आनुसूची तय गर्न </span>
-                <span class="back-link-click" onclick="goBackToSetAnnex()">यहाँ कि्लक</span>
+                <span class="back-link-click" onclick="goBackToSetAnnex()">यहाँ किल्क</span>
                 <span class="back-link-text"> गर्नुहोस् ।</span>
             </div>
             
@@ -363,19 +442,19 @@
             <div class="info-header">
                 <div class="info-field">
                     <label>आर्थिक वर्ष:</label>
-                    <input type="text" id="fiscalYear" readonly>
+                    <input type="text" id="fiscalYear" value="2081.082" readonly>
                 </div>
                 <div class="info-field">
                     <label>करको किसिम:</label>
-                    <input type="text" id="taxType" readonly>
+                    <input type="text" id="taxType" value="A" readonly>
                 </div>
                 <div class="info-field">
-                    <label>सावंधिन नं.:</label>
-                    <input type="text" id="submissionNo" readonly>
+                    <label>साम्बिधन नं.:</label>
+                    <input type="text" id="submissionNo" value="820076132906" readonly>
                 </div>
                 <div class="info-field">
                     <label>स्थायी लेखा नम्बर:</label>
-                    <input type="text" id="pan" readonly>
+                    <input type="text" id="pan" value="610015263" readonly>
                 </div>
             </div>
             
@@ -384,61 +463,61 @@
                 <div class="left-section">
                     <div class="grid-container">
                         <table class="data-grid">
-                            <thead>
-                                <tr>
-                                    <th rowspan="2">S.N.</th>
-                                    <th rowspan="2">१<br>Annex Type</th>
-                                    <th rowspan="2">२<br>Tax Category</th>
-                                    <th rowspan="2">३<br>Country Code</th>
-                                    <th rowspan="2">४<br>Inclusions</th>
-                                    <th rowspan="2">५<br>Income Gain Loss</th>
-                                    <th rowspan="2">६<br>Assessable Income</th>
-                                    <th rowspan="2">७<br>Retirement Fund</th>
-                                    <th rowspan="2">८<br>Donation</th>
-                                    <th rowspan="2">९<br>Taxable Income</th>
-                                    <th rowspan="2">१०<br>Normal Tax Rate</th>
-                                    <th rowspan="2">११<br>Concession Category</th>
-                                    <th rowspan="2">१२<br>Concession Rate</th>
-                                    <th rowspan="2">१३<br>Effective Tax Rate</th>
-                                    <th rowspan="2">१४<br>Total Payable Tax</th>
-                                </tr>
-                            </thead>
-                            <tbody id="gridBody">
-                                <tr>
-                                    <td>1</td>
-                                    <td><input type="text" value="Business" readonly></td>
-                                    <td><input type="text" value="A2-1" readonly></td>
-                                    <td><input type="text" value="np" readonly></td>
-                                    <td><input type="text" value="0" readonly></td>
-                                    <td><input type="text" value="-9865" readonly></td>
-                                    <td><input type="text" value="0" readonly></td>
-                                    <td><input type="text" value="" readonly></td>
-                                    <td><input type="text"></td>
-                                    <td><input type="text" value="0" readonly></td>
-                                    <td><input type="text" value="25" readonly></td>
-                                    <td><input type="text" value="" readonly></td>
-                                    <td><input type="text" value="" readonly></td>
-                                    <td><input type="text" value="25" readonly></td>
-                                    <td><input type="text" value="0.00" readonly></td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr class="total-row">
-                                    <td colspan="4" style="text-align: right;">Total</td>
-                                    <td><input type="text" id="totalCol4" value="0" readonly></td>
-                                    <td><input type="text" id="totalCol5" value="-9865" readonly></td>
-                                    <td><input type="text" id="totalCol6" value="0" readonly></td>
-                                    <td><input type="text" id="totalCol7" readonly></td>
-                                    <td><input type="text" id="totalCol8" readonly></td>
-                                    <td><input type="text" id="totalCol9" value="0" readonly></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><input type="text" id="totalCol14" value="0" readonly></td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                        <thead>
+                            <tr>
+                                <th rowspan="2">S.N.</th>
+                                <th rowspan="2">१<br>Annex Type</th>
+                                <th rowspan="2">२<br>Tax Category</th>
+                                <th rowspan="2">३<br>Country Code</th>
+                                <th rowspan="2">४<br>Inclusions</th>
+                                <th rowspan="2">५<br>Income Gain Loss</th>
+                                <th rowspan="2">६<br>Assessable Income</th>
+                                <th rowspan="2">७<br>Retirement Fund</th>
+                                <th rowspan="2">८<br>Donation</th>
+                                <th rowspan="2">९<br>Taxable Income</th>
+                                <th rowspan="2">१०<br>Normal Tax Rate</th>
+                                <th rowspan="2">११<br>Concession Category</th>
+                                <th rowspan="2">१२<br>Concession Rate</th>
+                                <th rowspan="2">१३<br>Effective Tax Rate</th>
+                                <th rowspan="2">१४<br>Total Payable Tax</th>
+                            </tr>
+                        </thead>
+                        <tbody id="gridBody">
+                            <tr>
+                                <td>1</td>
+                                <td><input type="text" value="Business" readonly></td>
+                                <td><input type="text" value="A2-1" readonly></td>
+                                <td><input type="text" value="np" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="0"></td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="25" readonly></td>
+                                <td><input type="text" value="" readonly></td>
+                                <td><input type="text" value="0" readonly></td>
+                                <td><input type="text" value="25" readonly></td>
+                                <td><input type="text" value="0.00" readonly></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="total-row">
+                                <td colspan="4" style="text-align: right;">Total</td>
+                                <td><input type="text" id="totalCol4" value="0" readonly></td>
+                                <td><input type="text" id="totalCol5" value="0" readonly></td>
+                                <td><input type="text" id="totalCol6" value="0" readonly></td>
+                                <td><input type="text" id="totalCol7" value="0" readonly></td>
+                                <td><input type="text" id="totalCol8" value="0" readonly></td>
+                                <td><input type="text" id="totalCol9" value="0" readonly></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><input type="text" id="totalCol14" value="0.00" readonly></td>
+                            </tr>
+                        </tfoot>
+                    </table>
                     </div>
                 </div>
                 
@@ -484,6 +563,8 @@
                         </div>
                     </div>
                 </div>
+                
+                <div style="clear: both;"></div>
             </div>
             
             <!-- Installment Panel -->
@@ -569,7 +650,50 @@
         </div>
     </div>
     
+    <!-- Success Modal -->
+    <div id="successModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">SUCCESS</div>
+            <div class="modal-body">
+                <div class="modal-icon">ⓘ</div>
+                <div class="modal-message">Successfully Saved !!!</div>
+            </div>
+            <button class="modal-ok-btn" onclick="closeSuccessModal()">OK</button>
+        </div>
+    </div>
+    
     <script>
+        // Function to convert AD to BS (Bikram Sambat)
+        function convertADtoBS(adDate) {
+            const adYear = adDate.getFullYear();
+            const adMonth = adDate.getMonth() + 1;
+            const adDay = adDate.getDate();
+            
+            let bsYear = adYear + 57;
+            let bsMonth = adMonth + 8;
+            let bsDay = adDay + 14;
+            
+            if (bsMonth > 12) {
+                bsMonth -= 12;
+            }
+            
+            if (adMonth <= 4) {
+                bsYear = adYear + 56;
+            }
+            
+            const daysInMonth = 30;
+            if (bsDay > daysInMonth) {
+                bsDay -= daysInMonth;
+                bsMonth += 1;
+                if (bsMonth > 12) {
+                    bsMonth = 1;
+                    bsYear += 1;
+                }
+            }
+            
+            return bsYear + '.' + String(bsMonth).padStart(2, '0') + '.' + String(bsDay).padStart(2, '0');
+        }
+        
         // Load taxpayer information from D03 return data
         function loadTaxpayerInfo() {
             const d03Data = JSON.parse(localStorage.getItem('d03_return_data') || '{}');
@@ -583,6 +707,202 @@
             
             // Set default tax type
             document.getElementById('taxType').value = 'आयकर';
+            
+            // Set today's date in calcDate field
+            setTodaysDate();
+            
+            // Load Annex 5 data and populate grid
+            loadAnnex5DataToGrid();
+        }
+        
+        // Set today's date in the calculation date field
+        function setTodaysDate() {
+            const calcDateField = document.getElementById('calcDate');
+            if (calcDateField && !calcDateField.value) {
+                const today = new Date();
+                const todayBS = convertADtoBS(today);
+                calcDateField.value = todayBS;
+                console.log('Set calculation date to BS:', todayBS);
+            }
+        }
+        
+        // Load Annex 5 data and populate the grid
+        function loadAnnex5DataToGrid() {
+            const annex5Data = JSON.parse(localStorage.getItem('d03_annex5_data') || '{}');
+            
+            console.log('Loading Annex 5 data to grid:', annex5Data);
+            
+            if (!annex5Data || !annex5Data.taxType) {
+                console.log('No Annex 5 data found');
+                return;
+            }
+            
+            // Get the first row in the grid body
+            const gridBody = document.getElementById('gridBody');
+            const firstRow = gridBody.querySelector('tr');
+            
+            if (!firstRow) {
+                console.log('No row found in grid');
+                return;
+            }
+            
+            // Extract tax rate percentage from taxRate field (e.g., "25%" -> "25")
+            let taxRatePercent = '0';
+            if (annex5Data.taxRate) {
+                taxRatePercent = annex5Data.taxRate.replace('%', '').trim();
+            }
+            
+            // Calculate values from Annex 5
+            const inclusionsTotal = parseFloat(annex5Data.inTotal?.replace(/,/g, '') || 0);
+            const deductionsTotal = parseFloat(annex5Data.deTotal?.replace(/,/g, '') || 0);
+            const totalDeduction = parseFloat(annex5Data.totalDeduction?.replace(/,/g, '') || 0);
+            const businessIncome = parseFloat(annex5Data.businessIncome?.replace(/,/g, '') || 0);
+            const miscInclusion = parseFloat(annex5Data.miTotal?.replace(/,/g, '') || 0);
+            
+            // Calculate income gain/loss (inclusions - deductions)
+            const incomeGainLoss = inclusionsTotal - totalDeduction;
+            
+            // Calculate assessable income (income + misc inclusion)
+            const assessableIncome = incomeGainLoss + miscInclusion;
+            
+            // For retirement fund and donation, use deductions if available
+            const retirementFund = parseFloat(annex5Data.de7?.replace(/,/g, '') || 0); // DE7 might be retirement
+            const donation = parseFloat(annex5Data.de8?.replace(/,/g, '') || 0); // DE8 might be donation
+            
+            // Calculate taxable income (assessable - retirement - donation)
+            const taxableIncome = Math.max(0, assessableIncome - retirementFund - donation);
+            
+            // Update grid cells
+            const inputs = firstRow.querySelectorAll('input[type="text"]');
+            if (inputs.length >= 14) {
+                // Column ४ (index 3): Inclusions
+                inputs[3].value = inclusionsTotal.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                
+                // Column ५ (index 4): Income Gain Loss
+                inputs[4].value = incomeGainLoss.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                
+                // Column ६ (index 5): Assessable Income
+                inputs[5].value = assessableIncome.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                
+                // Column ७ (index 6): Retirement Fund
+                inputs[6].value = retirementFund.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                
+                // Column ८ (index 7): Donation
+                inputs[7].value = donation.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                
+                // Column ९ (index 8): Taxable Income
+                inputs[8].value = taxableIncome.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                
+                // Column १० (index 9): Normal Tax Rate - THIS IS THE KEY FIELD
+                inputs[9].value = taxRatePercent;
+                
+                // Column १३ (index 12): Effective Tax Rate (same as normal rate for now)
+                inputs[12].value = taxRatePercent;
+                
+                // Column १४ (index 13): Total Payable Tax
+                const totalPayableTax = (taxableIncome * parseFloat(taxRatePercent)) / 100;
+                inputs[13].value = totalPayableTax.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+            
+            // Update totals row
+            updateTotalsRow();
+            
+            // Update tax liability panel
+            updateTaxLiabilityPanel(totalPayableTax);
+            
+            console.log('Grid populated with all amounts from Annex 5');
+            console.log('Tax Rate:', taxRatePercent + '%', 'Taxable Income:', taxableIncome, 'Tax:', totalPayableTax);
+        }
+        
+        // Update tax liability panel with calculated tax
+        function updateTaxLiabilityPanel(totalPayableTax) {
+            if (totalPayableTax && !isNaN(totalPayableTax)) {
+                document.getElementById('totalTax').value = totalPayableTax.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                document.getElementById('totalPayable').value = totalPayableTax.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                document.getElementById('remainingTax').value = totalPayableTax.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }
+        }
+        
+        // Update totals row
+        function updateTotalsRow() {
+            const gridBody = document.getElementById('gridBody');
+            const rows = gridBody.querySelectorAll('tr');
+            
+            let totalCol4 = 0, totalCol5 = 0, totalCol6 = 0;
+            let totalCol7 = 0, totalCol8 = 0, totalCol9 = 0, totalCol14 = 0;
+            
+            rows.forEach(row => {
+                const inputs = row.querySelectorAll('input[type="text"]');
+                if (inputs.length >= 14) {
+                    totalCol4 += parseFloat(inputs[3].value.replace(/,/g, '') || 0);
+                    totalCol5 += parseFloat(inputs[4].value.replace(/,/g, '') || 0);
+                    totalCol6 += parseFloat(inputs[5].value.replace(/,/g, '') || 0);
+                    totalCol7 += parseFloat(inputs[6].value.replace(/,/g, '') || 0);
+                    totalCol8 += parseFloat(inputs[7].value.replace(/,/g, '') || 0);
+                    totalCol9 += parseFloat(inputs[8].value.replace(/,/g, '') || 0);
+                    totalCol14 += parseFloat(inputs[13].value.replace(/,/g, '') || 0);
+                }
+            });
+            
+            // Update total fields
+            document.getElementById('totalCol4').value = totalCol4.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            document.getElementById('totalCol5').value = totalCol5.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            document.getElementById('totalCol6').value = totalCol6.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            document.getElementById('totalCol7').value = totalCol7.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            document.getElementById('totalCol8').value = totalCol8.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            document.getElementById('totalCol9').value = totalCol9.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            document.getElementById('totalCol14').value = totalCol14.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
         }
         
         // Save Annex 2 data
@@ -598,16 +918,35 @@
             };
             
             localStorage.setItem('d03_annex2_data', JSON.stringify(annex2Data));
-            alert('अनुसूची २ सफलतापूर्वक सुरक्षित गरियो।\n(Annex 2 saved successfully.)');
+            
+            // Show success modal
+            document.getElementById('successModal').style.display = 'flex';
+            
+            // Change button text to "Update Annex 2"
+            const saveBtn = document.querySelector('.save-btn');
+            if (saveBtn) {
+                saveBtn.querySelector('span:last-child').textContent = 'Update Annex 2';
+            }
+        }
+        
+        // Close success modal
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
         }
         
         // Load saved data if exists
         function loadAnnex2Data() {
             const savedData = JSON.parse(localStorage.getItem('d03_annex2_data') || '{}');
             
+            // Use saved date if exists
             if (savedData.calcDate) {
-                document.getElementById('calcDate').value = savedData.calcDate;
+                const calcDateField = document.getElementById('calcDate');
+                if (calcDateField) {
+                    calcDateField.value = savedData.calcDate;
+                    console.log('Loaded saved calculation date:', savedData.calcDate);
+                }
             }
+            // Note: If no saved date, setTodaysDate() in loadTaxpayerInfo will set today's date
         }
         
         // Go back to set annex page

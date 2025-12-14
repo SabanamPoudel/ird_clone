@@ -212,7 +212,7 @@
             </div>
             
             <!-- Section 2: अनुसूची १ वा अनुसूची २ -->
-            <div class="section-panel">
+            <div class="section-panel" id="annex2Section" style="display: none;">
                 <div class="section-header">२. अनुसूची १ वा अनुसूची २</div>
                 <table class="annex-table">
                     <tr>
@@ -220,6 +220,7 @@
                         <td class="annex-desc">करको गणना (निकायको लागि) विवरण राख्ने</td>
                         <td class="annex-action">
                             <span class="action-icon" style="color: blue; font-size: 18px;" title="Save">💾</span>
+                            <span id="annex2UpdateText" style="color: blue; font-size: 14px; margin-left: 10px; display: none;">( Update )</span>
                         </td>
                     </tr>
                 </table>
@@ -255,7 +256,7 @@
                         <td class="annex-name">अनुसूची - १३</td>
                         <td class="annex-desc">वित्तिय तथा खरिद बिक्री विवरण</td>
                         <td class="annex-action">
-                            <span class="action-icon" style="color: blue;" title="Submit">💾</span>
+                            <span class="action-icon" style="color: blue; cursor: pointer;" title="Open Annex 13" onclick="openAnnex13()">💾</span>
                         </td>
                     </tr>
                 </table>

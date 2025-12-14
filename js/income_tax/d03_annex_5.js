@@ -280,6 +280,7 @@ function saveAnnex5() {
         discountReason: document.getElementById('discountReason').value,
         discountPercent: document.getElementById('discountPercent').value,
         
+        saved: true,
         savedDate: new Date().toISOString()
     };
     
@@ -353,6 +354,7 @@ function updateAnnex5() {
         discountReason: document.getElementById('discountReason').value,
         discountPercent: document.getElementById('discountPercent').value,
         
+        saved: true,
         savedDate: new Date().toISOString()
     };
     
@@ -361,7 +363,7 @@ function updateAnnex5() {
     // Update main D03 form with business income
     updateMainForm();
     
-    showAlertModal('अनुसूची -५ को डाटा अद्यावधिक भयो।\n(Annex-5 data updated successfully.)');
+    showAlertModal('अनुसूची -५ को डाटा अद्यावधिक भयो।\n(Annex-5 data updated successfully.).');
 }
 
 // Update main D03 form with calculated business income

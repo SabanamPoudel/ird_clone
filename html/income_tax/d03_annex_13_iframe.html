@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अनुसूची - १३ - वित्तिय तथा खरिद बिक्री विवरण</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Mukta', Arial, sans-serif;
+            background-color: #d4e4f7;
+            padding: 0;
+            font-size: 13px;
+        }
+        
+        .page-container {
+            background-color: #d4e4f7;
+            padding: 10px;
+        }
+        
+        .content-wrapper {
+            background-color: #DFE8F6;
+            border: 1px solid #999;
+            padding: 15px;
+        }
+        
+        .page-title-section {
+            background-color: #d4e4f7;
+            padding: 8px 10px;
+            margin-bottom: 15px;
+            border: 1px solid #5b9bd5;
+        }
+        
+        .page-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            text-align: center;
+        }
+        
+        .print-btn {
+            background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+            border: 1px solid #999;
+            padding: 4px 12px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .print-btn:hover {
+            background: linear-gradient(to bottom, #f5f5f5, #d0d0d0);
+        }
+        
+        .back-link-panel {
+            background-color: #dfe9f6;
+            border: 1px solid #5b9bd5;
+            padding: 8px 10px;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        
+        .back-link-text {
+            color: #000;
+        }
+        
+        .back-link-click {
+            color: red;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .info-header {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+        }
+        
+        .info-field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-field label {
+            min-width: 150px;
+            font-weight: 500;
+        }
+        
+        .info-field input {
+            width: 200px;
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            font-size: 13px;
+        }
+        
+        .section-panel {
+            margin-bottom: 15px;
+            border: 1px solid #5b9bd5;
+            background-color: #fff;
+        }
+        
+        .section-header {
+            background: linear-gradient(to bottom, #D9E8FB 0%, #C5D9ED 100%);
+            border-bottom: 1px solid #5b9bd5;
+            padding: 8px 10px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .section-body {
+            padding: 15px;
+        }
+        
+        .financial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        
+        .financial-table tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .financial-table td {
+            padding: 4px 8px;
+            vertical-align: middle;
+            line-height: 1.3;
+        }
+        
+        .financial-table td:first-child {
+            width: 60%;
+            font-size: 12px;
+        }
+        
+        .financial-table td:first-child small {
+            display: block;
+            font-size: 10px;
+            color: #666;
+            margin-top: 1px;
+        }
+        
+        .financial-table td:last-child {
+            width: 40%;
+            text-align: right;
+        }
+        
+        .financial-table input[type="text"] {
+            width: 150px;
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            text-align: right;
+            font-size: 13px;
+        }
+        
+        .financial-table input[readonly] {
+            background-color: #ddd;
+        }
+        
+        .save-btn {
+            background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+            border: 1px solid #999;
+            padding: 6px 16px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 13px;
+            margin: 10px 0;
+        }
+        
+        .save-btn:hover {
+            background: linear-gradient(to bottom, #f5f5f5, #d0d0d0);
+        }
+        
+        .grid-section {
+            margin: 15px 0;
+        }
+        
+        .grid-header {
+            background: linear-gradient(to bottom, #D9E8FB 0%, #C5D9ED 100%);
+            padding: 8px 10px;
+            font-weight: bold;
+            border: 1px solid #5b9bd5;
+            margin-bottom: 5px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .form-field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-field label {
+            min-width: 180px;
+            font-size: 12px;
+        }
+        
+        .form-field input {
+            width: 150px;
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            font-size: 13px;
+            text-align: right;
+            background-color: #fff;
+        }
+        
+        .checkbox-field {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checkbox-field input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .note-box {
+            background-color: #ffff05;
+              border: 1px solid #000;
+              padding: 12px 18px;
+              margin: 10px 0;
+            color: #000;
+              font-size: 15px;
+              max-width: 98%;
+              box-sizing: border-box;
+              font-family: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="content-wrapper">
+            <!-- Print Button -->
+            <button class="print-btn" onclick="window.print()">🖨 Print</button>
+            
+            <!-- Title -->
+            <div class="page-title-section">
+                <div class="page-title">अनुसूची - १३</div>
+            </div>
+            
+            <!-- Back Link -->
+            <div class="back-link-panel">
+                <span class="back-link-text">पछाडि गएर अनुसूची तय गर्न </span>
+                <span class="back-link-click" onclick="window.parent.location.href='d03_set_annex.html'">यहाँ क्लिक</span>
+                <span class="back-link-text"> गर्नुहोस् ।</span>
+            </div>
+            
+            <!-- Info Header -->
+            <div class="info-header">
+                <div class="info-field">
+                    <label>सब्मिशन नं.:</label>
+                    <input type="text" readonly>
+                </div>
+                <div class="info-field">
+                    <label>आर्थिक वर्ष:</label>
+                    <input type="text" readonly>
+                </div>
+                <div class="info-field">
+                    <label>स्थायी लेखा नम्बर:</label>
+                    <input type="text" readonly>
+                </div>
+            </div>
+            
+            <!-- Financial Statement Section -->
+            <div class="section-panel">
+                <div class="section-header">वित्तीय विवरण प्रविष्ट गर्नुहोस्।</div>
+                <div class="section-body">
+                    <table class="financial-table">
+                        <tr>
+                            <td>चुक्ता पूँजि<br><small>Paid-Up capital</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>गत वर्षसम्मको मुनाफा<br><small>Accumulated Profit</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>यो वर्षको मुनाफा<br><small>Current Year Profit</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>वितरित मुनाफा<br><small>Distributed Profit</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>कोषहरु<br><small>Funds</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>व्यवस्था<br><small>Provisions</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>डेफर्ड कर दायित्व<br><small>Deferred tax Liabilities</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>दीर्घकालीन र मध्यकालिन ऋण सापटी<br><small>Long Term And Mid Term Loan</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>चालु दायित्व<br><small>Current Liabilities</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>स्थिर सम्पति(जग्गा)<br><small>Fixed Assets(Land)</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>ह्रासयोग्य सम्पति<br><small>Depreciable Assets</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>लगानी<br><small>Investments</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>व्यापारिक मौज्दात चालु सम्पति<br><small>Trading Stock Current Assets</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>पेश्की सापटी चालु सम्पति<br><small>Advance Current Assets</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>अन्य चालु सम्पति<br><small>Other Current Assets</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>विक्री<br><small>Sales</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>विक्रीको लागत<br><small>Cost Of Goods Sold</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>कूल मुनाफा<br><small>Gross Profit</small></td>
+                            <td><input type="text" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>अन्य आय<br><small>Other Income</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>कूल आय<br><small>Gross Revenue</small></td>
+                            <td><input type="text" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>कर्मचारी खर्च<br><small>Employee Expenses</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>कार्यालय सञ्चालन खर्च<br><small>Office Operating Expenses</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>अन्य खर्च<br><small>Other Expenses</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>व्यवस्था खर्च<br><small>Provision Expenses</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>ह्रास र व्याज अगाडीको मुनाफा<br><small>Profit Before Depreciation And Interest</small></td>
+                            <td><input type="text" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>ह्रास खर्च<br><small>Depreciation Expenses</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>व्याज खर्च<br><small>Interest Expenses</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>कर अघिको मुनाफा<br><small>Profit Before Tax</small></td>
+                            <td><input type="text" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>कर खर्च<br><small>Income Tax Expenses</small></td>
+                            <td><input type="text" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>यो वर्षको कर<br><small>Current Tax Expense</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>विगत वर्षको कर<br><small>Prior Year Tax</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>डेफर्ड कर (+/-)<br><small>Defered Tax</small></td>
+                            <td><input type="text" class="num-input"></td>
+                        </tr>
+                        <tr>
+                            <td>कर पछिको खुद मुनाफा<br><small>Profit After Tax</small></td>
+                            <td><input type="text" readonly></td>
+                        </tr>
+                    </table>
+                    <button class="save-btn">💾 Save</button>
+                </div>
+            </div>
+            
+            <!-- Less than 1 Lakh Section -->
+            <div class="section-panel">
+                <div class="section-header">शुरु मौज्दात, खरिद, विक्री, लिनबाँकी वा दिनबाँकी मध्ये सबै रकम रु १ लाख वा सो भन्दा कम हुनेको एकमुष्ट विवरण</div>
+                <div class="section-body" style="background-color: #dfe9f6;">
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label>वर्षको शुरुको लिन बाकी (दिन बाकी) रकम:</label>
+                            <input type="text">
+                        </div>
+                        <div class="form-field">
+                            <label>पुजिगत सेवा खरिद:</label>
+                            <input type="text">
+                        </div>
+                        <div class="form-field">
+                            <label>अन्य सेवा खरिद:</label>
+                            <input type="text">
+                        </div>
+                        <div class="form-field">
+                            <label>यो वर्ष को अन्य समान खरिद:</label>
+                            <input type="text">
+                        </div>
+                        <div class="form-field">
+                            <label>यो वर्ष को पुजिगत समान खरिद:</label>
+                            <input type="text">
+                        </div>
+                        <div class="form-field">
+                            <label>यो वर्ष को सेवा बिक्रि:</label>
+                            <input type="text">
+                        </div>
+                        <div class="form-field">
+                            <label>यो वर्षको समान बिक्रि:</label>
+                            <input type="text">
+                        </div>
+                        <div class="form-field">
+                            <label>वर्षको अन्तमा लिन बाकी (दिन बाकी) रकम:</label>
+                            <input type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TDS Section -->
+            <div class="section-panel">
+                <div class="section-header">अग्रिम कर कट्टी सम्बन्धी विवरण (अनिवार्य भर्नुपर्ने)</div>
+                <div class="section-body" style="background-color: #dfe9f6;">
+                    <div class="form-field" style="margin-bottom: 10px;">
+                        <label style="min-width: 450px;">यस आ. ब. मा दाखिला भएको अग्रिम कर कट्टी रकम रू.</label>
+                        <input type="text" style="width: 150px; background-color: #fff;">
+                    </div>
+                    <div class="form-field" style="margin-bottom: 10px;">
+                        <label style="min-width: 450px;">आसाढ मसान्त सम्म अग्रिम कर कट्टी रकम दाखिला गर्न बाँकि (TDS Payable) जम्मा रू.</label>
+                        <input type="text" style="width: 150px; background-color: #fff;">
+                    </div>
+                    <div class="form-field">
+                        <label style="min-width: 450px;">TDS Payable मध्‍य आय विवरण पेश गरेको मितिसम्म दाखिला गर्न बाँकी रकम रू.</label>
+                        <input type="text" style="width: 150px; background-color: #fff;">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Employee Wages Section -->
+            <div class="section-panel">
+                <div class="section-header">वार्षिक कर्मचारी खर्च (तलब / ज्याला) भुक्तानी गर्नेले दिनुपर्ने विवरण</div>
+                <div class="section-body" style="background-color: #dfe9f6;">
+                    <div class="checkbox-field" style="background-color: #dfe9f6;">
+                        <input type="checkbox" id="wagesCheck" checked>
+                        <label for="wagesCheck">बार्षिक रु १ करोडभन्दा बढीको कर्मचारी खर्च (तलब तथा ज्याला) भुक्तानि भएको</label>
+                    </div>
+                    
+                    <!-- Excel Upload -->
+                    <div id="excelUploadSection" style="border: 1px solid #ccc; padding: 15px; margin: 10px 0; background-color: #e8f0fe;">
+                        <strong style="display: block; margin-bottom: 10px; color: #333;">Load From Excel File</strong>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <label style="margin: 0; white-space: nowrap;">Load XLS:</label>
+                            <input type="text" readonly style="flex: 1; padding: 5px; border: 1px solid #999; background: #fff;">
+                            <button class="save-btn" style="margin: 0; padding: 5px 15px; background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);">Browse...</button>
+                            <button class="save-btn" style="margin: 0; padding: 5px 15px; background: linear-gradient(to bottom, #D9E8FB, #C5D9ED);">📤 Upload</button>
+                            <button class="save-btn" style="margin: 0; padding: 5px 15px; background: linear-gradient(to bottom, #90EE90, #7FD87F);">📄 View Sample</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Monthly Wages Table -->
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                            <thead>
+                                <tr style="background: linear-gradient(to bottom, #D9E8FB 0%, #C5D9ED 100%);">
+                                    <th style="border: 1px solid #999; padding: 8px; text-align: center;">सि.नं</th>
+                                    <th style="border: 1px solid #999; padding: 8px;">महिना</th>
+                                    <th style="border: 1px solid #999; padding: 8px;">लागत खर्चमा तलव ज्याला खर्च रु.</th>
+                                    <th style="border: 1px solid #999; padding: 8px;">प्रशासनिक तथा विक्रि वितरणमा कर्मचारी खर्च (ज्याला समेत)</th>
+                                    <th style="border: 1px solid #999; padding: 8px;">जम्मा तलव ज्याला खर्च रकम रु.</th>
+                                    <th style="border: 1px solid #999; padding: 8px;">पारिश्रमिक कर कट्टी दाखिला रकम रु.</th>
+                                    <th style="border: 1px solid #999; padding: 8px;">सबै भुक्तानींमा कुल जम्मा कर कट्टी दाखिला रकम रु.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center; background-color: #fff;">1</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;">श्रावण</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td></tr>
+                                <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center; background-color: #fff;">2</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;">भाद्र</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td></tr>
+                                <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center; background-color: #fff;">3</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;">असोज</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td></tr>
+                                <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center; background-color: #fff;">4</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;">कार्तिक</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td></tr>
+                                <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center; background-color: #fff;">5</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;">मंसिर</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td></tr>
+                                <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center; background-color: #fff;">6</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;">पुष</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td></tr>
+                                <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center; background-color: #fff;">7</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;">माघ</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td></tr>
+                                <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center; background-color: #fff;">8</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;">फाल्गुन</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td></tr>
+                                <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center; background-color: #fff;">9</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;">चैत्र</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td></tr>
+                                <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center; background-color: #fff;">10</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;">बैसाख</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td></tr>
+                                <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center; background-color: #fff;">11</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;">जेठ</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td></tr>
+                                <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center; background-color: #fff;">12</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;">आषाढ़</td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td><td style="border: 1px solid #ddd; padding: 6px; background-color: #fff;"><input type="text" style="width: 100%; border: none; text-align: right; background-color: #fff;"></td></tr>
+                                <tr style="background-color: #f0f0f0; font-weight: bold;">
+                                    <td colspan="2" style="border: 1px solid #999; padding: 6px;">जम्मा रकम</td>
+                                    <td style="border: 1px solid #999; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #ddd;"></td>
+                                    <td style="border: 1px solid #999; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #ddd;"></td>
+                                    <td style="border: 1px solid #999; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #ddd;"></td>
+                                    <td style="border: 1px solid #999; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #ddd;"></td>
+                                    <td style="border: 1px solid #999; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #ddd;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="save-btn">💾 Save</button>
+                </div>
+            </div>
+            
+            <!-- Income vs Financial Statement Comparison -->
+            <div class="section-panel">
+                <div class="section-header">आय विवरण र वित्तीय विवरण अनुसार खर्चको कट्टी विवरण</div>
+                <div class="section-body">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: linear-gradient(to bottom, #D9E8FB 0%, #C5D9ED 100%);">
+                                <th style="border: 1px solid #999; padding: 8px; width: 50px;">सि.नं</th>
+                                <th style="border: 1px solid #999; padding: 8px;">विवरण</th>
+                                <th style="border: 1px solid #999; padding: 8px; width: 150px;">वित्तिय विवरण अनुसार दावी (क)</th>
+                                <th style="border: 1px solid #999; padding: 8px; width: 150px;">आय विवरण अनुसार दावी (ख)</th>
+                                <th style="border: 1px solid #999; padding: 8px; width: 120px;">फरक (क - ख)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">18</td><td style="border: 1px solid #ddd; padding: 6px;">दफा १४ बमोजिम कट्टी हुने व्याज खर्च</td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
+                            <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">19</td><td style="border: 1px solid #ddd; padding: 6px;">दफा १५ बमोजिम कट्टी हुने व्यापार मौज्दातको लागतको खर्च</td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
+                            <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">20</td><td style="border: 1px solid #ddd; padding: 6px;">दफा १६ बमोजिम कट्टी हुने मर्मत तथा सुधार खर्च</td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
+                            <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">21</td><td style="border: 1px solid #ddd; padding: 6px;">दफा १७ बमोजिम कट्टी हुने प्रदूषण नियन्त्रण खर्च</td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
+                            <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">22</td><td style="border: 1px solid #ddd; padding: 6px;">दफा १८ बमोजिम कट्टी हुने अनुसन्धान र विकास खर्च</td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
+                            <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">23</td><td style="border: 1px solid #ddd; padding: 6px;">दफा १९ बमोजिम कट्टी हुने ह्रास कट्टी खर्च</td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
+                            <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">24</td><td style="border: 1px solid #ddd; padding: 6px;">दफा ५९(१) बमोजिम कट्टी हुने जगेडा रकम</td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
+                            <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">25</td><td style="border: 1px solid #ddd; padding: 6px;">उपरोक्त वाहेक आयकर ऐन २०५८ वमोजिम कट्टी हुने अन्य खर्चहरु (विवरण संलग्न गर्ने)</td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
+                            <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">26</td><td style="border: 1px solid #ddd; padding: 6px;">विदेशमा तिरेको कर (दफा ७१.४)</td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
+                            <tr style="background-color: #f0f0f0; font-weight: bold;">
+                                <td colspan="2" style="border: 1px solid #999; padding: 6px;">जम्मा</td>
+                                <td style="border: 1px solid #999; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #ddd;"></td>
+                                <td style="border: 1px solid #999; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #ddd;"></td>
+                                <td style="border: 1px solid #999; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #ddd;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="save-btn">💾 Save</button>
+                    <button class="save-btn" style="background: linear-gradient(to bottom, #ff6666, #ff4444);">🔄 Reset</button>
+                </div>
+            </div>
+            
+            <!-- Greater than 1 Lakh Section -->
+            <div class="section-panel">
+                <div class="section-header">शुरु मौज्दात, खरिद, बिक्री, लिन बाँकी वा दिन बाँकी मध्ये कुनै रकम रु १ लाख भन्दा बढी हुनेको विवरण</div>
+                <div class="section-body">
+                    <div class="checkbox-field">
+                        <input type="checkbox" id="transCheck">
+                        <label for="transCheck">कुनै पनि व्यक्ति / संस्था संग आर्थिक वर्ष भरिमा रू एक लाख भन्दा बढीको कारोबार छैन</label>
+                    </div>
+                    <div class="note-box" style="max-width: 600px;">
+                        <div style="background: #ffff05; padding: 0 4px;">स्था. ले. नं. हुनेको हकमा अनिवार्य रूपमा स्था. ले. नं. (PAN) उल्लेख गर्नुहोला ।</div>
+                    </div>
+                    
+                    <!-- Excel Upload for Transactions -->
+                    <div style="border: 1px solid #ddd; padding: 10px; margin: 10px 0; background-color: #f9f9f9;">
+                        <strong>Load From Excel File</strong>
+                        <div style="display: flex; gap: 10px; margin-top: 10px; align-items: center;">
+                            <label>Load XLS:</label>
+                            <input type="file" style="flex: 1;">
+                            <button class="save-btn" style="margin: 0;">📤 Upload</button>
+                            <button class="save-btn" style="margin: 0;">📄 View Sample</button>
+                        </div>
+                    </div>
+                    
+                    <div style="margin: 10px 0;">
+                        <button id="addRowBtn" style="background: none; border: none; color: #006400; font-size: 20px; display: inline-flex; align-items: center; gap: 4px; cursor: pointer;">
+                            <img src="https://img.icons8.com/color/24/000000/add--v1.png" style="vertical-align: middle;"> Add New
+                        </button>
+                        <button id="deleteAllBtn" style="background: none; border: none; color: #c00; font-size: 20px; display: inline-flex; align-items: center; gap: 4px; cursor: pointer;">
+                            <img src="https://img.icons8.com/color/24/000000/delete-sign.png" style="vertical-align: middle;"> Delete All
+                        </button>
+                        <button id="checkSumBtn" style="background: none; border: none; color: #003366; font-size: 18px; margin-left: 20px; cursor: pointer;">Check Sum</button>
+                    </div>
+                    
+                    <!-- Transaction Details Grid -->
+                    <div style="overflow-x: auto;">
+                        <table id="transactionTable" style="width: 100%; border-collapse: separate; border-spacing: 0; margin: 15px 0; border: 2px solid #b5cbe8; background: #fff;">
+                            <thead>
+                                <tr style="background: #f3f6fa;">
+                                    <th style="border: 1px solid #b5cbe8; padding: 8px; width: 30px;">स्थायी लेखा नम्बर</th>
+                                    <th style="border: 1px solid #b5cbe8; padding: 8px; width: 250px;">व्यवसायको नाम</th>
+                                    <th style="border: 1px solid #b5cbe8; padding: 8px; width: 150px;">वर्षको शुरुको लिन बाकी (दिन बाकी) रकम</th>
+                                    <th style="border: 1px solid #b5cbe8; padding: 8px; width: 120px;">पुजिगत सेवा खरिद</th>
+                                    <th style="border: 1px solid #b5cbe8; padding: 8px; width: 120px;">अन्य सेवा खरिद</th>
+                                    <th style="border: 1px solid #b5cbe8; padding: 8px; width: 120px;">पुजिगत समान खरिद</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionGrid">
+                                <!-- Rows will be added dynamically -->
+                            </tbody>
+                        </table>
+                                    <script>
+                                    // Add row to transaction grid
+                                    document.getElementById('addRowBtn').onclick = function() {
+                                        const grid = document.getElementById('transactionGrid');
+                                        const row = document.createElement('tr');
+                                        row.innerHTML = `
+                                            <td style="border: 1px solid #b5cbe8; padding: 6px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
+                                            <td style="border: 1px solid #b5cbe8; padding: 6px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
+                                            <td style="border: 1px solid #b5cbe8; padding: 6px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
+                                            <td style="border: 1px solid #b5cbe8; padding: 6px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
+                                            <td style="border: 1px solid #b5cbe8; padding: 6px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
+                                            <td style="border: 1px solid #b5cbe8; padding: 6px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
+                                        `;
+                                        grid.appendChild(row);
+                                    };
+                                    // Optionally, clear all rows
+                                    document.getElementById('deleteAllBtn').onclick = function() {
+                                        document.getElementById('transactionGrid').innerHTML = '';
+                                    };
+                                    </script>
+                    </div>
+                    
+                    <!-- Totals Section -->
+                    <div style="border: 1px solid #5b9bd5; padding: 15px; background-color: #f9f9f9;">
+                        <h4 style="margin-bottom: 10px; color: #333;">जम्मा</h4>
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label>वर्षको शुरुको लिन बाकी (दिन बाकी) रकम:</label>
+                                <input type="text" readonly style="background: #ddd;">
+                            </div>
+                            <div class="form-field">
+                                <label>पुजिगत सेवा खरिद:</label>
+                                <input type="text" readonly style="background: #ddd;">
+                            </div>
+                            <div class="form-field">
+                                <label>अन्य सेवा खरिद:</label>
+                                <input type="text" readonly style="background: #ddd;">
+                            </div>
+                            <div class="form-field">
+                                <label>पुजिगत समान खरिद:</label>
+                                <input type="text" readonly style="background: #ddd;">
+                            </div>
+                            <div class="form-field">
+                                <label>अन्य समान खरिद:</label>
+                                <input type="text" readonly style="background: #ddd;">
+                            </div>
+                            <div class="form-field">
+                                <label>सेवा बिक्रि:</label>
+                                <input type="text" readonly style="background: #ddd;">
+                            </div>
+                            <div class="form-field">
+                                <label>समान बिक्रि:</label>
+                                <input type="text" readonly style="background: #ddd;">
+                            </div>
+                            <div class="form-field">
+                                <label>वर्षको अन्तमा लिन बाकी (दिन बाकी) रकम:</label>
+                                <input type="text" readonly style="background: #ddd;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Save Transaction Button -->
+            <button class="save-btn">💾 Save Transaction</button>
+            
+            <!-- Back Link Footer -->
+            <div class="back-link-panel" style="margin-top: 20px;">
+                <span class="back-link-text">पछाडि गएर अनुसूची तय गर्न </span>
+                <span class="back-link-click" onclick="window.parent.location.href='d03_set_annex.html'">यहाँ क्लिक</span>
+                <span class="back-link-text"> गर्नुहोस् ।</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Toggle Excel upload section based on checkbox
+        document.getElementById('wagesCheck').addEventListener('change', function() {
+            const uploadSection = document.getElementById('excelUploadSection');
+            if (this.checked) {
+                uploadSection.style.display = 'block';
+            } else {
+                uploadSection.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

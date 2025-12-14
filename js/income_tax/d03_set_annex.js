@@ -96,7 +96,12 @@ function openAnnex10Modal() {
     window.location.href = 'd03_annex_10.html';
 }
 
-// Open Annex 13 in modal (placeholder)
+// Open Annex 13 in new page
 function openAnnex13Modal() {
-    alert('अनुसूची - १३: कर दाबी गरिएको विवरण\nयो अनुसूची हालै उपलब्ध छैन।\n(This annex is not available yet.)');
+    window.location.href = 'd03_annex_13.html';
+}
+
+// Function to be called directly from onclick
+function openAnnex13() {
+    window.location.href = 'd03_annex_13.html';
 }
