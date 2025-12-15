@@ -916,12 +916,11 @@
                 totalTax: document.getElementById('totalTax').value,
                 saved: true
             };
-            
             localStorage.setItem('d03_annex2_data', JSON.stringify(annex2Data));
-            
+            // Set flag for set_annex page to show update label
+            localStorage.setItem('d03_annex2_saved', '1');
             // Show success modal
             document.getElementById('successModal').style.display = 'flex';
-            
             // Change button text to "Update Annex 2"
             const saveBtn = document.querySelector('.save-btn');
             if (saveBtn) {

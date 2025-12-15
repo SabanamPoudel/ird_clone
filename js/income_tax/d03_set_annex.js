@@ -10,6 +10,47 @@ document.addEventListener('DOMContentLoaded', function() {
     setupAnnexClickHandlers();
     checkAnnex5Data();
     checkAnnex10Data();
+    checkAnnex2Visibility();
+    checkAnnex2Update();
+    checkAnnex13Update();
+// Show ( Update ) label for Annex-13 if saved
+function checkAnnex13Update() {
+    const updateLabel = document.getElementById('annex13UpdateLabel');
+    const annex13Saved = localStorage.getItem('d03_annex13_saved');
+    if (updateLabel) {
+        if (annex13Saved === '1') {
+            updateLabel.style.display = 'inline';
+        } else {
+            updateLabel.style.display = 'none';
+        }
+    }
+}
+// Show ( Update ) label for Annex-2 if saved
+function checkAnnex2Update() {
+    const updateLabel = document.getElementById('annex2UpdateText');
+    const annex2Saved = localStorage.getItem('d03_annex2_saved');
+    if (updateLabel) {
+        if (annex2Saved === '1') {
+            updateLabel.style.display = 'inline';
+        } else {
+            updateLabel.style.display = 'none';
+        }
+    }
+}
+// Show Annex-2 section if Annex-5 was saved
+function checkAnnex2Visibility() {
+    const annex2Section = document.getElementById('annex2Section');
+    const showAnnex2 = localStorage.getItem('d03_show_annex2');
+    if (annex2Section) {
+        if (showAnnex2 === '1') {
+            annex2Section.style.display = '';
+        } else {
+            annex2Section.style.display = 'none';
+        }
+    }
+    // Optionally clear the flag after showing, if you want it to only show once
+    // localStorage.removeItem('d03_show_annex2');
+}
 });
 
 // Check if Annex 5 data exists and show Business1 link
@@ -73,6 +114,8 @@ function openAnnex2Modal() {
 
 // Open Annex 5 in new page with iframe
 function openAnnex5Modal() {
+    // Set flag to show Annex-2 after returning
+    localStorage.setItem('d03_show_annex2', '1');
     window.location.href = 'd03_annex_5_iframe.html';
 }
 

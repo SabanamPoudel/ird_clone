@@ -263,7 +263,7 @@
             <!-- Back Link -->
             <div class="back-link-panel">
                 <span class="back-link-text">पछाडि गएर अनुसूची तय गर्न </span>
-                <span class="back-link-click" onclick="window.parent.location.href='d03_set_annex.html'">यहाँ क्लिक</span>
+                <span class="back-link-click" id="backLinkBtn">यहाँ क्लिक</span>
                 <span class="back-link-text"> गर्नुहोस् ।</span>
             </div>
             
@@ -271,19 +271,54 @@
             <div class="info-header">
                 <div class="info-field">
                     <label>सब्मिशन नं.:</label>
-                    <input type="text" readonly>
+                    <input type="text" id="annex13SubmissionNo" readonly>
                 </div>
                 <div class="info-field">
                     <label>आर्थिक वर्ष:</label>
-                    <input type="text" readonly>
+                    <input type="text" id="annex13FiscalYear" readonly>
                 </div>
                 <div class="info-field">
                     <label>स्थायी लेखा नम्बर:</label>
-                    <input type="text" readonly>
+                    <input type="text" id="annex13PAN" readonly>
                 </div>
             </div>
             
             <!-- Financial Statement Section -->
+
+                        <script>
+                        // Auto-fill submission no, fiscal year, and PAN from session/local storage
+                        window.addEventListener('DOMContentLoaded', function() {
+                            let submissionNo = '';
+                            let fiscalYear = '';
+                            let pan = '';
+                            // Try sessionStorage first
+                            const currentUser = sessionStorage.getItem('d03_current_registration');
+                            if (currentUser) {
+                                const userData = JSON.parse(currentUser);
+                                submissionNo = userData.submissionNumber || userData.submissionNo || '';
+                                fiscalYear = userData.fiscalYear || '';
+                                pan = userData.pan || '';
+                            } else {
+                                // Fallback to localStorage (d03Users or d03_return_data)
+                                const d03Users = JSON.parse(localStorage.getItem('d03Users') || '[]');
+                                if (d03Users.length > 0) {
+                                    const lastUser = d03Users[d03Users.length - 1];
+                                    submissionNo = lastUser.submissionNo || '';
+                                    fiscalYear = lastUser.fiscalYear || '';
+                                    pan = lastUser.pan || '';
+                                } else {
+                                    // Try d03_return_data
+                                    const returnData = JSON.parse(localStorage.getItem('d03_return_data') || '{}');
+                                    submissionNo = returnData.submissionNumber || '';
+                                    fiscalYear = returnData.fiscalYear || '';
+                                    pan = returnData.pan || '';
+                                }
+                            }
+                            document.getElementById('annex13SubmissionNo').value = submissionNo;
+                            document.getElementById('annex13FiscalYear').value = fiscalYear;
+                            document.getElementById('annex13PAN').value = pan;
+                        });
+                        </script>
             <div class="section-panel">
                 <div class="section-header">वित्तीय विवरण प्रविष्ट गर्नुहोस्।</div>
                 <div class="section-body">
@@ -350,78 +385,315 @@
                         </tr>
                         <tr>
                             <td>विक्री<br><small>Sales</small></td>
-                            <td><input type="text" class="num-input"></td>
+                            <td><input type="text" class="num-input" id="sales"></td>
                         </tr>
                         <tr>
                             <td>विक्रीको लागत<br><small>Cost Of Goods Sold</small></td>
-                            <td><input type="text" class="num-input"></td>
+                            <td><input type="text" class="num-input" id="cogs"></td>
                         </tr>
                         <tr>
                             <td>कूल मुनाफा<br><small>Gross Profit</small></td>
-                            <td><input type="text" readonly></td>
+                            <td><input type="text" readonly id="grossProfit"></td>
                         </tr>
                         <tr>
                             <td>अन्य आय<br><small>Other Income</small></td>
-                            <td><input type="text" class="num-input"></td>
+                            <td><input type="text" class="num-input" id="otherIncome"></td>
                         </tr>
                         <tr>
                             <td>कूल आय<br><small>Gross Revenue</small></td>
-                            <td><input type="text" readonly></td>
+                            <td><input type="text" readonly id="grossRevenue"></td>
                         </tr>
                         <tr>
                             <td>कर्मचारी खर्च<br><small>Employee Expenses</small></td>
-                            <td><input type="text" class="num-input"></td>
+                            <td><input type="text" class="num-input" id="employeeExpenses"></td>
                         </tr>
                         <tr>
                             <td>कार्यालय सञ्चालन खर्च<br><small>Office Operating Expenses</small></td>
-                            <td><input type="text" class="num-input"></td>
+                            <td><input type="text" class="num-input" id="officeExpenses"></td>
                         </tr>
                         <tr>
                             <td>अन्य खर्च<br><small>Other Expenses</small></td>
-                            <td><input type="text" class="num-input"></td>
+                            <td><input type="text" class="num-input" id="otherExpenses"></td>
                         </tr>
                         <tr>
                             <td>व्यवस्था खर्च<br><small>Provision Expenses</small></td>
-                            <td><input type="text" class="num-input"></td>
+                            <td><input type="text" class="num-input" id="provisionExpenses"></td>
                         </tr>
                         <tr>
                             <td>ह्रास र व्याज अगाडीको मुनाफा<br><small>Profit Before Depreciation And Interest</small></td>
-                            <td><input type="text" readonly></td>
+                            <td><input type="text" readonly id="profitBeforeDepInt"></td>
                         </tr>
                         <tr>
                             <td>ह्रास खर्च<br><small>Depreciation Expenses</small></td>
-                            <td><input type="text" class="num-input"></td>
+                            <td><input type="text" class="num-input" id="depreciationExpenses"></td>
                         </tr>
                         <tr>
                             <td>व्याज खर्च<br><small>Interest Expenses</small></td>
-                            <td><input type="text" class="num-input"></td>
+                            <td><input type="text" class="num-input" id="interestExpenses"></td>
                         </tr>
                         <tr>
                             <td>कर अघिको मुनाफा<br><small>Profit Before Tax</small></td>
-                            <td><input type="text" readonly></td>
+                            <td><input type="text" readonly id="profitBeforeTax"></td>
                         </tr>
                         <tr>
                             <td>कर खर्च<br><small>Income Tax Expenses</small></td>
-                            <td><input type="text" readonly></td>
+                            <td><input type="text" readonly id="incomeTaxExpenses"></td>
                         </tr>
                         <tr>
                             <td>यो वर्षको कर<br><small>Current Tax Expense</small></td>
-                            <td><input type="text" class="num-input"></td>
+                            <td><input type="text" class="num-input" id="currentTaxExpense"></td>
                         </tr>
                         <tr>
                             <td>विगत वर्षको कर<br><small>Prior Year Tax</small></td>
-                            <td><input type="text" class="num-input"></td>
+                            <td><input type="text" class="num-input" id="priorYearTax"></td>
                         </tr>
                         <tr>
                             <td>डेफर्ड कर (+/-)<br><small>Defered Tax</small></td>
-                            <td><input type="text" class="num-input"></td>
+                            <td><input type="text" class="num-input" id="deferredTax"></td>
                         </tr>
                         <tr>
                             <td>कर पछिको खुद मुनाफा<br><small>Profit After Tax</small></td>
-                            <td><input type="text" readonly></td>
+                            <td><input type="text" readonly id="profitAfterTax"></td>
                         </tr>
                     </table>
                     <button class="save-btn">💾 Save</button>
+                                                        <script>
+                                                        // Auto-calculate difference and totals for आय विवरण र वित्तीय विवरण अनुसार खर्चको कट्टी विवरण
+                                                        document.addEventListener('DOMContentLoaded', function() {
+                                                            function parseNum(val) {
+                                                                var n = parseFloat((val||'').replace(/,/g, ''));
+                                                                return isNaN(n) ? 0 : n;
+                                                            }
+                                                            // Find the table for this section
+                                                            var sectionHeader = Array.from(document.querySelectorAll('.section-header')).find(h => h.textContent.includes('आय विवरण र वित्तीय विवरण अनुसार खर्चको कट्टी विवरण'));
+                                                            if (!sectionHeader) return;
+                                                            var section = sectionHeader.parentElement;
+                                                            var table = section.querySelector('table');
+                                                            if (!table) return;
+                                                            var rows = Array.from(table.querySelectorAll('tbody tr')).filter(tr => tr.querySelectorAll('input').length === 4 || tr.querySelectorAll('input').length === 3);
+                                                            var totalRow = table.querySelector('tr[style*="background-color: #f0f0f0"]');
+                                                            function recalc() {
+                                                                var sumA = 0, sumB = 0, sumDiff = 0;
+                                                                rows.forEach(function(tr) {
+                                                                    var inputs = tr.querySelectorAll('input');
+                                                                    if (inputs.length < 3) return;
+                                                                    var a = parseNum(inputs[0].value);
+                                                                    var b = parseNum(inputs[1].value);
+                                                                    var diff = a - b;
+                                                                    inputs[2].value = diff.toFixed(2);
+                                                                    sumA += a;
+                                                                    sumB += b;
+                                                                    sumDiff += diff;
+                                                                });
+                                                                if (totalRow) {
+                                                                    var totalInputs = totalRow.querySelectorAll('input');
+                                                                    if (totalInputs.length === 3) {
+                                                                        totalInputs[0].value = sumA.toFixed(2);
+                                                                        totalInputs[1].value = sumB.toFixed(2);
+                                                                        totalInputs[2].value = sumDiff.toFixed(2);
+                                                                    }
+                                                                }
+                                                            }
+                                                            // Attach event listeners
+                                                            rows.forEach(function(tr) {
+                                                                var inputs = tr.querySelectorAll('input');
+                                                                if (inputs.length < 2) return;
+                                                                inputs[0].addEventListener('input', recalc);
+                                                                inputs[1].addEventListener('input', recalc);
+                                                            });
+                                                            recalc();
+                                                        });
+                                                        </script>
+                                                        <!-- Modal for Wages Save Success -->
+                                                        <div id="wagesSaveModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);z-index:9999;align-items:center;justify-content:center;">
+                                                                <div style="background:#ced9e7;border:2px solid #4a90e2;box-shadow:0 2px 12px #0002;border-radius:7px;min-width:340px;max-width:90vw;padding:0 0 18px 0;display:flex;flex-direction:column;align-items:stretch;">
+                                                                        <div style="background:#eaf3fb;border-bottom:1px solid #b5d1f3;padding:10px 18px 8px 18px;border-radius:7px 7px 0 0;display:flex;align-items:center;gap:8px;">
+                                                                                <span style="color:#2176c1;font-size:20px;line-height:1;">&#9432;</span>
+                                                                                <span style="color:#2176c1;font-weight:bold;font-size:16px;">SUCCESS</span>
+                                                                        </div>
+                                                                        <div style="padding:22px 18px 10px 18px;text-align:left;font-size:16px;color:#222;display:flex;align-items:center;gap:10px;">
+                                                                                <span style="color:#2176c1;font-size:28px;">&#8505;</span>
+                                                                                <span>Successfully Saved.</span>
+                                                                        </div>
+                                                                        <div style="text-align:center;margin-top:8px;">
+                                                                                <button id="okWagesSaveModalBtn" style="background:#eaf3fb;border:1px solid #b5d1f3;color:#2176c1;font-weight:bold;padding:4px 28px;font-size:15px;border-radius:3px;cursor:pointer;">OK</button>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                        <script>
+                                                        // Attach modal logic to the Save button in the wages section
+                                                        document.addEventListener('DOMContentLoaded', function() {
+                                                            // Find the Save button in the wages section
+                                                            var wagesSection = document.querySelector('.section-header')?.textContent.includes('वार्षिक कर्मचारी खर्च')
+                                                                ? document.querySelector('.section-header').parentElement : null;
+                                                            var saveBtn = wagesSection ? wagesSection.querySelector('button.save-btn') : null;
+                                                            var modal = document.getElementById('wagesSaveModal');
+                                                            var okBtn = document.getElementById('okWagesSaveModalBtn');
+                                                            if (saveBtn && modal && okBtn) {
+                                                                saveBtn.addEventListener('click', function(e) {
+                                                                    e.preventDefault();
+                                                                    modal.style.display = 'flex';
+                                                                });
+                                                                okBtn.onclick = function() {
+                                                                    modal.style.display = 'none';
+                                                                };
+                                                            }
+                                                        });
+                                                        </script>
+                                                        <!-- Modal for Wages Save Success -->
+                                                        <div id="wagesSaveModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);z-index:9999;align-items:center;justify-content:center;">
+                                                                <div style="background:#ced9e7;border:2px solid #4a90e2;box-shadow:0 2px 12px #0002;border-radius:7px;min-width:340px;max-width:90vw;padding:0 0 18px 0;display:flex;flex-direction:column;align-items:stretch;">
+                                                                        <div style="background:#eaf3fb;border-bottom:1px solid #b5d1f3;padding:10px 18px 8px 18px;border-radius:7px 7px 0 0;display:flex;align-items:center;gap:8px;">
+                                                                                <span style="color:#2176c1;font-size:20px;line-height:1;">&#9432;</span>
+                                                                                <span style="color:#2176c1;font-weight:bold;font-size:16px;">SUCCESS</span>
+                                                                        </div>
+                                                                        <div style="padding:22px 18px 10px 18px;text-align:left;font-size:16px;color:#222;display:flex;align-items:center;gap:10px;">
+                                                                                <span style="color:#2176c1;font-size:28px;">&#8505;</span>
+                                                                                <span>Successfully Saved.</span>
+                                                                        </div>
+                                                                        <div style="text-align:center;margin-top:8px;">
+                                                                                <button id="okWagesSaveModalBtn" style="background:#eaf3fb;border:1px solid #b5d1f3;color:#2176c1;font-weight:bold;padding:4px 28px;font-size:15px;border-radius:3px;cursor:pointer;">OK</button>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                        <script>
+                                                        // Attach modal logic to the correct Save button
+                                                        document.addEventListener('DOMContentLoaded', function() {
+                                                            // Find the Save button in the wages section
+                                                            var section = document.querySelector('.section-header:contains("वार्षिक कर्मचारी खर्च")').parentElement;
+                                                            var saveBtn = Array.from(section.querySelectorAll('button.save-btn')).find(btn => btn.textContent.includes('Save'));
+                                                            var modal = document.getElementById('wagesSaveModal');
+                                                            var okBtn = document.getElementById('okWagesSaveModalBtn');
+                                                            if (saveBtn && modal && okBtn) {
+                                                                saveBtn.addEventListener('click', function(e) {
+                                                                    e.preventDefault();
+                                                                    modal.style.display = 'flex';
+                                                                });
+                                                                okBtn.onclick = function() {
+                                                                    modal.style.display = 'none';
+                                                                };
+                                                            }
+                                                        });
+                                                        </script>
+                                                        <!-- Modal for Wages Save Success -->
+                                                        <div id="wagesSaveModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);z-index:9999;align-items:center;justify-content:center;">
+                                                                <div style="background:#ced9e7;border:2px solid #4a90e2;box-shadow:0 2px 12px #0002;border-radius:7px;min-width:340px;max-width:90vw;padding:0 0 18px 0;display:flex;flex-direction:column;align-items:stretch;">
+                                                                        <div style="background:#eaf3fb;border-bottom:1px solid #b5d1f3;padding:10px 18px 8px 18px;border-radius:7px 7px 0 0;display:flex;align-items:center;gap:8px;">
+                                                                                <span style="color:#2176c1;font-size:20px;line-height:1;">&#9432;</span>
+                                                                                <span style="color:#2176c1;font-weight:bold;font-size:16px;">SUCCESS</span>
+                                                                        </div>
+                                                                        <div style="padding:22px 18px 10px 18px;text-align:left;font-size:16px;color:#222;display:flex;align-items:center;gap:10px;">
+                                                                                <span style="color:#2176c1;font-size:28px;">&#8505;</span>
+                                                                                <span>Successfully Saved.</span>
+                                                                        </div>
+                                                                        <div style="text-align:center;margin-top:8px;">
+                                                                                <button id="okWagesSaveModalBtn" style="background:#eaf3fb;border:1px solid #b5d1f3;color:#2176c1;font-weight:bold;padding:4px 28px;font-size:15px;border-radius:3px;cursor:pointer;">OK</button>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                        <script>
+                                                        // Bind Save button to show modal
+                                                        document.addEventListener('DOMContentLoaded', function() {
+                                                            // Find the Save button in the wages section
+                                                            var wagesSection = document.querySelector('.section-header:contains("वार्षिक कर्मचारी खर्च")').parentElement;
+                                                            var saveBtn = wagesSection.querySelector('.save-btn');
+                                                            var modal = document.getElementById('wagesSaveModal');
+                                                            var okBtn = document.getElementById('okWagesSaveModalBtn');
+                                                            if (saveBtn && modal && okBtn) {
+                                                                saveBtn.addEventListener('click', function(e) {
+                                                                    e.preventDefault();
+                                                                    modal.style.display = 'flex';
+                                                                });
+                                                                okBtn.onclick = function() {
+                                                                    modal.style.display = 'none';
+                                                                };
+                                                            }
+                                                        });
+                                                        </script>
+                                                        <div id="saveModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);z-index:9999;align-items:center;justify-content:center;">
+                                                            <div style="background:#ced9e7;border:2px solid #4a90e2;box-shadow:0 2px 12px #0002;border-radius:7px;min-width:340px;max-width:90vw;padding:0 0 18px 0;">
+                                                                <div style="background:#eaf3fb;border-bottom:1px solid #b5d1f3;padding:10px 18px 8px 18px;border-radius:7px 7px 0 0;display:flex;align-items:center;gap:8px;">
+                                                                    <span style="color:#2176c1;font-size:20px;line-height:1;">&#9432;</span>
+                                                                    <span style="color:#2176c1;font-weight:bold;font-size:16px;">SUCCESS</span>
+                                                                </div>
+                                                                <div style="padding:22px 18px 10px 18px;text-align:left;font-size:16px;color:#222;display:flex;align-items:center;gap:10px;">
+                                                                    <span style="color:#2176c1;font-size:28px;">&#8505;</span>
+                                                                    <span>Successfully saved.</span>
+                                                                </div>
+                                                                <div style="text-align:center;margin-top:8px;">
+                                                                    <button id="okSaveModalBtn" style="background:#eaf3fb;border:1px solid #b5d1f3;color:#2176c1;font-weight:bold;padding:4px 28px;font-size:15px;border-radius:3px;cursor:pointer;">OK</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <script>
+                                                        // Save button modal and update logic
+                                                        var saveBtn = document.querySelector('.save-btn');
+                                                        var saveModal = document.getElementById('saveModal');
+                                                        saveBtn.addEventListener('click', function(e) {
+                                                            e.preventDefault();
+                                                            saveModal.style.display = 'flex';
+                                                            if(saveBtn.textContent.trim() !== 'Update') {
+                                                                saveBtn.innerHTML = 'Update';
+                                                            }
+                                                        });
+                                                        document.getElementById('okSaveModalBtn').onclick = function() {
+                                                            saveModal.style.display = 'none';
+                                                        };
+                                                        </script>
+                                    <script>
+                                    // Calculation logic for financial statement section
+                                    function parseNum(val) {
+                                        var n = parseFloat((val||'').replace(/,/g, ''));
+                                        return isNaN(n) ? 0 : n;
+                                    }
+                                    function setField(id, val) {
+                                        document.getElementById(id).value = (typeof val === 'number' && !isNaN(val)) ? val : 0;
+                                    }
+                                    function calcAnnex13() {
+                                        var sales = parseNum(document.getElementById('sales').value);
+                                        var cogs = parseNum(document.getElementById('cogs').value);
+                                        var otherIncome = parseNum(document.getElementById('otherIncome').value);
+                                        var employeeExpenses = parseNum(document.getElementById('employeeExpenses').value);
+                                        var officeExpenses = parseNum(document.getElementById('officeExpenses').value);
+                                        var otherExpenses = parseNum(document.getElementById('otherExpenses').value);
+                                        var provisionExpenses = parseNum(document.getElementById('provisionExpenses').value);
+                                        var depreciationExpenses = parseNum(document.getElementById('depreciationExpenses').value);
+                                        var interestExpenses = parseNum(document.getElementById('interestExpenses').value);
+                                        var currentTaxExpense = parseNum(document.getElementById('currentTaxExpense').value);
+                                        var priorYearTax = parseNum(document.getElementById('priorYearTax').value);
+                                        var deferredTax = parseNum(document.getElementById('deferredTax').value);
+
+                                        // Gross Profit = Sales - COGS
+                                        var grossProfit = sales - cogs;
+                                        setField('grossProfit', grossProfit);
+
+                                        // Gross Revenue = Gross Profit + Other Income
+                                        var grossRevenue = grossProfit + otherIncome;
+                                        setField('grossRevenue', grossRevenue);
+
+                                        // Profit Before Depreciation And Interest = Gross Revenue - (Employee + Office + Other + Provision)
+                                        var profitBeforeDepInt = grossRevenue - (employeeExpenses + officeExpenses + otherExpenses + provisionExpenses);
+                                        setField('profitBeforeDepInt', profitBeforeDepInt);
+
+                                        // Profit Before Tax = Profit Before Depreciation And Interest - (Depreciation + Interest)
+                                        var profitBeforeTax = profitBeforeDepInt - (depreciationExpenses + interestExpenses);
+                                        setField('profitBeforeTax', profitBeforeTax);
+
+                                        // Income Tax Expenses = Current Tax Expense + Prior Year Tax + Deferred Tax
+                                        var incomeTaxExpenses = currentTaxExpense + priorYearTax + deferredTax;
+                                        setField('incomeTaxExpenses', incomeTaxExpenses);
+
+                                        // Profit After Tax = Profit Before Tax - Income Tax Expenses
+                                        var profitAfterTax = profitBeforeTax - incomeTaxExpenses;
+                                        setField('profitAfterTax', profitAfterTax);
+                                    }
+                                    // Attach input event to all inputs in the financial table to always trigger calculation
+                                    document.querySelectorAll('.financial-table input').forEach(function(el) {
+                                        el.addEventListener('input', calcAnnex13);
+                                    });
+                                    // Run once on page load so all calculated fields show 0 by default
+                                    calcAnnex13();
+                                    </script>
                 </div>
             </div>
             
@@ -493,22 +765,38 @@
                         <input type="checkbox" id="wagesCheck" checked>
                         <label for="wagesCheck">बार्षिक रु १ करोडभन्दा बढीको कर्मचारी खर्च (तलब तथा ज्याला) भुक्तानि भएको</label>
                     </div>
-                    
-                    <!-- Excel Upload -->
-                    <div id="excelUploadSection" style="border: 1px solid #ccc; padding: 15px; margin: 10px 0; background-color: #e8f0fe;">
-                        <strong style="display: block; margin-bottom: 10px; color: #333;">Load From Excel File</strong>
-                        <div style="display: flex; gap: 10px; align-items: center;">
-                            <label style="margin: 0; white-space: nowrap;">Load XLS:</label>
-                            <input type="text" readonly style="flex: 1; padding: 5px; border: 1px solid #999; background: #fff;">
-                            <button class="save-btn" style="margin: 0; padding: 5px 15px; background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);">Browse...</button>
-                            <button class="save-btn" style="margin: 0; padding: 5px 15px; background: linear-gradient(to bottom, #D9E8FB, #C5D9ED);">📤 Upload</button>
-                            <button class="save-btn" style="margin: 0; padding: 5px 15px; background: linear-gradient(to bottom, #90EE90, #7FD87F);">📄 View Sample</button>
+                    <div id="wagesSection">
+                        <div id="excelUploadSection" style="border: 1px solid #ccc; padding: 15px; margin: 10px 0; background-color: #e8f0fe;">
+                            <strong style="display: block; margin-bottom: 10px; color: #333;">Load From Excel File</strong>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <label style="margin: 0; white-space: nowrap;">Load XLS:</label>
+                                <input type="text" readonly style="flex: 1; padding: 5px; border: 1px solid #999; background: #fff;">
+                                <button class="save-btn" style="margin: 0; padding: 5px 15px; background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);">Browse...</button>
+                                <button class="save-btn" style="margin: 0; padding: 5px 15px; background: linear-gradient(to bottom, #D9E8FB, #C5D9ED);">📤 Upload</button>
+                                <button class="save-btn" style="margin: 0; padding: 5px 15px; background: linear-gradient(to bottom, #90EE90, #7FD87F);">📄 View Sample</button>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <!-- Monthly Wages Table -->
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                        <div id="wagesTableWrap" style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                                                <script>
+                                                // Hide wages section if checkbox is unchecked
+                                                var wagesCheck = document.getElementById('wagesCheck');
+                                                var wagesSection = document.getElementById('wagesSection');
+                                                function toggleWagesSection() {
+                                                    if (wagesCheck.checked) {
+                                                        wagesSection.style.display = '';
+                                                        document.getElementById('excelUploadSection').style.display = '';
+                                                        document.getElementById('wagesTableWrap').style.display = '';
+                                                    } else {
+                                                        wagesSection.style.display = '';
+                                                        document.getElementById('excelUploadSection').style.display = 'none';
+                                                        document.getElementById('wagesTableWrap').style.display = 'none';
+                                                    }
+                                                }
+                                                wagesCheck.addEventListener('change', toggleWagesSection);
+                                                // Run on load
+                                                toggleWagesSection();
+                                                </script>
                             <thead>
                                 <tr style="background: linear-gradient(to bottom, #D9E8FB 0%, #C5D9ED 100%);">
                                     <th style="border: 1px solid #999; padding: 8px; text-align: center;">सि.नं</th>
@@ -552,7 +840,44 @@
             <div class="section-panel">
                 <div class="section-header">आय विवरण र वित्तीय विवरण अनुसार खर्चको कट्टी विवरण</div>
                 <div class="section-body">
-                    <table style="width: 100%; border-collapse: collapse;">
+                    <table id="incomeVsFinancialTable" style="width: 100%; border-collapse: collapse;">
+                                            <!-- Modal for Income vs Financial Save Success -->
+                                            <div id="incomeVsFinancialSaveModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);z-index:9999;align-items:center;justify-content:center;">
+                                                <div style="background:#ced9e7;border:2px solid #4a90e2;box-shadow:0 2px 12px #0002;border-radius:7px;min-width:340px;max-width:90vw;padding:0 0 18px 0;display:flex;flex-direction:column;align-items:stretch;">
+                                                    <div style="background:#eaf3fb;border-bottom:1px solid #b5d1f3;padding:10px 18px 8px 18px;border-radius:7px 7px 0 0;display:flex;align-items:center;gap:8px;">
+                                                        <span style="color:#2176c1;font-size:20px;line-height:1;">&#9432;</span>
+                                                        <span style="color:#2176c1;font-weight:bold;font-size:16px;">SUCCESS</span>
+                                                    </div>
+                                                    <div style="padding:22px 18px 10px 18px;text-align:left;font-size:16px;color:#222;display:flex;align-items:center;gap:10px;">
+                                                        <span style="color:#2176c1;font-size:28px;">&#8505;</span>
+                                                        <span>Successfully Saved.</span>
+                                                    </div>
+                                                    <div style="text-align:center;margin-top:8px;">
+                                                        <button id="okIncomeVsFinancialSaveModalBtn" style="background:#eaf3fb;border:1px solid #b5d1f3;color:#2176c1;font-weight:bold;padding:4px 28px;font-size:15px;border-radius:3px;cursor:pointer;">OK</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <script>
+                                            // Attach modal logic to the Save button in the income vs financial section
+                                            document.addEventListener('DOMContentLoaded', function() {
+                                                // Find the Save button below the income vs financial table
+                                                var sectionHeader = Array.from(document.querySelectorAll('.section-header')).find(h => h.textContent.includes('आय विवरण र वित्तीय विवरण अनुसार खर्चको कट्टी विवरण'));
+                                                if (!sectionHeader) return;
+                                                var section = sectionHeader.parentElement;
+                                                var saveBtn = Array.from(section.querySelectorAll('button.save-btn')).find(btn => btn.textContent.includes('Save'));
+                                                var modal = document.getElementById('incomeVsFinancialSaveModal');
+                                                var okBtn = document.getElementById('okIncomeVsFinancialSaveModalBtn');
+                                                if (saveBtn && modal && okBtn) {
+                                                    saveBtn.addEventListener('click', function(e) {
+                                                        e.preventDefault();
+                                                        modal.style.display = 'flex';
+                                                    });
+                                                    okBtn.onclick = function() {
+                                                        modal.style.display = 'none';
+                                                    };
+                                                }
+                                            });
+                                            </script>
                         <thead>
                             <tr style="background: linear-gradient(to bottom, #D9E8FB 0%, #C5D9ED 100%);">
                                 <th style="border: 1px solid #999; padding: 8px; width: 50px;">सि.नं</th>
@@ -582,131 +907,172 @@
                     </table>
                     <button class="save-btn">💾 Save</button>
                     <button class="save-btn" style="background: linear-gradient(to bottom, #ff6666, #ff4444);">🔄 Reset</button>
+                    <script>
+                    // Improved auto-calculate difference and totals for आय विवरण र वित्तीय विवरण अनुसार खर्चको कट्टी विवरण
+                    document.addEventListener('DOMContentLoaded', function() {
+                        function parseNum(val) {
+                            var n = parseFloat((val||'').replace(/,/g, ''));
+                            return isNaN(n) ? 0 : n;
+                        }
+                        var table = document.getElementById('incomeVsFinancialTable');
+                        if (!table) return;
+                        var tbody = table.querySelector('tbody');
+                        // Only sum the 8 data rows (18-25), not the total row or 26
+                        var dataRows = Array.from(tbody.querySelectorAll('tr')).filter(function(tr, idx) {
+                            // 8 rows: index 0 to 7 (18-25)
+                            return idx >= 0 && idx <= 7;
+                        });
+                        var totalRow = tbody.querySelector('tr[style*="background-color: #f0f0f0"]');
+                        function recalc() {
+                            var sumA = 0, sumB = 0, sumDiff = 0;
+                            dataRows.forEach(function(tr) {
+                                var inputs = tr.querySelectorAll('input');
+                                if (inputs.length < 3) return;
+                                var a = parseNum(inputs[0].value);
+                                var b = parseNum(inputs[1].value);
+                                var diff = a - b;
+                                inputs[2].value = diff ? diff.toFixed(2) : '';
+                                sumA += a;
+                                sumB += b;
+                                sumDiff += diff;
+                            });
+                            if (totalRow) {
+                                var totalInputs = totalRow.querySelectorAll('input');
+                                if (totalInputs.length === 3) {
+                                    totalInputs[0].value = sumA ? sumA.toFixed(2) : '';
+                                    totalInputs[1].value = sumB ? sumB.toFixed(2) : '';
+                                    totalInputs[2].value = sumDiff ? sumDiff.toFixed(2) : '';
+                                }
+                            }
+                        }
+                        // Attach event listeners
+                        dataRows.forEach(function(tr) {
+                            var inputs = tr.querySelectorAll('input');
+                            if (inputs.length < 2) return;
+                            inputs[0].addEventListener('input', recalc);
+                            inputs[1].addEventListener('input', recalc);
+                        });
+                        recalc();
+                    });
+                    </script>
                 </div>
             </div>
             
             <!-- Greater than 1 Lakh Section -->
             <div class="section-panel">
                 <div class="section-header">शुरु मौज्दात, खरिद, बिक्री, लिन बाँकी वा दिन बाँकी मध्ये कुनै रकम रु १ लाख भन्दा बढी हुनेको विवरण</div>
-                <div class="section-body">
-                    <div class="checkbox-field">
-                        <input type="checkbox" id="transCheck">
-                        <label for="transCheck">कुनै पनि व्यक्ति / संस्था संग आर्थिक वर्ष भरिमा रू एक लाख भन्दा बढीको कारोबार छैन</label>
-                    </div>
-                    <div class="note-box" style="max-width: 600px;">
-                        <div style="background: #ffff05; padding: 0 4px;">स्था. ले. नं. हुनेको हकमा अनिवार्य रूपमा स्था. ले. नं. (PAN) उल्लेख गर्नुहोला ।</div>
-                    </div>
-                    
-                    <!-- Excel Upload for Transactions -->
-                    <div style="border: 1px solid #ddd; padding: 10px; margin: 10px 0; background-color: #f9f9f9;">
-                        <strong>Load From Excel File</strong>
-                        <div style="display: flex; gap: 10px; margin-top: 10px; align-items: center;">
-                            <label>Load XLS:</label>
-                            <input type="file" style="flex: 1;">
-                            <button class="save-btn" style="margin: 0;">📤 Upload</button>
-                            <button class="save-btn" style="margin: 0;">📄 View Sample</button>
-                        </div>
-                    </div>
-                    
-                    <div style="margin: 10px 0;">
-                        <button id="addRowBtn" style="background: none; border: none; color: #006400; font-size: 20px; display: inline-flex; align-items: center; gap: 4px; cursor: pointer;">
-                            <img src="https://img.icons8.com/color/24/000000/add--v1.png" style="vertical-align: middle;"> Add New
+                <div class="section-body" style="background: #e8f0fe;">
+                    <div style="margin-bottom: 10px;">
+                        <button id="addRowBtn" style="border: none; background: none; color: #249c2c; font-size: 14px; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; margin-right: 10px;">
+                            <span style="font-size: 16px;">&#x2795;</span> Add New
                         </button>
-                        <button id="deleteAllBtn" style="background: none; border: none; color: #c00; font-size: 20px; display: inline-flex; align-items: center; gap: 4px; cursor: pointer;">
-                            <img src="https://img.icons8.com/color/24/000000/delete-sign.png" style="vertical-align: middle;"> Delete All
+                        <button id="deleteAllBtn" style="border: none; background: none; color: #d32f2f; font-size: 14px; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; margin-right: 10px;">
+                            <span style="font-size: 16px;">&#x2716;</span> Delete All
                         </button>
-                        <button id="checkSumBtn" style="background: none; border: none; color: #003366; font-size: 18px; margin-left: 20px; cursor: pointer;">Check Sum</button>
+                        <button id="checkSumBtn" style="border: none; background: none; color: #003366; font-size: 13px; cursor: pointer;">Check Sum</button>
                     </div>
-                    
-                    <!-- Transaction Details Grid -->
                     <div style="overflow-x: auto;">
-                        <table id="transactionTable" style="width: 100%; border-collapse: separate; border-spacing: 0; margin: 15px 0; border: 2px solid #b5cbe8; background: #fff;">
+                        <table id="transactionTable" style="width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #bbb;">
                             <thead>
-                                <tr style="background: #f3f6fa;">
-                                    <th style="border: 1px solid #b5cbe8; padding: 8px; width: 30px;">स्थायी लेखा नम्बर</th>
-                                    <th style="border: 1px solid #b5cbe8; padding: 8px; width: 250px;">व्यवसायको नाम</th>
-                                    <th style="border: 1px solid #b5cbe8; padding: 8px; width: 150px;">वर्षको शुरुको लिन बाकी (दिन बाकी) रकम</th>
-                                    <th style="border: 1px solid #b5cbe8; padding: 8px; width: 120px;">पुजिगत सेवा खरिद</th>
-                                    <th style="border: 1px solid #b5cbe8; padding: 8px; width: 120px;">अन्य सेवा खरिद</th>
-                                    <th style="border: 1px solid #b5cbe8; padding: 8px; width: 120px;">पुजिगत समान खरिद</th>
+                                <tr style="background: #f7f7f7;">
+                                    <th style="border: 1px solid #bbb; padding: 6px;">स्थायी लेखा नम्बर</th>
+                                    <th style="border: 1px solid #bbb; padding: 6px;">व्यवसायको नाम</th>
+                                    <th style="border: 1px solid #bbb; padding: 6px;">वर्षको शुरुको लिन बाकी (दिन बाकी) रकम</th>
+                                    <th style="border: 1px solid #bbb; padding: 6px;">पुजिगत सेवा खरिद</th>
+                                    <th style="border: 1px solid #bbb; padding: 6px;">अन्य सेवा खरिद</th>
+                                    <th style="border: 1px solid #bbb; padding: 6px;">पुजिगत समान खरिद</th>
                                 </tr>
                             </thead>
                             <tbody id="transactionGrid">
                                 <!-- Rows will be added dynamically -->
                             </tbody>
                         </table>
-                                    <script>
-                                    // Add row to transaction grid
-                                    document.getElementById('addRowBtn').onclick = function() {
-                                        const grid = document.getElementById('transactionGrid');
-                                        const row = document.createElement('tr');
-                                        row.innerHTML = `
-                                            <td style="border: 1px solid #b5cbe8; padding: 6px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
-                                            <td style="border: 1px solid #b5cbe8; padding: 6px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
-                                            <td style="border: 1px solid #b5cbe8; padding: 6px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
-                                            <td style="border: 1px solid #b5cbe8; padding: 6px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
-                                            <td style="border: 1px solid #b5cbe8; padding: 6px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
-                                            <td style="border: 1px solid #b5cbe8; padding: 6px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
-                                        `;
-                                        grid.appendChild(row);
-                                    };
-                                    // Optionally, clear all rows
-                                    document.getElementById('deleteAllBtn').onclick = function() {
-                                        document.getElementById('transactionGrid').innerHTML = '';
-                                    };
-                                    </script>
-                    </div>
-                    
-                    <!-- Totals Section -->
-                    <div style="border: 1px solid #5b9bd5; padding: 15px; background-color: #f9f9f9;">
-                        <h4 style="margin-bottom: 10px; color: #333;">जम्मा</h4>
-                        <div class="form-grid">
-                            <div class="form-field">
-                                <label>वर्षको शुरुको लिन बाकी (दिन बाकी) रकम:</label>
-                                <input type="text" readonly style="background: #ddd;">
-                            </div>
-                            <div class="form-field">
-                                <label>पुजिगत सेवा खरिद:</label>
-                                <input type="text" readonly style="background: #ddd;">
-                            </div>
-                            <div class="form-field">
-                                <label>अन्य सेवा खरिद:</label>
-                                <input type="text" readonly style="background: #ddd;">
-                            </div>
-                            <div class="form-field">
-                                <label>पुजिगत समान खरिद:</label>
-                                <input type="text" readonly style="background: #ddd;">
-                            </div>
-                            <div class="form-field">
-                                <label>अन्य समान खरिद:</label>
-                                <input type="text" readonly style="background: #ddd;">
-                            </div>
-                            <div class="form-field">
-                                <label>सेवा बिक्रि:</label>
-                                <input type="text" readonly style="background: #ddd;">
-                            </div>
-                            <div class="form-field">
-                                <label>समान बिक्रि:</label>
-                                <input type="text" readonly style="background: #ddd;">
-                            </div>
-                            <div class="form-field">
-                                <label>वर्षको अन्तमा लिन बाकी (दिन बाकी) रकम:</label>
-                                <input type="text" readonly style="background: #ddd;">
-                            </div>
-                        </div>
+                        <script>
+                        // Add row to transaction grid
+                        document.getElementById('addRowBtn').onclick = function() {
+                            const grid = document.getElementById('transactionGrid');
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td style="border: 1px solid #bbb; padding: 4px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
+                                <td style="border: 1px solid #bbb; padding: 4px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
+                                <td style="border: 1px solid #bbb; padding: 4px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
+                                <td style="border: 1px solid #bbb; padding: 4px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
+                                <td style="border: 1px solid #bbb; padding: 4px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
+                                <td style="border: 1px solid #bbb; padding: 4px;"><input type="text" style="width: 100%; border: none; background: #fff;"></td>
+                            `;
+                            grid.appendChild(row);
+                        };
+                        document.getElementById('deleteAllBtn').onclick = function() {
+                            document.getElementById('transactionGrid').innerHTML = '';
+                        };
+                        </script>
                     </div>
                 </div>
             </div>
             
             
             <!-- Save Transaction Button -->
-            <button class="save-btn">💾 Save Transaction</button>
+            <button id="saveTransactionBtn" class="save-btn">💾 Save Transaction</button>
+            <!-- Modal for Save Transaction Success -->
+            <div id="saveTransactionModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);z-index:9999;align-items:center;justify-content:center;">
+                <div style="background:#ced9e7;border:2px solid #4a90e2;box-shadow:0 2px 12px #0002;border-radius:7px;min-width:340px;max-width:90vw;padding:0 0 18px 0;display:flex;flex-direction:column;align-items:stretch;">
+                    <div style="background:#eaf3fb;border-bottom:1px solid #b5d1f3;padding:10px 18px 8px 18px;border-radius:7px 7px 0 0;display:flex;align-items:center;gap:8px;">
+                        <span style="color:#2176c1;font-size:20px;line-height:1;">&#9432;</span>
+                        <span style="color:#2176c1;font-weight:bold;font-size:16px;">SUCCESS</span>
+                    </div>
+                    <div style="padding:22px 18px 10px 18px;text-align:left;font-size:16px;color:#222;display:flex;align-items:center;gap:10px;">
+                        <span style="color:#2176c1;font-size:28px;">&#8505;</span>
+                        <span>Successfully Saved.</span>
+                    </div>
+                    <div style="text-align:center;margin-top:8px;">
+                        <button id="okSaveTransactionModalBtn" style="background:#eaf3fb;border:1px solid #b5d1f3;color:#2176c1;font-weight:bold;padding:4px 28px;font-size:15px;border-radius:3px;cursor:pointer;">OK</button>
+                    </div>
+                </div>
+            </div>
+            <script>
+            // Attach modal logic to the Save Transaction button and set update flag
+            document.addEventListener('DOMContentLoaded', function() {
+                var saveBtn = document.getElementById('saveTransactionBtn');
+                var modal = document.getElementById('saveTransactionModal');
+                var okBtn = document.getElementById('okSaveTransactionModalBtn');
+                if (saveBtn && modal && okBtn) {
+                    saveBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        // Set update flag for Annex-13
+                        localStorage.setItem('d03_annex13_saved', '1');
+                        modal.style.display = 'flex';
+                    });
+                    okBtn.onclick = function() {
+                        modal.style.display = 'none';
+                    };
+                }
+            });
+            </script>
             
             <!-- Back Link Footer -->
             <div class="back-link-panel" style="margin-top: 20px;">
                 <span class="back-link-text">पछाडि गएर अनुसूची तय गर्न </span>
-                <span class="back-link-click" onclick="window.parent.location.href='d03_set_annex.html'">यहाँ क्लिक</span>
+                <span class="back-link-click" id="backLinkBtnFooter">यहाँ क्लिक</span>
                 <span class="back-link-text"> गर्नुहोस् ।</span>
+            </div>
+
+            <!-- Confirm Action Modal -->
+            <div id="confirmBackModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);z-index:99999;align-items:center;justify-content:center;">
+                <div style="background:#f7fafd;border:2px solid #7fa7d9;box-shadow:0 2px 12px #0002;border-radius:7px;min-width:340px;max-width:90vw;padding:0 0 18px 0;display:flex;flex-direction:column;align-items:stretch;">
+                    <div style="background:#eaf3fb;border-bottom:1px solid #b5d1f3;padding:10px 18px 8px 18px;border-radius:7px 7px 0 0;display:flex;align-items:center;gap:8px;">
+                        <span style="color:#2176c1;font-size:20px;line-height:1;">&#10068;</span>
+                        <span style="color:#2176c1;font-weight:bold;font-size:18px;">Confirm Action</span>
+                        <span style="margin-left:auto;cursor:pointer;font-size:18px;color:#888;" id="closeConfirmBackModal">&#10006;</span>
+                    </div>
+                    <div style="padding:22px 18px 10px 18px;text-align:left;font-size:18px;color:#222;display:flex;align-items:center;gap:10px;">
+                        <span style="color:#2176c1;font-size:32px;">&#63;</span>
+                        <span>के तपाईं पछाडि गएर अनुसूची तय गर्न चाहनुहुन्छ?</span>
+                    </div>
+                    <div style="text-align:center;margin-top:8px;display:flex;justify-content:center;gap:18px;">
+                        <button id="confirmBackYesBtn" style="background:#eaf3fb;border:1px solid #b5d1f3;color:#2176c1;font-weight:bold;padding:4px 38px;font-size:18px;border-radius:3px;cursor:pointer;">Yes</button>
+                        <button id="confirmBackNoBtn" style="background:#f5f5f5;border:1px solid #bbb;color:#444;font-weight:bold;padding:4px 38px;font-size:18px;border-radius:3px;cursor:pointer;">No</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -721,6 +1087,26 @@
                 uploadSection.style.display = 'none';
             }
         });
+
+        // Confirm Action Modal for Back Link
+        function showConfirmBackModal() {
+            document.getElementById('confirmBackModal').style.display = 'flex';
+        }
+        function hideConfirmBackModal() {
+            document.getElementById('confirmBackModal').style.display = 'none';
+        }
+        document.getElementById('backLinkBtn').onclick = showConfirmBackModal;
+        document.getElementById('backLinkBtnFooter').onclick = showConfirmBackModal;
+        document.getElementById('closeConfirmBackModal').onclick = hideConfirmBackModal;
+        document.getElementById('confirmBackNoBtn').onclick = hideConfirmBackModal;
+        document.getElementById('confirmBackYesBtn').onclick = function() {
+            // Redirect to set annex page with iframe
+            if (window.parent && window.parent !== window) {
+                window.parent.location.href = 'd03_set_annex.html';
+            } else {
+                window.location.href = 'd03_set_annex.html';
+            }
+        };
     </script>
 </body>
 </html>
