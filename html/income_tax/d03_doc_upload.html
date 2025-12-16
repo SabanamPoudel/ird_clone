@@ -107,8 +107,36 @@
 <body>
     <div class="ird-main-panel">
         <div class="ird-header">
-            <b>Document Upload D03</b> ( पछाडि गएर अनुसूची तय गर्न <span class="ird-back-link" onclick="window.location.href='d03_set_annex.html'">यहाँ क्लिक</span> गर्नुहोस् ! )
+            <b>Document Upload D03</b> ( पछाडि गएर अनुसूची तय गर्न <span class="ird-back-link" id="backLinkBtn">यहाँ क्लिक</span> गर्नुहोस् ! )
         </div>
+            <!-- Confirm Action Modal -->
+            <div id="confirmBackModal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);display:flex;align-items:flex-start;justify-content:center;">
+                <div style="background:#ced9e7;border-radius:8px;min-width:320px;max-width:90vw;padding:18px 28px 18px 28px;box-shadow:0 4px 24px #0002;position:relative;border:1.5px solid #8cb3df;margin-top:40px;">
+                    <div style="font-size:17px;font-weight:bold;color:#003366;margin-bottom:10px;display:flex;align-items:center;gap:7px;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3524/3524752.png" style="height:24px;vertical-align:middle;"> Confirm Action
+                        <span onclick="hideConfirmBackModal()" style="position:absolute;top:8px;right:14px;font-size:20px;cursor:pointer;color:#888;">&times;</span>
+                    </div>
+                    <div style="font-size:15px;margin-bottom:18px;">के तपाई पछाडि गएर अनुसूची तय गर्न चाहनुहुन्छ?</div>
+                    <div style="text-align:center;">
+                        <button id="confirmBackYesBtn" style="padding:4px 22px;background:#eaf3fb;border:1.5px solid #8cb3df;border-radius:3px;font-size:15px;cursor:pointer;color:#003366;font-weight:bold;margin-right:10px;">Yes</button>
+                        <button id="confirmBackNoBtn" style="padding:4px 22px;background:#f5f5f5;border:1.5px solid #ccc;border-radius:3px;font-size:15px;cursor:pointer;color:#444;font-weight:bold;">No</button>
+                    </div>
+                </div>
+            </div>
+            <script>
+                // ...existing code...
+                // Modal logic for back link
+                document.getElementById('backLinkBtn').onclick = function() {
+                    document.getElementById('confirmBackModal').style.display = 'flex';
+                };
+                function hideConfirmBackModal() {
+                    document.getElementById('confirmBackModal').style.display = 'none';
+                }
+                document.getElementById('confirmBackNoBtn').onclick = hideConfirmBackModal;
+                document.getElementById('confirmBackYesBtn').onclick = function() {
+                    window.location.href = 'd03_set_annex.html';
+                };
+            </script>
         <div class="ird-section-panel">
             <div class="ird-section-header">Fiscal Documents</div>
             <div class="ird-section-body">
@@ -116,9 +144,9 @@
                 <div class="ird-upload-row">
                     <label style="min-width:60px;">File:</label>
                     <input type="text" id="fileName" readonly class="ird-input">
-                    <input type="file" id="fileInput" class="ird-file-input">
+                    <input type="file" id="fileInput" class="ird-file-input" style="display:none;">
                     <button class="ird-btn" onclick="document.getElementById('fileInput').click()">Browse...</button>
-                    <button class="ird-btn upload" onclick="uploadFile()"><span style="vertical-align:middle;">&#128228;</span> Upload</button>
+                    <button class="ird-btn upload" onclick="uploadFile()"><img src="https://cdn-icons-png.flaticon.com/512/724/724933.png" style="height:18px;vertical-align:middle;margin-right:2px;"> Upload</button>
                 </div>
                 <div class="ird-table-header">Uploaded Files ...</div>
                 <table class="ird-table" id="uploadedTable">
@@ -126,6 +154,8 @@
                         <tr>
                             <th>File Name</th>
                             <th>File Type</th>
+                            <th style="width:40px;"></th>
+                            <th style="width:40px;"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -142,79 +172,81 @@
             font-family: Arial, sans-serif;
         }
         .ird-main-panel {
-            margin: 16px;
+            margin: 18px auto;
             border: 2px solid #8cb3df;
             border-radius: 7px;
             background: #e3edfa;
-            padding: 8px 8px 24px 8px;
+            padding: 6px 6px 16px 6px;
+            max-width: 900px;
         }
         .ird-header {
-            font-size: 20px;
+            font-size: 15px;
             color: #003366;
             background: #d4e4f7;
             border: 1.5px solid #8cb3df;
             border-radius: 6px 6px 0 0;
-            padding: 10px 18px 8px 18px;
-            margin-bottom: 18px;
+            padding: 7px 14px 6px 14px;
+            margin-bottom: 12px;
+            font-weight: 600;
         }
         .ird-back-link {
             color: red;
             text-decoration: underline;
             cursor: pointer;
-            font-size: 17px;
+            font-size: 14px;
             font-weight: bold;
         }
         .ird-section-panel {
             border: 2px solid #8cb3df;
             border-radius: 7px;
             background: #f7fbff;
-            margin: 0 8px;
+            margin: 0 4px;
         }
         .ird-section-header {
             background: #c7dbf4;
             color: #003366;
-            font-size: 18px;
+            font-size: 13px;
             font-weight: bold;
             border-bottom: 1.5px solid #8cb3df;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 7px 7px 0 0;
         }
         .ird-section-body {
-            padding: 18px 18px 24px 18px;
+            padding: 12px 12px 16px 12px;
         }
         .ird-note {
-            font-size: 16px;
+            font-size: 12px;
             color: #222;
-            margin-bottom: 18px;
+            margin-bottom: 12px;
         }
         .ird-upload-row {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 18px;
+            gap: 7px;
+            margin-bottom: 12px;
         }
         .ird-input {
-            width: 340px;
-            padding: 6px 10px;
+            width: 260px;
+            padding: 4px 8px;
             border: 1.5px solid #8cb3df;
             border-radius: 3px;
             background: #fff;
-            font-size: 16px;
+            font-size: 13px;
         }
         .ird-file-input {
-            font-size: 15px;
+            font-size: 13px;
             background: #fff;
             border: none;
         }
         .ird-btn {
-            padding: 5px 18px;
+            padding: 3px 12px;
             background: linear-gradient(to bottom, #f7fbff, #c7dbf4);
             border: 1.5px solid #8cb3df;
             border-radius: 3px;
-            font-size: 16px;
+            font-size: 13px;
             cursor: pointer;
             color: #003366;
-            font-weight: bold;
+            font-weight: 600;
         }
         .ird-btn.upload {
             background: linear-gradient(to bottom, #eaf6ff, #b7d0f7);
@@ -223,11 +255,11 @@
         .ird-table-header {
             background: #c7dbf4;
             color: #003366;
-            font-size: 16px;
+            font-size: 13px;
             font-weight: bold;
             border: 1.5px solid #8cb3df;
             border-radius: 5px 5px 0 0;
-            padding: 6px 12px;
+            padding: 4px 8px;
             margin-bottom: 0;
         }
         .ird-table {
@@ -238,8 +270,8 @@
         }
         .ird-table th, .ird-table td {
             border: 1.5px solid #8cb3df;
-            padding: 8px 10px;
-            font-size: 15px;
+            padding: 5px 7px;
+            font-size: 13px;
             text-align: left;
         }
         .ird-table th {
@@ -247,4 +279,90 @@
             color: #003366;
             font-weight: bold;
         }
+        .ird-table td {
+            background: #fff;
+        }
+        .ird-table td.action {
+            text-align: center;
+        }
+        .ird-icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0 4px;
+        }
+        .ird-icon-btn img {
+            height: 16px;
+            vertical-align: middle;
+        }
     </style>
+
+    <!-- Modal for file preview -->
+    <div id="filePreviewModal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.25);align-items:center;justify-content:center;">
+        <div style="background:#fff;border-radius:8px;min-width:320px;max-width:90vw;padding:28px 32px 18px 32px;box-shadow:0 4px 24px #0002;position:relative;">
+            <div style="font-size:18px;font-weight:bold;color:#003366;margin-bottom:10px;">Uploaded File Details</div>
+            <div id="previewFileName" style="margin-bottom:8px;font-size:15px;"></div>
+            <div id="previewFileType" style="margin-bottom:16px;font-size:14px;color:#555;"></div>
+            <div id="previewFileAction"></div>
+            <button onclick="closePreviewModal()" style="margin-top:18px;padding:5px 22px;background:#eaf3fb;border:1.5px solid #8cb3df;border-radius:3px;font-size:15px;cursor:pointer;color:#003366;font-weight:bold;">Close</button>
+            <span onclick="closePreviewModal()" style="position:absolute;top:8px;right:16px;font-size:22px;cursor:pointer;color:#888;">&times;</span>
+        </div>
+    </div>
+    <script>
+        // File input logic for Browse button
+        document.addEventListener('DOMContentLoaded', function() {
+            var fileInput = document.getElementById('fileInput');
+            var fileNameInput = document.getElementById('fileName');
+            if (fileInput) {
+                fileInput.addEventListener('change', function() {
+                    fileNameInput.value = fileInput.files[0] ? fileInput.files[0].name : '';
+                });
+            }
+        });
+
+        // Store uploaded files in memory for preview
+        var uploadedFiles = [];
+
+        function uploadFile() {
+            var fileInput = document.getElementById('fileInput');
+            var fileName = fileInput.files[0] ? fileInput.files[0].name : '';
+            var fileType = fileInput.files[0] ? fileInput.files[0].type : '';
+            var fileObj = fileInput.files[0] || null;
+            if (!fileName) { alert('Please select a file!'); return; }
+            var table = document.getElementById('uploadedTable').getElementsByTagName('tbody')[0];
+            var row = table.insertRow();
+            row.insertCell(0).innerText = fileName;
+            row.insertCell(1).innerText = fileType || 'application/pdf';
+            // Eye icon
+            var viewCell = row.insertCell(2);
+            viewCell.className = 'action';
+            var viewBtn = document.createElement('button');
+            viewBtn.className = 'ird-icon-btn';
+            viewBtn.title = 'View';
+            viewBtn.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/709/709612.png" alt="View">';
+            // Store file info for preview
+            var fileIndex = uploadedFiles.length;
+            uploadedFiles.push({ name: fileName, type: fileType, file: fileObj });
+            viewBtn.onclick = function() { openPdfInNewTab(fileIndex); };
+            viewCell.appendChild(viewBtn);
+            // Delete icon
+            var delCell = row.insertCell(3);
+            delCell.className = 'action';
+            var delBtn = document.createElement('button');
+            delBtn.className = 'ird-icon-btn';
+            delBtn.title = 'Delete';
+            delBtn.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt="Delete">';
+            delBtn.onclick = function() { table.deleteRow(row.rowIndex-1); uploadedFiles[fileIndex] = null; };
+            delCell.appendChild(delBtn);
+            // Reset file input
+            fileInput.value = '';
+            document.getElementById('fileName').value = '';
+        }
+
+        function openPdfInNewTab(idx) {
+            var file = uploadedFiles[idx];
+            if (!file || !file.file) return;
+            var url = URL.createObjectURL(file.file);
+            window.open(url, '_blank');
+        }
+    </script>

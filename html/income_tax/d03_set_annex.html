@@ -1,3 +1,20 @@
+    <!-- Success Popup Modal -->
+    <div id="finalizeSuccessModal" style="display:none;position:fixed;z-index:10000;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.10);display:flex;align-items:flex-start;justify-content:center;">
+        <div style="background:#eaf1fa;border-radius:8px;min-width:320px;max-width:90vw;box-shadow:0 2px 16px #0002;position:relative;border:1.5px solid #b5cbe7;margin-top:90px;padding:0;">
+            <div style="padding:10px 18px 0 18px;font-size:16px;font-weight:bold;color:#1a4b8c;letter-spacing:0.5px;">SUCCESS
+                <span onclick="hideFinalizeSuccessModal()" style="position:absolute;top:8px;right:14px;font-size:18px;cursor:pointer;color:#888;">&times;</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 18px 0 18px;">
+                <span style="display:inline-block;margin-top:2px;">
+                    <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#b5cbe7"/><text x="16" y="22" text-anchor="middle" font-size="20" fill="#1a4b8c" font-family="Arial, sans-serif">i</text></svg>
+                </span>
+                <span id="finalizeSuccessMsg" style="font-size:15px;color:#222;line-height:1.5;"></span>
+            </div>
+            <div style="text-align:center;padding:16px 0 10px 0;">
+                <button id="finalizeSuccessOkBtn" style="padding:3px 32px;background:#e3eaf3;border:1.5px solid #b5cbe7;border-radius:3px;font-size:15px;cursor:pointer;color:#1a4b8c;font-weight:bold;">OK</button>
+            </div>
+        </div>
+    </div>
 <!DOCTYPE html>
 <html lang="ne">
 <head>
@@ -168,7 +185,82 @@
                 <p>• आँफै भरिएको अनुसुची १ र अनुसुची २ हेरी ठीक छ भने Set Annex Button क्लिक गर्नु होला ।</p>
             </div>
             
-            <button class="finalize-btn">✓ Finalized Submit</button>
+            <button class="finalize-btn" id="finalizeSubmitBtn">✓ Finalized Submit</button>
+            <button class="proceed-payment-btn" id="proceedPaymentBtn" style="display:none;margin-left:12px;padding:5px 18px 5px 12px;background:#eaf3fb;border:1.5px solid #8cb3df;border-radius:3px;font-size:15px;cursor:pointer;color:#222;font-weight:normal;vertical-align:middle;align-items:center;gap:6px;">
+                <span style="color:#27ae60;font-size:18px;vertical-align:middle;">✓</span> Proceed to Payment
+            </button>
+                <!-- Finalize Confirmation Modal -->
+                <div id="finalizeConfirmModal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);display:flex;align-items:flex-start;justify-content:center;">
+                    <div style="background:#ced9e7;border-radius:12px;width:370px;max-width:95vw;min-height:270px;box-shadow:0 4px 24px #0002;position:relative;border:1.5px solid #8cb3df;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0;margin-top:60px;">
+                        <div style="width:100%;padding:18px 28px 0 28px;">
+                        <div style="font-size:17px;font-weight:bold;color:#003366;margin-bottom:10px;display:flex;align-items:center;gap:7px;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3524/3524752.png" style="height:24px;vertical-align:middle;"> Confirm Action
+                            <span onclick="hideFinalizeModal()" style="position:absolute;top:12px;right:22px;font-size:22px;cursor:pointer;color:#888;">&times;</span>
+                        </div>
+                        <div style="font-size:15px;margin-bottom:10px;line-height:1.6;">
+                            आय विवरणका अनुसूचीहरूमा भर्नु पर्ने सबै विवरणहरू भर्नु भयो ?<br>
+                            आय विवरणका अनुसूचीहरूमा भर्नु पर्ने सबै विवरणहरू अनिवार्य रूपमा भरेर मात्र आय विवरण Submit गर्नु हुन अनुरोध छ ।<br>
+                            <span id="taxSummaryBlock">
+                                जम्मा तिर्नु पर्ने कर : <span id="totalTaxAmount">रु ०</span><br>
+                                जम्मा तिरेको कर : <span id="paidTaxAmount">रु ०</span><br>
+                            </span>
+                            एक पटक Submit गरिसकेपछि अर्को पटक विवरण फेरि परिवर्तन गर्न पाइने छैन । के तपाई Submit गर्न चाहनुहुन्छ ?
+                        </div>
+                        </div>
+                        <div style="width:100%;padding:0 0 18px 0;display:flex;justify-content:center;align-items:center;">
+                            <button id="finalizeYesBtn" style="padding:4px 22px;background:#eaf3fb;border:1.5px solid #8cb3df;border-radius:3px;font-size:15px;cursor:pointer;color:#003366;font-weight:bold;margin-right:10px;">Yes</button>
+                            <button id="finalizeNoBtn" style="padding:4px 22px;background:#f5f5f5;border:1.5px solid #ccc;border-radius:3px;font-size:15px;cursor:pointer;color:#444;font-weight:bold;">No</button>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                // ...existing code...
+                document.getElementById('finalizeSubmitBtn').onclick = function() {
+                    // Get total tax from annex 5 (or other annexes as needed)
+                    let totalTax = 0;
+                    let paidTax = 0;
+                    try {
+                        const annex5 = localStorage.getItem('d03_annex5_data');
+                        if (annex5) {
+                            const data = JSON.parse(annex5);
+                            // Try to get total tax from a relevant field (e.g., businessIncome or miTotal)
+                            if (data && data.miTotal) {
+                                totalTax = parseFloat((data.miTotal+'').replace(/,/g, '')) || 0;
+                            } else if (data && data.businessIncome) {
+                                totalTax = parseFloat((data.businessIncome+'').replace(/,/g, '')) || 0;
+                            }
+                        }
+                        // Optionally, get paid tax from another annex/localStorage if available
+                    } catch(e) {}
+                    document.getElementById('totalTaxAmount').innerText = 'रु ' + (totalTax ? totalTax.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '०');
+                    document.getElementById('paidTaxAmount').innerText = 'रु ' + (paidTax ? paidTax.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '०');
+                    document.getElementById('finalizeConfirmModal').style.display = 'flex';
+                };
+                function hideFinalizeModal() {
+                    document.getElementById('finalizeConfirmModal').style.display = 'none';
+                }
+                document.getElementById('finalizeNoBtn').onclick = hideFinalizeModal;
+                document.getElementById('finalizeYesBtn').onclick = function() {
+                    hideFinalizeModal();
+                    // Lock the form
+                    localStorage.setItem('d03_finalized', '1');
+                    document.getElementById('finalizeSubmitBtn').disabled = true;
+                    // Show success modal with random reference number
+                    var ref = localStorage.getItem('d03_ref_no') || (Math.floor(800000000000 + Math.random()*100000000000)).toString();
+                    localStorage.setItem('d03_ref_no', ref);
+                    document.getElementById('finalizeSuccessMsg').innerHTML = ref + ' Finalized Successfully .';
+                    document.getElementById('finalizeSuccessModal').style.display = 'flex';
+                };
+
+                function hideFinalizeSuccessModal() {
+                    document.getElementById('finalizeSuccessModal').style.display = 'none';
+                }
+                document.getElementById('finalizeSuccessOkBtn').onclick = function() {
+                    hideFinalizeSuccessModal();
+                    // Show Proceed to Payment button
+                    document.getElementById('proceedPaymentBtn').style.display = 'inline-block';
+                };
+                </script>
             
             <!-- Section 1: आय अनुसूची भर्ने ब्लक -->
             <div class="section-panel">

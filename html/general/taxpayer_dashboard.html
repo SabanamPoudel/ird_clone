@@ -155,7 +155,22 @@
             <div class="x-fieldset-body" style="width: 100%;">
                 <label class="service-link">KYT</label>
                 <label class="separator"> | </label>
-                <label class="service-link">Verification</label>
+                <label class="service-link" id="verificationLink">Verification</label>
+                    <!-- Verification Iframe Modal -->
+                    <div id="verificationModal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:#dbe8f7;">
+                        <iframe id="verificationIframe" src="" style="width:100vw;height:100vh;border:none;"></iframe>
+                    </div>
+                    <script>
+                    // ...existing code...
+                    document.getElementById('verificationLink').onclick = function() {
+                        document.getElementById('verificationIframe').src = 'verification.html';
+                        document.getElementById('verificationModal').style.display = 'flex';
+                    };
+                    function closeVerificationModal() {
+                        document.getElementById('verificationModal').style.display = 'none';
+                        document.getElementById('verificationIframe').src = '';
+                    }
+                    </script>
                 <label class="separator"> | </label>
                 <label class="service-link">Request For Filing Date Extension</label>
                 <label class="separator"> | </label>
