@@ -1,5 +1,5 @@
     <!-- Success Popup Modal -->
-    <div id="finalizeSuccessModal" style="display:none;position:fixed;z-index:10000;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.10);display:flex;align-items:flex-start;justify-content:center;">
+    <div id="finalizeSuccessModal" style="display:none;position:fixed;z-index:10000;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.10);align-items:flex-start;justify-content:center;">
         <div style="background:#eaf1fa;border-radius:8px;min-width:320px;max-width:90vw;box-shadow:0 2px 16px #0002;position:relative;border:1.5px solid #b5cbe7;margin-top:90px;padding:0;">
             <div style="padding:10px 18px 0 18px;font-size:16px;font-weight:bold;color:#1a4b8c;letter-spacing:0.5px;">SUCCESS
                 <span onclick="hideFinalizeSuccessModal()" style="position:absolute;top:8px;right:14px;font-size:18px;cursor:pointer;color:#888;">&times;</span>
@@ -190,7 +190,7 @@
                 <span style="color:#27ae60;font-size:18px;vertical-align:middle;">✓</span> Proceed to Payment
             </button>
                 <!-- Finalize Confirmation Modal -->
-                <div id="finalizeConfirmModal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);display:flex;align-items:flex-start;justify-content:center;">
+                <div id="finalizeConfirmModal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);align-items:flex-start;justify-content:center;">
                     <div style="background:#ced9e7;border-radius:12px;width:370px;max-width:95vw;min-height:270px;box-shadow:0 4px 24px #0002;position:relative;border:1.5px solid #8cb3df;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0;margin-top:60px;">
                         <div style="width:100%;padding:18px 28px 0 28px;">
                         <div style="font-size:17px;font-weight:bold;color:#003366;margin-bottom:10px;display:flex;align-items:center;gap:7px;">
@@ -245,10 +245,23 @@
                     // Lock the form
                     localStorage.setItem('d03_finalized', '1');
                     document.getElementById('finalizeSubmitBtn').disabled = true;
-                    // Show success modal with random reference number
-                    var ref = localStorage.getItem('d03_ref_no') || (Math.floor(800000000000 + Math.random()*100000000000)).toString();
-                    localStorage.setItem('d03_ref_no', ref);
-                    document.getElementById('finalizeSuccessMsg').innerHTML = ref + ' Finalized Successfully .';
+                    // Get submission number from localStorage (from registration)
+                    var submissionNo = '';
+                    try {
+                        const currentUser = sessionStorage.getItem('d03_current_registration');
+                        if (currentUser) {
+                            const userData = JSON.parse(currentUser);
+                            submissionNo = userData.submissionNumber || userData.submissionNo || '';
+                        } else {
+                            const returnData = localStorage.getItem('d03_return_data');
+                            if (returnData) {
+                                const data = JSON.parse(returnData);
+                                submissionNo = data.submissionNo || '';
+                            }
+                        }
+                    } catch(e) {}
+                    // Show success modal with submission number
+                    document.getElementById('finalizeSuccessMsg').innerHTML = (submissionNo || 'Tax Return') + ' Finalized Successfully.';
                     document.getElementById('finalizeSuccessModal').style.display = 'flex';
                 };
 
