@@ -204,6 +204,17 @@
         </div>
     </div>
     
+    <!-- Preview Modal -->
+    <div id="previewModal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:#DFE9F6;">
+        <div style="height:100vh;display:flex;flex-direction:column;">
+            <div style="background:#15498B;padding:10px 15px;display:flex;justify-content:space-between;align-items:center;">
+                <span style="color:#FFF;font-size:14px;font-weight:bold;">D-03 Preview</span>
+                <button onclick="closePreviewModal()" style="background:#FFF;border:1px solid #99BCE8;padding:4px 15px;cursor:pointer;font-size:11px;border-radius:3px;">Close</button>
+            </div>
+            <iframe id="previewIframe" src="" style="flex:1;border:none;width:100%;"></iframe>
+        </div>
+    </div>
+    
     <script>
         // Enable Preview/Verify if submission number matches d03 submission number
         const submissionInput = document.getElementById('submissionNoInput');
@@ -257,6 +268,16 @@
             moduleSelect.value = '';
             checkSubmissionInput();
         };
+
+        previewBtn.onclick = function() {
+            document.getElementById('previewIframe').src = '../income_tax/d03_preview.html';
+            document.getElementById('previewModal').style.display = 'flex';
+        };
+        
+        function closePreviewModal() {
+            document.getElementById('previewModal').style.display = 'none';
+            document.getElementById('previewIframe').src = '';
+        }
 
         verifyBtn.onclick = function() {
             document.getElementById('verifySuccessModal').style.display = 'flex';

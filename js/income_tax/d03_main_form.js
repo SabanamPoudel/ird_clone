@@ -31,7 +31,10 @@ function loadUserData() {
             pan: userData.pan || '',
             taxpayerName: userData.username || '',
             iro: 'आन्तरिक राजस्व कार्यालय भरतपुर',
-            submissionNumber: submissionNumber
+            submissionNumber: submissionNumber,
+            submissionNo: submissionNumber,
+            username: userData.username || '',
+            officeCode: '17'
         };
         localStorage.setItem('d03_return_data', JSON.stringify(initialData));
         
@@ -102,15 +105,18 @@ function registerForm() {
     // Collect all form data
     const formData = {
         submissionNumber: document.getElementById('submissionNo').textContent,
+        submissionNo: document.getElementById('submissionNo').textContent,
         fiscalYear: document.getElementById('fiscalYear').value,
         pan: document.getElementById('pan').value,
         firmName: document.getElementById('firmName').value,
         taxpayerName: document.getElementById('firmName').value,
+        name: document.getElementById('firmName').value,
         email: document.getElementById('email').value,
         mobile: document.getElementById('mobile').value,
         iro: document.getElementById('iro').value,
         taxpayerType: taxpayerType,
-        registrationDate: new Date().toISOString()
+        registrationDate: new Date().toISOString(),
+        officeCode: '17'
     };
     
     // Save to localStorage
@@ -118,7 +124,7 @@ function registerForm() {
     d03Submissions.push(formData);
     localStorage.setItem('d03Submissions', JSON.stringify(d03Submissions));
     
-    // Also save to d03_return_data for use in annex pages
+    // Also save to d03_return_data for use in annex pages and preview
     localStorage.setItem('d03_return_data', JSON.stringify(formData));
     
     // Show popup with submission number
