@@ -3,7 +3,7 @@
 
 // Close Annex 7 and return to main form
 function closeAnnex7() {
-    window.location.href = 'd03_return_entry.html';
+    window.location.href = 'd03_set_annex.html';
 }
 
 // Load Annex 7 data when iframe loads
@@ -53,7 +53,7 @@ function loadAnnex7Data() {
 function saveAnnex7(data) {
     try {
         localStorage.setItem('annex7_data', JSON.stringify(data));
-        alert('डाटा सफलतापूर्वक सुरक्षित गरियो। (Data saved successfully.)');
+        // Modal is shown in iframe, no alert needed here
         
         // Update delete button visibility
         const iframe = document.getElementById('annex7Frame');

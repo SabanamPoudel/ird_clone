@@ -154,6 +154,10 @@
             font-size: 16px;
             filter: hue-rotate(200deg) saturate(1.5);
         }
+        
+        .btn-save.updated::before {
+            content: "";
+        }
 
         .btn-delete {
             background-color: #e74c3c;
@@ -184,9 +188,195 @@
         .back-link a:hover {
             color: #c82333;
         }
+        
+        /* Success Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.10);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: #eaf1fa;
+            border-radius: 8px;
+            min-width: 320px;
+            max-width: 90vw;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+            position: relative;
+            border: 1.5px solid #b5cbe7;
+            padding: 0;
+        }
+        .modal-header {
+            padding: 10px 18px 0 18px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #1a4b8c;
+            letter-spacing: 0.5px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 8px;
+            right: 14px;
+            font-size: 18px;
+            cursor: pointer;
+            color: #888;
+        }
+        .modal-body {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 18px 0 18px;
+        }
+        .modal-icon {
+            margin-top: 2px;
+        }
+        .modal-message {
+            font-size: 15px;
+            color: #222;
+            line-height: 1.5;
+        }
+        .modal-footer {
+            text-align: center;
+            padding: 16px 0 10px 0;
+        }
+        .modal-ok-btn {
+            padding: 3px 32px;
+            background: #e3eaf3;
+            border: 1.5px solid #b5cbe7;
+            border-radius: 3px;
+            font-size: 15px;
+            cursor: pointer;
+            color: #1a4b8c;
+            font-weight: bold;
+        }
+        .modal-ok-btn:hover {
+            background: #d5e2f0;
+        }
+        
+        /* Confirmation Modal Styles */
+        .confirm-modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 10001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.15);
+            align-items: center;
+            justify-content: center;
+        }
+        .confirm-modal-content {
+            background: #e8f1fa;
+            border-radius: 8px;
+            min-width: 400px;
+            max-width: 90vw;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+            position: relative;
+            border: 1.5px solid #9bc2e6;
+            padding: 0;
+        }
+        .confirm-modal-header {
+            padding: 10px 18px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #1a4b8c;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #9bc2e6;
+        }
+        .confirm-modal-close {
+            position: absolute;
+            top: 8px;
+            right: 14px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #888;
+            font-weight: normal;
+        }
+        .confirm-modal-body {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 18px;
+        }
+        .confirm-modal-icon {
+            font-size: 48px;
+        }
+        .confirm-modal-message {
+            font-size: 15px;
+            color: #222;
+            line-height: 1.6;
+        }
+        .confirm-modal-footer {
+            text-align: center;
+            padding: 10px 18px 15px 18px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .confirm-btn {
+            padding: 5px 28px;
+            background: #d4e4f7;
+            border: 1.5px solid #9bc2e6;
+            border-radius: 3px;
+            font-size: 15px;
+            cursor: pointer;
+            color: #1a4b8c;
+            font-weight: bold;
+            min-width: 80px;
+        }
+        .confirm-btn:hover {
+            background: #c4d8f0;
+        }
     </style>
 </head>
 <body>
+    <!-- Success Modal -->
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                SUCCESS
+                <span class="modal-close" onclick="closeSuccessModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <span class="modal-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32">
+                        <circle cx="16" cy="16" r="16" fill="#b5cbe7"/>
+                        <text x="16" y="22" text-anchor="middle" font-size="20" fill="#1a4b8c" font-family="Arial, sans-serif">i</text>
+                    </svg>
+                </span>
+                <span class="modal-message">Successfully saved.</span>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-ok-btn" onclick="closeSuccessModal()">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="confirm-modal-overlay">
+        <div class="confirm-modal-content">
+            <div class="confirm-modal-header">
+                Confirm Action
+                <span class="confirm-modal-close" onclick="closeConfirmModal()">&times;</span>
+            </div>
+            <div class="confirm-modal-body">
+                <span class="confirm-modal-icon">❓</span>
+                <span class="confirm-modal-message">के तपाईं पछाडि गएर अनुसूची तय गर्न चाहनुहुन्छ?</span>
+            </div>
+            <div class="confirm-modal-footer">
+                <button class="confirm-btn" onclick="confirmGoBack()">Yes</button>
+                <button class="confirm-btn" onclick="closeConfirmModal()">No</button>
+            </div>
+        </div>
+    </div>
+    
     <div class="form-container">
         <button class="print-btn">Print</button>
         
@@ -217,13 +407,6 @@
         <div class="grid-container">
             <div class="grid-header">Inclusion (IN)</div>
             <table>
-                <thead>
-                    <tr>
-                        <th style="width: 40px;">ID</th>
-                        <th>ItemDescEng</th>
-                        <th style="width: 180px;">ItemValue</th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
@@ -333,13 +516,6 @@
         <div class="grid-container">
             <div class="grid-header">Deduction (DE)</div>
             <table>
-                <thead>
-                    <tr>
-                        <th style="width: 40px;">ID</th>
-                        <th>ItemDescEng</th>
-                        <th style="width: 180px;">ItemValue</th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr>
                         <td>21</td>
@@ -374,13 +550,6 @@
         <div class="grid-container">
             <div class="grid-header">Deductible Loss (DL)</div>
             <table>
-                <thead>
-                    <tr>
-                        <th style="width: 40px;">ID</th>
-                        <th>ItemDescEng</th>
-                        <th style="width: 180px;">ItemValue</th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr>
                         <td>26</td>
@@ -415,13 +584,6 @@
         <div class="grid-container">
             <div class="grid-header">Miscellaneous Inclusion(MI)</div>
             <table>
-                <thead>
-                    <tr>
-                        <th style="width: 40px;">ID</th>
-                        <th>ItemDescEng</th>
-                        <th style="width: 180px;">ItemValue</th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr>
                         <td>31</td>
@@ -551,13 +713,23 @@
 
         // Back link handler
         document.getElementById('backLink').addEventListener('click', function() {
-            window.parent.postMessage({ type: 'goBackToSetAnnex' }, '*');
+            document.getElementById('confirmModal').style.display = 'flex';
         });
         
         // Back link handler (bottom)
         document.getElementById('backLink2').addEventListener('click', function() {
-            window.parent.postMessage({ type: 'goBackToSetAnnex' }, '*');
+            document.getElementById('confirmModal').style.display = 'flex';
         });
+        
+        // Function to close confirmation modal
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').style.display = 'none';
+        }
+        
+        // Function to confirm going back
+        function confirmGoBack() {
+            window.parent.postMessage({ type: 'goBackToSetAnnex' }, '*');
+        }
 
         // Save button handler
         document.getElementById('saveBtn').addEventListener('click', function() {
@@ -583,7 +755,22 @@
             }
 
             window.parent.postMessage({ type: 'saveAnnex7', data: data }, '*');
+            
+            // Show success modal
+            document.getElementById('successModal').style.display = 'flex';
         });
+        
+        // Function to close success modal
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
+            
+            // Change Save button to Update
+            const saveBtn = document.getElementById('saveBtn');
+            if (saveBtn) {
+                saveBtn.textContent = 'Update';
+                saveBtn.classList.add('updated');
+            }
+        }
 
         // Delete button handler
         document.getElementById('deleteBtn').addEventListener('click', function() {

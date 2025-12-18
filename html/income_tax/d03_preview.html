@@ -5,19 +5,74 @@
     <title>Print Pages - D03</title>
     <link rel="stylesheet" href="../../extjs/resources/ext-all.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
         body {
             background: #DFE9F6;
-            margin: 0;
             font-family: tahoma, arial, verdana, sans-serif;
             font-size: 11px;
-            padding: 10px;
+        }
+        .fullscreen-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .header-section {
+            flex-shrink: 0;
+            background: #15498B;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            color: #FFF;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .close-btn {
+            background: #FFF;
+            border: none;
+            padding: 6px 20px;
+            border-radius: 3px;
+            color: #15498B;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        .close-btn:hover {
+            background: #F0F0F0;
         }
         .breadcrumb {
             background: #DFE9F6;
-            padding: 8px 0;
+            padding: 8px 15px;
             font-size: 11px;
             color: #15498B;
-            margin-bottom: 10px;
+            flex-shrink: 0;
+        }
+        .iframe-container {
+            flex: 1;
+            width: 100%;
+            overflow: hidden;
+            background: #FFF;
+        }
+        .content-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         .page-header {
             background: linear-gradient(to bottom, #D0E1F5 0%, #BAD4F0 100%);
@@ -115,15 +170,152 @@
     </style>
 </head>
 <body>
-    <div class="breadcrumb">
-        Integrated Tax Menus >> Print Pages D03
+    <div class="fullscreen-container">
+        <div class="header-section">
+            <div class="header-title">D-03 Preview</div>
+            <button class="close-btn" onclick="closePreview()">Close</button>
+        </div>
+        
+        <div class="breadcrumb">
+            Integrated Tax Menus >> Print Pages D03
+        </div>
+        
+        <div class="iframe-container">
+            <iframe id="previewFrame" class="content-iframe" srcdoc=""></iframe>
+        </div>
     </div>
     
-    <div class="page-header">
-        Print Pages
-    </div>
-    
-    <!-- User Information Section -->
+    <script>
+        function closePreview() {
+            if (window.opener) {
+                window.close();
+            } else {
+                window.history.back();
+            }
+        }
+        
+        // Generate the iframe content
+        function generateIframeContent() {
+            return `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        body {
+                            margin: 0;
+                            padding: 20px;
+                            font-family: tahoma, arial, verdana, sans-serif;
+                            font-size: 11px;
+                            background: #FFF;
+                        }
+                        body {
+                            margin: 0;
+                            padding: 20px;
+                            font-family: tahoma, arial, verdana, sans-serif;
+                            font-size: 11px;
+                            background: #FFF;
+                        }
+                        .page-header {
+                            background: linear-gradient(to bottom, #D0E1F5 0%, #BAD4F0 100%);
+                            border: 1px solid #99BCE8;
+                            padding: 6px 12px;
+                            font-weight: bold;
+                            font-size: 11px;
+                            color: #15498B;
+                            margin-bottom: 10px;
+                        }
+                        .info-panel {
+                            background: #DFE9F6;
+                            border: 1px solid #99BCE8;
+                            padding: 15px;
+                            margin-bottom: 15px;
+                        }
+                        .info-section {
+                            background: #E8F0F8;
+                            border: 1px solid #B5C7E3;
+                            padding: 10px 15px;
+                            margin-bottom: 10px;
+                        }
+                        .info-header {
+                            font-size: 11px;
+                            font-weight: bold;
+                            color: #15498B;
+                            margin-bottom: 8px;
+                            padding-bottom: 5px;
+                            border-bottom: 1px solid #B5C7E3;
+                        }
+                        .info-row {
+                            display: flex;
+                            gap: 30px;
+                            margin: 6px 0;
+                            font-size: 11px;
+                        }
+                        .info-item {
+                            display: flex;
+                            gap: 8px;
+                        }
+                        .info-label {
+                            font-weight: bold;
+                            color: #000;
+                        }
+                        .info-value {
+                            color: #000;
+                        }
+                        .annex-section {
+                            background: #DFE9F6;
+                            border: 1px solid #99BCE8;
+                            padding: 15px;
+                        }
+                        .section-header {
+                            background: linear-gradient(to bottom, #D0E1F5 0%, #BAD4F0 100%);
+                            border: 1px solid #99BCE8;
+                            padding: 6px 12px;
+                            font-weight: bold;
+                            font-size: 11px;
+                            color: #15498B;
+                            margin-bottom: 10px;
+                        }
+                        .annex-table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            background: #FFF;
+                        }
+                        .annex-table th,
+                        .annex-table td {
+                            border: 1px solid #B5C7E3;
+                            padding: 6px 10px;
+                            font-size: 11px;
+                            text-align: left;
+                        }
+                        .annex-table th {
+                            background: #E8F0F8;
+                            font-weight: bold;
+                            color: #15498B;
+                        }
+                        .annex-table td {
+                            color: #000;
+                        }
+                        .print-link {
+                            color: #0000FF;
+                            text-decoration: underline;
+                            cursor: pointer;
+                        }
+                        .print-link:hover {
+                            color: #0000CC;
+                        }
+                        .note-text {
+                            color: red;
+                            font-size: 11px;
+                            margin-top: 10px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="page-header">
+                        Print Pages
+                    </div>
+                    
     <div class="info-panel">
         <div class="info-section">
             <div class="info-header">करदाता गृहमा अनुरोध गरी वेवसाइट <span style="color:red;cursor:pointer;text-decoration:underline;">यहाँ क्लिक</span> गर्नुहोस् ।</div>
@@ -228,55 +420,75 @@
             </table>
         </div>
     </div>
-    
-    <script>
+                </body>
+                </html>
+            `;
+        }
+        
         // Load user data from localStorage/sessionStorage
+        
+        // Load user data and populate iframe
         window.addEventListener('DOMContentLoaded', function() {
-            try {
-                // Get data from sessionStorage or localStorage
-                let userData = null;
-                const currentUser = sessionStorage.getItem('d03_current_registration');
-                if (currentUser) {
-                    userData = JSON.parse(currentUser);
-                } else {
-                    const returnData = localStorage.getItem('d03_return_data');
-                    if (returnData) {
-                        userData = JSON.parse(returnData);
+            // Set the iframe content
+            const iframe = document.getElementById('previewFrame');
+            iframe.srcdoc = generateIframeContent();
+            
+            // Wait for iframe to load then update data
+            iframe.onload = function() {
+                try {
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    
+                    // Get data from sessionStorage or localStorage
+                    let userData = null;
+                    const currentUser = sessionStorage.getItem('d03_current_registration');
+                    if (currentUser) {
+                        userData = JSON.parse(currentUser);
+                    } else {
+                        const returnData = localStorage.getItem('d03_return_data');
+                        if (returnData) {
+                            userData = JSON.parse(returnData);
+                        }
                     }
+                    
+                    if (userData) {
+                        // Update submission number
+                        const submissionNo = userData.submissionNumber || userData.submissionNo || '';
+                        if (submissionNo) {
+                            const submissionEl = iframeDoc.getElementById('submissionNumber');
+                            if (submissionEl) submissionEl.textContent = submissionNo;
+                        }
+                        
+                        // Update PAN
+                        if (userData.pan) {
+                            const panEl = iframeDoc.getElementById('panNumber');
+                            if (panEl) panEl.textContent = userData.pan;
+                        }
+                        
+                        // Update fiscal year
+                        if (userData.fiscalYear) {
+                            const fiscalEl = iframeDoc.getElementById('fiscalYear');
+                            if (fiscalEl) fiscalEl.textContent = userData.fiscalYear;
+                        }
+                        
+                        // Update taxpayer name
+                        if (userData.firmName) {
+                            const nameEl = iframeDoc.getElementById('taxpayerName');
+                            if (nameEl) nameEl.textContent = userData.firmName;
+                        } else if (userData.name) {
+                            const nameEl = iframeDoc.getElementById('taxpayerName');
+                            if (nameEl) nameEl.textContent = userData.name;
+                        }
+                        
+                        // Update office code if available
+                        if (userData.officeCode) {
+                            const officeEl = iframeDoc.getElementById('officeCode');
+                            if (officeEl) officeEl.textContent = userData.officeCode;
+                        }
+                    }
+                } catch(e) {
+                    console.error('Error loading user data:', e);
                 }
-                
-                if (userData) {
-                    // Update submission number
-                    const submissionNo = userData.submissionNumber || userData.submissionNo || '';
-                    if (submissionNo) {
-                        document.getElementById('submissionNumber').textContent = submissionNo;
-                    }
-                    
-                    // Update PAN
-                    if (userData.pan) {
-                        document.getElementById('panNumber').textContent = userData.pan;
-                    }
-                    
-                    // Update fiscal year
-                    if (userData.fiscalYear) {
-                        document.getElementById('fiscalYear').textContent = userData.fiscalYear;
-                    }
-                    
-                    // Update taxpayer name (from main form data)
-                    if (userData.firmName) {
-                        document.getElementById('taxpayerName').textContent = userData.firmName;
-                    } else if (userData.name) {
-                        document.getElementById('taxpayerName').textContent = userData.name;
-                    }
-                    
-                    // Update office code if available
-                    if (userData.officeCode) {
-                        document.getElementById('officeCode').textContent = userData.officeCode;
-                    }
-                }
-            } catch(e) {
-                console.error('Error loading user data:', e);
-            }
+            };
         });
     </script>
 </body>

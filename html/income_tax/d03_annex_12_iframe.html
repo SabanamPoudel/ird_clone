@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अनुसूची -१२ - विदेशमा तिरेको कर मिलान दावी</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #C5D9F1;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1250px;
+            margin: 0 auto;
+            background-color: #C5D9F1;
+        }
+        
+        .print-btn {
+            padding: 4px 10px;
+            background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+            border: 1px solid #a0a0a0;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .main-panel {
+            background-color: #C5D9F1;
+            border: 1px solid #8DB4E2;
+            padding: 0;
+        }
+        
+        .panel-header {
+            background: linear-gradient(to bottom, #DBE5F1 0%, #B7D0E8 100%);
+            border-bottom: 1px solid #8DB4E2;
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+        
+        .back-link {
+            color: red;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        .form-section {
+            background-color: white;
+            padding: 10px;
+            margin: 5px;
+        }
+        
+        .section-title {
+            background: linear-gradient(to bottom, #DBE5F1 0%, #B7D0E8 100%);
+            border: 1px solid #8DB4E2;
+            padding: 6px 10px;
+            font-weight: normal;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        
+        .add-new-btn {
+            padding: 4px 10px;
+            background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+            border: 1px solid #a0a0a0;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 2px;
+            margin: 5px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .add-new-btn:hover {
+            background: linear-gradient(to bottom, #e8e8e8 0%, #d8d8d8 100%);
+        }
+        
+        .add-new-btn span:first-child {
+            color: green;
+            font-size: 14px;
+        }
+        
+        .column-labels {
+            display: flex;
+            border-left: 1px solid #B7D0E8;
+            border-right: 1px solid #B7D0E8;
+            background-color: white;
+            padding: 3px 0;
+        }
+        
+        .column-labels span {
+            text-align: center;
+            font-size: 13px;
+            padding: 3px;
+        }
+        
+        .col-spacer {
+            width: 25px;
+            border-right: 1px solid #B7D0E8;
+        }
+        
+        .col-1 {
+            width: 200px;
+            border-right: 1px solid #B7D0E8;
+        }
+        
+        .col-2 {
+            width: 150px;
+            border-right: 1px solid #B7D0E8;
+        }
+        
+        .col-3 {
+            width: 150px;
+            border-right: 1px solid #B7D0E8;
+        }
+        
+        .col-4 {
+            width: 140px;
+            border-right: 1px solid #B7D0E8;
+        }
+        
+        .table-container {
+            background-color: white;
+            border: 1px solid #B7D0E8;
+            min-height: 250px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        
+        th {
+            background: linear-gradient(to bottom, #DBE5F1 0%, #B7D0E8 100%);
+            border: 1px solid #8DB4E2;
+            padding: 6px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: normal;
+        }
+        
+        th.center {
+            text-align: center;
+        }
+        
+        td {
+            border: 1px solid #ddd;
+            padding: 4px;
+            font-size: 12px;
+        }
+        
+        .row-number {
+            width: 25px;
+            text-align: center;
+            background: linear-gradient(to bottom, #DBE5F1 0%, #B7D0E8 100%);
+        }
+        
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 3px;
+            border: 1px solid #ccc;
+            font-size: 12px;
+        }
+        
+        input[type="number"] {
+            text-align: right;
+        }
+        
+        .action-icon {
+            cursor: pointer;
+            padding: 0 4px;
+            font-size: 14px;
+        }
+        
+        .edit-icon {
+            color: blue;
+        }
+        
+        .delete-icon {
+            color: red;
+        }
+        
+        .total-row {
+            background-color: white;
+        }
+        
+        .total-row td {
+            padding: 5px;
+        }
+        
+        .total-label {
+            text-align: left;
+            padding-left: 25px;
+            font-size: 12px;
+        }
+        
+        .button-group {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            padding: 5px 0;
+        }
+        
+        .save-btn,
+        .update-btn,
+        .delete-btn {
+            padding: 4px 12px;
+            background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+            border: 1px solid #a0a0a0;
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .save-btn:hover,
+        .update-btn:hover,
+        .delete-btn:hover {
+            background: linear-gradient(to bottom, #e8e8e8 0%, #d8d8d8 100%);
+        }
+        
+        .delete-btn {
+            display: none;
+        }
+        
+        .back-link-bottom {
+            margin-top: 8px;
+            font-size: 12px;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            align-items: flex-start;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: #d4e4f7;
+            border-radius: 6px;
+            min-width: 380px;
+            max-width: 90vw;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
+            position: relative;
+            border: 1.5px solid #b5cbe7;
+            margin-top: 100px;
+        }
+        
+        .modal-header {
+            padding: 10px 18px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #1a4b8c;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #b5cbe7;
+        }
+        
+        .close {
+            position: absolute;
+            top: 8px;
+            right: 14px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #888;
+        }
+        
+        .modal-body {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px 18px;
+        }
+        
+        .modal-icon {
+            margin-top: 2px;
+        }
+        
+        .modal-message {
+            font-size: 14px;
+            color: #222;
+            line-height: 1.5;
+        }
+        
+        .modal-footer {
+            text-align: center;
+            padding: 0 18px 12px 18px;
+        }
+        
+        .modal-btn-primary,
+        .modal-btn-secondary {
+            padding: 4px 28px;
+            background: #e3eaf3;
+            border: 1.5px solid #b5cbe7;
+            border-radius: 3px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #000;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+        
+        .modal-btn-primary:hover,
+        .modal-btn-secondary:hover {
+            background: #d4e4f7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="print-btn" onclick="window.print()">
+            <span>🖨️</span>
+            <span>Print</span>
+        </button>
+        
+        <div class="title">अनुसूची -१२</div>
+        
+        <div class="main-panel">
+            <div class="panel-header">
+                पछाडि गएर अनुसूची तय गर्न <span class="back-link" onclick="goBack()">यहाँ कि्लक</span> गर्नुहोस् ।
+            </div>
+            
+            <div class="form-section">
+                <div class="section-title">विदेशमा तिरेको कर मिलान दावी</div>
+                
+                <button class="add-new-btn" onclick="addNewRow()">
+                    <span>➕</span>
+                    <span>Add New</span>
+                </button>
+                
+                <div class="column-labels">
+                    <span class="col-spacer"></span>
+                    <span class="col-1">१</span>
+                    <span class="col-2">२</span>
+                    <span class="col-3">३</span>
+                    <span class="col-4">४</span>
+                    <span style="flex-grow: 1;"></span>
+                </div>
+                
+                <div class="table-container">
+                    <table id="dataTable">
+                        <thead>
+                            <tr>
+                                <th class="row-number center">&nbsp;</th>
+                                <th style="width: 200px;">आय स्रोतको मुलुक</th>
+                                <th style="width: 150px; text-align: center;">गत आयबर्ष सम्मको मिलान<br>गर्न बांकी विदेशमा तिरेको कर</th>
+                                <th style="width: 150px; text-align: center;">यस आयबर्षमा विदेशमा तिरेको कर</th>
+                                <th style="width: 140px; text-align: center;">यस आयबर्षमा विदेशी कर दावी</th>
+                                <th style="width: 100px; text-align: center;">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Rows will be added dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <table style="width: 100%; border-collapse: collapse; background-color: white; margin-top: -1px;">
+                    <tr class="total-row">
+                        <td class="total-label" style="border: 1px solid #B7D0E8; width: 225px;">Total Expenses</td>
+                        <td style="border: 1px solid #B7D0E8; width: 150px;"><input type="text" id="totalCol2" readonly value="NaN" style="background: white;"></td>
+                        <td style="border: 1px solid #B7D0E8; width: 150px;"><input type="text" id="totalCol3" readonly value="NaN" style="background: white;"></td>
+                        <td style="border: 1px solid #B7D0E8; width: 140px;"><input type="text" id="totalCol4" readonly value="NaN" style="background: white;"></td>
+                        <td style="border: 1px solid #B7D0E8;"></td>
+                    </tr>
+                </table>
+                
+                <div class="button-group">
+                    <button class="save-btn" id="saveBtn" onclick="saveAnnex12()">
+                        <span>💾</span>
+                        <span>Save Annex 12</span>
+                    </button>
+                    <button class="update-btn" id="updateBtn" style="display: none;" onclick="updateAnnex12()">
+                        <span>✏️</span>
+                        <span>Update</span>
+                    </button>
+                    <button class="delete-btn" id="deleteBtn" onclick="confirmDelete()">
+                        <span>🗑️</span>
+                        <span>Delete</span>
+                    </button>
+                </div>
+                
+                <div class="back-link-bottom">
+                    पछाडि गएर अनुसूची तय गर्न <span class="back-link" onclick="goBack()">यहाँ कि्लक</span> गर्नुहोस् ।
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                SUCCESS
+                <span class="close" onclick="closeSuccessModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32">
+                        <circle cx="16" cy="16" r="16" fill="#b5cbe7"/>
+                        <text x="16" y="22" text-anchor="middle" font-size="20" fill="#1a4b8c" font-family="Arial, sans-serif">i</text>
+                    </svg>
+                </div>
+                <div class="modal-message">
+                    Annex 12 data has been saved successfully!
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn-primary" onclick="closeSuccessModal()">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                CONFIRM
+                <span class="close" onclick="closeConfirmModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32">
+                        <circle cx="16" cy="16" r="16" fill="#b5cbe7"/>
+                        <text x="16" y="22" text-anchor="middle" font-size="20" fill="#1a4b8c" font-family="Arial, sans-serif">?</text>
+                    </svg>
+                </div>
+                <div class="modal-message">
+                    Are you sure you want to go back? Any unsaved changes will be lost.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn-primary" onclick="confirmGoBack()">Yes</button>
+                <button class="modal-btn-secondary" onclick="closeConfirmModal()">No</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                CONFIRM DELETE
+                <span class="close" onclick="closeDeleteModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32">
+                        <circle cx="16" cy="16" r="16" fill="#b5cbe7"/>
+                        <text x="16" y="22" text-anchor="middle" font-size="20" fill="#1a4b8c" font-family="Arial, sans-serif">!</text>
+                    </svg>
+                </div>
+                <div class="modal-message">
+                    Are you sure you want to delete all Annex 12 data?
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn-primary" onclick="deleteAnnex12()">Yes</button>
+                <button class="modal-btn-secondary" onclick="closeDeleteModal()">No</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let rowData = [];
+        let editingIndex = -1;
+        
+        // Load data on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadAnnex12Data();
+        });
+        
+        function addNewRow() {
+            const country = prompt('आय स्रोतको मुलुक (Country of income source):');
+            if (!country) return;
+            
+            const col2 = prompt('गत आयबर्ष सम्मको मिलान गर्न बांकी विदेशमा तिरेको कर:') || '0';
+            const col3 = prompt('यस आयबर्षमा विदेशमा तिरेको कर:') || '0';
+            const col4 = prompt('यस आयबर्षमा विदेशी कर दावी:') || '0';
+            
+            const newRow = {
+                country: country,
+                col2: parseFloat(col2) || 0,
+                col3: parseFloat(col3) || 0,
+                col4: parseFloat(col4) || 0
+            };
+            
+            rowData.push(newRow);
+            renderTable();
+            calculateTotals();
+        }
+        
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            rowData.forEach((row, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="row-number">${index + 1}</td>
+                    <td>${row.country}</td>
+                    <td style="text-align: right;">${row.col2.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td style="text-align: right;">${row.col3.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td style="text-align: right;">${row.col4.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td>
+                        <span class="action-icon edit-icon" onclick="editRow(${index})" title="Edit">✏️</span>
+                        <span class="action-icon delete-icon" onclick="deleteRow(${index})" title="Delete">🗑️</span>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            
+            // Update totals display - show NaN if no rows
+            if (rowData.length === 0) {
+                document.getElementById('totalCol2').value = 'NaN';
+                document.getElementById('totalCol3').value = 'NaN';
+                document.getElementById('totalCol4').value = 'NaN';
+            }
+        }
+        
+        function editRow(index) {
+            const row = rowData[index];
+            
+            const country = prompt('आय स्रोतको मुलुक (Country of income source):', row.country);
+            if (country === null) return;
+            
+            const col2 = prompt('गत आयबर्ष सम्मको मिलान गर्न बांकी विदेशमा तिरेको कर:', row.col2);
+            if (col2 === null) return;
+            
+            const col3 = prompt('यस आयबर्षमा विदेशमा तिरेको कर:', row.col3);
+            if (col3 === null) return;
+            
+            const col4 = prompt('यस आयबर्षमा विदेशी कर दावी:', row.col4);
+            if (col4 === null) return;
+            
+            rowData[index] = {
+                country: country,
+                col2: parseFloat(col2) || 0,
+                col3: parseFloat(col3) || 0,
+                col4: parseFloat(col4) || 0
+            };
+            
+            renderTable();
+            calculateTotals();
+        }
+        
+        function deleteRow(index) {
+            if (confirm('Are you sure you want to delete this row?')) {
+            if (rowData.length === 0) {
+                document.getElementById('totalCol2').value = 'NaN';
+                document.getElementById('totalCol3').value = 'NaN';
+                document.getElementById('totalCol4').value = 'NaN';
+                return;
+            }
+            
+                rowData.splice(index, 1);
+                renderTable();
+                calculateTotals();
+            }
+        }
+        
+        function calculateTotals() {
+            let total2 = 0, total3 = 0, total4 = 0;
+            
+            rowData.forEach(row => {
+                total2 += row.col2;
+                total3 += row.col3;
+                total4 += row.col4;
+            });
+            
+            document.getElementById('totalCol2').value = total2.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('totalCol3').value = total3.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('totalCol4').value = total4.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+        
+        function saveAnnex12() {
+            if (rowData.length === 0) {
+                alert('Please add at least one row before saving.');
+                return;
+            }
+            
+            localStorage.setItem('annex12_data', JSON.stringify(rowData));
+            localStorage.setItem('d03_annex12_saved', 'true');
+            
+            // Show success modal
+            document.getElementById('successModal').style.display = 'flex';
+            
+            // Notify parent window
+            window.parent.postMessage({ type: 'annex12Saved' }, '*');
+        }
+        
+        function updateAnnex12() {
+            saveAnnex12();
+        }
+        
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
+            
+            // Switch to update mode
+            document.getElementById('saveBtn').style.display = 'none';
+            document.getElementById('updateBtn').style.display = 'inline-block';
+            document.getElementById('deleteBtn').style.display = 'inline-block';
+        }
+        
+        function confirmDelete() {
+            document.getElementById('deleteModal').style.display = 'flex';
+        }
+        
+        function deleteAnnex12() {
+            localStorage.removeItem('annex12_data');
+            localStorage.removeItem('d03_annex12_saved');
+            
+            // Reset form
+            rowData = [];
+            renderTable();
+            calculateTotals();
+            
+            // Switch back to save mode
+            document.getElementById('saveBtn').style.display = 'inline-block';
+            document.getElementById('updateBtn').style.display = 'none';
+            document.getElementById('deleteBtn').style.display = 'none';
+            
+            closeDeleteModal();
+            
+            // Notify parent window
+            window.parent.postMessage({ type: 'annex12Deleted' }, '*');
+        }
+        
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+        }
+        
+        function loadAnnex12Data() {
+            const savedData = localStorage.getItem('annex12_data');
+            const isSaved = localStorage.getItem('d03_annex12_saved');
+            
+            if (savedData) {
+                rowData = JSON.parse(savedData);
+                renderTable();
+                calculateTotals();
+            }
+            
+            if (isSaved === 'true') {
+                document.getElementById('saveBtn').style.display = 'none';
+                document.getElementById('updateBtn').style.display = 'inline-block';
+                document.getElementById('deleteBtn').style.display = 'inline-block';
+            }
+        }
+        
+        function goBack() {
+            document.getElementById('confirmModal').style.display = 'flex';
+        }
+        
+        function confirmGoBack() {
+            window.location.href = 'd03_set_annex.html';
+        }
+        
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

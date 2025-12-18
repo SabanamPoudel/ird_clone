@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
     checkAnnex2Visibility();
     checkAnnex2Update();
     checkAnnex13Update();
+    checkAnnex7Link();
+    checkAnnex8Link();
+    checkAnnex12Link();
+});
 // Show ( Update ) label for Annex-13 if saved
 function checkAnnex13Update() {
     const updateLabel = document.getElementById('annex13UpdateLabel');
@@ -51,7 +55,6 @@ function checkAnnex2Visibility() {
     // Optionally clear the flag after showing, if you want it to only show once
     // localStorage.removeItem('d03_show_annex2');
 }
-});
 
 // Check if Annex 5 data exists and show Business1 link
 function checkAnnex5Data() {
@@ -119,6 +122,14 @@ function openAnnex5Modal() {
     window.location.href = 'd03_annex_5_iframe.html';
 }
 
+// Function to be called directly from onclick
+function openAnnex5() {
+    console.log('openAnnex5 called');
+    // Set flag to show Annex-2 after returning
+    localStorage.setItem('d03_show_annex2', '1');
+    window.location.href = 'd03_annex_5.html';
+}
+
 // Open Annex 5(क) in modal (placeholder)
 function openAnnex5KaModal() {
     alert('अनुसूची - ५(क): कर छुट कारोबारको विवरण\nयो अनुसूची हालै उपलब्ध छैन।\n(This annex is not available yet.)');
@@ -129,13 +140,73 @@ function openAnnex7Modal() {
     window.location.href = 'd03_annex_7.html';
 }
 
-// Open Annex 8 in modal (placeholder)
+// Function to be called directly from onclick  
+function openAnnex7() {
+    window.location.href = 'd03_annex_7.html';
+}
+
+// Check and show Annex-7 Business1 link if data is saved
+function checkAnnex7Link() {
+    const annex7Link = document.getElementById('annex7Link');
+    const annex7Data = localStorage.getItem('annex7_data');
+    if (annex7Link) {
+        if (annex7Data) {
+            annex7Link.style.display = 'inline';
+        } else {
+            annex7Link.style.display = 'none';
+        }
+    }
+}
+
+// Check if Annex-8 data exists and show/hide link
+function checkAnnex8Link() {
+    const annex8Link = document.getElementById('annex8Link');
+    const annex8Data = localStorage.getItem('annex8_data');
+    if (annex8Link) {
+        if (annex8Data) {
+            annex8Link.style.display = 'inline';
+        } else {
+            annex8Link.style.display = 'none';
+        }
+    }
+}
+
+// Open Annex 8 in new page
 function openAnnex8Modal() {
-    alert('अनुसूची - ८: गैर व्यावसायिक सम्पत्तिको निसर्गबाट प्राप्त खुद लाभ\nयो अनुसूची हालै उपलब्ध छैन।\n(This annex is not available yet.)');
+    window.location.href = 'd03_annex_8.html';
+}
+
+// Function to be called directly from onclick
+function openAnnex8() {
+    window.location.href = 'd03_annex_8.html';
+}
+
+// Check if Annex-12 is saved and show/hide link
+function checkAnnex12Link() {
+    const annex12Link = document.getElementById('annex12Link');
+    const annex12Saved = localStorage.getItem('d03_annex12_saved');
+    
+    if (annex12Link) {
+        if (annex12Saved === 'true') {
+            annex12Link.style.display = 'inline';
+        } else {
+            annex12Link.style.display = 'none';
+        }
+    }
+}
+
+// Open Annex-12
+function openAnnex12() {
+    window.location.href = 'd03_annex_12.html';
 }
 
 // Open Annex 10 in modal
 function openAnnex10Modal() {
+    window.location.href = 'd03_annex_10.html';
+}
+
+// Function to be called directly from onclick
+function openAnnex10() {
     window.location.href = 'd03_annex_10.html';
 }
 
