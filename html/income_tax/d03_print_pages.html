@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Pages - D03</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: tahoma, arial, verdana, sans-serif;
+            font-size: 11px;
+            background: #DFE9F6;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .header {
+            display: none;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .header-text h1 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .header-text h2 {
+            font-size: 13px;
+            font-weight: normal;
+        }
+        
+        .header-text h3 {
+            font-size: 12px;
+            font-weight: normal;
+            font-style: italic;
+        }
+        
+        .flag {
+            width: 35px;
+            height: auto;
+        }
+        
+        .header-right {
+            text-align: right;
+        }
+        
+        .date {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .breadcrumb {
+            display: none;
+        }
+        
+        .sidebar {
+            display: none;
+        }
+        
+        .content {
+            margin: 0 auto;
+            padding: 0;
+            max-width: 1100px;
+        }
+        
+        .menu-header {
+            background: linear-gradient(to bottom, #D0E1F5 0%, #BAD4F0 100%);
+            padding: 6px 10px;
+            font-weight: bold;
+            color: #15498B;
+            border-bottom: 1px solid #99BCE8;
+        }
+        
+        .menu-item {
+            padding: 5px 10px;
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+        }
+        
+        .menu-item:hover {
+            background: #f5f5f5;
+        }
+        
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-bottom: 15px;
+        }
+        
+        .info-table td {
+            padding: 6px 10px;
+            border: 1px solid #b5b8c8;
+            font-size: 11px;
+        }
+        
+        .info-table td:first-child {
+            background: #f0f0f0;
+            font-weight: bold;
+            width: 150px;
+        }
+        
+        .print-section {
+            background: white;
+            border: 1px solid #99BCE8;
+            padding: 15px;
+        }
+        
+        .section-title {
+            background: linear-gradient(to bottom, #D0E1F5 0%, #BAD4F0 100%);
+            border: 1px solid #99BCE8;
+            padding: 6px 10px;
+            font-weight: bold;
+            color: #15498B;
+            margin-bottom: 15px;
+        }
+        
+        .notice {
+            color: red;
+            font-size: 11px;
+            margin-bottom: 10px;
+        }
+        
+        .print-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .print-table td {
+            padding: 5px 8px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 11px;
+        }
+        
+        .print-table td:first-child {
+            width: 60%;
+        }
+        
+        .print-link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        .print-link:hover {
+            color: #cc0000;
+        }
+        
+        .footer {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <svg class="logo" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="white"/>
+                <text x="50" y="60" text-anchor="middle" font-size="40" fill="#1e4d8b" font-weight="bold">IRD</text>
+            </svg>
+            <div class="header-text">
+                <h1>आन्तरिक राजस्व विभाग</h1>
+                <h2>Inland Revenue Department</h2>
+                <h3>करदाताले सेवामा सुधार</h3>
+            </div>
+            <svg class="flag" viewBox="0 0 60 80">
+                <path d="M 0,0 L 0,80 L 40,40 Z" fill="#DC143C" stroke="#003893" stroke-width="2"/>
+                <path d="M 40,40 L 0,0 L 0,80 Z" fill="#003893"/>
+            </svg>
+        </div>
+        <div class="header-right">
+            <div class="date">Date: <span id="currentDate">2082.09.03</span></div>
+        </div>
+    </div>
+    
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        Integrated Tax Menus >>PrintPagesD03
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="menu-header">Online E-Services</div>
+        <div class="menu-item">➕ Integrated Tax System</div>
+        <div class="menu-item" style="padding-left: 25px;">📁 General</div>
+        <div class="menu-item" style="padding-left: 40px;">👤 Taxpayer Login</div>
+        <div class="menu-item" style="padding-left: 40px;">✏️ Create Taxpayer Login</div>
+        <div class="menu-item" style="padding-left: 40px;">🔑 Forgot Password</div>
+        <div class="menu-item" style="padding-left: 25px;">📁 Registration(PAN,VAT,EXCISE)</div>
+        <div class="menu-item" style="padding-left: 25px;">📁 VAT</div>
+        <div class="menu-item" style="padding-left: 25px;">📁 Income Tax</div>
+        <div class="menu-item" style="padding-left: 25px;">📁 Excise</div>
+        <div class="menu-item" style="padding-left: 25px;">📁 ETDS</div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>आर्थिक वर्ष:</td>
+                <td>2081.082</td>
+                <td>आ.र.का:</td>
+                <td>अन्तरिक राजस्व कार्यालय काठमाडौं</td>
+            </tr>
+            <tr>
+                <td>सम्मिसन नम्बर:</td>
+                <td id="submissionNo">820076220351</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>स्थायी लेखा नम्बर:</td>
+                <td>621286092</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>नाम:</td>
+                <td colspan="3">अोकल ट्रान्स्पोर्ट प्रा.लि.</td>
+            </tr>
+            <tr>
+                <td>कार्यालय कोडः</td>
+                <td>2703</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        
+        <div class="print-section">
+            <div class="section-title">१. प्रिन्ट सिट</div>
+            
+            <div class="notice">
+                कृपयालाईतपाईको चाहि <span style="text-decoration: underline;">नयाँ विन्डो</span> मार्फत खुलेको छ।
+            </div>
+            
+            <table class="print-table">
+                <tr>
+                    <td><strong>फारम</strong></td>
+                    <td><strong>शिर्षक</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>D03</td>
+                    <td>फारम-आकार-३-०३-०२-०३०४</td>
+                    <td><span class="print-link" onclick="window.open('../income_tax/d03_form_page.html', '_blank')">Print</span></td>
+                </tr>
+                <tr>
+                    <td>अनुसूची - १</td>
+                    <td>व्यापार आयको विवरण राख्ने</td>
+                    <td><span class="print-link">Print1</span></td>
+                </tr>
+                <tr>
+                    <td>अनुसूची - ७</td>
+                    <td>लगानीबाट भएको आयको विवरण राख्ने</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>अनुसूची - ८</td>
+                    <td>गैर व्यावसायिक सम्पत्तीको निसर्गबाट भएको लाभ वापत</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>अनुसूची - २</td>
+                    <td>करको गणना (निकायको लागी)विवरण राख्ने</td>
+                    <td><span class="print-link">Print</span></td>
+                </tr>
+                <tr>
+                    <td>अनुसूची - १०</td>
+                    <td>कर मिलान सम्वन्धी विवरण राख्ने</td>
+                    <td><span class="print-link">Print</span></td>
+                </tr>
+                <tr>
+                    <td>अनुसूची - ११</td>
+                    <td>विदेश निवेशको कर मिलान दावीको विवरण राख्ने</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>अनुसूची - १३</td>
+                    <td>विशेष लाभ तथा बविधत्व बापत विवरण</td>
+                    <td><span class="print-link">Print</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        © Copyright Inland Revenue Department. All Rights Reserved
+    </div>
+    
+    <script>
+        // Set current Nepali date
+        const today = new Date();
+        const nepaliYear = today.getFullYear() + 57; // Approximate conversion
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        document.getElementById('currentDate').textContent = `${nepaliYear}.${month}.${day}`;
+        
+        // Get submission number from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const submissionNo = urlParams.get('submissionNo');
+        if (submissionNo) {
+            document.getElementById('submissionNo').textContent = submissionNo;
+        }
+    </script>
+</body>
+</html>
