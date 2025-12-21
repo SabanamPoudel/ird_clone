@@ -123,7 +123,7 @@
         
         <!-- Iframe Body -->
         <div class="iframe-body">
-            <iframe id="annexIframe" src="d03_annex_5.html"></iframe>
+            <iframe id="annexIframe" src="d03_annex_5_old.html"></iframe>
         </div>
     </div>
     
@@ -134,34 +134,6 @@
         
         iframe.addEventListener('load', function() {
             loadingOverlay.classList.add('hidden');
-        });
-        
-        // Refresh iframe
-        function refreshIframe() {
-            loadingOverlay.classList.remove('hidden');
-            iframe.src = iframe.src;
-        }
-        
-        // Close and go back to set annex page
-        function closeAndGoBack() {
-            if (confirm('के तपाईं यो पेज बन्द गर्न चाहनुहुन्छ?\n(Do you want to close this page?)')) {
-                window.location.href = 'd03_set_annex.html';
-            }
-        }
-        
-        // Listen for messages from iframe (for future use)
-        window.addEventListener('message', function(event) {
-            if (event.data.action === 'close') {
-                window.location.href = 'd03_set_annex.html';
-            } else if (event.data.action === 'saved') {
-                console.log('Data saved from Annex 5');
-                // Could show a notification here
-            }
-        });
-        
-        // Handle browser back button
-        window.addEventListener('beforeunload', function(e) {
-            // Optional: warn before leaving if form has unsaved data
         });
     </script>
 </body>

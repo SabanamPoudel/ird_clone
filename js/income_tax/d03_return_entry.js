@@ -8,6 +8,16 @@ function showAdditionalFieldsD03() {
         document.getElementById('d03-transactionAmountRow').style.display = 'none';
         document.getElementById('d03-profitAmountRow').style.display = 'none';
         document.getElementById('d03-professionTypeRow').style.display = 'none';
+        document.getElementById('d03-otherIncomeRow').style.display = 'none';
+    }
+}
+
+function showOtherIncomeCheckbox() {
+    const professionType = document.getElementById('d03-profession-input').value;
+    if (professionType) {
+        document.getElementById('d03-otherIncomeRow').style.display = '';
+    } else {
+        document.getElementById('d03-otherIncomeRow').style.display = 'none';
     }
 }
 // D-03 Return Entry JavaScript

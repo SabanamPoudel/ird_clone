@@ -188,7 +188,7 @@
                                                                                                 <div id="comboD03ProfessionType" class="x-field x-form-item x-field-default" style="width: 275px;">
                                                                                                     <label for="d03-profession-input" class="x-form-item-label x-form-item-label-left" style="margin-right:5px;width:120px;">किसिम *:</label>
                                                                                                     <div class="x-form-item-body" role="presentation" style="width: 150px;">
-                                                                                                        <select id="d03-profession-input" class="x-form-field x-form-text x-form-empty-field" autocomplete="off" aria-invalid="false" role="textbox" aria-required="true" style="width: 150px;">
+                                                                                                        <select id="d03-profession-input" class="x-form-field x-form-text x-form-empty-field" autocomplete="off" aria-invalid="false" role="textbox" aria-required="true" style="width: 150px;" onchange="showOtherIncomeCheckbox()">
                                                                                                             <option value="">---छान्नुहोस् ---</option>
                                                                                                             <option value="चिकित्सक">चिकित्सक</option>
                                                                                                             <option value="परामर्शदाता">परामर्शदाता</option>
@@ -199,6 +199,18 @@
                                                                                                             <option value="कलाकार">कलाकार</option>
                                                                                                             <option value="अन्य">अन्य</option>
                                                                                                         </select>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        
+                                                                                        <!-- Other Income Checkbox -->
+                                                                                        <tr id="d03-otherIncomeRow" style="display: none;">
+                                                                                            <td colspan="1" rowspan="1" class="x-table-layout-cell">
+                                                                                                <div class="x-field x-form-item x-field-default" style="width: 275px; padding-left: 0;">
+                                                                                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                                                                                        <input type="checkbox" id="d03-other-income-checkbox" style="margin-left: 0;">
+                                                                                                        <label for="d03-other-income-checkbox" style="margin: 0; font-size: 12px;">मेरो व्यवसायिक कारोबार बाहेक अन्य आय पनि छ।</label>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </td>

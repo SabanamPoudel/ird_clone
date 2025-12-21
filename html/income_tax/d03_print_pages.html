@@ -227,13 +227,13 @@
             </tr>
             <tr>
                 <td>स्थायी लेखा नम्बर:</td>
-                <td>621286092</td>
+                <td id="panNumber">621286092</td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td>नाम:</td>
-                <td colspan="3">अोकल ट्रान्स्पोर्ट प्रा.लि.</td>
+                <td colspan="3" id="taxpayerName">अोकल ट्रान्स्पोर्ट प्रा.लि.</td>
             </tr>
             <tr>
                 <td>कार्यालय कोडः</td>
@@ -318,6 +318,34 @@
         const submissionNo = urlParams.get('submissionNo');
         if (submissionNo) {
             document.getElementById('submissionNo').textContent = submissionNo;
+        }
+        
+        // Load taxpayer data from localStorage
+        try {
+            const currentRegistration = sessionStorage.getItem('d03_current_registration');
+            const returnData = localStorage.getItem('d03_return_data');
+            
+            let pan = '';
+            let taxpayerName = '';
+            
+            if (currentRegistration) {
+                const userData = JSON.parse(currentRegistration);
+                pan = userData.pan || '';
+                taxpayerName = userData.username || '';
+            } else if (returnData) {
+                const data = JSON.parse(returnData);
+                pan = data.pan || '';
+                taxpayerName = data.taxpayerName || data.firmName || data.name || '';
+            }
+            
+            if (pan) {
+                document.getElementById('panNumber').textContent = pan;
+            }
+            if (taxpayerName) {
+                document.getElementById('taxpayerName').textContent = taxpayerName;
+            }
+        } catch(e) {
+            console.error('Error loading taxpayer data:', e);
         }
     </script>
 </body>

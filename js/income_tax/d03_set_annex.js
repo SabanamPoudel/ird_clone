@@ -219,3 +219,29 @@ function openAnnex13Modal() {
 function openAnnex13() {
     window.location.href = 'd03_annex_13.html';
 }
+
+// Print page function
+function printPage() {
+    window.print();
+}
+
+// Clear all D-03 annex data (for testing/reset)
+function clearAllAnnexData() {
+    if (confirm('Are you sure you want to clear all annex data? This cannot be undone.')) {
+        localStorage.removeItem('d03_annex5_data');
+        localStorage.removeItem('d03_annex7_data');
+        localStorage.removeItem('annex7_data');
+        localStorage.removeItem('d03_annex8_data');
+        localStorage.removeItem('annex8_data');
+        localStorage.removeItem('d03_annex10_data');
+        localStorage.removeItem('d03_annex12_saved');
+        localStorage.removeItem('d03_annex12_data');
+        localStorage.removeItem('d03_annex13_saved');
+        localStorage.removeItem('d03_annex13_data');
+        localStorage.removeItem('d03_annex2_saved');
+        localStorage.removeItem('d03_annex2_data');
+        localStorage.removeItem('d03_show_annex2');
+        alert('All annex data cleared. The page will reload.');
+        location.reload();
+    }
+}

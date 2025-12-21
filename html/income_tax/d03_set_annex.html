@@ -172,14 +172,13 @@
         
         .annex-desc {
             width: auto;
-            padding-right: 0;
         }
         
         .annex-action {
-            width: 20px;
+            width: 250px;
             text-align: left;
-            padding-left: 0;
-            padding-right: 0;
+            padding-left: 5px;
+            padding-right: 10px;
             white-space: nowrap;
         }
         
@@ -188,6 +187,23 @@
             font-size: 18px;
             display: inline-block;
             vertical-align: middle;
+        }
+        
+        /* Print styles */
+        @media print {
+            .btn {
+                display: none !important;
+            }
+            .button-row {
+                display: none !important;
+            }
+            body {
+                background: white;
+            }
+            .main-container {
+                background: white;
+                box-shadow: none;
+            }
         }
     </style>
 </head>
@@ -198,7 +214,7 @@
         <div class="content">
             <div class="button-row">
                 <button class="btn" onclick="backToD03()">← Back to D03</button>
-                <button class="btn">🖨 Print Pages</button>
+                <button class="btn" onclick="printPage()">🖨 Print Pages</button>
             </div>
             
             <div class="instructions">

@@ -286,6 +286,9 @@ function saveAnnex5() {
     
     localStorage.setItem('d03_annex5_data', JSON.stringify(data));
     
+    // Show Annex-2 section after saving Annex-5
+    localStorage.setItem('d03_show_annex2', '1');
+    
     // Update main D03 form with business income
     updateMainForm();
     
@@ -359,6 +362,9 @@ function updateAnnex5() {
     };
     
     localStorage.setItem('d03_annex5_data', JSON.stringify(data));
+    
+    // Show Annex-2 section after saving Annex-5
+    localStorage.setItem('d03_show_annex2', '1');
     
     // Update main D03 form with business income
     updateMainForm();

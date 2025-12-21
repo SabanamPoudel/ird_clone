@@ -4,6 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Self Assessment D-03</title>
+    
+    <!-- Warning Modal -->
+    <div id="section4WarningModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; align-items: center; justify-content: center;">
+        <div style="background: #E8EEF7; width: 400px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border: 2px solid #B8C5D6;">
+            <div style="background: linear-gradient(to bottom, #E8EEF7, #D0DBEB); padding: 8px 15px; border-bottom: 1px solid #B8C5D6; display: flex; justify-content: space-between; align-items: center; border-radius: 6px 6px 0 0;">
+                <h3 style="margin: 0; color: #1F548A; font-size: 14px; font-weight: bold;">Warning</h3>
+                <button onclick="closeSection4Warning()" style="background: none; border: none; color: #666; font-size: 18px; cursor: pointer; padding: 0; width: 20px; height: 20px; line-height: 18px;">×</button>
+            </div>
+            <div style="padding: 20px;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(to bottom, #FFD700, #FFA500); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <span style="color: #000; font-size: 32px; font-weight: bold;">!</span>
+                    </div>
+                    <p style="margin: 0; color: #333; font-size: 13px; line-height: 1.5;">४. कारोवार सम्बन्धि थप विवरण छनोट भएको छैन</p>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button onclick="closeSection4Warning()" style="padding: 5px 35px; background: linear-gradient(to bottom, #F0F0F0, #D8D8D8); border: 1px solid #999; cursor: pointer; font-size: 13px; border-radius: 3px; color: #333;">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <style>
         * {
             margin: 0;
@@ -190,11 +212,11 @@
             align-items: center;
             margin: 6px 0;
             font-size: 13px;
-            gap: 5px;
+            gap: 40px;
         }
         
         .question-row label {
-            flex: 1;
+            flex: 0 0 600px;
             margin-right: 0;
         }
         
@@ -251,7 +273,7 @@
         /* Note Section */
         .note-section {
             padding: 15px;
-            text-align: center;
+            text-align: left;
             font-size: 12px;
             line-height: 1.6;
         }
@@ -310,6 +332,25 @@
         .example-text {
             font-size: 12px;
             color: #666;
+        }
+        
+        /* Print styles */
+        @media print {
+            .button-section {
+                display: none !important;
+            }
+            #section4WarningModal {
+                display: none !important;
+            }
+            body {
+                background: white;
+            }
+            .main-wrapper {
+                background: white;
+            }
+            .form-container {
+                box-shadow: none;
+            }
         }
     </style>
 </head>

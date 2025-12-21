@@ -3,7 +3,40 @@
 
 window.onload = function() {
     loadUserData();
+    setupCheckboxListeners();
 };
+
+// Setup checkbox listeners to ensure only one checkbox per question is selected
+function setupCheckboxListeners() {
+    const questions = [
+        { yes: 'q1_yes', no: 'q1_no' },
+        { yes: 'q2_yes', no: 'q2_no' },
+        { yes: 'q3_yes', no: 'q3_no' },
+        { yes: 'q4_yes', no: 'q4_no' },
+        { yes: 'q5_yes', no: 'q5_no' },
+        { yes: 'q6_yes', no: 'q6_no' },
+        { yes: 'q7_yes', no: 'q7_no' }
+    ];
+    
+    questions.forEach(question => {
+        const yesCheckbox = document.getElementById(question.yes);
+        const noCheckbox = document.getElementById(question.no);
+        
+        if (yesCheckbox && noCheckbox) {
+            yesCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    noCheckbox.checked = false;
+                }
+            });
+            
+            noCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    yesCheckbox.checked = false;
+                }
+            });
+        }
+    });
+}
 
 function loadUserData() {
     // Get data from sessionStorage (saved during registration)
@@ -102,6 +135,32 @@ function registerForm() {
         return;
     }
     
+    // Validate section 4 checkboxes
+    const section4Questions = [
+        { yes: 'q1_yes', no: 'q1_no' },
+        { yes: 'q2_yes', no: 'q2_no' },
+        { yes: 'q3_yes', no: 'q3_no' },
+        { yes: 'q4_yes', no: 'q4_no' },
+        { yes: 'q5_yes', no: 'q5_no' },
+        { yes: 'q6_yes', no: 'q6_no' },
+        { yes: 'q7_yes', no: 'q7_no' }
+    ];
+    
+    let allAnswered = true;
+    for (let question of section4Questions) {
+        const yesChecked = document.getElementById(question.yes)?.checked || false;
+        const noChecked = document.getElementById(question.no)?.checked || false;
+        if (!yesChecked && !noChecked) {
+            allAnswered = false;
+            break;
+        }
+    }
+    
+    if (!allAnswered) {
+        showSection4Warning();
+        return;
+    }
+    
     // Collect all form data
     const formData = {
         submissionNumber: document.getElementById('submissionNo').textContent,
@@ -140,23 +199,23 @@ function showSubmissionPopup(submissionNumber) {
     
     // Create modal content
     const modal = document.createElement('div');
-    modal.style.cssText = 'background: #E8EEF7; padding: 0; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); width: 350px; border: 2px solid #B8C5D6;';
+    modal.style.cssText = 'background: #E8EEF7; padding: 0; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); width: 320px; border: 2px solid #B8C5D6;';
     
     modal.innerHTML = `
-        <div style="background: linear-gradient(to bottom, #E8EEF7, #D0DBEB); padding: 8px 15px; border-bottom: 1px solid #B8C5D6; display: flex; justify-content: space-between; align-items: center; border-radius: 6px 6px 0 0;">
-            <h3 style="margin: 0; color: #1F548A; font-size: 14px; font-weight: bold;">SUCCESS</h3>
-            <button onclick="this.closest('.modal-overlay').remove()" style="background: none; border: none; color: #666; font-size: 18px; cursor: pointer; padding: 0; width: 20px; height: 20px; line-height: 18px;">×</button>
+        <div style="background: linear-gradient(to bottom, #E8EEF7, #D0DBEB); padding: 6px 12px; border-bottom: 1px solid #B8C5D6; display: flex; justify-content: space-between; align-items: center; border-radius: 4px 4px 0 0;">
+            <h3 style="margin: 0; color: #1F548A; font-size: 12px; font-weight: bold;">SUCCESS</h3>
+            <button onclick="this.closest('.modal-overlay').remove()" style="background: none; border: none; color: #666; font-size: 16px; cursor: pointer; padding: 0; width: 18px; height: 18px; line-height: 16px;">×</button>
         </div>
-        <div style="padding: 20px; text-align: center;">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(to bottom, #4A90E2, #2E5C8A); display: flex; align-items: center; justify-content: center;">
-                    <span style="color: white; font-size: 28px; font-weight: bold; font-family: serif;">i</span>
+        <div style="padding: 15px; text-align: center;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
+                <div style="width: 35px; height: 35px; border-radius: 50%; background: linear-gradient(to bottom, #4A90E2, #2E5C8A); display: flex; align-items: center; justify-content: center;">
+                    <span style="color: white; font-size: 24px; font-weight: bold; font-family: serif;">i</span>
                 </div>
-                <h4 style="margin: 0; color: #333; font-size: 16px;">Successfully Saved !!!</h4>
+                <h4 style="margin: 0; color: #333; font-size: 14px;">Successfully Saved !!!</h4>
             </div>
-            <p style="margin: 8px 0 4px 0; color: #333; font-size: 13px;">सब्मिशन नं. दिएनुहोस्</p>
-            <p style="margin: 0 0 20px 0; font-size: 18px; font-weight: bold; color: #000;">${submissionNumber}</p>
-            <button id="modalOkBtn" style="padding: 5px 35px; background: linear-gradient(to bottom, #F0F0F0, #D8D8D8); border: 1px solid #999; cursor: pointer; font-size: 13px; border-radius: 3px; color: #333;">OK</button>
+            <p style="margin: 6px 0 3px 0; color: #333; font-size: 11px;">सब्मिशन नं. दिएनुहोस्</p>
+            <p style="margin: 0 0 15px 0; font-size: 16px; font-weight: bold; color: #000;">${submissionNumber}</p>
+            <button id="modalOkBtn" style="padding: 4px 30px; background: linear-gradient(to bottom, #F0F0F0, #D8D8D8); border: 1px solid #999; cursor: pointer; font-size: 12px; border-radius: 3px; color: #333;">OK</button>
         </div>
     `;
     
@@ -210,6 +269,18 @@ function showValidationPopup(message) {
     };
 }
 
+// Show section 4 warning modal
+function showSection4Warning() {
+    const modal = document.getElementById('section4WarningModal');
+    modal.style.display = 'flex';
+}
+
+// Close section 4 warning modal
+function closeSection4Warning() {
+    const modal = document.getElementById('section4WarningModal');
+    modal.style.display = 'none';
+}
+
 // Function to update form
 function updateForm() {
     alert('Update functionality will be implemented here.');
@@ -233,4 +304,9 @@ function generateSubmissionNumber() {
     const timestamp = Date.now();
     const random = Math.floor(Math.random() * 10000);
     return '820' + timestamp.toString().slice(-9) + String(random).padStart(4, '0');
+}
+
+// Print page function
+function printPage() {
+    window.print();
 }
