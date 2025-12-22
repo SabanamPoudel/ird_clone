@@ -911,8 +911,8 @@ function saveOtherExpenseDetails() {
     // Get the total value
     const totalValue = document.getElementById('otherExpenseTotal').value;
     
-    // Update the main form field (DE9 - Others than mentioned)
-    document.getElementById('de9').value = totalValue;
+    // Update the main form field (DE8 - Others than mentioned)
+    document.getElementById('de8').value = totalValue;
     
     // Save other expense details to localStorage
     const otherExpenseData = {

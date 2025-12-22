@@ -255,21 +255,24 @@
                 <script>
                 // ...existing code...
                 document.getElementById('finalizeSubmitBtn').onclick = function() {
-                    // Get total tax from annex 5 (or other annexes as needed)
+                    // Get total tax from annex 2
                     let totalTax = 0;
                     let paidTax = 0;
                     try {
-                        const annex5 = localStorage.getItem('d03_annex5_data');
-                        if (annex5) {
-                            const data = JSON.parse(annex5);
-                            // Try to get total tax from a relevant field (e.g., businessIncome or miTotal)
-                            if (data && data.miTotal) {
-                                totalTax = parseFloat((data.miTotal+'').replace(/,/g, '')) || 0;
-                            } else if (data && data.businessIncome) {
-                                totalTax = parseFloat((data.businessIncome+'').replace(/,/g, '')) || 0;
+                        const annex2 = localStorage.getItem('d03_annex2_data');
+                        if (annex2) {
+                            const data = JSON.parse(annex2);
+                            // Get total tax from annex 2
+                            if (data && data.totalTax) {
+                                totalTax = parseFloat((data.totalTax+'').replace(/,/g, '')) || 0;
+                            } else if (data && data.taxAmount) {
+                                totalTax = parseFloat((data.taxAmount+'').replace(/,/g, '')) || 0;
+                            }
+                            // Get paid tax if available
+                            if (data && data.paidTax) {
+                                paidTax = parseFloat((data.paidTax+'').replace(/,/g, '')) || 0;
                             }
                         }
-                        // Optionally, get paid tax from another annex/localStorage if available
                     } catch(e) {}
                     document.getElementById('totalTaxAmount').innerText = 'रु ' + (totalTax ? totalTax.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '०');
                     document.getElementById('paidTaxAmount').innerText = 'रु ' + (paidTax ? paidTax.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '०');
