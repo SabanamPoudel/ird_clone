@@ -336,6 +336,173 @@
             color: #666;
         }
         
+        /* Mobile Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .main-wrapper {
+                padding: 5px;
+            }
+            
+            .header-section, .section-blue, .section-white {
+                padding: 10px;
+            }
+            
+            .section-title {
+                font-size: 12px;
+                padding: 5px 8px;
+            }
+            
+            .field-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .field-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+                width: 100%;
+            }
+            
+            .field-group input[type="text"],
+            .field-group select {
+                width: 100% !important;
+            }
+            
+            .example-text {
+                font-size: 11px;
+            }
+            
+            /* Address section */
+            .address-header {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .address-header .radio-group {
+                margin-left: 0;
+                flex-wrap: wrap;
+            }
+            
+            .address-inputs {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .address-inputs input {
+                width: 100% !important;
+            }
+            
+            .contact-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            /* Questions section */
+            .question-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .checkbox-options {
+                margin-left: 0;
+            }
+            
+            /* Audit fields */
+            .audit-field {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .audit-field label {
+                width: 100%;
+            }
+            
+            .audit-field input {
+                width: 100% !important;
+            }
+            
+            .audit-text {
+                font-size: 11px;
+            }
+            
+            /* Buttons */
+            .btn-register, .btn-update, .btn-annex {
+                padding: 8px 20px;
+                font-size: 12px;
+                margin: 5px;
+            }
+            
+            .button-section {
+                padding: 10px;
+            }
+            
+            /* Modal */
+            #section4WarningModal > div {
+                width: 90% !important;
+                max-width: 350px;
+            }
+            
+            #section4WarningModal p {
+                font-size: 12px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            body {
+                font-size: 11px;
+            }
+            
+            .self-assessment-text, .form-code {
+                font-size: 11px;
+            }
+            
+            .sub-label, .sub-number {
+                font-size: 12px;
+            }
+            
+            .section-title {
+                font-size: 11px;
+            }
+            
+            .field-group label {
+                font-size: 11px;
+            }
+            
+            .field-group input[type="text"],
+            .field-group select {
+                font-size: 11px;
+                padding: 5px;
+            }
+            
+            .checkbox-item label,
+            .radio-item label {
+                font-size: 11px;
+            }
+            
+            .audit-text {
+                font-size: 10px;
+            }
+            
+            .signature-label {
+                font-size: 11px;
+            }
+            
+            .audit-field label {
+                font-size: 11px;
+            }
+            
+            .audit-field input {
+                font-size: 11px;
+                padding: 5px;
+            }
+            
+            .btn-register, .btn-update, .btn-annex {
+                padding: 6px 15px;
+                font-size: 11px;
+            }
+        }
+        
         /* Print styles */
         @media print {
             .button-section {

@@ -247,6 +247,172 @@
               box-sizing: border-box;
               font-family: inherit;
         }
+        
+        /* Mobile Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .page-container {
+                padding: 5px;
+            }
+            
+            .content-wrapper {
+                padding: 10px;
+            }
+            
+            .page-title {
+                font-size: 14px;
+            }
+            
+            .section-panel {
+                margin: 10px 0;
+            }
+            
+            .section-header {
+                font-size: 13px;
+                padding: 8px;
+            }
+            
+            .section-body {
+                padding: 10px;
+            }
+            
+            /* Make tables scrollable on mobile */
+            .section-body > div {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            table {
+                min-width: 600px;
+                font-size: 11px;
+            }
+            
+            table th, table td {
+                padding: 4px !important;
+                font-size: 11px;
+            }
+            
+            /* Adjust input fields for mobile */
+            input[type="text"], input[type="file"], select {
+                font-size: 13px;
+                padding: 6px !important;
+            }
+            
+            /* Save buttons */
+            .save-btn {
+                font-size: 12px;
+                padding: 6px 12px;
+                margin: 5px;
+            }
+            
+            /* Modal adjustments */
+            .modal-content {
+                min-width: 90% !important;
+                max-width: 95%;
+                margin: 10px;
+            }
+            
+            /* Checkbox field adjustments */
+            .checkbox-field {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            /* Adjust form rows */
+            .field-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            /* Load Excel section */
+            fieldset {
+                max-width: 100% !important;
+            }
+            
+            fieldset > div {
+                flex-direction: column;
+                align-items: stretch !important;
+            }
+            
+            fieldset input[type="file"] {
+                min-width: 100% !important;
+                margin-bottom: 10px;
+            }
+            
+            fieldset button {
+                width: 100%;
+                margin-bottom: 8px;
+            }
+            
+            /* Totals section */
+            .totals-section {
+                gap: 10px;
+            }
+            
+            .total-item {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .total-item label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            .total-item input {
+                width: 100% !important;
+            }
+            
+            /* Note box */
+            .note-box {
+                font-size: 13px;
+                padding: 10px;
+            }
+            
+            /* Print button */
+            .print-btn {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            body {
+                font-size: 12px;
+            }
+            
+            .page-title {
+                font-size: 12px;
+            }
+            
+            .section-header {
+                font-size: 12px;
+                padding: 6px;
+            }
+            
+            table {
+                font-size: 10px;
+            }
+            
+            table th, table td {
+                padding: 3px !important;
+                font-size: 10px;
+            }
+            
+            input[type="text"], select {
+                font-size: 12px;
+            }
+            
+            .save-btn {
+                font-size: 11px;
+                padding: 5px 10px;
+            }
+            
+            .note-box {
+                font-size: 12px;
+                padding: 8px;
+            }
+        }
     </style>
 </head>
 <body>
