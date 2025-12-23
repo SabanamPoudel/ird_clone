@@ -744,16 +744,59 @@
                 <div class="section-body" style="background-color: #dfe9f6;">
                     <div class="form-field" style="margin-bottom: 10px;">
                         <label style="min-width: 450px;">यस आ. ब. मा दाखिला भएको अग्रिम कर कट्टी रकम रू.</label>
-                        <input type="text" style="width: 150px; background-color: #fff;">
+                        <input type="text" id="tdsSubmitted" style="width: 150px; background-color: #fff;">
                     </div>
                     <div class="form-field" style="margin-bottom: 10px;">
                         <label style="min-width: 450px;">आसाढ मसान्त सम्म अग्रिम कर कट्टी रकम दाखिला गर्न बाँकि (TDS Payable) जम्मा रू.</label>
-                        <input type="text" style="width: 150px; background-color: #fff;">
+                        <input type="text" id="tdsPayable" style="width: 150px; background-color: #fff;">
                     </div>
                     <div class="form-field">
                         <label style="min-width: 450px;">TDS Payable मध्‍य आय विवरण पेश गरेको मितिसम्म दाखिला गर्न बाँकी रकम रू.</label>
-                        <input type="text" style="width: 150px; background-color: #fff;">
+                        <input type="text" id="tdsRemaining" style="width: 150px; background-color: #fff;">
                     </div>
+                    <button class="save-btn" id="tdsSaveBtn" style="margin-top: 10px;">💾 Save</button>
+                    
+                    <!-- Success Modal for TDS -->
+                    <div id="tdsSuccessModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:10000;align-items:center;justify-content:center;">
+                        <div style="background:#e8f0ff;border:2px solid #5b9bd5;box-shadow:0 4px 16px rgba(0,0,0,0.2);border-radius:8px;width:400px;max-width:90vw;padding:0;">
+                            <div style="background:#5b9bd5;padding:8px 15px;border-radius:6px 6px 0 0;display:flex;align-items:center;justify-content:space-between;">
+                                <span style="color:#fff;font-weight:bold;font-size:15px;">SUCCESS</span>
+                                <span onclick="closeTdsSuccess()" style="color:#fff;cursor:pointer;font-size:20px;line-height:1;">&times;</span>
+                            </div>
+                            <div style="padding:20px;display:flex;align-items:center;gap:15px;">
+                                <div style="width:50px;height:50px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <svg width="50" height="50" viewBox="0 0 50 50">
+                                        <circle cx="25" cy="25" r="20" fill="#5b9bd5" stroke="#4a7ba7" stroke-width="2"/>
+                                        <text x="25" y="33" text-anchor="middle" font-size="28" fill="#fff" font-family="Arial" font-weight="bold">i</text>
+                                    </svg>
+                                </div>
+                                <div style="flex:1;font-size:14px;color:#222;line-height:1.5;">Successfully Saved.</div>
+                            </div>
+                            <div style="text-align:center;padding:0 0 15px 0;">
+                                <button onclick="closeTdsSuccess()" style="padding:5px 35px;background:linear-gradient(to bottom, #f0f0f0, #d8d8d8);border:1px solid #999;cursor:pointer;font-size:13px;border-radius:3px;color:#333;font-weight:bold;">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                    // TDS Save button validation
+                    document.getElementById('tdsSaveBtn').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var tdsSubmitted = document.getElementById('tdsSubmitted').value.trim();
+                        var tdsPayable = document.getElementById('tdsPayable').value.trim();
+                        var tdsRemaining = document.getElementById('tdsRemaining').value.trim();
+                        
+                        // Check if at least one field has data
+                        if (tdsSubmitted !== '' || tdsPayable !== '' || tdsRemaining !== '') {
+                            // Show success modal
+                            document.getElementById('tdsSuccessModal').style.display = 'flex';
+                        }
+                    });
+                    
+                    function closeTdsSuccess() {
+                        document.getElementById('tdsSuccessModal').style.display = 'none';
+                    }
+                    </script>
                 </div>
             </div>
             
@@ -773,8 +816,21 @@
                                 <input type="text" readonly style="flex: 1; padding: 5px; border: 1px solid #999; background: #fff;">
                                 <button class="save-btn" style="margin: 0; padding: 5px 15px; background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);">Browse...</button>
                                 <button class="save-btn" style="margin: 0; padding: 5px 15px; background: linear-gradient(to bottom, #D9E8FB, #C5D9ED);">📤 Upload</button>
-                                <button class="save-btn" style="margin: 0; padding: 5px 15px; background: linear-gradient(to bottom, #90EE90, #7FD87F);">📄 View Sample</button>
+                                <button class="save-btn" id="viewSampleBtn" style="margin: 0; padding: 5px 15px; background: linear-gradient(to bottom, #90EE90, #7FD87F);">📄 View Sample</button>
                             </div>
+                            <script>
+                            // View Sample button - download sample Excel file
+                            document.getElementById('viewSampleBtn').addEventListener('click', function(e) {
+                                e.preventDefault();
+                                // Create a temporary link to download the file
+                                var link = document.createElement('a');
+                                link.href = '../../resources/samples/Annex13SalaryWages-Sample.xls';
+                                link.download = 'Annex13SalaryWages-Sample.xls';
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                            });
+                            </script>
                         </div>
                         <div id="wagesTableWrap" style="overflow-x: auto;">
                             <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
@@ -832,7 +888,68 @@
                             </tbody>
                         </table>
                     </div>
-                    <button class="save-btn">💾 Save</button>
+                    <button class="save-btn" id="wagesSaveBtn">💾 Save</button>
+                    
+                    <!-- Warning Modal for Employee Wages -->
+                    <div id="wagesWarningModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:10000;align-items:center;justify-content:center;">
+                        <div style="background:#e8f0ff;border:2px solid #5b9bd5;box-shadow:0 4px 16px rgba(0,0,0,0.2);border-radius:8px;width:400px;max-width:90vw;padding:0;">
+                            <div style="background:#5b9bd5;padding:8px 15px;border-radius:6px 6px 0 0;display:flex;align-items:center;justify-content:space-between;">
+                                <span style="color:#fff;font-weight:bold;font-size:15px;">WARNING</span>
+                                <span onclick="closeWagesWarning()" style="color:#fff;cursor:pointer;font-size:20px;line-height:1;">&times;</span>
+                            </div>
+                            <div style="padding:20px;display:flex;align-items:center;gap:15px;">
+                                <div style="width:50px;height:50px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <svg width="50" height="50" viewBox="0 0 50 50">
+                                        <polygon points="25,5 45,40 5,40" fill="#FFD700" stroke="#DAA520" stroke-width="2"/>
+                                        <text x="25" y="32" text-anchor="middle" font-size="24" fill="#333" font-family="Arial" font-weight="bold">!</text>
+                                    </svg>
+                                </div>
+                                <div style="flex:1;font-size:14px;color:#222;line-height:1.5;">कृपया अग्रिम कर कट्टी रकम भर्नुहोस।</div>
+                            </div>
+                            <div style="text-align:center;padding:0 0 15px 0;">
+                                <button onclick="closeWagesWarning()" style="padding:5px 35px;background:linear-gradient(to bottom, #f0f0f0, #d8d8d8);border:1px solid #999;cursor:pointer;font-size:13px;border-radius:3px;color:#333;font-weight:bold;">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Success Modal for Employee Wages -->
+                    <div id="wagesSuccessModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:10000;align-items:center;justify-content:center;">
+                        <div style="background:#e8f0ff;border:2px solid #5b9bd5;box-shadow:0 4px 16px rgba(0,0,0,0.2);border-radius:8px;width:400px;max-width:90vw;padding:0;">
+                            <div style="background:#5b9bd5;padding:8px 15px;border-radius:6px 6px 0 0;display:flex;align-items:center;justify-content:space-between;">
+                                <span style="color:#fff;font-weight:bold;font-size:15px;">SUCCESS</span>
+                                <span onclick="closeWagesSuccess()" style="color:#fff;cursor:pointer;font-size:20px;line-height:1;">&times;</span>
+                            </div>
+                            <div style="padding:20px;display:flex;align-items:center;gap:15px;">
+                                <div style="width:50px;height:50px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <svg width="50" height="50" viewBox="0 0 50 50">
+                                        <circle cx="25" cy="25" r="20" fill="#5b9bd5" stroke="#4a7ba7" stroke-width="2"/>
+                                        <text x="25" y="33" text-anchor="middle" font-size="28" fill="#fff" font-family="Arial" font-weight="bold">i</text>
+                                    </svg>
+                                </div>
+                                <div style="flex:1;font-size:14px;color:#222;line-height:1.5;">Successfully Saved.</div>
+                            </div>
+                            <div style="text-align:center;padding:0 0 15px 0;">
+                                <button onclick="closeWagesSuccess()" style="padding:5px 35px;background:linear-gradient(to bottom, #f0f0f0, #d8d8d8);border:1px solid #999;cursor:pointer;font-size:13px;border-radius:3px;color:#333;font-weight:bold;">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                    // Validate and show warning for employee wages save button
+                    document.getElementById('wagesSaveBtn').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        // Always show success modal when save is clicked
+                        document.getElementById('wagesSuccessModal').style.display = 'flex';
+                    });
+                    
+                    function closeWagesWarning() {
+                        document.getElementById('wagesWarningModal').style.display = 'none';
+                    }
+                    
+                    function closeWagesSuccess() {
+                        document.getElementById('wagesSuccessModal').style.display = 'none';
+                    }
+                    </script>
                 </div>
             </div>
             
@@ -896,7 +1013,7 @@
                             <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">23</td><td style="border: 1px solid #ddd; padding: 6px;">दफा १९ बमोजिम कट्टी हुने ह्रास कट्टी खर्च</td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
                             <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">24</td><td style="border: 1px solid #ddd; padding: 6px;">दफा ५९(१) बमोजिम कट्टी हुने जगेडा रकम</td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
                             <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">25</td><td style="border: 1px solid #ddd; padding: 6px;">उपरोक्त वाहेक आयकर ऐन २०५८ वमोजिम कट्टी हुने अन्य खर्चहरु (विवरण संलग्न गर्ने)</td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
-                            <tr><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">26</td><td style="border: 1px solid #ddd; padding: 6px;">विदेशमा तिरेको कर (दफा ७१.४)</td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" style="width: 100%; border: none; text-align: right;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
+                            <tr id="foreignTaxRow26"><td style="border: 1px solid #ddd; padding: 6px; text-align: center;">26</td><td style="border: 1px solid #ddd; padding: 6px;">विदेशमा तिरेको कर (दफा ७१.४) <span style="color: #2176c1; font-size: 11px;">[Auto from Annex 5]</span></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" id="foreignTaxFinancial" readonly style="width: 100%; border: none; text-align: right; background: #e8f4f8;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" id="foreignTaxIncome" readonly style="width: 100%; border: none; text-align: right; background: #e8f4f8;"></td><td style="border: 1px solid #ddd; padding: 6px;"><input type="text" id="foreignTaxDiff" readonly style="width: 100%; border: none; text-align: right; background: #f9f9f9;"></td></tr>
                             <tr style="background-color: #f0f0f0; font-weight: bold;">
                                 <td colspan="2" style="border: 1px solid #999; padding: 6px;">जम्मा</td>
                                 <td style="border: 1px solid #999; padding: 6px;"><input type="text" readonly style="width: 100%; border: none; text-align: right; background: #ddd;"></td>
@@ -910,6 +1027,34 @@
                     <script>
                     // Improved auto-calculate difference and totals for आय विवरण र वित्तीय विवरण अनुसार खर्चको कट्टी विवरण
                     document.addEventListener('DOMContentLoaded', function() {
+                        // Load foreign tax from Annex 5
+                        function loadForeignTaxFromAnnex5() {
+                            try {
+                                var annex5Data = localStorage.getItem('d03_annex5_data');
+                                if (annex5Data) {
+                                    var data = JSON.parse(annex5Data);
+                                    var foreignTax = data.de9 || '0';
+                                    
+                                    // Populate both financial and income columns with the same value from Annex 5
+                                    var financialInput = document.getElementById('foreignTaxFinancial');
+                                    var incomeInput = document.getElementById('foreignTaxIncome');
+                                    var diffInput = document.getElementById('foreignTaxDiff');
+                                    
+                                    if (financialInput && incomeInput && diffInput) {
+                                        financialInput.value = foreignTax;
+                                        incomeInput.value = foreignTax;
+                                        // Since both are same, difference is 0
+                                        diffInput.value = '0';
+                                    }
+                                }
+                            } catch (e) {
+                                console.error('Error loading foreign tax from Annex 5:', e);
+                            }
+                        }
+                        
+                        // Load on page load
+                        loadForeignTaxFromAnnex5();
+                        
                         function parseNum(val) {
                             var n = parseFloat((val||'').replace(/,/g, ''));
                             return isNaN(n) ? 0 : n;
@@ -922,6 +1067,7 @@
                             // 8 rows: index 0 to 7 (18-25)
                             return idx >= 0 && idx <= 7;
                         });
+                        var row26 = document.getElementById('foreignTaxRow26');
                         var totalRow = tbody.querySelector('tr[style*="background-color: #f0f0f0"]');
                         function recalc() {
                             var sumA = 0, sumB = 0, sumDiff = 0;
@@ -936,6 +1082,17 @@
                                 sumB += b;
                                 sumDiff += diff;
                             });
+                            
+                            // Add Row 26 foreign tax to totals
+                            if (row26) {
+                                var row26Inputs = row26.querySelectorAll('input');
+                                if (row26Inputs.length === 3) {
+                                    sumA += parseNum(row26Inputs[0].value);
+                                    sumB += parseNum(row26Inputs[1].value);
+                                    sumDiff += parseNum(row26Inputs[2].value);
+                                }
+                            }
+                            
                             if (totalRow) {
                                 var totalInputs = totalRow.querySelectorAll('input');
                                 if (totalInputs.length === 3) {
@@ -962,6 +1119,103 @@
             <div class="section-panel">
                 <div class="section-header">शुरु मौज्दात, खरिद, बिक्री, लिन बाँकी वा दिन बाँकी मध्ये कुनै रकम रु १ लाख भन्दा बढी हुनेको विवरण</div>
                 <div class="section-body" style="background: #e8f0fe;">
+                    <!-- Checkbox for no transaction -->
+                    <div style="margin-bottom: 15px; padding: 10px; background: #dfe9f6; border: 1px solid #ccc; border-radius: 4px;">
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="checkbox" id="noTransactionOver1Lakh" style="width: 18px; height: 18px; cursor: pointer;">
+                            <span style="font-size: 14px; color: #333;">कुनै पनि व्यक्ति / संस्था संग आर्थिक वर्ष भरिमा रु एक लाख भन्दा बढीको कारोबार छैन</span>
+                        </label>
+                    </div>
+                    
+                    <!-- PAN Notice -->
+                    <div style="margin-bottom: 15px; padding: 12px; background: #fff9c4; border: 1px solid #f9a825; border-radius: 4px; max-width: 850px;">
+                        <span style="font-size: 13px; color: #333;">स्था. ले. नं. हुनेको हकमा अनिवार्य रुपमा स्था. ले. नं. (PAN) उल्लेख गर्नुहोला ।</span>
+                    </div>
+                    
+                    <!-- Load From Excel File -->
+                    <fieldset style="border: 1px solid #999; padding: 15px; margin-bottom: 15px; background: #dfe9f6; border-radius: 4px; max-width: 850px;">
+                        <legend style="font-size: 14px; font-weight: bold; padding: 0 8px; color: #333;">Load From Excel File</legend>
+                        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <label style="font-weight: bold; font-size: 13px;">Load XLS:</label>
+                            <input type="file" id="xlsFileInput1Lakh" accept=".xls,.xlsx" style="flex: 1; min-width: 250px; padding: 6px; border: 1px solid #ccc; border-radius: 3px;">
+                            <button id="browseBtn1Lakh" style="padding: 6px 16px; background: linear-gradient(to bottom, #f0f0f0, #d9d9d9); border: 1px solid #999; border-radius: 3px; cursor: pointer; font-size: 13px;">
+                                📁 Browse...
+                            </button>
+                            <button id="uploadBtn1Lakh" style="padding: 6px 16px; background: linear-gradient(to bottom, #e3f2fd, #bbdefb); border: 1px solid #42a5f5; border-radius: 3px; cursor: pointer; font-size: 13px; color: #1976d2;">
+                                📤 Upload
+                            </button>
+                            <button id="viewSample1LakhBtn" style="padding: 6px 16px; background: linear-gradient(to bottom, #c8e6c9, #a5d6a7); border: 1px solid #66bb6a; border-radius: 3px; cursor: pointer; font-size: 13px; color: #2e7d32;">
+                                💾 View Sample
+                            </button>
+                        </div>
+                    </fieldset>
+                    <script>
+                    // Browse button triggers file input
+                    document.getElementById('browseBtn1Lakh').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        document.getElementById('xlsFileInput1Lakh').click();
+                    });
+                    
+                    // View Sample button - download sample Excel file for 1 Lakh section
+                    document.getElementById('viewSample1LakhBtn').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        // Create a temporary link to download the file
+                        var link = document.createElement('a');
+                        link.href = '../../resources/samples/Annex13New-Sample.xls';
+                        link.download = 'Annex13New-Sample.xls';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    });
+                    
+                    // Upload button - handle file upload
+                    document.getElementById('uploadBtn1Lakh').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var fileInput = document.getElementById('xlsFileInput1Lakh');
+                        if (fileInput.files.length === 0) {
+                            alert('कृपया पहिले एक्सेल फाइल छान्नुहोस्।\nPlease select an Excel file first.');
+                            return;
+                        }
+                        // TODO: Implement Excel file parsing and data loading
+                        alert('Excel file upload functionality will be implemented.');
+                    });
+                    
+                    // Handle checkbox state change to enable/disable Upload and Add New buttons
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var checkbox = document.getElementById('noTransactionOver1Lakh');
+                        var uploadBtn = document.getElementById('uploadBtn1Lakh');
+                        var addNewBtn = document.getElementById('addRowBtn');
+                        
+                        function toggleButtons() {
+                            if (checkbox.checked) {
+                                // Dim the buttons when checkbox is checked
+                                uploadBtn.style.opacity = '0.4';
+                                uploadBtn.style.cursor = 'not-allowed';
+                                uploadBtn.disabled = true;
+                                
+                                addNewBtn.style.opacity = '0.4';
+                                addNewBtn.style.cursor = 'not-allowed';
+                                addNewBtn.disabled = true;
+                            } else {
+                                // Bright buttons when checkbox is unchecked
+                                uploadBtn.style.opacity = '1';
+                                uploadBtn.style.cursor = 'pointer';
+                                uploadBtn.disabled = false;
+                                
+                                addNewBtn.style.opacity = '1';
+                                addNewBtn.style.cursor = 'pointer';
+                                addNewBtn.disabled = false;
+                            }
+                        }
+                        
+                        // Initial state
+                        toggleButtons();
+                        
+                        // Listen for checkbox changes
+                        checkbox.addEventListener('change', toggleButtons);
+                    });
+                    </script>
+                    
                     <div style="margin-bottom: 10px;">
                         <button id="addRowBtn" style="border: none; background: none; color: #249c2c; font-size: 14px; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; margin-right: 10px;">
                             <span style="font-size: 16px;">&#x2795;</span> Add New
@@ -984,7 +1238,47 @@
                                 </tr>
                             </thead>
                             <tbody id="transactionGrid">
-                                <!-- Rows will be added dynamically -->
+                                <!-- Default empty rows for data entry -->
+                                <tr style="height: 35px;">
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                </tr>
+                                <tr style="height: 35px;">
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                </tr>
+                                <tr style="height: 35px;">
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                </tr>
+                                <tr style="height: 35px;">
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                </tr>
+                                <tr style="height: 35px;">
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                    <td style="border: 1px solid #bbb; padding: 6px; background: #fff;"><input type="text" style="width: 100%; border: none; background: transparent; padding: 4px; font-size: 13px;"></td>
+                                </tr>
                             </tbody>
                         </table>
                         <script>
@@ -1006,6 +1300,41 @@
                             document.getElementById('transactionGrid').innerHTML = '';
                         };
                         </script>
+                    </div>
+                    
+                    <!-- Totals Section -->
+                    <div style="margin-top: 15px; padding: 15px; background: #f0f5fb; border: 1px solid #b5d1f3;">
+                        <div style="font-weight: bold; margin-bottom: 10px; font-size: 14px;">जम्मा</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <label style="min-width: 200px;">वर्षको शुरुको लिन बाकी (दिन बाकी) रकम :</label>
+                                <input type="text" id="totalBeginning" readonly style="flex: 1; padding: 4px 8px; border: 1px solid #ccc; background: #fff;">
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <label style="min-width: 150px;">पुजिगत सेवा खरिद :</label>
+                                <input type="text" id="totalCapitalService" readonly style="flex: 1; padding: 4px 8px; border: 1px solid #ccc; background: #fff;">
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <label style="min-width: 200px;">पुजिगत समान खरिद:</label>
+                                <input type="text" id="totalCapitalGoods" readonly style="flex: 1; padding: 4px 8px; border: 1px solid #ccc; background: #fff;">
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <label style="min-width: 150px;">अन्य सेवा खरिद :</label>
+                                <input type="text" id="totalOtherService" readonly style="flex: 1; padding: 4px 8px; border: 1px solid #ccc; background: #fff;">
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <label style="min-width: 200px;">समान बिक्रि:</label>
+                                <input type="text" id="totalGoodsSales" readonly style="flex: 1; padding: 4px 8px; border: 1px solid #ccc; background: #fff;">
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <label style="min-width: 150px;">अन्य समान खरिद:</label>
+                                <input type="text" id="totalOtherGoods" readonly style="flex: 1; padding: 4px 8px; border: 1px solid #ccc; background: #fff;">
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <label style="min-width: 200px;">वर्षको अन्तमा लिन बाकी (दिन बाकी) रकम:</label>
+                                <input type="text" id="totalEnding" readonly style="flex: 1; padding: 4px 8px; border: 1px solid #ccc; background: #fff;">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
