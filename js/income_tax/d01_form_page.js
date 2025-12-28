@@ -56,6 +56,11 @@ $(document).ready(function() {
     $('#transactionAmt, #expenseAmt').on('focus', function() {
         paymentCalculated = false;
     });
+    
+    // Submit button handler
+    $('#submitBtn').on('click', function() {
+        handleSubmit();
+    });
 });
 
 // Function to calculate and display payment details
@@ -132,8 +137,15 @@ function displayPaymentDetails(fiscalYear, transactionAmt, expenseAmt) {
     
     const netIncome = transactionAmt - expenseAmt;
     
-    // D-01 presumptive tax calculation: 0.3% of transaction amount
-    const taxRate = 0.003;
+    // Validate: Profit should not exceed 300,000 for D-01
+    if (netIncome > 300000) {
+        showModal('कर योग्य आय ३,००,००० भन्दा बढी भएकोले SA-D01 भर्न हुन्न। कृपया D-02 वा D-03 प्रयोग गर्नुहोस्।');
+        $('#paymentDetails').html('');
+        return;
+    }
+    
+    // D-01 presumptive tax calculation: 0.25% of transaction amount
+    const taxRate = 0.0025;
     const taxAmount = transactionAmt * taxRate;
     
     // Section 117 fee calculation (approximate - 1% of tax or minimum 200)
@@ -328,3 +340,75 @@ function showModal(message) {
     document.getElementById('modalMessage').textContent = message;
     modalOverlay.style.display = 'flex';
 }
+
+// Function to handle Submit button click
+function handleSubmit() {
+    const fiscalYear = $('#fiscalYear').val();
+    const transactionAmt = $('#transactionAmt').val();
+    const expenseAmt = $('#expenseAmt').val();
+    const bankCode = $('#bankCode').val();
+    const paymentTable = $('#paymentDetails').html();
+    
+    // Validate all required fields
+    if (!fiscalYear) {
+        showModal('कृपया आर्थिक बर्ष छान्नुहोस्। (Please select fiscal year)');
+        return;
+    }
+    
+    if (!transactionAmt || parseFloat(transactionAmt) <= 0) {
+        showModal('कृपया कारोबार रकम उल्लेख गर्नुहोस्। (Please enter transaction amount)');
+        return;
+    }
+    
+    if (!expenseAmt && expenseAmt !== '0') {
+        showModal('कृपया कट्टी हुने रकम उल्लेख गर्नुहोस्। (Please enter deductible amount)');
+        return;
+    }
+    
+    if (!paymentTable || paymentTable.trim() === '') {
+        showModal('कृपया पहिले कर गणना गर्नुहोस्। (Please calculate tax first)');
+        return;
+    }
+    
+    if (!bankCode) {
+        showModal('कृपया बैंक छान्नुहोस्। (Please select a bank)');
+        return;
+    }
+    
+    // All validations passed - show success message
+    showSubmitSuccessModal();
+}
+
+// Function to show submit success modal
+function showSubmitSuccessModal() {
+    const modalHTML = `
+        <div id="submitSuccessModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10000;">
+            <div style="background: white; border-radius: 12px; padding: 40px 50px; max-width: 600px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                <div style="margin-bottom: 20px;">
+                    <svg width="80" height="80" viewBox="0 0 80 80" style="margin: 0 auto;">
+                        <circle cx="40" cy="40" r="38" fill="none" stroke="#28a745" stroke-width="3"/>
+                        <path d="M25 40 L35 50 L55 30" stroke="#28a745" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <p style="font-size: 16px; color: #333; margin-bottom: 30px; line-height: 1.8;">
+                    तपाईंको आय विवरण सफलतापूर्वक पेश भएको छ।<br>
+                    (Your return has been submitted successfully.)
+                </p>
+                <button onclick="closeSubmitSuccessModal()" style="background: #28a745; color: white; border: none; padding: 12px 40px; border-radius: 6px; font-size: 14px; cursor: pointer; font-weight: 500;">
+                    OK
+                </button>
+            </div>
+        </div>
+    `;
+    
+    $('body').append(modalHTML);
+}
+
+// Function to close submit success modal
+function closeSubmitSuccessModal() {
+    $('#submitSuccessModal').remove();
+    // Reset form
+    deletePaymentRow();
+    $('#bankCode').val('');
+}
+
