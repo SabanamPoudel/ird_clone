@@ -102,9 +102,43 @@
         .uploaded-table td.action {
             text-align: center;
         }
+
+        /* Disclaimer Banner */
+        .disclaimer-banner {
+            background-color: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+            padding: 15px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        @media screen and (max-width: 768px) {
+            .disclaimer-banner {
+                font-size: 12px;
+                padding: 12px 15px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .disclaimer-banner {
+                font-size: 11px;
+                padding: 10px 12px;
+            }
+        }
     </style>
 </head>
-<body>
+<body>    <!-- Disclaimer Banner -->
+    <div class="disclaimer-banner">
+        <strong>⚠️ IMPORTANT NOTICE:</strong> This website is provided strictly for training and demonstration purposes only. 
+        It is NOT connected to the official Inland Revenue Department (IRD) of Nepal. 
+        Do not enter any real, sensitive, or confidential taxpayer information. 
+        Any data entered here will not be processed or submitted to the actual IRD system. 
+        For official tax filing, please visit the authentic IRD portal.
+    </div>
     <div class="ird-main-panel">
         <div class="ird-header">
             <b>Document Upload D03</b> ( पछाडि गएर अनुसूची तय गर्न <span class="ird-back-link" id="backLinkBtn">यहाँ क्लिक</span> गर्नुहोस् ! )
